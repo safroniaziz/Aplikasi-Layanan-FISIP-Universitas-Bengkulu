@@ -8,10 +8,10 @@
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <!-- Bootstrap 3.3.7 -->
         <link rel="stylesheet" href="{{ asset('assets/application/bower_components/bootstrap/dist/css/bootstrap.min.css') }}">
-        <!-- Font Awesome -->
-        <link rel="stylesheet" href="{{ asset('assets/application/bower_components/font-awesome/css/font-awesome.min.css') }}">
         <!-- Ionicons -->
         <link rel="stylesheet" href="{{ asset('assets/application/bower_components/Ionicons/css/ionicons.min.css') }}">
+        {{-- Toast Notification Asset --}}
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css">
         <!-- Theme style -->
         <link rel="stylesheet" href="{{ asset('assets/application/dist/css/AdminLTE.min.css') }}">
         <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -131,14 +131,7 @@
                                 <i class="fa fa-times"></i></button>
                             </div>
                         </div>
-                        <div class="box-body">
-                            @yield('content')
-                        </div>
-                        <!-- /.box-body -->
-                        <div class="box-footer">
-                            @yield('footer')
-                        </div>
-                        <!-- /.box-footer-->
+                        @yield('content')
                     </div>
                     <!-- /.box -->
                 </section>
@@ -171,10 +164,40 @@
         <script src="{{ asset('assets/application/dist/js/adminlte.min.js') }}"></script>
         <!-- AdminLTE for demo purposes -->
         <script src="{{ asset('assets/application/dist/js/demo.js') }}"></script>
+        {{-- Font Awesome --}}
+        <script src="https://kit.fontawesome.com/055120b175.js" crossorigin="anonymous"></script>
+
+        {{-- Toastr Notification --}}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
+
         <script>
-        $(document).ready(function () {
-            $('.sidebar-menu').tree()
-        })
+            $(document).ready(function () {
+                $('.sidebar-menu').tree()
+            });
+
+            // Toast Notification Setting
+            @if(Session::has('message'))
+                var type = "{{ Session::get('alert-type', 'info') }}";
+                switch(type){
+                    case 'info':
+                    toastr.options = {"closeButton": true,"debug": false,"progressBar": true,"positionClass": "toast-top-right","showDuration": "300","hideDuration": "1000","timeOut": "10000","extendedTimeOut": "1000","showEasing": "swing","hideEasing": "linear","showMethod": "fadeIn","hideMethod": "fadeOut"};
+                        toastr.info("{{ Session::get('message') }}");
+                        break;
+                    case 'warning':
+                    toastr.options = {"closeButton": true,"debug": false,"progressBar": true,"positionClass": "toast-top-right","showDuration": "300","hideDuration": "1000","timeOut": "10000","extendedTimeOut": "1000","showEasing": "swing","hideEasing": "linear","showMethod": "fadeIn","hideMethod": "fadeOut"};
+                        toastr.warning("{{ Session::get('message') }}");
+                        break;
+                    case 'success':
+                    toastr.options = {"closeButton": true,"progressBar": true,"positionClass": "toast-top-right","showDuration": "300","hideDuration": "1000","timeOut": "10000","showEasing": "swing","hideEasing": "linear","showMethod": "fadeIn","hideMethod": "fadeOut"};
+                        toastr.success("{{ Session::get('message') }}");
+                        break;
+                    case 'error':
+                    toastr.options = {"closeButton": true,"progressBar": true,"positionClass": "toast-top-right","showDuration": "300","hideDuration": "1000","timeOut": "10000","showEasing": "swing","hideEasing": "linear","showMethod": "fadeIn","hideMethod": "fadeOut"};
+                        toastr.error("{{ Session::get('message') }}");
+                        break;
+                }
+            @endif
         </script>
+        @stack('scripts')
     </body>
 </html>

@@ -6,18 +6,32 @@
     </a>
 </li>
 
+<li class="{{ set_active(['ruanganPoadcast','ruanganPoadcast.create']) }}">
+    <a href="{{ route('ruanganPoadcast') }}">
+        <i class="fa fa-briefcase"></i>
+        <span>Ruangan Poadcast</span>
+    </a>
+</li>
+
+<li class="{{ set_active(['programStudi']) }}">
+    <a href="{{ route('programStudi') }}">
+        <i class="fa fa-graduation-cap"></i>
+        <span>Program Studi</span>
+    </a>
+</li>
+
+{{-- 
 <li class="treeview">
     <a href="#">
-        <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+        <i class="fa fa-user-cog"></i> <span>Manajemen User</span>
         <span class="pull-right-container">
         <i class="fa fa-angle-left pull-right"></i>
         </span>
     </a>
     <ul class="treeview-menu">
-        <li><a href="../../index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
-        <li><a href="../../index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
+        <li><a href="{{ route('operator') }}"><i class="fa fa-circle-o"></i> Operator</a></li>
     </ul>
-</li>
+</li> --}}
 
 <!-- Authentication -->
 <li>

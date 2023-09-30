@@ -23,6 +23,40 @@
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
+        <!-- Alamat -->
+        <div>
+            <x-input-label for="alamat" :value="__('Alamat')" />
+            <x-text-input id="alamat" class="block mt-1 w-full" type="text" name="alamat" :value="old('alamat')" required autofocus autocomplete="name" />
+            <x-input-error :messages="$errors->get('alamat')" class="mt-2" />
+        </div>
+
+        <!-- Pekerjaan -->
+        <div>
+            <x-input-label for="pekerjaan" :value="__('Pekerjaan')" />
+            <x-text-input id="pekerjaan" class="block mt-1 w-full" type="text" name="pekerjaan" :value="old('pekerjaan')" required autofocus autocomplete="name" />
+            <x-input-error :messages="$errors->get('pekerjaan')" class="mt-2" />
+        </div>
+
+        <!-- No HP -->
+        <div>
+            <x-input-label for="no_hp" :value="__('No HP')" />
+            <x-text-input id="no_hp" class="block mt-1 w-full" type="text" name="no_hp" :value="old('no_hp')" required autofocus autocomplete="name" />
+            <x-input-error :messages="$errors->get('no_hp')" class="mt-2" />
+        </div>
+
+        <!-- Status -->
+        <div>
+            <x-input-label for="pekerjaan" :value="__('Status')" />
+            <select id="status" class="block mt-1 w-full" name="status" required autofocus>
+                <option disabled selected>-- pilih status --</option>
+                <option value="pelajar">Pelajar</option>
+                <option value="mahasiswa">Mahasiswa</option>
+                <option value="bekerja">Bekerja</option>
+                <option value="lainnya">Lainnya</option>
+            </select>
+            <x-input-error :messages="$errors->get('pekerjaan')" class="mt-2" />
+        </div>
+
         <!-- Password -->
         <div class="mt-4">
             <x-input-label for="password" :value="__('Password')" />
