@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\OperatorController;
+use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProgramStudiController;
 use App\Http\Controllers\RuanganPoadcastController;
@@ -45,6 +46,14 @@ Route::controller(ProgramStudiController::class)->middleware('auth','verified')-
 
 Route::controller(OperatorController::class)->middleware('auth','verified')->prefix('/operator')->group(function(){
     Route::get('/', 'index')->name('operator');
+});
+
+Route::controller(PermissionController::class)->middleware('auth','verified')->prefix('/permission')->group(function(){
+    Route::get('/', 'index')->name('permission');
+    Route::post('/', 'store')->name('permission.store');
+    Route::get('/{permission}/edit', 'edit')->name('permission.edit');
+    Route::patch('/update', 'update')->name('permission.update');
+    Route::delete('/{permission}/delete', 'delete')->name('permission.delete');
 });
 
 Route::middleware('auth')->group(function () {

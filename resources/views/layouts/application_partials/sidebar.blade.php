@@ -19,19 +19,26 @@
         <span>Program Studi</span>
     </a>
 </li>
+<li class="header">PENGATURAN</li>
 
-{{-- 
-<li class="treeview">
+<li class="treeview {{ set_active([
+    'permission',
+    'manajemen_role',
+    'manajemen_role.detail',
+    'manajemen_data_verifikator',
+    'manajemen_data_administrator',
+]) }}">
     <a href="#">
-        <i class="fa fa-user-cog"></i> <span>Manajemen User</span>
+        <i class="fa fa-user-cog"></i> <span>Pengaturan Pengguna</span>
         <span class="pull-right-container">
         <i class="fa fa-angle-left pull-right"></i>
         </span>
     </a>
     <ul class="treeview-menu">
+        <li><a href="{{ route('permission') }}"><i class="fa fa-circle-o"></i> Permission</a></li>
         <li><a href="{{ route('operator') }}"><i class="fa fa-circle-o"></i> Operator</a></li>
     </ul>
-</li> --}}
+</li>
 
 <!-- Authentication -->
 <li>

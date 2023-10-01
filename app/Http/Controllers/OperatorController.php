@@ -14,9 +14,9 @@ use Illuminate\Support\Facades\Validator;
 class OperatorController extends Controller
 {
     public function index(){
-        $ruanganPoadcasts = RuanganPoadcast::all();
-        return view('backend/ruanganPoadcasts.index',[
-            'ruanganPoadcasts'  =>  $ruanganPoadcasts,
+        $operators = User::all();
+        return view('backend/operators.index',[
+            'operators'  =>  $operators,
         ]);
     }
 
