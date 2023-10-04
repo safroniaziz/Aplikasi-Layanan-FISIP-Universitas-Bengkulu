@@ -19,4 +19,9 @@ class MahasiswaMataKuliah extends Model
     {
         return $this->belongsTo(MataKuliah::class, 'mata_kuliah_id');
     }
+
+    public function mahasiswa()
+    {
+        return $this->belongsTo(Mahasiswa::class, 'mahasiswa_npm');
+    }
 }

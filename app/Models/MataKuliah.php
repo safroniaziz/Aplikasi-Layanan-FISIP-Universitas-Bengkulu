@@ -14,7 +14,6 @@ class MataKuliah extends Model
         'prodi_kode',
         'nama_mata_kuliah',
         'kode_mata_kuliah',
-
     ];
 
     public function prodi()

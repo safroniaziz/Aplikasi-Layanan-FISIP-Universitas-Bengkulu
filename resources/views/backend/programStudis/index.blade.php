@@ -30,7 +30,7 @@
                                 <table>
                                     <tr>
                                         <td>
-                                            <a onclick="editProgramStudi({{ $programStudi->kode }})" class="btn btn-success btn-sm btn-flat"><i class="fa fa-edit"></i>&nbsp; Edit</a>
+                                            <a onclick='editProgramStudi("{{ $programStudi->kode }}")' class="btn btn-success btn-sm btn-flat"><i class="fa fa-edit"></i>&nbsp; Edit</a>
                                         </td>
                                         <td>
                                             <form action="{{ route('programStudi.delete',[$programStudi->kode]) }}" method="POST" id="form">
@@ -49,7 +49,7 @@
             </table>
             @include('backend/programStudis/partials.modal_edit')
         </div>
-    </div>       
+    </div>
 </div>
 @endsection
 

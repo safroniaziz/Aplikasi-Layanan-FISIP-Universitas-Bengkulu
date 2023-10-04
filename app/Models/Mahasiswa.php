@@ -10,6 +10,9 @@ class Mahasiswa extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $primaryKey = 'npm';
+    public $incrementing = false;
+
     protected $fillable = [
         'npm',
         'prodi_kode',
@@ -23,5 +26,10 @@ class Mahasiswa extends Model
     public function pemesananruangan()
     {
         return $this->hasMany(PemesananRuangan::class, 'mahasiswa_npm');
+    }
+
+    public function mahasiswamatakuliah()
+    {
+        return $this->hasMany(MahasiswaMataKuliah::class, 'mahasiswa_npm');
     }
 }
