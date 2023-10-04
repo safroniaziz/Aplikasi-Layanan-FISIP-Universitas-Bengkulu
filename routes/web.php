@@ -20,8 +20,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('layouts.user');
+})->name('user');
 
 Route::controller(DashboardController::class)->middleware('auth','verified')->prefix('/dashboard')->group(function(){
     Route::get('/', 'index')->name('dashboard');
