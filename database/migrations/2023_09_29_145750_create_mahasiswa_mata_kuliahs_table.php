@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('mahasiswa_mata_kuliahs', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('mata_kuliah_id');
-            $table->unsignedBigInteger('mahasiswa_npm');
+            $table->string('mahasiswa_npm');
             $table->timestamps();
             $table->softDeletes();
 

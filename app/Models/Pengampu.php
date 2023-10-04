@@ -17,8 +17,13 @@ class Pengampu extends Model
 
     ];
 
-    public function matakuliah()
+    public function mataKuliah()
     {
         return $this->belongsTo(MataKuliah::class, 'mata_kuliah_id');
+    }
+
+    public function dosen()
+    {
+        return $this->belongsTo(Dosen::class, 'dosen_nip');
     }
 }

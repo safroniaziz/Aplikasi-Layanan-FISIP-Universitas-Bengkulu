@@ -10,6 +10,9 @@ class ProgramStudi extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $primaryKey = 'kode';
+    public $incrementing = false;
+
     protected $fillable = [
         'kode',
         'nama_prodi',

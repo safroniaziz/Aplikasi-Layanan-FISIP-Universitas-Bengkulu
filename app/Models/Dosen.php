@@ -10,6 +10,9 @@ class Dosen extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $primaryKey = 'nip';
+    public $incrementing = false;
+
     protected $fillable = [
         'nip',
         'prodi_kode',
@@ -20,5 +23,10 @@ class Dosen extends Model
     public function prodi()
     {
         return $this->belongsTo(ProgramStudi::class, 'prodi_kode');
+    }
+
+    public function pengampu()
+    {
+        return $this->hasMany(Pengampu::class, 'pengampu');
     }
 }
