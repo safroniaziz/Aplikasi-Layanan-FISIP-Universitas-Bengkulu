@@ -168,8 +168,9 @@
                             <label
                                 class=" after:content-['*'] after:text-red-500 font-semibold text-gray-700 dark:text-gray-300
                                 after:ml-2 text-sm pb-2">Email</label>
-                                <input type="text" class="   w-full rounded-lg border-2 mt-1 border-[#01052D] dark:border-yellow-500
-                                bg-transparent px-3 py-2.5 text-sm font-normal text-white-700 transition-all duration-500
+                                <input type="text" id="id_user" name="id_user" 
+                                class="   w-full rounded-lg border-2 mt-1 border-[#01052D] dark:border-yellow-500
+                                bg-transparent px-3 py-2.5 text-sm font-normal text-gray-700 dark:text-gray-300 transition-all duration-500
                                 placeholder:text-gray-600 dark:placeholder:text-yellow-100 focus:border-white
                                 dark:focus:ring-yellow-500 focus:ring-[#01052D]
                                 focus:shadow-[-4px_4px_10px_0px_#01052D]
@@ -181,10 +182,10 @@
                                 class=" after:content-['*'] after:text-red-500 font-semibold text-gray-700 dark:text-gray-300
                                 after:ml-2 text-sm pb-2">Password</label>
                             <div class="relative flex items-center ">
-                                <input :type=" show ? 'text': 'password' " type="password"
+                                <input :type=" show ? 'text': 'password' " type="password" name="password"
                                     class=" w-full rounded-lg border-2 mt-1 border-[#01052D] dark:border-yellow-500
                                     bg-transparent
-                                    px-3 py-2.5 text-sm font-normal text-white-700 transition-all duration-500
+                                    px-3 py-2.5 text-sm font-normal text-gray-700 dark:text-gray-300 transition-all duration-500
                                     placeholder:text-gray-600 dark:placeholder:text-yellow-100 focus:border-white
                                     dark:focus:ring-yellow-500 focus:ring-[#01052D]
                                     focus:shadow-[-4px_4px_10px_0px_#01052D]
@@ -213,7 +214,7 @@
                         </div>
                         <div class="mt-6 w-full ">
                             <button class=" h-full  rounded-lg border-2   mx-auto mt-1 w-full text-white border-blue-600 dark:border-yellow-600 bg-[#091150] dark:bg-yellow-500 hover:bg-blue-600 duration-300 transform dark:hover:bg-yellow-600 font-medium tracking-widest py-2
-                              text-sm text-white-700 focus:shadow-[-4px_4px_10px_0px_#01052D]
+                              text-sm text-gray-700 dark:text-gray-300 focus:shadow-[-4px_4px_10px_0px_#01052D]
                               dark:focus:shadow-[-4px_4px_10px_0px_#eab308]  ">LOGIN</button>
                         </div>
                     </form>
@@ -228,7 +229,6 @@
 
                             focus:shadow-[-4px_4px_10px_0px_#eab308]  ">REGISTER</a>
                     </div>
-
                 </div>
             </div>
             </div>

@@ -11,11 +11,17 @@ use Illuminate\Support\Facades\Validator;
 class MahasiswaController extends Controller
 {
     public function index(){
-        $prodis = ProgramStudi::all();
-        $mahasiswas = Mahasiswa::all();
+        $prodis = ProgramStudi::withCount('mahasiswas')->get();
         return view('backend/mahasiswas.index',[
-            'mahasiswas'  =>  $mahasiswas,
-            'prodis' =>  $prodis,
+            'prodis'  =>  $prodis,
+        ]);
+    }
+
+    public function detail(ProgramStudi $prodi){
+        $mahasiswas = Mahasiswa::where('prodi_kode',$prodi->kode)->get();
+        return view('backend.Mahasiswas.detail',[
+            'prodi' =>  $prodi,
+            'mahasiswas' =>  $mahasiswas,
         ]);
     }
 

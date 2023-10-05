@@ -1,22 +1,8 @@
 <li class="header">MENU UTAMA</li>
 <li class="{{ set_active('dashboard') }}">
     <a href="{{ route('dashboard') }}">
-        <i class="fa fa-home"></i>
+        <i class="fa fa-desktop"></i>
         <span>Dashboard</span>
-    </a>
-</li>
-
-<li class="{{ set_active(['ruanganPoadcast','ruanganPoadcast.create','ruanganPoadcast.edit']) }}">
-    <a href="{{ route('ruanganPoadcast') }}">
-        <i class="fa fa-briefcase"></i>
-        <span>Ruangan Poadcast</span>
-    </a>
-</li>
-
-<li class="{{ set_active(['alatPoadcast','alatPoadcast.create','alatPoadcast.edit']) }}">
-    <a href="{{ route('alatPoadcast') }}">
-        <i class="fa fa-graduation-cap"></i>
-        <span>Alat Poadcast</span>
     </a>
 </li>
 
@@ -27,60 +13,71 @@
     </a>
 </li>
 
-<li class="{{ set_active(['mahasiswa','mahasiswa.create','mahasiswa.edit']) }}">
-    <a href="{{ route('mahasiswa') }}">
-        <i class="fa fa-graduation-cap"></i>
-        <span>Mahasiswa</span>
+<li class="treeview {{ set_active([
+    'mahasiswa',
+    'dosen',
+]) }}">
+    <a href="#">
+        <i class="fa fa-user-cog"></i> <span>Civitas Akademika</span>
+        <span class="pull-right-container">
+        <i class="fa fa-angle-left pull-right"></i>
+        </span>
     </a>
+    <ul class="treeview-menu">
+        <li class="{{ set_active(['mahasiswa']) }}"><a href="{{ route('mahasiswa') }}"><i class="fa fa-circle-o"></i> Mahasiswa</a></li>
+        <li class="{{ set_active(['dosen']) }}"><a href="{{ route('dosen') }}"><i class="fa fa-circle-o"></i> Dosen</a></li>
+    </ul>
 </li>
 
-<li class="{{ set_active(['mataKuliah','mataKuliah.create','mataKuliah.edit']) }}">
-    <a href="{{ route('mataKuliah') }}">
-        <i class="fa fa-graduation-cap"></i>
-        <span>Mata Kuliah</span>
+<li class="header">FITUR UTAMA</li>
+<li class="treeview {{ set_active([
+    'ruanganPoadcast','ruanganPoadcast.create','ruanganPoadcast.edit',
+    'alatPoadcast','alatPoadcast.creata','alatPoadcast.edit',
+]) }}">
+    <a href="#">
+        <i class="fa fa-microphone"></i> <span>Sewa Alat Poadcast</span>
+        <span class="pull-right-container">
+        <i class="fa fa-angle-left pull-right"></i>
+        </span>
     </a>
+    <ul class="treeview-menu">
+        <li class="{{ set_active(['ruanganPoadcast']) }}"><a href="{{ route('ruanganPoadcast') }}"><i class="fa fa-circle-o"></i> Ruangan Poadcast</a></li>
+        <li class="{{ set_active(['alatPoadcast']) }}"><a href="{{ route('alatPoadcast') }}"><i class="fa fa-circle-o"></i> Alat Poadcast</a></li>
+    </ul>
 </li>
 
-<li class="{{ set_active(['dosen','dosen.create','dosen.edit']) }}">
-    <a href="{{ route('dosen') }}">
-        <i class="fa fa-graduation-cap"></i>
-        <span>Dosen</span>
+<li class="treeview {{ set_active([
+    'mataKuliah',
+    'pengampu',
+    'ruanganKelas',
+    'jadwalPerkuliahan',
+]) }}">
+    <a href="#">
+        <i class="fa fa-calendar"></i> <span>Jadwal Mata Kuliah</span>
+        <span class="pull-right-container">
+        <i class="fa fa-angle-left pull-right"></i>
+        </span>
     </a>
+    <ul class="treeview-menu">
+        <li class="{{ set_active(['mataKuliah']) }}"><a href="{{ route('mataKuliah') }}"><i class="fa fa-circle-o"></i> Mata Kuliah</a></li>
+        <li class="{{ set_active(['pengampu']) }}"><a href="{{ route('pengampu') }}"><i class="fa fa-circle-o"></i> Pengampu</a></li>
+        <li class="{{ set_active(['ruanganKelas']) }}"><a href="{{ route('ruanganKelas') }}"><i class="fa fa-circle-o"></i> Ruang Kelas</a></li>
+        <li class="{{ set_active(['jadwalPerkuliahan']) }}"><a href="{{ route('jadwalPerkuliahan') }}"><i class="fa fa-circle-o"></i> Jadwal Perkuliahan</a></li>
+    </ul>
 </li>
 
-<li class="{{ set_active(['pengampu','pengampu.create','pengampu.edit']) }}">
-    <a href="{{ route('pengampu') }}">
-        <i class="fa fa-graduation-cap"></i>
-        <span>Pengampu</span>
+<li class="treeview {{ set_active([
+    'basisPengetahuan',
+]) }}">
+    <a href="#">
+        <i class="fa fa-comments"></i> <span>Layanan Konseling</span>
+        <span class="pull-right-container">
+        <i class="fa fa-angle-left pull-right"></i>
+        </span>
     </a>
-</li>
-
-<li class="{{ set_active(['ruanganKelas','ruanganKelas.create','ruanganKelas.edit']) }}">
-    <a href="{{ route('ruanganKelas') }}">
-        <i class="fa fa-graduation-cap"></i>
-        <span>Ruangan Kelas</span>
-    </a>
-</li>
-
-<li class="{{ set_active(['jadwalPerkuliahan','jadwalPerkuliahan.create','jadwalPerkuliahan.edit']) }}">
-    <a href="{{ route('jadwalPerkuliahan') }}">
-        <i class="fa fa-graduation-cap"></i>
-        <span>Jadwal Perkuliahan</span>
-    </a>
-</li>
-
-<li class="{{ set_active(['mahasiswaMataKuliah','mahasiswaMataKuliah.create','mahasiswaMataKuliah.edit']) }}">
-    <a href="{{ route('mahasiswaMataKuliah') }}">
-        <i class="fa fa-graduation-cap"></i>
-        <span>Mahasiswa Mata Kuliah</span>
-    </a>
-</li>
-
-<li class="{{ set_active(['basisPengetahuan','basisPengetahuan.create','basisPengetahuan.edit']) }}">
-    <a href="{{ route('basisPengetahuan') }}">
-        <i class="fa fa-graduation-cap"></i>
-        <span>Basis Pengetahuan</span>
-    </a>
+    <ul class="treeview-menu">
+        <li class="{{ set_active(['basisPengetahuan']) }}"><a href="{{ route('basisPengetahuan') }}"><i class="fa fa-circle-o"></i> Basis Pengetahuan</a></li>
+    </ul>
 </li>
 
 <li class="header">PENGATURAN</li>

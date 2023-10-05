@@ -19,10 +19,15 @@ class ProgramStudi extends Model
         'nama_fakultas',
     ];
 
-    public function mahasiswa()
+    public function mahasiswas()
     {
         return $this->hasMany(Mahasiswa::class, 'prodi_kode');
     }
+
+    public function getJumlahMahasiswaProdiAttribute(){
+        return $this->mahasiswas()->count();
+    }
+
     public function matakuliah()
     {
         return $this->hasMany(MataKuliah::class, 'prodi_kode');

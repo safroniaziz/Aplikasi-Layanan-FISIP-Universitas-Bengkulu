@@ -66,6 +66,7 @@ Route::controller(ProgramStudiController::class)->middleware('auth','verified')-
 
 Route::controller(MahasiswaController::class)->middleware('auth','verified')->prefix('/mahasiswa')->group(function(){
     Route::get('/', 'index')->name('mahasiswa');
+    Route::get('/{prodi:kode}/detail', 'detail')->name('mahasiswa.detail');
     Route::post('/', 'store')->name('mahasiswa.store');
     Route::get('/{mahasiswa:npm}/edit', 'edit')->name('mahasiswa.edit');
     Route::patch('/update', 'update')->name('mahasiswa.update');
