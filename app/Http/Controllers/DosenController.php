@@ -10,25 +10,29 @@ use App\Models\ProgramStudi;
 class DosenController extends Controller
 {
     public function index(){
-        $prodis = ProgramStudi::all();
-        $dosens = Dosen::orderBy('prodi_kode')->get();
+        $prodis = ProgramStudi::withCount('dosens')->get();
         return view('backend/dosens.index',[
-            'dosens'  =>  $dosens,
             'prodis' =>  $prodis,
+        ]);
+    }
+
+    public function detail(ProgramStudi $prodi){
+        $dosens = Dosen::where('prodi_kode',$prodi->kode)->orderBy('created_at','desc')->get();
+        return view('backend.dosens.detail',[
+            'prodi' =>  $prodi,
+            'dosens' =>  $dosens,
         ]);
     }
 
     public function store(Request $request){
         $rules = [
             'nip'         => 'required|unique:dosens|numeric',
-            'prodi_kode'  => 'required',
             'nama_dosen'  => 'required',
         ];
 
         $text = [
             'nip.required'      => 'NIP harus diisi.',
             'nip.unique'        => 'NIP sudah digunakan, harap pilih NIP lain.',
-            'prodi_kode.required' => 'Kode prodi harus diisi.',
             'nama_dosen.required' => 'Nama dosen harus diisi.',
         ];
 
@@ -39,14 +43,14 @@ class DosenController extends Controller
 
         $create = Dosen::create([
             'nip'                 =>  $request->nip,
-            'prodi_kode'          =>  $request->prodi_kode,
+            'prodi_kode'          =>  $request->prodiKode,
             'nama_dosen'          =>  $request->nama_dosen,
         ]);
 
         if ($create) {
             return response()->json([
                 'text'  =>  'Yeay, Dosen Berhasil Ditambahkan',
-                'url'   =>  url('/dosen/'),
+                'url'   =>  route('dosen.detail',[$request->prodiKode]),
             ]);
         }else{
             return response()->json(['error'  =>  0, 'text'   =>  'Ooopps, Dosen Gagal Ditambahkan'],422);
@@ -59,12 +63,10 @@ class DosenController extends Controller
 
     public function update(Request $request){
         $rules = [
-            'prodi_kode'  => 'required',
             'nama_dosen'  => 'required',
         ];
 
         $text = [
-            'prodi_kode.required' => 'Kode prodi harus diisi.',
             'nama_dosen.required' => 'Nama dosen harus diisi.',
         ];
 
@@ -74,27 +76,25 @@ class DosenController extends Controller
         }
 
         $update = Dosen::where('nip',$request->nip)->update([
-            'prodi_kode'          =>  $request->prodi_kode,
             'nama_dosen'      =>  $request->nama_dosen,
-
         ]);
 
         if ($update) {
             return response()->json([
                 'text'  =>  'Yeay, Dosen Berhasil Diubah',
-                'url'   =>  url('/dosen/'),
+                'url'   =>  route('dosen.detail',[$request->prodiKode]),
             ]);
         }else{
             return response()->json(['error'  =>  0, 'text'   =>  'Ooopps, Dosen Gagal Diubah'],422);
         }
     }
 
-    public function delete(Dosen $dosen){
+    public function delete(Request $request, Dosen $dosen){
         $delete = Dosen::where('nip',$dosen->nip)->delete();
         if ($delete) {
             return response()->json([
                 'text'  =>  'Yeay, Dosen Berhasil dihapus',
-                'url'   =>  url('/dosen/'),
+                'url'   =>  route('dosen.detail',[$request->prodiKode]),
             ]);
         }else{
             return response()->json(['error'  =>  0, 'text'   =>  'Ooopps, Dosen Gagal dihapus'],422);

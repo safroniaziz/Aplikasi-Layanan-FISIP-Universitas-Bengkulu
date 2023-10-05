@@ -38,7 +38,6 @@
             <button type="button" class="btn btn-primary btn-sm btn-flat" data-toggle="modal" data-target="#modal-default">
                 <i class="fa fa-plus"></i>&nbsp; Tambah Data
             </button>
-            <a href="{{ route('mataKuliah') }}" class="btn btn-success btn-sm btn-flat"><i class="fa fa-arrow-circle-left"></i>&nbsp; Sync Siakad</a>
             <table class="table table-bordered table-hover table-striped" style="width: 100%">
                 <thead>
                     <tr>

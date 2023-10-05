@@ -47,8 +47,12 @@ class ProgramStudi extends Model
         return $this->jadwals()->count();
     }
 
-    public function dosen()
+    public function dosens()
     {
         return $this->hasMany(Dosen::class, 'prodi_kode');
+    }
+
+    public function getJumlahDosenProdiAttribute(){
+        return $this->dosens()->count();
     }
 }

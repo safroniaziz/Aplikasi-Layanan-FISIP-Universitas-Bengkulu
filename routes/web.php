@@ -85,6 +85,7 @@ Route::controller(MataKuliahController::class)->middleware('auth','verified')->p
 
 Route::controller(DosenController::class)->middleware('auth','verified')->prefix('/dosen')->group(function(){
     Route::get('/', 'index')->name('dosen');
+    Route::get('/{prodi:kode}/detail', 'detail')->name('dosen.detail');
     Route::post('/', 'store')->name('dosen.store');
     Route::get('/{dosen:nip}/edit', 'edit')->name('dosen.edit');
     Route::patch('/update', 'update')->name('dosen.update');

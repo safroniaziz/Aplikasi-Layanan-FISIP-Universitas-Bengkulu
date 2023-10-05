@@ -15,7 +15,7 @@
 
 <li class="treeview {{ set_active([
     'mahasiswa','mahasiswa.detail',
-    'dosen',
+    'dosen','dosen.detail',
 ]) }}">
     <a href="#">
         <i class="fa fa-user-cog"></i> <span>Civitas Akademika</span>
@@ -25,7 +25,7 @@
     </a>
     <ul class="treeview-menu">
         <li class="{{ set_active(['mahasiswa','mahasiswa.detail']) }}"><a href="{{ route('mahasiswa') }}"><i class="fa fa-circle-o"></i> Mahasiswa</a></li>
-        <li class="{{ set_active(['dosen']) }}"><a href="{{ route('dosen') }}"><i class="fa fa-circle-o"></i> Dosen</a></li>
+        <li class="{{ set_active(['dosen','dosen.detail']) }}"><a href="{{ route('dosen') }}"><i class="fa fa-circle-o"></i> Dosen</a></li>
     </ul>
 </li>
 
@@ -47,7 +47,7 @@
 </li>
 
 <li class="treeview {{ set_active([
-    'mataKuliah',
+    'mataKuliah','mataKuliah.detail',
     'pengampu',
     'ruanganKelas',
     'jadwalPerkuliahan',
@@ -59,7 +59,7 @@
         </span>
     </a>
     <ul class="treeview-menu">
-        <li class="{{ set_active(['mataKuliah']) }}"><a href="{{ route('mataKuliah') }}"><i class="fa fa-circle-o"></i> Mata Kuliah</a></li>
+        <li class="{{ set_active(['mataKuliah','mataKuliah.detail']) }}"><a href="{{ route('mataKuliah') }}"><i class="fa fa-circle-o"></i> Mata Kuliah</a></li>
         <li class="{{ set_active(['pengampu']) }}"><a href="{{ route('pengampu') }}"><i class="fa fa-circle-o"></i> Pengampu</a></li>
         <li class="{{ set_active(['ruanganKelas']) }}"><a href="{{ route('ruanganKelas') }}"><i class="fa fa-circle-o"></i> Ruang Kelas</a></li>
         <li class="{{ set_active(['jadwalPerkuliahan']) }}"><a href="{{ route('jadwalPerkuliahan') }}"><i class="fa fa-circle-o"></i> Jadwal Perkuliahan</a></li>

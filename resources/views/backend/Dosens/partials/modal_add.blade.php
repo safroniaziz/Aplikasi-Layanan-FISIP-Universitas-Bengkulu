@@ -10,19 +10,15 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
+                        <input type="hidden" class="form-control" name="prodiKode" value="{{ $prodi->kode }}">
                         <div class="form-group col-md-12">
-                            <label for="exampleInputEmail1">Nip</label>
-                            <input type="text" class="form-control" name="nip">
+                            <label for="exampleInputEmail1">Nama Prodi</label>
+                            <input type="text" class="form-control" value="{{ $prodi->nama_prodi }}" disabled>
                         </div>
 
                         <div class="form-group col-md-12">
-                            <label for="exampleInputEmail1">Nama Prodi</label>
-                            <select name="prodi_kode" class="form-control" id="">
-                                <option disabled selected>-- pilih prodi --</option>
-                                @foreach ($prodis as $prodi)
-                                    <option value="{{ $prodi->kode }}">{{ $prodi->nama_prodi }}</option>
-                                @endforeach
-                            </select>
+                            <label for="exampleInputEmail1">NIP</label>
+                            <input type="text" class="form-control" name="nip">
                         </div>
 
                         <div class="form-group col-md-12">

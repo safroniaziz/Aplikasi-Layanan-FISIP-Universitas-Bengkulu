@@ -78,7 +78,6 @@ class MahasiswaController extends Controller
 
         $update = Mahasiswa::where('npm',$request->npm)->update([
             'nama_mahasiswa'      =>  $request->nama_mahasiswa,
-
         ]);
 
         if ($update) {

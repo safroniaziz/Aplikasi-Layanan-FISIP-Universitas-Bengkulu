@@ -118,12 +118,12 @@ class MataKuliahController extends Controller
         }
     }
 
-    public function delete(MataKuliah $mataKuliah){
+    public function delete(Request $request, MataKuliah $mataKuliah){
         $delete = $mataKuliah->delete();
         if ($delete) {
             return response()->json([
                 'text'  =>  'Yeay, Mata Kuliah Berhasil dihapus',
-                'url'   =>  url('/mata_kuliah/'),
+                'url'   =>  route('mataKuliah.detail',[$request->prodiKode]),
             ]);
         }else{
             return response()->json(['error'  =>  0, 'text'   =>  'Ooopps, Mata Kuliah Gagal dihapus'],422);

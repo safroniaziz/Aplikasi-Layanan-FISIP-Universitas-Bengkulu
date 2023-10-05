@@ -1,6 +1,6 @@
 @extends('layouts.application')
-@section('halaman', 'Mahasiswa Detail')
-@section('menu', 'Mahasiswa Detail')
+@section('halaman', 'Dosen Detail')
+@section('menu', 'Dosen Detail')
 @section('content')
 <div class="box-body">
     <div class="row">
@@ -22,9 +22,9 @@
                     <td>{{ $prodi->nama_fakultas }}</td>
                 </tr>
                 <tr>
-                    <th>Mahasiswa Aktif</th>
+                    <th>Dosen Aktif</th>
                     <td> : </td>
-                    <td>{{ $prodi->jumlah_mahasiswa_prodi }} Mahasiswa</td>
+                    <td>{{ $prodi->jumlah_dosen_prodi }} Dosen</td>
                 </tr>
             </table>
         </div>
@@ -34,36 +34,35 @@
 <div class="box-body">
     <div class="row">
         <div class="col-md-12 table-responsive">
-            <a href="{{ route('mahasiswa') }}" class="btn btn-warning btn-sm btn-flat"><i class="fa fa-arrow-circle-left"></i>&nbsp; Kembali</a>
+            <a href="{{ route('dosen') }}" class="btn btn-warning btn-sm btn-flat"><i class="fa fa-arrow-circle-left"></i>&nbsp; Kembali</a>
             <button type="button" class="btn btn-primary btn-sm btn-flat" data-toggle="modal" data-target="#modal-default">
                 <i class="fa fa-plus"></i>&nbsp; Tambah Data
             </button>
-            <a href="{{ route('mahasiswa') }}" class="btn btn-success btn-sm btn-flat"><i class="fa fa-refresh fa-spin"></i>&nbsp; Sync Siakad</a>
             <table class="table table-bordered table-hover table-striped" style="width: 100%">
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Npm</th>
+                        <th>NIP</th>
                         <th>Nama Prodi</th>
-                        <th>Nama Mahasiswa</th>
+                        <th>Nama Dosen</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($mahasiswas as $index => $mahasiswa)
+                    @forelse ($dosens as $index => $dosen)
                         <tr>
                             <td>{{ $index+1 }}</td>
-                            <td>{{ $mahasiswa->npm }}</td>
-                            <td>{{ $mahasiswa->prodi->nama_prodi }}</td>
-                            <td>{{ $mahasiswa->nama_mahasiswa }}</td>
+                            <td>{{ $dosen->nip }}</td>
+                            <td>{{ $dosen->prodi->nama_prodi }}</td>
+                            <td>{{ $dosen->nama_dosen }}</td>
                             <td>
                                 <table>
                                     <tr>
                                         <td>
-                                            <a onclick='editMahasiswa("{{ $mahasiswa->npm }}")' class="btn btn-success btn-sm btn-flat"><i class="fa fa-edit"></i>&nbsp; Edit</a>
+                                            <a onclick='editDosen("{{ $dosen->nip }}")' class="btn btn-success btn-sm btn-flat"><i class="fa fa-edit"></i>&nbsp; Edit</a>
                                         </td>
                                         <td>
-                                            <form action="{{ route('mahasiswa.delete',[$mahasiswa->npm]) }}" method="POST" id="form">
+                                            <form action="{{ route('dosen.delete',[$dosen->nip]) }}" method="POST" id="form">
                                                 @csrf @method('DELETE')
                                                 <input type="hidden" name="prodiKode" value="{{ $prodi->kode }}">
                                                 <button type="submit" class="btn btn-danger btn-sm btn-flat show_confirm"><i class="fa fa-trash"></i>&nbsp; Hapus</button>
@@ -76,20 +75,20 @@
                     @empty
                         <tr>
                             <td colspan="5" class="text-danger text-center">
-                                data mahasiswa masih kosong
+                                data dosen masih kosong
                             </td>
                         </tr>
                     @endforelse
                 </tbody>
-                @include('backend/mahasiswas/partials.modal_add')
+                @include('backend/dosens/partials.modal_add')
             </table>
-            @include('backend/mahasiswas/partials.modal_edit')
+            @include('backend/dosens/partials.modal_edit')
         </div>
     </div>
 </div>
 @endsection
 
-@include('backend/mahasiswas/form')
+@include('backend/dosens/form')
 
 @push('scripts')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
@@ -112,21 +111,21 @@
             });
         });
 
-        function editMahasiswa(npm){
+        function editDosen(nip){
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-            url = "{{ url('mahasiswa').'/' }}"+npm+'/edit';
+            url = "{{ url('dosen').'/' }}"+nip+'/edit';
             $.ajax({
                 url : url,
                 type : 'GET',
                 success : function(data){
                     $('#modalEdit').modal('show');
-                    $('#npm_edit').val(data.npm);
+                    $('#nip_edit').val(data.nip);
                     $('#prodi_kode_edit').val(data.prodi_kode);
-                    $('#nama_mahasiswa_edit').val(data.nama_mahasiswa);
+                    $('#nama_dosen_edit').val(data.nama_dosen);
 
                 },
                 error:function(){
