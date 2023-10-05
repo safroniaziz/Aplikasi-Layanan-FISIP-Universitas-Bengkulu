@@ -11,14 +11,14 @@ use Illuminate\Support\Facades\Validator;
 class MataKuliahController extends Controller
 {
     public function index(){
-        $prodis = ProgramStudi::withCount('mataKuliahs')->orderBy('created_at','desc')->get();
+        $prodis = ProgramStudi::withCount('mataKuliahs')->get();
         return view('backend/mataKuliahs.index',[
             'prodis' =>  $prodis,
         ]);
     }
 
     public function detail(ProgramStudi $prodi){
-        $mataKuliahs = MataKuliah::where('prodi_kode',$prodi->kode)->get();
+        $mataKuliahs = MataKuliah::where('prodi_kode',$prodi->kode)->orderBy('created_at','desc')->get();
         return view('backend.mataKuliahs.detail',[
             'prodi' =>  $prodi,
             'mataKuliahs' =>  $mataKuliahs,
