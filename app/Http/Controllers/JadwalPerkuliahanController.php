@@ -14,15 +14,12 @@ class JadwalPerkuliahanController extends Controller
         $mataKuliahs = MataKuliah::all();
         $ruanganKelas = RuanganKelas::all();
         $jadwalPerkuliahans = JadwalPerkuliahan::all();
+        
         return view('backend/jadwalPerkuliahans.index',[
             'jadwalPerkuliahans'  =>  $jadwalPerkuliahans,
             'mataKuliahs'  =>  $mataKuliahs,
             'ruanganKelas'  =>  $ruanganKelas,
         ]);
-    }
-
-    public function create(){
-        return view('backend.jadwalPerkuliahans.create');
     }
 
     public function store(Request $request){

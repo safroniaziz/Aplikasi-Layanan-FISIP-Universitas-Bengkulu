@@ -1,6 +1,6 @@
 @extends('layouts.application')
-@section('halaman', 'Mahasiswa')
-@section('menu', 'Mahasiswa')
+@section('halaman', 'Mata Kuliah')
+@section('menu', 'Mata Kuliah')
 @section('content')
 <div class="box-body">
     <div class="row">
@@ -14,27 +14,33 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Npm</th>
-                        <th>Nama Prodi</th>
-                        <th>Nama Mahasiswa</th>
+                        <th>Prodi Kode</th>
+                        <th>Nama Mata Kuliah</th>
+                        <th>Kode Mata Kuliah</th>
+                        <th>SKS</th>
+                        <th>Semester</th>
+                        <th>Keterangan</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($mahasiswas as $index => $mahasiswa)
+                    @forelse ($mataKuliahs as $index => $mataKuliah)
                         <tr>
                             <td>{{ $index+1 }}</td>
-                            <td>{{ $mahasiswa->npm }}</td>
-                            <td>{{ $mahasiswa->prodi->nama_prodi }}</td>
-                            <td>{{ $mahasiswa->nama_mahasiswa }}</td>
+                            <td>{{ $mataKuliah->prodi->nama_prodi }}</td>
+                            <td>{{ $mataKuliah->nama_mata_kuliah }}</td>
+                            <td>{{ $mataKuliah->kode_mata_kuliah }}</td>
+                            <td>{{ $mataKuliah->sks }} SKS</td>
+                            <td>Semester {{ $mataKuliah->semester }}</td>
+                            <td>{{ $mataKuliah->keterangan }}</td>
                             <td>
                                 <table>
                                     <tr>
                                         <td>
-                                            <a onclick='editMahasiswa("{{ $mahasiswa->npm }}")' class="btn btn-success btn-sm btn-flat"><i class="fa fa-edit"></i>&nbsp; Edit</a>
+                                            <a onclick='editMataKuliah("{{ $mataKuliah->id }}")' class="btn btn-success btn-sm btn-flat"><i class="fa fa-edit"></i>&nbsp; Edit</a>
                                         </td>
                                         <td>
-                                            <form action="{{ route('mahasiswa.delete',[$mahasiswa->npm]) }}" method="POST" id="form">
+                                            <form action="{{ route('mataKuliah.delete',[$mataKuliah->id]) }}" method="POST" id="form">
                                                 @csrf @method('DELETE')
 
                                                 <button type="submit" class="btn btn-danger btn-sm btn-flat show_confirm"><i class="fa fa-trash"></i>&nbsp; Hapus</button>
@@ -44,17 +50,21 @@
                                 </table>
                             </td>
                         </tr>
-                    @endforeach
+                    @empty
+                    <tr>
+                        <td colspan="8" class="text-center text-danger">Data mata kuliah masih kosong</td>
+                    </tr>
+                    @endforelse
                 </tbody>
-                @include('backend/mahasiswas/partials.modal_add')
+                @include('backend/mataKuliahs/partials.modal_add')
             </table>
-            @include('backend/mahasiswas/partials.modal_edit')
+            @include('backend/mataKuliahs/partials.modal_edit')
         </div>
     </div>
 </div>
 @endsection
 
-@include('backend/mahasiswas/form')
+@include('backend/mataKuliahs/form')
 
 @push('scripts')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
@@ -77,21 +87,25 @@
             });
         });
 
-        function editMahasiswa(npm){
+        function editMataKuliah(id){
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-            url = "{{ url('mahasiswa').'/' }}"+npm+'/edit';
+            url = "{{ url('mata_kuliah').'/' }}"+id+'/edit';
             $.ajax({
                 url : url,
                 type : 'GET',
                 success : function(data){
                     $('#modalEdit').modal('show');
-                    $('#npm_edit').val(data.npm);
+                    $('#mata_kuliah_id_edit').val(data.id);
                     $('#prodi_kode_edit').val(data.prodi_kode);
-                    $('#nama_mahasiswa_edit').val(data.nama_mahasiswa);
+                    $('#nama_mata_kuliah_edit').val(data.nama_mata_kuliah);
+                    $('#kode_mata_kuliah_edit').val(data.kode_mata_kuliah);
+                    $('#sks_edit').val(data.sks);
+                    $('#semester_edit').val(data.semester);
+                    $('#keterangan_edit').val(data.keterangan);
 
                 },
                 error:function(){

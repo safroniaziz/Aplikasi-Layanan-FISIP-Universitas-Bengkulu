@@ -76,6 +76,7 @@ Route::controller(MahasiswaController::class)->middleware('auth','verified')->pr
 
 Route::controller(MataKuliahController::class)->middleware('auth','verified')->prefix('/mata_kuliah')->group(function(){
     Route::get('/', 'index')->name('mataKuliah');
+    Route::get('/{prodi:kode}/detail', 'detail')->name('mataKuliah.detail');
     Route::post('/', 'store')->name('mataKuliah.store');
     Route::get('/{mataKuliah}/edit', 'edit')->name('mataKuliah.edit');
     Route::patch('/update', 'update')->name('mataKuliah.update');
@@ -150,7 +151,7 @@ Route::controller(RoleController::class)->middleware('auth','verified')->prefix(
     Route::delete('/{role}/delete', 'delete')->name('role.delete');
     Route::get('/role/{role}/detail', 'detail')->name('role.detail');
     Route::delete('/role/{role}/revoke/{permission}', 'revoke')->name('role.revoke');
-            Route::post('/role/{role}/assign/', 'assign')->name('role.assign');
+    Route::post('/role/{role}/assign/', 'assign')->name('role.assign');
 });
 
 Route::middleware('auth')->group(function () {

@@ -11,11 +11,17 @@ use Illuminate\Support\Facades\Validator;
 class MataKuliahController extends Controller
 {
     public function index(){
-        $prodis = ProgramStudi::all();
-        $mataKuliahs = MataKuliah::all();
+        $prodis = ProgramStudi::withCount('mataKuliahs')->get();
         return view('backend/mataKuliahs.index',[
-            'mataKuliahs'  =>  $mataKuliahs,
             'prodis' =>  $prodis,
+        ]);
+    }
+
+    public function detail(ProgramStudi $prodi){
+        $mataKuliahs = MataKuliah::where('prodi_kode',$prodi->kode)->get();
+        return view('backend.mataKuliahs.detail',[
+            'prodi' =>  $prodi,
+            'mataKuliahs' =>  $mataKuliahs,
         ]);
     }
 
@@ -25,7 +31,6 @@ class MataKuliahController extends Controller
 
     public function store(Request $request){
         $rules = [
-            'prodi_kode'         => 'required',
             'nama_mata_kuliah'   => 'required',
             'kode_mata_kuliah'   => 'required',
             'sks'   => 'required|numeric',
@@ -34,7 +39,6 @@ class MataKuliahController extends Controller
         ];
 
         $text = [
-            'prodi_kode.required'   => 'Prodi Kode harus diisi.',
             'nama_mata_kuliah.required' => 'Nama mata kuliah harus diisi.',
             'kode_mata_kuliah.required' => 'Kode mata kuliah harus diisi.',
             'sks.required' => 'SKS harus diisi.',
@@ -50,7 +54,7 @@ class MataKuliahController extends Controller
         }
 
         $create = MataKuliah::create([
-            'prodi_kode'             =>  $request->prodi_kode,
+            'prodi_kode'             =>  $request->prodiKode,
             'nama_mata_kuliah'       =>  $request->nama_mata_kuliah,
             'kode_mata_kuliah'       =>  $request->kode_mata_kuliah,
             'sks'       =>  $request->sks,
@@ -61,7 +65,7 @@ class MataKuliahController extends Controller
         if ($create) {
             return response()->json([
                 'text'  =>  'Yeay, Mata Kuliah Berhasil Ditambahkan',
-                'url'   =>  url('/mata_kuliah/'),
+                'url'   =>  route('mataKuliah.detail',[$request->prodiKode]),
             ]);
         }else{
             return response()->json(['error'  =>  0, 'text'   =>  'Ooopps, Mata Kuliah Gagal Ditambahkan'],422);
@@ -74,7 +78,6 @@ class MataKuliahController extends Controller
 
     public function update(Request $request){
         $rules = [
-            'prodi_kode'         => 'required',
             'nama_mata_kuliah'   => 'required',
             'kode_mata_kuliah'   => 'required',
             'sks'   => 'required|numeric',
@@ -83,7 +86,6 @@ class MataKuliahController extends Controller
         ];
 
         $text = [
-            'prodi_kode.required'   => 'Prodi Kode harus diisi.',
             'nama_mata_kuliah.required' => 'Nama mata kuliah harus diisi.',
             'kode_mata_kuliah.required' => 'Kode mata kuliah harus diisi.',
             'sks.required' => 'SKS harus diisi.',
@@ -99,7 +101,6 @@ class MataKuliahController extends Controller
         }
 
         $update = MataKuliah::where('id',$request->mata_kuliah_id)->update([
-            'prodi_kode'           =>  $request->prodi_kode,
             'nama_mata_kuliah'     =>  $request->nama_mata_kuliah,
             'kode_mata_kuliah'     =>  $request->kode_mata_kuliah,
             'sks'       =>  $request->sks,
@@ -110,7 +111,7 @@ class MataKuliahController extends Controller
         if ($update) {
             return response()->json([
                 'text'  =>  'Yeay, Mata Kuliah Berhasil Diubah',
-                'url'   =>  url('/mata_kuliah/'),
+                'url'   =>  route('mataKuliah.detail',[$request->prodiKode]),
             ]);
         }else{
             return response()->json(['error'  =>  0, 'text'   =>  'Ooopps, Mata Kuliah Gagal Diubah'],422);

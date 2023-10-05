@@ -28,10 +28,25 @@ class ProgramStudi extends Model
         return $this->mahasiswas()->count();
     }
 
-    public function matakuliah()
+    public function mataKuliahs()
     {
         return $this->hasMany(MataKuliah::class, 'prodi_kode');
     }
+
+    public function getJumlahMataKuliahProdiAttribute(){
+        return $this->mataKuliahs()->count();
+    }
+
+    public function jadwals()
+    {
+        return $this->hasManyThrough(JadwalPerkuliahan::class, MataKuliah::class);
+    }
+
+    public function jumlahJadwal()
+    {
+        return $this->jadwals()->count();
+    }
+
     public function dosen()
     {
         return $this->hasMany(Dosen::class, 'prodi_kode');
