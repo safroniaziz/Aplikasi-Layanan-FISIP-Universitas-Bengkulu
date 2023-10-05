@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Validator;
 class MataKuliahController extends Controller
 {
     public function index(){
-        $prodis = ProgramStudi::withCount('mataKuliahs')->get();
+        $prodis = ProgramStudi::withCount('mataKuliahs')->orderBy('created_at','desc')->get();
         return view('backend/mataKuliahs.index',[
             'prodis' =>  $prodis,
         ]);
