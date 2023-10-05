@@ -19,11 +19,12 @@
                         <th>Kode Mata Kuliah</th>
                         <th>SKS</th>
                         <th>Semester</th>
+                        <th>Keterangan</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($mataKuliahs as $index => $mataKuliah)
+                    @forelse ($mataKuliahs as $index => $mataKuliah)
                         <tr>
                             <td>{{ $index+1 }}</td>
                             <td>{{ $mataKuliah->prodi->nama_prodi }}</td>
@@ -31,6 +32,7 @@
                             <td>{{ $mataKuliah->kode_mata_kuliah }}</td>
                             <td>{{ $mataKuliah->sks }} SKS</td>
                             <td>Semester {{ $mataKuliah->semester }}</td>
+                            <td>{{ $mataKuliah->keterangan }}</td>
                             <td>
                                 <table>
                                     <tr>
@@ -48,7 +50,11 @@
                                 </table>
                             </td>
                         </tr>
-                    @endforeach
+                    @empty
+                    <tr>
+                        <td colspan="8" class="text-center text-danger">Data mata kuliah masih kosong</td>
+                    </tr>
+                    @endforelse
                 </tbody>
                 @include('backend/mataKuliahs/partials.modal_add')
             </table>
@@ -99,6 +105,7 @@
                     $('#kode_mata_kuliah_edit').val(data.kode_mata_kuliah);
                     $('#sks_edit').val(data.sks);
                     $('#semester_edit').val(data.semester);
+                    $('#keterangan_edit').val(data.keterangan);
 
                 },
                 error:function(){

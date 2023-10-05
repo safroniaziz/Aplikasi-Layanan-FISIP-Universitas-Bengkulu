@@ -30,6 +30,7 @@ class MataKuliahController extends Controller
             'kode_mata_kuliah'   => 'required',
             'sks'   => 'required|numeric',
             'semester'   => 'required|numeric',
+            'keterangan'   => 'required',
         ];
 
         $text = [
@@ -40,6 +41,7 @@ class MataKuliahController extends Controller
             'sks.numeric' => 'SKS harus berupa angka.',
             'semester.required' => 'Semester harus diisi.',
             'semester.numeric' => 'Semester harus berupa angka.',
+            'keterangan.required' => 'Keterangan harus diisi.',
         ];
 
         $validasi = Validator::make($request->all(), $rules, $text);
@@ -53,6 +55,7 @@ class MataKuliahController extends Controller
             'kode_mata_kuliah'       =>  $request->kode_mata_kuliah,
             'sks'       =>  $request->sks,
             'semester'       =>  $request->semester,
+            'keterangan'       =>  $request->keterangan,
         ]);
 
         if ($create) {
@@ -76,6 +79,7 @@ class MataKuliahController extends Controller
             'kode_mata_kuliah'   => 'required',
             'sks'   => 'required|numeric',
             'semester'   => 'required|numeric',
+            'keterangan'   => 'required',
         ];
 
         $text = [
@@ -86,6 +90,7 @@ class MataKuliahController extends Controller
             'sks.numeric' => 'SKS harus berupa angka.',
             'semester.required' => 'Semester harus diisi.',
             'semester.numeric' => 'Semester harus berupa angka.',
+            'keterangan.required' => 'Keterangan harus diisi.',
         ];
 
         $validasi = Validator::make($request->all(), $rules, $text);
@@ -99,6 +104,7 @@ class MataKuliahController extends Controller
             'kode_mata_kuliah'     =>  $request->kode_mata_kuliah,
             'sks'       =>  $request->sks,
             'semester'       =>  $request->semester,
+            'keterangan'       =>  $request->keterangan,
         ]);
 
         if ($update) {

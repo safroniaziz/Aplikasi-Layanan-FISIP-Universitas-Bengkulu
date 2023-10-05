@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::table('mata_kuliahs', function (Blueprint $table) {
             $table->integer('sks')->after('kode_mata_kuliah');
             $table->integer('semester')->after('sks');
+            $table->string('keterangan')->after('semester');
+
         });
     }
 
@@ -23,7 +25,9 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('mata_kuliahs', function (Blueprint $table) {
-            //
+            $table->dropColumn('sks');
+            $table->dropColumn('semester');
+            $table->dropColumn('keterangan');
         });
     }
 };

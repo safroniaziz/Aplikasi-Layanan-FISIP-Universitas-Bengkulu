@@ -39,6 +39,10 @@
                             <label for="exampleInputEmail1">Semester</label>
                             <input type="text" class="form-control" name="semester">
                         </div>
+                        <div class="form-group col-md-12">
+                            <label for="exampleInputEmail1">Keterangan</label>
+                            <input type="text" class="form-control" name="keterangan">
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
