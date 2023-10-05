@@ -11,7 +11,7 @@ class DosenController extends Controller
 {
     public function index(){
         $prodis = ProgramStudi::all();
-        $dosens = Dosen::all();
+        $dosens = Dosen::orderBy('prodi_kode')->get();
         return view('backend/dosens.index',[
             'dosens'  =>  $dosens,
             'prodis' =>  $prodis,
