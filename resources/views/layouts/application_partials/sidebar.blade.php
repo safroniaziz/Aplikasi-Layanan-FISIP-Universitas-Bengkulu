@@ -14,7 +14,7 @@
 </li>
 
 <li class="treeview {{ set_active([
-    'mahasiswa',
+    'mahasiswa','mahasiswa.detail',
     'dosen',
 ]) }}">
     <a href="#">
@@ -24,7 +24,7 @@
         </span>
     </a>
     <ul class="treeview-menu">
-        <li class="{{ set_active(['mahasiswa']) }}"><a href="{{ route('mahasiswa') }}"><i class="fa fa-circle-o"></i> Mahasiswa</a></li>
+        <li class="{{ set_active(['mahasiswa','mahasiswa.detail']) }}"><a href="{{ route('mahasiswa') }}"><i class="fa fa-circle-o"></i> Mahasiswa</a></li>
         <li class="{{ set_active(['dosen']) }}"><a href="{{ route('dosen') }}"><i class="fa fa-circle-o"></i> Dosen</a></li>
     </ul>
 </li>
@@ -84,10 +84,7 @@
 
 <li class="treeview {{ set_active([
     'permission',
-    'manajemen_role',
-    'manajemen_role.detail',
-    'manajemen_data_verifikator',
-    'manajemen_data_administrator',
+    'role',
 ]) }}">
     <a href="#">
         <i class="fa fa-user-cog"></i> <span>Pengaturan Pengguna</span>
@@ -96,8 +93,9 @@
         </span>
     </a>
     <ul class="treeview-menu">
-        <li><a href="{{ route('permission') }}"><i class="fa fa-circle-o"></i> Permission</a></li>
-        <li><a href="{{ route('operator') }}"><i class="fa fa-circle-o"></i> Operator</a></li>
+        <li class="{{ set_active(['permission']) }}"><a href="{{ route('permission') }}"><i class="fa fa-circle-o"></i> Permission</a></li>
+        <li class="{{ set_active('role') }}"><a href="{{ route('role') }}"><i class="fa fa-circle-o"></i> Role</a></li>
+        <li class="{{ set_active('operator') }}"><a href="{{ route('operator') }}"><i class="fa fa-circle-o"></i> Operator</a></li>
     </ul>
 </li>
 

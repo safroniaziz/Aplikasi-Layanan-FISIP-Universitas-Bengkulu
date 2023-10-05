@@ -21,10 +21,6 @@ class MahasiswaMataKuliahController extends Controller
         ]);
     }
 
-    public function create(){
-        return view('backend.mahasiswaMataKuliahs.create');
-    }
-
     public function store(Request $request){
         $rules = [
             'mata_kuliah_id' => 'required',

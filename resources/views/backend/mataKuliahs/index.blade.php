@@ -17,6 +17,8 @@
                         <th>Prodi Kode</th>
                         <th>Nama Mata Kuliah</th>
                         <th>Kode Mata Kuliah</th>
+                        <th>SKS</th>
+                        <th>Semester</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -27,6 +29,8 @@
                             <td>{{ $mataKuliah->prodi->nama_prodi }}</td>
                             <td>{{ $mataKuliah->nama_mata_kuliah }}</td>
                             <td>{{ $mataKuliah->kode_mata_kuliah }}</td>
+                            <td>{{ $mataKuliah->sks }} SKS</td>
+                            <td>Semester {{ $mataKuliah->semester }}</td>
                             <td>
                                 <table>
                                     <tr>
@@ -93,6 +97,8 @@
                     $('#prodi_kode_edit').val(data.prodi_kode);
                     $('#nama_mata_kuliah_edit').val(data.nama_mata_kuliah);
                     $('#kode_mata_kuliah_edit').val(data.kode_mata_kuliah);
+                    $('#sks_edit').val(data.sks);
+                    $('#semester_edit').val(data.semester);
 
                 },
                 error:function(){

@@ -10,6 +10,11 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
+                        <input type="hidden" class="form-control" name="prodiKode" value="{{ $prodi->kode }}">
+                        <div class="form-group col-md-12">
+                            <label for="exampleInputEmail1">Nama Prodi</label>
+                            <input type="text" class="form-control" value="{{ $prodi->nama_prodi }}" disabled>
+                        </div>
                         <div class="form-group col-md-12">
                             <label for="exampleInputEmail1">Npm</label>
                             <input type="text" class="form-control" name="npm" id="npm_edit" readonly>

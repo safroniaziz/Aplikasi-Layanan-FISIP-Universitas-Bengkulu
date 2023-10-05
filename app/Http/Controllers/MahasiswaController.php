@@ -28,14 +28,12 @@ class MahasiswaController extends Controller
     public function store(Request $request){
         $rules = [
             'npm'                     => 'required|unique:mahasiswas',
-            'prodi_kode'              => 'required',
             'nama_mahasiswa'          => 'required',
         ];
 
         $text = [
             'npm.required'             => 'NPM harus diisi.',
             'npm.unique'               => 'NPM sudah digunakan, harap pilih NPM lain.',
-            'prodi_kode.required'      => 'Kode prodi harus diisi.',
             'nama_mahasiswa.required'  => 'Nama mahasiswa harus diisi.',
         ];
 
@@ -46,14 +44,14 @@ class MahasiswaController extends Controller
 
         $create = Mahasiswa::create([
             'npm'                 =>  $request->npm,
-            'prodi_kode'          =>  $request->prodi_kode,
+            'prodi_kode'          =>  $request->prodiKode,
             'nama_mahasiswa'      =>  $request->nama_mahasiswa,
         ]);
 
         if ($create) {
             return response()->json([
                 'text'  =>  'Yeay, Mahasiswa Berhasil Ditambahkan',
-                'url'   =>  url('/mahasiswa/'),
+                'url'   =>  route('mahasiswa.detail',[$request->prodiKode]),
             ]);
         }else{
             return response()->json(['error'  =>  0, 'text'   =>  'Ooopps, Mahasiswa Gagal Ditambahkan'],422);
@@ -66,13 +64,10 @@ class MahasiswaController extends Controller
 
     public function update(Request $request){
         $rules = [
-            'prodi_kode'              => 'required',
             'nama_mahasiswa'          => 'required',
         ];
 
         $text = [
-            'prodi_kode.required'      => 'Kode prodi harus diisi',
-            'prodi_kode.unique'        => 'Kode prodi sudah digunakan, harap pilih kode prodi lain',
             'nama_mahasiswa.required'  => 'Nama mahasiswa harus diisi',
         ];
 
@@ -82,7 +77,6 @@ class MahasiswaController extends Controller
         }
 
         $update = Mahasiswa::where('npm',$request->npm)->update([
-            'prodi_kode'          =>  $request->prodi_kode,
             'nama_mahasiswa'      =>  $request->nama_mahasiswa,
 
         ]);
@@ -90,19 +84,19 @@ class MahasiswaController extends Controller
         if ($update) {
             return response()->json([
                 'text'  =>  'Yeay, Mahasiswa Berhasil Diubah',
-                'url'   =>  url('/mahasiswa/'),
+                'url'   =>  route('mahasiswa.detail',[$request->prodiKode]),
             ]);
         }else{
             return response()->json(['error'  =>  0, 'text'   =>  'Ooopps, Mahasiswa Gagal Diubah'],422);
         }
     }
 
-    public function delete(Mahasiswa $mahasiswa){
+    public function delete(Request $request, Mahasiswa $mahasiswa){
         $delete = Mahasiswa::where('npm',$mahasiswa->npm)->delete();
         if ($delete) {
             return response()->json([
                 'text'  =>  'Yeay, Mahasiswa Berhasil dihapus',
-                'url'   =>  url('/mahasiswa/'),
+                'url'   =>  route('mahasiswa.detail',[$request->prodiKode]),
             ]);
         }else{
             return response()->json(['error'  =>  0, 'text'   =>  'Ooopps, Mahasiswa Gagal dihapus'],422);

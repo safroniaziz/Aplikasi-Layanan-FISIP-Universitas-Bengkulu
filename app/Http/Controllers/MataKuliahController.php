@@ -28,12 +28,18 @@ class MataKuliahController extends Controller
             'prodi_kode'         => 'required',
             'nama_mata_kuliah'   => 'required',
             'kode_mata_kuliah'   => 'required',
+            'sks'   => 'required|numeric',
+            'semester'   => 'required|numeric',
         ];
 
         $text = [
             'prodi_kode.required'   => 'Prodi Kode harus diisi.',
             'nama_mata_kuliah.required' => 'Nama mata kuliah harus diisi.',
             'kode_mata_kuliah.required' => 'Kode mata kuliah harus diisi.',
+            'sks.required' => 'SKS harus diisi.',
+            'sks.numeric' => 'SKS harus berupa angka.',
+            'semester.required' => 'Semester harus diisi.',
+            'semester.numeric' => 'Semester harus berupa angka.',
         ];
 
         $validasi = Validator::make($request->all(), $rules, $text);
@@ -45,6 +51,8 @@ class MataKuliahController extends Controller
             'prodi_kode'             =>  $request->prodi_kode,
             'nama_mata_kuliah'       =>  $request->nama_mata_kuliah,
             'kode_mata_kuliah'       =>  $request->kode_mata_kuliah,
+            'sks'       =>  $request->sks,
+            'semester'       =>  $request->semester,
         ]);
 
         if ($create) {
@@ -66,12 +74,18 @@ class MataKuliahController extends Controller
             'prodi_kode'         => 'required',
             'nama_mata_kuliah'   => 'required',
             'kode_mata_kuliah'   => 'required',
+            'sks'   => 'required|numeric',
+            'semester'   => 'required|numeric',
         ];
 
         $text = [
-            'prodi_kode.required'       => 'Prodi Kode harus diisi.',
+            'prodi_kode.required'   => 'Prodi Kode harus diisi.',
             'nama_mata_kuliah.required' => 'Nama mata kuliah harus diisi.',
             'kode_mata_kuliah.required' => 'Kode mata kuliah harus diisi.',
+            'sks.required' => 'SKS harus diisi.',
+            'sks.numeric' => 'SKS harus berupa angka.',
+            'semester.required' => 'Semester harus diisi.',
+            'semester.numeric' => 'Semester harus berupa angka.',
         ];
 
         $validasi = Validator::make($request->all(), $rules, $text);
@@ -83,6 +97,8 @@ class MataKuliahController extends Controller
             'prodi_kode'           =>  $request->prodi_kode,
             'nama_mata_kuliah'     =>  $request->nama_mata_kuliah,
             'kode_mata_kuliah'     =>  $request->kode_mata_kuliah,
+            'sks'       =>  $request->sks,
+            'semester'       =>  $request->semester,
         ]);
 
         if ($update) {

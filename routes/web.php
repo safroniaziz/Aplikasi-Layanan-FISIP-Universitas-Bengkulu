@@ -15,6 +15,7 @@ use App\Http\Controllers\PengampuController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProgramStudiController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\RuanganKelasController;
 use App\Http\Controllers\RuanganPoadcastController;
 use Illuminate\Support\Facades\Route;
@@ -139,6 +140,17 @@ Route::controller(PermissionController::class)->middleware('auth','verified')->p
     Route::get('/{permission}/edit', 'edit')->name('permission.edit');
     Route::patch('/update', 'update')->name('permission.update');
     Route::delete('/{permission}/delete', 'delete')->name('permission.delete');
+});
+
+Route::controller(RoleController::class)->middleware('auth','verified')->prefix('/role')->group(function(){
+    Route::get('/', 'index')->name('role');
+    Route::post('/', 'store')->name('role.store');
+    Route::get('/{role}/edit', 'edit')->name('role.edit');
+    Route::patch('/update', 'update')->name('role.update');
+    Route::delete('/{role}/delete', 'delete')->name('role.delete');
+    Route::get('/role/{role}/detail', 'detail')->name('role.detail');
+    Route::delete('/role/{role}/revoke/{permission}', 'revoke')->name('role.revoke');
+            Route::post('/role/{role}/assign/', 'assign')->name('role.assign');
 });
 
 Route::middleware('auth')->group(function () {

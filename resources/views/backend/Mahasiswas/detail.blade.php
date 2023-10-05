@@ -65,7 +65,7 @@
                                         <td>
                                             <form action="{{ route('mahasiswa.delete',[$mahasiswa->npm]) }}" method="POST" id="form">
                                                 @csrf @method('DELETE')
-
+                                                <input type="hidden" name="prodiKode" value="{{ $prodi->kode }}">
                                                 <button type="submit" class="btn btn-danger btn-sm btn-flat show_confirm"><i class="fa fa-trash"></i>&nbsp; Hapus</button>
                                             </form>
                                         </td>

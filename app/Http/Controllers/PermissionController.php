@@ -17,11 +17,12 @@ class PermissionController extends Controller
 
     public function store(Request $request){
         $rules = [
-            'name'      =>  'required',
+            'name'      =>  'required|unique:permissions',
         ];
         
         $text = [
             'name.required'           => 'Nama Permission harus diisi',
+            'name.unique'           => 'Nama Permission sudah ada',
         ];
 
         $validasi = Validator::make($request->all(), $rules, $text);

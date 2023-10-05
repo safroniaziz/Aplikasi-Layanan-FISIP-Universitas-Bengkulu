@@ -29,6 +29,16 @@
                             <label for="exampleInputEmail1">Kode Mata Kuliah</label>
                             <input type="text" class="form-control" name="kode_mata_kuliah">
                         </div>
+
+                        <div class="form-group col-md-12">
+                            <label for="exampleInputEmail1">SKS</label>
+                            <input type="text" class="form-control" name="sks">
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            <label for="exampleInputEmail1">Semester</label>
+                            <input type="text" class="form-control" name="semester">
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
