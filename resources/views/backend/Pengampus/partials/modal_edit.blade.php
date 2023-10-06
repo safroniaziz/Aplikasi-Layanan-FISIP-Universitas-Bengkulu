@@ -13,7 +13,7 @@
                         <input type="hidden" name="id" id="id_edit">
                         <div class="form-group col-md-12">
                             <label for="exampleInputEmail1">Program Studi</label>
-                            <select name="prodiKode" class="form-control" id="prodiKode">
+                            <select name="prodiKode" class="form-control select2" id="prodiKodeEdit">
                                 <option disabled selected>-- pilih program studi --</option>
                                 @foreach ($prodis as $prodi)
                                     <option value="{{ $prodi->kode }}">{{ $prodi->nama_prodi }}</option>
@@ -22,13 +22,13 @@
                         </div>
                         <div class="form-group col-md-12">
                             <label for="exampleInputEmail1">Nama Mata Kuliah</label>
-                            <select name="mata_kuliah_id" class="form-control" id="mata_kuliah_id_edit">
+                            <select name="mata_kuliah_id" class="form-control select2" id="mata_kuliah_id_edit">
                             </select>
                         </div>
 
                         <div class="form-group col-md-12">
                             <label for="exampleInputEmail1">Nama Dosen</label>
-                            <select name="dosen_nip" class="form-control" id="dosen_nip_edit">
+                            <select name="dosen_nip" class="form-control select2" id="dosen_nip_edit">
                                 <option disabled selected>-- pilih nip dosen --</option>
                                 @foreach ($dosens as $dosen)
                                     <option value="{{ $dosen->nip }}">{{ $dosen->nama_dosen }}</option>
@@ -60,7 +60,7 @@
 @push('scripts')
     <script>
         $(document).ready(function(){
-            $(document).on('change','#prodiKode',function(){
+            $(document).on('change','#prodiKodeEdit',function(){
                 // alert('berhasil');
                 var prodiKode = $(this).val();
                 var div = $(this).parent().parent();

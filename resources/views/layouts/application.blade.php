@@ -13,7 +13,8 @@
         {{-- Toast Notification Asset --}}
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css">
         {{-- Select2 --}}
-        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+        <link href="{{ asset('assets/select2/dist/css/select2.css') }}" rel="stylesheet"type="text/css" />
+
         <!-- Theme style -->
         <link rel="stylesheet" href="{{ asset('assets/application/dist/css/AdminLTE.min.css') }}">
         <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -172,7 +173,7 @@
         {{-- Toastr Notification --}}
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
         {{-- Select2 --}}
-        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+        <script src="{{ asset('assets/select2/dist/js/select2.full.js') }}" type="text/javascript"></script>
 
         <script>
             $(document).ready(function () {

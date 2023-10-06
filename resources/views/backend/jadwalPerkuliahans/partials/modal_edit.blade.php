@@ -13,7 +13,7 @@
                         <input type="hidden" name="id" id="id_edit">
                         <div class="form-group col-md-12">
                             <label for="exampleInputEmail1">Program Studi</label>
-                            <select name="prodiKode" class="form-control" id="prodiKode">
+                            <select name="prodiKode" class="form-control select2" id="prodiKodePengampuEdit">
                                 <option disabled selected>-- pilih program studi --</option>
                                 @foreach ($prodis as $prodi)
                                     <option value="{{ $prodi->kode }}">{{ $prodi->nama_prodi }}</option>
@@ -23,13 +23,13 @@
                         
                         <div class="form-group col-md-12">
                             <label for="exampleInputEmail1">Nama Mata Kuliah</label>
-                            <select name="mata_kuliah_id" class="form-control" id="mata_kuliah_id_edit">
+                            <select name="mata_kuliah_id" class="form-control select2" id="mata_kuliah_id_edit">
                             </select>
                         </div>
 
                         <div class="form-group col-md-12">
                             <label for="exampleInputEmail1">Nama Ruangan Kelas</label>
-                            <select name="ruangan_kelas_id" class="form-control" id="ruangan_kelas_id_edit">
+                            <select name="ruangan_kelas_id" class="form-control select2" id="ruangan_kelas_id_edit">
                                 <option disabled selected>-- pilih Nama Ruangan Kelas --</option>
                                 @foreach ($ruanganKelas as $ruanganKelas)
                                     <option value="{{ $ruanganKelas->id }}">{{ $ruanganKelas->nama_ruangan_kelas }}</option>
@@ -39,7 +39,16 @@
 
                         <div class="form-group col-md-12">
                             <label for="exampleInputEmail1">Hari</label>
-                            <input type="text" class="form-control" name="hari" id="hari_edit">
+                            <select name="hari" class="form-control" id="hari_edit">
+                                <option disabled selected>-- pilih hari --</option>
+                                <option value="Senin">Senin</option>
+                                <option value="Selasa">Selasa</option>
+                                <option value="Rabu">Rabu</option>
+                                <option value="Kamis">Kamis</option>
+                                <option value="Jumat">Jumat</option>
+                                <option value="Sabtu">Sabtu</option>
+                                <option value="Minggu">Minggu</option>
+                            </select>
                         </div>
 
                         <div class="form-group col-md-12">
@@ -67,7 +76,7 @@
 @push('scripts')
     <script>
         $(document).ready(function(){
-            $(document).on('change','#prodiKode',function(){
+            $(document).on('change','#prodiKodePengampuEdit',function(){
                 // alert('berhasil');
                 var prodiKode = $(this).val();
                 var div = $(this).parent().parent();
