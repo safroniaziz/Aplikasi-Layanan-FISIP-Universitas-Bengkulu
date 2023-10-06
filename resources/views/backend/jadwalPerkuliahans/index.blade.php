@@ -23,7 +23,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($jadwalPerkuliahans as $index => $jadwalPerkuliahan)
+                    @forelse ($jadwalPerkuliahans as $index => $jadwalPerkuliahan)
                         <tr>
                             <td>{{ $index+1 }}</td>
                             <td>{{ $jadwalPerkuliahan->mataKuliah->nama_mata_kuliah }}</td>
@@ -48,7 +48,13 @@
                                 </table>
                             </td>
                         </tr>
-                    @endforeach
+                    @empty
+                        <tr>
+                            <td colspan="6" class="text-center text-danger">
+                                Data jadwal masih kosong
+                            </td>
+                        </tr>
+                    @endforelse
                 </tbody>
                 @include('backend/jadwalPerkuliahans/partials.modal_add')
             </table>

@@ -21,10 +21,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($pengampus as $index => $pengampu)
+                    @forelse ($pengampus as $index => $pengampu)
                         <tr>
                             <td>{{ $index+1 }}</td>
-                            <td>{{ $pengampu->mataKuliah->nama_mata_kuliah }}</td>
+                            <td>{{ $pengampu->mataKuliah->nama_mata_kuliah.' ('.$pengampu->mataKuliah->keterangan.' )' }}</td>
                             <td>{{ $pengampu->dosen->nama_dosen }}</td>
                             <td>{{ $pengampu->is_active }}</td>
                             <td>
@@ -44,7 +44,13 @@
                                 </table>
                             </td>
                         </tr>
-                    @endforeach
+                    @empty
+                        <tr>
+                            <td colspan="5" class="text-center text-danger">
+                                Data pengampu masih kosong
+                            </td>
+                        </tr>
+                    @endforelse
                 </tbody>
                 @include('backend/pengampus/partials.modal_add')
             </table>

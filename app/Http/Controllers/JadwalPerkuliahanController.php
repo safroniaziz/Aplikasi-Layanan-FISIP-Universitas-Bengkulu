@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\JadwalPerkuliahan;
 use App\Models\MataKuliah;
+use App\Models\ProgramStudi;
 use App\Models\RuanganKelas;
 use Illuminate\Http\Request;
+use App\Models\JadwalPerkuliahan;
 use Illuminate\Support\Facades\Validator;
 
 class JadwalPerkuliahanController extends Controller
@@ -14,11 +15,12 @@ class JadwalPerkuliahanController extends Controller
         $mataKuliahs = MataKuliah::all();
         $ruanganKelas = RuanganKelas::all();
         $jadwalPerkuliahans = JadwalPerkuliahan::all();
-        
+        $prodis = ProgramStudi::all();
         return view('backend/jadwalPerkuliahans.index',[
             'jadwalPerkuliahans'  =>  $jadwalPerkuliahans,
             'mataKuliahs'  =>  $mataKuliahs,
             'ruanganKelas'  =>  $ruanganKelas,
+            'prodis'  =>  $prodis,
         ]);
     }
 

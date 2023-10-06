@@ -11,12 +11,19 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="form-group col-md-12">
-                            <label for="exampleInputEmail1">Nama Mata Kuliah</label>
-                            <select name="mata_kuliah_id" class="form-control" id="">
-                                <option disabled selected>-- pilih mata kuliah --</option>
-                                @foreach ($mataKuliahs as $mataKuliah)
-                                    <option value="{{ $mataKuliah->id }}">{{ $mataKuliah->nama_mata_kuliah }}</option>
+                            <label for="exampleInputEmail1">Program Studi</label>
+                            <select name="prodiKode" class="form-control" id="prodiKode">
+                                <option disabled selected>-- pilih program studi --</option>
+                                @foreach ($prodis as $prodi)
+                                    <option value="{{ $prodi->kode }}">{{ $prodi->nama_prodi }}</option>
                                 @endforeach
+                            </select>
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            <label for="exampleInputEmail1">Nama Mata Kuliah</label>
+                            <select name="mata_kuliah_id" class="form-control" id="mataKuliahId">
+                                <option disabled selected>-- pilih mata kuliah --</option>
                             </select>
                         </div>
 
@@ -58,3 +65,32 @@
     <!-- /.modal-dialog -->
 </div>
 <!-- /.modal -->
+
+@push('scripts')
+    <script>
+        $(document).ready(function(){
+            $(document).on('change','#prodiKode',function(){
+                // alert('berhasil');
+                var prodiKode = $(this).val();
+                var div = $(this).parent().parent();
+                var op=" ";
+                $.ajax({
+                type :'get',
+                url: "{{ url('/cari_mata_kuliah_by_prodi') }}",
+                data:{'prodiKode':prodiKode},
+                    success:function(data){
+                        op+='<option value="0" selected disabled>-- pilih mata kuliah --</option>';
+                        for(var i=0; i<data.length;i++){
+                            // alert(data['jenis_publikasi'][i].dapil_id);
+                            op+='<option value="'+data[i].id+'">'+data[i].nama_mata_kuliah+' ('+data[i].keterangan+') '+'</option>';
+                        }
+                        div.find('#mataKuliahId').html(" ");
+                        div.find('#mataKuliahId').append(op);
+                    },
+                        error:function(){
+                    }
+                });
+            })
+        });
+    </script>
+@endpush
