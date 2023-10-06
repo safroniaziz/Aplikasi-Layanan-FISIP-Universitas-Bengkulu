@@ -12,7 +12,7 @@
                     <div class="row">
                         <div class="form-group col-md-12">
                             <label for="exampleInputEmail1">Program Studi</label>
-                            <select name="prodiKode" class="form-control" id="prodiKode">
+                            <select name="prodiKode" class="form-control select2" id="prodiKode">
                                 <option disabled selected>-- pilih program studi --</option>
                                 @foreach ($prodis as $prodi)
                                     <option value="{{ $prodi->kode }}">{{ $prodi->nama_prodi }}</option>
@@ -22,14 +22,14 @@
 
                         <div class="form-group col-md-12">
                             <label for="exampleInputEmail1">Nama Mata Kuliah</label>
-                            <select name="mata_kuliah_id" class="form-control" id="mataKuliahId">
+                            <select name="mata_kuliah_id" class="form-control select2" id="mataKuliahId">
                                 <option disabled selected>-- pilih mata kuliah --</option>
                             </select>
                         </div>
 
                         <div class="form-group col-md-12">
                             <label for="exampleInputEmail1">Nama Dosen</label>
-                            <select name="dosen_nip" class="form-control" id="">
+                            <select name="dosen_nip" class="form-control select2" id="">
                                 <option disabled selected>-- pilih nip dosen --</option>
                                 @foreach ($dosens as $dosen)
                                     <option value="{{ $dosen->nip }}">{{ $dosen->nama_dosen }}</option>

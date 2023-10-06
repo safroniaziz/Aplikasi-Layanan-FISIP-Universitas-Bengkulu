@@ -12,11 +12,14 @@
         <link rel="stylesheet" href="{{ asset('assets/application/bower_components/Ionicons/css/ionicons.min.css') }}">
         {{-- Toast Notification Asset --}}
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css">
+        {{-- Select2 --}}
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
         <!-- Theme style -->
         <link rel="stylesheet" href="{{ asset('assets/application/dist/css/AdminLTE.min.css') }}">
         <!-- AdminLTE Skins. Choose a skin from the css/skins
             folder instead of downloading all of them to reduce the load. -->
         <link rel="stylesheet" href="{{ asset('assets/application/dist/css/skins/_all-skins.min.css') }}">
+        
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -166,9 +169,10 @@
         <script src="{{ asset('assets/application/dist/js/demo.js') }}"></script>
         {{-- Font Awesome --}}
         <script src="https://kit.fontawesome.com/055120b175.js" crossorigin="anonymous"></script>
-
         {{-- Toastr Notification --}}
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
+        {{-- Select2 --}}
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
         <script>
             $(document).ready(function () {
