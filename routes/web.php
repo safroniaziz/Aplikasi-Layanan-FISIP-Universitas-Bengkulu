@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AlatPoadcastController;
 use App\Http\Controllers\BasisPengetahuanController;
+use App\Http\Controllers\BukuTamuController;
+use App\Http\Controllers\CariDataController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DosenController;
 use App\Http\Controllers\JadwalPerkuliahanController;
@@ -34,6 +36,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('layouts.user');
 })->name('user');
+
+Route::controller(CariDataController::class)->group(function(){
+    Route::get('/cari_mata_kuliah_by_prodi', 'cariMataKuliahByProdi')->name('cariMataKuliahByProdi');
+});
+
+Route::controller(BukuTamuController::class)->prefix('/buku_tamu')->group(function(){
+    Route::get('/', 'index')->name('bukuTamu');
+});
 
 Route::controller(DashboardController::class)->middleware('auth','verified')->prefix('/dashboard')->group(function(){
     Route::get('/', 'index')->name('dashboard');
@@ -134,6 +144,11 @@ Route::controller(BasisPengetahuanController::class)->middleware('auth','verifie
 
 Route::controller(OperatorController::class)->middleware('auth','verified')->prefix('/operator')->group(function(){
     Route::get('/', 'index')->name('operator');
+    Route::post('/', 'store')->name('operator.store');
+    Route::get('/{operator}/edit', 'edit')->name('operator.edit');
+    Route::patch('/update', 'update')->name('operator.update');
+    Route::delete('/{operator}/delete', 'delete')->name('operator.delete');
+    Route::patch('/ubah_password', 'ubahPassword')->name('operator.ubahPassword');
 });
 
 Route::controller(PermissionController::class)->middleware('auth','verified')->prefix('/permission')->group(function(){

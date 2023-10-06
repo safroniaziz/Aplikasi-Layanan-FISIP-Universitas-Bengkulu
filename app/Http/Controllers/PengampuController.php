@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Dosen;
 use App\Models\MataKuliah;
 use App\Models\Pengampu;
+use App\Models\ProgramStudi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -14,10 +15,12 @@ class PengampuController extends Controller
         $mataKuliahs = MataKuliah::all();
         $dosens = Dosen::all();
         $pengampus = Pengampu::all();
+        $prodis = ProgramStudi::all();
         return view('backend/pengampus.index',[
             'pengampus'  =>  $pengampus,
             'mataKuliahs' =>  $mataKuliahs,
             'dosens' =>  $dosens,
+            'prodis' =>  $prodis,
         ]);
     }
 

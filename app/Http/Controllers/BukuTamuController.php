@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class DashboardCOntroller extends Controller
+class BukuTamuController extends Controller
 {
     public function index(){
-        return view('backend.dashboard.index');
+        return view('frontend.buku_tamu');
     }
 }

@@ -82,23 +82,7 @@
                     <div x-cloak :class="[isOpen ? 'translate-x-0 opacity-100 ' : 'opacity-0 -translate-x-full']" class="absolute inset-x-0 z-20 w-full px-6 py-4 transition-all duration-300 ease-in-out bg-yellow-500   md:bg-none menu-navbar text-white lg:mt-0 lg:p-0 lg:top-0 lg:relative lg:bg-transparent lg:w-auto
                     lg:opacity-100 lg:translate-x-0 lg:flex lg:items-center " id="list-menu">
                         <div class="flex flex-col -mx-6 lg:flex-row lg:items-center   text-[16px]">
-                            <!-- if menu active "active-menu" else "text-gray-600" -->
-                            <a href="home.html" class="px-2 py-2 mx-2 mt-2  active-menu lg:text-white  text-[14px] text-sh transition-colors  duration-300 transform rounded-md
-                            lg:mt-0 hover:text-[#eed488] ">Home</a>
-                            <a href="podcast.html" class="px-2 py-2 text-gray-600 lg:text-white  text-[14px] text-sh mx-2 mt-2 transition-colors duration-300 transform rounded-md lg:mt-0
-                            hover:text-[#eed488] ">Sewa Podcast</a>
-                            <a href="jadwal.html"
-                                class="px-2 py-2 mx-2 mt-2 text-gray-600 lg:text-white  text-[14px] text-sh transition-colors duration-300 transform rounded-md lg:mt-0 hover:text-[#eed488]       ">Jadwal
-                                Matkul</a>
-                            <a href="data-pengguna.html" class="px-2 py-2 mx-2 mt-2 text-gray-600 lg:text-white  text-[14px] text-sh transition-colors
-                            duration-300 transform rounded-md lg:mt-0 hover:text-[#eed488] ">Data Pengguna</a>
-                            <a href="surat.html" class="px-2 py-2 mx-2 mt-2 text-gray-600 lg:text-white  text-[14px] text-sh transition-colors
-                            duration-300 transform rounded-md lg:mt-0 hover:text-[#eed488] ">Permohonan surat</a>
-                            <a href="buku-tamu.html" class="px-2 py-2 mx-2 mt-2 text-gray-600 lg:text-white  text-[14px] text-sh transition-colors
-                            duration-300 transform rounded-md lg:mt-0 hover:text-[#eed488] ">Buku Tamu</a>
-                            <a href="{{ route('login') }}"
-                                class="px-5 py-2 mx-2 mt-2 text-gray-700 lg:text-white  text-[14px] text-sh transition-colors
-                            duration-300 transform rounded-md lg:mt-0 hover:text-[#eed488] bg-gray-900 hover:bg-slate-800  ">Login</a>
+                            @include('layouts.application_partials.user_navbar')
                             <div x-data="{ toggle: localStorage.getItem('theme') === 'dark' }"
                                 :class="toggle ? 'dark' : ''" class=" app mx-auto py-3 lg:py-0">
                                 <button title="Change Mode" id="theme-toggle" @click="toggle = !toggle"

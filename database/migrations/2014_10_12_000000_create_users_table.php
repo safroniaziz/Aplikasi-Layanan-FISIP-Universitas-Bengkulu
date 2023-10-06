@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('no_hp')->unique();
-            $table->string('pekerjaan')->unique();
-            $table->enum('status',['pelajar','mahasiswa','bekerja','lainnya'])->unique();
-            $table->text('alamat');
+            $table->string('no_hp')->unique()->nullable();
+            $table->string('pekerjaan')->unique()->nullable();
+            $table->enum('status',['pelajar','mahasiswa','bekerja','lainnya'])->unique()->nullable();
+            $table->text('alamat')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

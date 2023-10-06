@@ -6,6 +6,6 @@
     <li class="breadcrumb-item active">Dashboard</li>
 @endsection
 @section('content')
-    @include('dashboard.informasi1')
-    @include('dashboard.informasi2')
+    @include('backend.dashboard.informasi1')
+    @include('backend.dashboard.informasi2')
 @endsection

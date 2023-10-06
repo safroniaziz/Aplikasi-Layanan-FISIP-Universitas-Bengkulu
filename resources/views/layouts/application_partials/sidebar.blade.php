@@ -84,7 +84,8 @@
 
 <li class="treeview {{ set_active([
     'permission',
-    'role',
+    'role','role.detail',
+    'operator'
 ]) }}">
     <a href="#">
         <i class="fa fa-user-cog"></i> <span>Pengaturan Pengguna</span>
@@ -94,7 +95,7 @@
     </a>
     <ul class="treeview-menu">
         <li class="{{ set_active(['permission']) }}"><a href="{{ route('permission') }}"><i class="fa fa-circle-o"></i> Permission</a></li>
-        <li class="{{ set_active('role') }}"><a href="{{ route('role') }}"><i class="fa fa-circle-o"></i> Role</a></li>
+        <li class="{{ set_active(['role','role.detail']) }}"><a href="{{ route('role') }}"><i class="fa fa-circle-o"></i> Role</a></li>
         <li class="{{ set_active('operator') }}"><a href="{{ route('operator') }}"><i class="fa fa-circle-o"></i> Operator</a></li>
     </ul>
 </li>
