@@ -43,6 +43,7 @@ Route::controller(CariDataController::class)->group(function(){
 
 Route::controller(BukuTamuController::class)->prefix('/buku_tamu')->group(function(){
     Route::get('/', 'index')->name('bukuTamu');
+    Route::post('/', 'store')->name('bukuTamu.store');
 });
 
 Route::controller(DashboardController::class)->middleware('auth','verified')->prefix('/dashboard')->group(function(){
