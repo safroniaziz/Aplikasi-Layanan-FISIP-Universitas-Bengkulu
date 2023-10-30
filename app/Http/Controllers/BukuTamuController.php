@@ -41,6 +41,7 @@ class BukuTamuController extends Controller
 
             $namaTamu = $request->input('nama_tamu');
             $tanggal = date('Y-m-d');
+            $tanggalJam = date('Y-m-d H:i:s');
             $keperluan = $request->input('keperluan');
             $tujuan = $request->input('tujuan');
             $noHp = $request->input('no_hp');
@@ -58,7 +59,7 @@ class BukuTamuController extends Controller
 
             // Simpan nama file ke database (jika diperlukan)
             $imageModel = new BukuTamu();
-            $imageModel->tanggal = $tanggal;
+            $imageModel->tanggal = $tanggalJam;
             $imageModel->nama_tamu = $namaTamu;
             $imageModel->keperluan = $keperluan;
             $imageModel->tujuan = $tujuan;

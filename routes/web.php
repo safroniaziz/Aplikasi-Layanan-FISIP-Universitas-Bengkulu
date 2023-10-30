@@ -23,6 +23,7 @@ use App\Http\Controllers\PemesananRuanganController;
 use App\Http\Controllers\JadwalPerkuliahanController;
 use App\Http\Controllers\KonselingController;
 use App\Http\Controllers\MahasiswaMataKuliahController;
+use App\Http\Controllers\ManajemenBukuTamuController;
 use App\Http\Controllers\PendaftaranKonselingController;
 use App\Livewire\JadwalPerkuliahanLivewire;
 
@@ -158,6 +159,12 @@ Route::controller(BasisPengetahuanController::class)->middleware('auth','verifie
     Route::get('/{basisPengetahuan:id}/edit', 'edit')->name('basisPengetahuan.edit');
     Route::patch('/update', 'update')->name('basisPengetahuan.update');
     Route::delete('/{basisPengetahuan:id}/delete', 'delete')->name('basisPengetahuan.delete');
+});
+
+Route::controller(ManajemenBukuTamuController::class)->middleware('auth','verified')->prefix('/manajemen_buku_tamu')->group(function(){
+    Route::get('/', 'index')->name('manajemenBukuTamu');
+    Route::post('/', 'store')->name('manajemenBukuTamu.store');
+    Route::get('/{bukuTamu}/download', 'download')->name('manajemenBukuTamu.download');
 });
 
 Route::controller(OperatorController::class)->middleware('auth','verified')->prefix('/operator')->group(function(){
