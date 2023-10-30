@@ -5,11 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class JadwalSetting extends Model
+class JadwalSettingFooter extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'link_youtube',
+        'jadwal_setting_id',
+        'text_footer',
+        'visible',
     ];
 }
