@@ -21,6 +21,7 @@ use App\Http\Controllers\RuanganPoadcastController;
 use App\Http\Controllers\BasisPengetahuanController;
 use App\Http\Controllers\PemesananRuanganController;
 use App\Http\Controllers\JadwalPerkuliahanController;
+use App\Http\Controllers\KonselingController;
 use App\Http\Controllers\MahasiswaMataKuliahController;
 use App\Http\Controllers\PendaftaranKonselingController;
 use App\Livewire\JadwalPerkuliahanLivewire;
@@ -37,7 +38,7 @@ use App\Livewire\JadwalPerkuliahanLivewire;
 */
 
 Route::get('/', function () {
-    return view('layouts.user');
+    return view('frontend.home');
 })->name('user');
 
 Route::controller(CariDataController::class)->group(function(){
@@ -50,11 +51,17 @@ Route::controller(BukuTamuController::class)->prefix('/buku_tamu')->group(functi
     Route::post('/', 'store')->name('bukuTamu.store');
 });
 
+Route::controller(KonselingController::class)->middleware('auth','verified')->prefix('/e_konseling')->group(function () {
+    Route::get('/e-konseling', 'index')->name('e-konseling');
+    Route::post('/e-konseling', 'store')->name('e-konseling.store');
+
+});
+
 Route::get('/tampil-Jadwal', JadwalPerkuliahanLivewire::class)->name('tampilJadwalLivewire');
 
-Route::controller(JadwalController::class)->prefix('/jadwal')->group(function () {
-    Route::get('/', 'index')->name('tampilJadwal');
-});
+// Route::controller(JadwalController::class)->prefix('/jadwal')->group(function () {
+//     Route::get('/tampil-Jadwal', 'index')->name('tampilJadwal');
+// });
 
 Route::controller(DashboardController::class)->middleware('auth','verified')->prefix('/dashboard')->group(function(){
     Route::get('/', 'index')->name('dashboard');

@@ -95,7 +95,7 @@ class JadwalPerkuliahanLivewire extends Component
         foreach ($jadwalPerProdiBerlangsung as $prodiData) {
             $jadwalsProdi = $prodiData['jadwal'];
             foreach ($jadwalsProdi as $index => $jadwal) {
-                if (($index + 1) % 5 == 0) {
+                if (($index + 1) % 6 == 0) {
                     $jumlahLoop++;
                 } elseif (($index + 1) == count($jadwalsProdi)) {
                     $jumlahLoop++;
@@ -200,10 +200,10 @@ class JadwalPerkuliahanLivewire extends Component
 
     public function render()
     {
-        $link =  JadwalSetting::all();
-        $this->link = $link[0]->link_youtube;
-        $this->footer = $link[0]->text_footer;
         $this->jam = Date::now()->format('H:i:s');
-        return view('livewire.jadwal-perkuliahan')->layout('Layouts.jadwal');;
+        $this->link();
+        $this->jadwalBerlangsung();
+        $this->jadwalBelumMulai();
+        return view('livewire.jadwal-perkuliahan2')->layout('Layouts.jadwal');;
     }
 }

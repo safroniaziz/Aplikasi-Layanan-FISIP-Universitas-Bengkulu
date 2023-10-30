@@ -21,7 +21,7 @@
 
                             <!-- this.active === 2, 2 diubah dengan jumlah slide yang ditampilkan -->
                             @if($cekJadwal!=0)
-                            <div class="relative w-full h-[39vh]   " x-data="{ active: 1, loop() { setInterval(() => {
+                            <div class="relative w-full h-[46vh]   " x-data="{ active: 1, loop() { setInterval(() => {
                                     this.active = this.active === {{ $jumlahLoop }} ? 1 : this.active+1 }, 10000) }, }" x-init="loop">
                                 <div class="flex overflow-x-hidden w-full">
                                     @php
@@ -37,7 +37,7 @@
                                     @endphp
 
                                     @foreach ($jadwalsProdi as $index => $jadwal)
-                                    @if (($index + 1) % 5 == 0)
+                                    @if (($index + 1) % 6 == 0)
                                     <!-- Tampilkan elemen hanya ketika $i adalah kelipatan 5 -->
                                     <div class="  absolute w-full" x-show="active == {{ $i }}" x-transition:enter="transition duration-1000" x-transition:enter-start="transform translate-x-full" x-transition:enter-end="transform translate-x-0" x-transition:leave="transition duration-1000" x-transition:leave-start="transform" x-transition:leave-end="transform -translate-x-full">
                                         <h1 class="font-bold border-l-4 lg:text-lg 2xl:text-2xl py-3001344] pl-2 mb-2">
@@ -62,7 +62,7 @@
                                             <tbody class="">
                                                 @foreach ($jadwalsProdi as $index2 => $jadwal)
 
-                                                @if($index2> $index-5 && $index2 <=$index) <tr class=" {{$jadwal['batal']==1?'bg-red-100': ''}}  ">
+                                                @if($index2> $index-6 && $index2 <=$index) <tr class=" {{$jadwal['batal']==1?'bg-red-100': ''}}  ">
                                                     <!-- <td class="px-4  whitespace-nowrap lg:text-lg 2xl:text-2xl py-2 leading-7 font-bold
                                                         text-gray-700"> {{ $index2+1 }}
                                                         </td> -->
@@ -77,10 +77,10 @@
                                                         {{ $jadwal['nama_ruangan_kelas'] }}
                                                     </td>
                                                     <td class="px-4     lg:text-lg 2xl:text-2xl py-2 leading-7 font-bold text-gray-700">
-                                                        {{ $jadwal['nama_mata_kuliah'] }}
+                                                        <div class="line-clamp-3">{{ $jadwal['nama_mata_kuliah'] }}</div>
                                                     </td>
                                                     <td class="px-4    lg:text-lg 2xl:text-2xl py-2 leading-7 font-bold text-gray-700">
-                                                        {{ $jadwal['pengampuh'] }}
+                                                        <div class="line-clamp-2">{{ $jadwal['pengampuh'] }}</div>
                                                     </td>
                                                     </tr>
 
@@ -118,7 +118,7 @@
                                             <tbody class="">
                                                 @foreach ($jadwalsProdi as $index2 => $jadwal)
 
-                                                @if($index2> $index-( ($index + 1) % 5) && $index2 <=$index) <tr class=" {{$jadwal['batal']==1?'bg-red-100': ''}}  ">
+                                                @if($index2> $index-( ($index + 1) % 6) && $index2 <=$index) <tr class=" {{$jadwal['batal']==1?'bg-red-100': ''}}  ">
                                                     <!-- <td class="px-4  whitespace-nowrap lg:text-lg 2xl:text-2xl py-2 leading-7 font-bold
                                                         text-gray-700"> {{ $index2+1 }}
                                                         </td> -->
@@ -133,10 +133,10 @@
                                                         {{ $jadwal['nama_ruangan_kelas'] }}
                                                     </td>
                                                     <td class="px-4    lg:text-lg 2xl:text-2xl py-2 leading-7 font-bold text-gray-700">
-                                                        {{ $jadwal['nama_mata_kuliah'] }}
+                                                        <div class="line-clamp-3">{{ $jadwal['nama_mata_kuliah'] }}</div>
                                                     </td>
                                                     <td class="px-4    lg:text-lg 2xl:text-2xl py-2 leading-7 font-bold text-gray-700">
-                                                        {{ $jadwal['pengampuh'] }}
+                                                        <div class="line-clamp-2">{{ $jadwal['pengampuh'] }}</div>
                                                     </td>
                                                     </tr>
 
@@ -189,18 +189,18 @@
                 </div>
                 <div wire:poll.10000ms="link" class="col-span-1 w-full  rounded-md overflow-hidden ">
                     <div class="bg-[#010347] p-3 w-full h-full      ">
-                        <iframe class="w-full h-full " src="https://www.youtube.com/embed/{{ $link }}?autoplay=1&controls=1&loop=1&mute=1" frameborder="0" allow="  autoplay;  " allowfullscreen></iframe>
+                        <iframe class="w-full h-full " src="https://www.youtube.com/embed/{{ $link }}?autoplay=1&controls=1&loop=1&mute=0" frameborder="0" allow="  autoplay;  " allowfullscreen></iframe>
                     </div>
 
                 </div>
 
             </div>
             <div class="w-full   overflow-hidden  ">
-                <div wire:poll.2000ms="jadwalBelumMulai" class="bg-white bg-opacity-70 h-[40vh]    w-full pl-3  ">
+                <div wire:poll.2000ms="jadwalBelumMulai" class="bg-white bg-opacity-70 h-[35vh]    w-full pl-3  ">
                     <div class="overflow-hidden   mx-auto ">
                         <!-- this.active === 4, 4 diubah dengan jumlah slide yang ditampilkan -->
                         @if($cekJadwalBelumMulai!=0)
-                        <div class="relative w-full h-[40vh]   " x-data="{ active: 1, loop() { setInterval(() => {
+                        <div class="relative w-full h-[35vh]   " x-data="{ active: 1, loop() { setInterval(() => {
                                     this.active = this.active === {{ $jumlahLoopBelumMulai }} ? 1 : this.active+1 }, 10000) }, }" x-init="loop">
                             <div class="flex overflow-x-hidden w-full">
                                 @php
@@ -256,10 +256,11 @@
                                                     {{ $jadwal['nama_ruangan_kelas'] }}
                                                 </td>
                                                 <td class="px-4     lg:text-lg 2xl:text-2xl py-2 leading-7 font-bold text-gray-700">
-                                                    {{ $jadwal['nama_mata_kuliah'] }}
+                                                    <div class="line-clamp-3">{{ $jadwal['nama_mata_kuliah'] }}</div>
                                                 </td>
                                                 <td class="px-4    lg:text-lg 2xl:text-2xl py-2 leading-7 font-bold text-gray-700">
-                                                    {{ $jadwal['pengampuh'] }}
+                                                    <div class="line-clamp-2">{{ $jadwal['pengampuh'] }}</div>
+
                                                 </td>
                                                 </tr>
 
@@ -312,10 +313,10 @@
                                                     {{ $jadwal['nama_ruangan_kelas'] }}
                                                 </td>
                                                 <td class="px-4    lg:text-lg 2xl:text-2xl py-2 leading-7 font-bold text-gray-700">
-                                                    {{ $jadwal['nama_mata_kuliah'] }}
+                                                    <div class="line-clamp-3">{{ $jadwal['nama_mata_kuliah'] }}</div>
                                                 </td>
                                                 <td class="px-4    lg:text-lg 2xl:text-2xl py-2 leading-7 font-bold text-gray-700">
-                                                    {{ $jadwal['pengampuh'] }}
+                                                    <div class="line-clamp-2">{{ $jadwal['pengampuh'] }}</div>
                                                 </td>
                                                 </tr>
 
