@@ -25,12 +25,14 @@ class KonselingController extends Controller
         $request->validate([
             'tgl_start' => ['required'],
             'tgl_end' => ['required'],
+            'waktu_start' => ['required'],
+            'waktu_end' => ['required'],
         ]);
 
         $save = PendaftaranKonseling::create([
             'user_id' => $request->user_id,
-            'tanggal_dan_waktu_mulai' => $request->tgl_start,
-            'tanggal_dan_waktu_selesai' => $request->tgl_end,
+            'tanggal_dan_waktu_mulai' => $request->tgl_start.' '. $request->waktu_start,
+            'tanggal_dan_waktu_selesai' => $request->tgl_end.' '. $request->waktu_end,
             'status' => 'terjadwal',
         ]);
 

@@ -5,10 +5,11 @@ namespace App\Livewire;
 use Carbon\Carbon;
 use Livewire\Component;
 use App\Models\Pengampu;
+use App\Models\JadwalSetting;
 use App\Models\JadwalPerkuliahan;
+use App\Models\JadwalSettingFooter;
 use Illuminate\Support\Facades\Date;
 use App\Models\JadwalPerkuliahanStatus;
-use App\Models\JadwalSetting;
 
 class JadwalPerkuliahanLivewire extends Component
 {
@@ -25,9 +26,12 @@ class JadwalPerkuliahanLivewire extends Component
 
     public function link() {
         $link =  JadwalSetting::all();
-        $this->footer = $link[0]->text_footer;
+        $footer =  JadwalSettingFooter::where('jadwal_setting_id', $link[0]->id)->where('visible', 1)->get();
+        $this->footer = $footer;
         $this->link = $link[0]->link_youtube;
     }
+
+
 
 
     public function jadwalBerlangsung()

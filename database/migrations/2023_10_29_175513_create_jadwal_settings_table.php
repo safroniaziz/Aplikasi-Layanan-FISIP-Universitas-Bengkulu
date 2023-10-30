@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('jadwal_settings', function (Blueprint $table) {
             $table->id();
             $table->text('link_youtube');
-            $table->text('text_footer');
             $table->timestamps();
         });
     }
