@@ -317,12 +317,12 @@
     function validateForm() {
         var photoInput = document.getElementById('photoInput');
         var photoValue = photoInput.value; // Mendapatkan nilai dari input "foto"
-        
+
         if (photoValue === "") {
             alert('Anda harus mengunggah gambar sebelum mengirimkan formulir.');
             return false; // Menghentikan pengiriman formulir
         }
-        
+
         return true; // Lanjutkan pengiriman formulir jika ada gambar yang sudah dipilih
     }
 

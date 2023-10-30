@@ -1,26 +1,29 @@
 <?php
 
-use App\Http\Controllers\AlatPoadcastController;
-use App\Http\Controllers\BasisPengetahuanController;
+use App\Livewire\JadwalPerkuliahan;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\DosenController;
+use App\Http\Controllers\JadwalController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BukuTamuController;
 use App\Http\Controllers\CariDataController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\DosenController;
-use App\Http\Controllers\JadwalPerkuliahanController;
-use App\Http\Controllers\MahasiswaController;
-use App\Http\Controllers\MahasiswaMataKuliahController;
-use App\Http\Controllers\MataKuliahController;
 use App\Http\Controllers\OperatorController;
-use App\Http\Controllers\PemesananRuanganController;
-use App\Http\Controllers\PendaftaranKonselingController;
 use App\Http\Controllers\PengampuController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\MataKuliahController;
 use App\Http\Controllers\PermissionController;
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\AlatPoadcastController;
 use App\Http\Controllers\ProgramStudiController;
-use App\Http\Controllers\RoleController;
 use App\Http\Controllers\RuanganKelasController;
 use App\Http\Controllers\RuanganPoadcastController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BasisPengetahuanController;
+use App\Http\Controllers\PemesananRuanganController;
+use App\Http\Controllers\JadwalPerkuliahanController;
+use App\Http\Controllers\MahasiswaMataKuliahController;
+use App\Http\Controllers\PendaftaranKonselingController;
+use App\Livewire\JadwalPerkuliahanLivewire;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,9 +44,16 @@ Route::controller(CariDataController::class)->group(function(){
     Route::get('/cari_mata_kuliah_by_prodi', 'cariMataKuliahByProdi')->name('cariMataKuliahByProdi');
 });
 
+
 Route::controller(BukuTamuController::class)->prefix('/buku_tamu')->group(function(){
     Route::get('/', 'index')->name('bukuTamu');
     Route::post('/', 'store')->name('bukuTamu.store');
+});
+
+Route::get('/tampil-Jadwal', JadwalPerkuliahanLivewire::class)->name('tampilJadwalLivewire');
+
+Route::controller(JadwalController::class)->prefix('/jadwal')->group(function () {
+    Route::get('/', 'index')->name('tampilJadwal');
 });
 
 Route::controller(DashboardController::class)->middleware('auth','verified')->prefix('/dashboard')->group(function(){
