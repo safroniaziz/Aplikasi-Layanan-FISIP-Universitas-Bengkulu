@@ -20,7 +20,7 @@
     <a href="#">
         <i class="fa fa-user-cog"></i> <span>Civitas Akademika</span>
         <span class="pull-right-container">
-        <i class="fa fa-angle-left pull-right"></i>
+            <i class="fa fa-angle-left pull-right"></i>
         </span>
     </a>
     <ul class="treeview-menu">
@@ -37,7 +37,7 @@
     <a href="#">
         <i class="fa fa-microphone"></i> <span>Sewa Alat Poadcast</span>
         <span class="pull-right-container">
-        <i class="fa fa-angle-left pull-right"></i>
+            <i class="fa fa-angle-left pull-right"></i>
         </span>
     </a>
     <ul class="treeview-menu">
@@ -55,7 +55,7 @@
     <a href="#">
         <i class="fa fa-calendar"></i> <span>Jadwal Mata Kuliah</span>
         <span class="pull-right-container">
-        <i class="fa fa-angle-left pull-right"></i>
+            <i class="fa fa-angle-left pull-right"></i>
         </span>
     </a>
     <ul class="treeview-menu">
@@ -72,11 +72,12 @@
     <a href="#">
         <i class="fa fa-comments"></i> <span>Layanan Konseling</span>
         <span class="pull-right-container">
-        <i class="fa fa-angle-left pull-right"></i>
+            <i class="fa fa-angle-left pull-right"></i>
         </span>
     </a>
     <ul class="treeview-menu">
         <li class="{{ set_active(['basisPengetahuan']) }}"><a href="{{ route('basisPengetahuan') }}"><i class="fa fa-circle-o"></i> Basis Pengetahuan</a></li>
+        <li class="{{ set_active(['massage']) }}"><a href="{{ route('massage') }}"><i class="fa fa-circle-o"></i> Mesagge</a></li>
     </ul>
 </li>
 
@@ -90,7 +91,7 @@
     <a href="#">
         <i class="fa fa-user-cog"></i> <span>Pengaturan Pengguna</span>
         <span class="pull-right-container">
-        <i class="fa fa-angle-left pull-right"></i>
+            <i class="fa fa-angle-left pull-right"></i>
         </span>
     </a>
     <ul class="treeview-menu">
@@ -100,10 +101,11 @@
     </ul>
 </li>
 
+
+
 <!-- Authentication -->
 <li>
-    <a class="dropdown-item" href="{{ route('logout') }}"
-        onclick="event.preventDefault();
+    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">
         <i class="fa fa-sign-out text-danger"></i>
         <span>{{__('Logout') }}</span>

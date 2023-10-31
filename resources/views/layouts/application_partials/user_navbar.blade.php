@@ -16,18 +16,14 @@
 <div class="flex items-center mt-4 mx-4 lg:mt-0">
     <div x-data="{ isOpen: false }" class="relative inline-block ">
         <button @click="isOpen = !isOpen" type="button" class="flex items-center focus:outline-none" aria-label="toggle profile dropdown">
-            <img class="w-8 h-8 rounded-full ring-2 mr-1 ring-gray-300  " src="https://www.gravatar.com/avatar/' . md5(Auth::user()->email) .
-                                                 '?d=https%3A%2F%2Fui-avatars.com%2Fapi%2F/' . str_replace('+', ' ',
-                                                 Auth::user()->name) . '/128' " alt="Bordered avatar">
+            <img class="w-8 h-8 rounded-full ring-2 mr-1 ring-gray-300  " src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->email) }}?d=https%3A%2F%2Fui-avatars.com%2Fapi%2F/{!! str_replace('+', ' ', Auth::user()->name) !!}/128" alt="Bordered avatar">
             <h3 class="mx-1  text-gray-100 text-[16px] ">
                 {{ Auth::user()->name }}
             </h3>
         </button>
         <div x-show="isOpen" @click.away="isOpen = false" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-90" class="absolute right-0 z-20 py-2 mt-2 -mr-16 bg-white    rounded-md shadow-xl lg:w-72 lg:mr-0 ">
             <a href="#" class="flex items-center p-3 -mt-2 text-sm text-gray-600 transition-colors duration-300 transform hover:bg-gray-100  ">
-                <img class="w-8 h-8 rounded-full ring-2 mr-1 ring-gray-300  " src="https://www.gravatar.com/avatar/' . md5(Auth::user()->email)
-                                                      . '?d=https%3A%2F%2Fui-avatars.com%2Fapi%2F/' . str_replace('+', '
-                                                      ', Auth::user()->name) . '/128' " alt="Bordered avatar">
+                <img class="w-8 h-8 rounded-full ring-2 mr-1 ring-gray-300  " src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->email) }}?d=https%3A%2F%2Fui-avatars.com%2Fapi%2F/{!! str_replace('+', ' ', Auth::user()->name) !!}/128" alt="Bordered avatar">
                 <div class="ml-2">
                     <h1 class="text-sm font-semibold   ">
                         {{ Auth::user()->name }}
