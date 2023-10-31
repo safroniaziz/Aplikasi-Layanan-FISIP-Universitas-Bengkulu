@@ -80,13 +80,11 @@
                                         <th scope="col" class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
                                             contact
                                         </th>
-
-
                                         <th scope="col" class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                            Tanggal Konsultasi (Mulai)
+                                            Keterangan Konseling
                                         </th>
                                         <th scope="col" class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                            Tanggal Konsultasi (Selesai)
+                                            Tanggal Dan Waktu
                                         </th>
 
                                         <th scope="col" class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">Status Pendaftaran</th>
@@ -110,23 +108,35 @@
 
                                         </td>
                                         <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
-                                            <h2 class="font-medium text-gray-800 dark:text-white ">{{ $item->tanggal_dan_waktu_mulai }}</h2>
+                                            <h2 class="font-medium text-gray-800 dark:text-white ">{{ $item->subject }}</h2>
 
                                         </td>
                                         <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
-                                            <h2 class="font-medium text-gray-800 dark:text-white ">{{ $item->tanggal_dan_waktu_selesai }}</h2>
+                                            @if($item->tanggal_dan_waktu_selesai==NULL AND $item->tanggal_dan_waktu_mulai==NULL)
+                                            <span class='text-red-500 italic font-bold'>Belum dijadwalkan</span>
+                                            @else
+                                            <h2 class="font-medium text-gray-800 dark:text-white ">{{ $item->tanggal_dan_waktu_mulai }}
+                                                <div class="inline px-3   text-sm ml-2 font-normal rounded-full capitalize  text-purple-500 gap-x-2 bg-purple-100/60  dark:bg-purple-800">waktu mulai</div>
+                                            </h2>
+                                            <h2 class="font-medium text-gray-800 dark:text-white ">{{ $item->tanggal_dan_waktu_selesai  }}
+                                                <div class="inline px-3   text-sm ml-2 font-normal rounded-full capitalize  text-purple-500 gap-x-2 bg-purple-100/60  dark:bg-purple-800">waktu Selesai</div>
+                                            </h2>
+                                            @endif
+
                                         </td>
                                         <td class="px-12 py-4 text-sm font-medium whitespace-nowrap">
                                             @if($item->status=='selesai')
                                             <div class="inline px-3 py-1 text-sm font-normal rounded-full capitalize  text-emerald-500 gap-x-2 bg-emerald-100/60 dark:bg-gray-800">
                                                 @elseif($item->status=='terjadwal')
                                                 <div class="inline px-3 py-1 text-sm font-normal rounded-full capitalize  text-orange-500 gap-x-2 bg-orange-100/60 dark:bg-gray-800">
-                                                    @else
-                                                    <div class="inline px-3 py-1 text-sm font-normal rounded-full capitalize  text-red-500 gap-x-2 bg-red-100/60 dark:bg-gray-800">
+                                                    @elseif($item->status=='diproses')
+                                                    <div class="inline px-3 py-1 text-sm font-normal rounded-full capitalize  text-blue-500 gap-x-2 bg-blue-100/60 dark:bg-gray-800">
+                                                        @else
+                                                        <div class="inline px-3 py-1 text-sm font-normal rounded-full capitalize  text-red-500 gap-x-2 bg-red-100/60 dark:bg-gray-800">
 
-                                                        @endif
-                                                        {{ $item->status }}
-                                                    </div>
+                                                            @endif
+                                                            {{ $item->status }}
+                                                        </div>
 
                                         </td>
 
@@ -243,8 +253,20 @@
                         <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
 
                     </div>
+                    <div>
+                        <label class=" after:content-['*'] after:text-red-500 font-semibold text-gray-700 dark:text-gray-300 after:ml-2 text-sm pb-2">Keterangan Konseling</label>
+                        <textarea type="text" name="subject" class=" h-40  w-full rounded-lg border-2 mt-1 border-[#01052D] dark:border-yellow-500
+                                bg-transparent px-3 py-2.5 text-sm font-normal text-white-700 transition-all duration-500
+                                placeholder:text-gray-600 dark:placeholder:text-yellow-100 focus:border-white
+                                dark:focus:ring-yellow-500 focus:ring-[#01052D]
+                                focus:shadow-[-4px_4px_10px_0px_#01052D]
+                                dark:focus:shadow-[-4px_4px_10px_0px_#eab308]   " placeholder="Tulisakan Keterangan Pendaftaran Konseling"></textarea>
+                        @error('subject')
+                        <p class="text-red-500 text-xs font-bold">{{ $message }}</p>
+                        @enderror
+                    </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-2 my-1">
+                    <!-- <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-2 my-1">
                         <div class=" col-span-1 grid  grid-cols-3 gap-3">
                             <div class="col-span-2">
                                 <label class=" after:content-['*'] after:text-red-500 font-semibold text-gray-700 dark:text-gray-300 after:ml-2 text-sm pb-2">Tanggal Mulai</label>
@@ -303,7 +325,7 @@
 
 
 
-                    </div>
+                    </div> -->
 
 
 
@@ -342,8 +364,25 @@
                     </div>
                     <div class="col-span-1 md:col-span-2">
                         <div class="flex flex-col space-y-2   text-xs md:text-sm">
+                            <!-- item -->
+                            @foreach ( $basisPengetahuans as $index => $data )
+
+                            <div x-data="{ open: {{$index==0? 'true':'false'}} }">
+                                <div @click="open = !open" class="flex w-full text-gray-700   border-b  border-gray-300 p-4   dark:bg-yellow-500  marker:">
+                                    <div class="text-left w-4/6">
+                                        <span :class="open ? 'fa-chevron-down' : 'fa-chevron-up'" class="fas float-left mr-2 py-1 text-yellow-400 dark:text-white"></span>
+                                        <p class="font-semibold line-clamp-3">{{$data->pertanyaan}} </p>
+
+                                    </div>
+                                </div>
+                                <div x-show.transition.in.duration.800ms="open" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100" x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-90" class="border px-4 py-2 leading-7  rounded-b-lg mb-3 bg-yellow-100 text-gray-700 dark:text-gray-200 ">
+                                    {{$data->jawaban}}
+                                </div>
+                            </div>
+                            @endforeach
+                            <!-- end item -->
                             <div x-data="{penjelasan: ''}">
-                                <select class="flex w-full text-white border p-4 bg-[#010347] dark:bg-yellow-500 rounded-lg" x-model="penjelasan">
+                                <select class="flex w-full text-white border p-4 bg-[#010347] mt-20 dark:bg-yellow-500 rounded-lg" x-model="penjelasan">
                                     <option value="">--- Pilih Konseling ---</option>
                                     @foreach ( $basisPengetahuans as $data )
                                     <option value="{{$data->jawaban}}">

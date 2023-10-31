@@ -63,7 +63,7 @@
     }
 </style>
 
-<body id="home" class="overflow-x-hidden">
+<body id="home" class="overflow-x-hidden" x-data="{ isShow: false }">
     <div class=" font-[Poppins] 2xl:text-xl font-nunito min-h-screen   text-slate-900 bg-gradient-to-r overflow-x-hidden
     dark:from-[#010347] dark:to-[#001855] from-gray-200 to-gray-100
     items-center w-full ">
@@ -245,4 +245,3 @@
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script src="{{ asset('assets/scripts.js') }}"></script>
-

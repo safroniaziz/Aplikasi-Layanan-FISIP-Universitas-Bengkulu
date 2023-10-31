@@ -12,7 +12,7 @@
         <div class="flex items-end    overflow-hidden px-4 text-center   sm:p-0">
             <div x-cloak x-show="modelOpen" style="z-index: 20;" :class="{ 'fadeInRight': modelOpen, 'fadeInLeft': !modelOpen }" class="  w-full max-w-lg   pb-[70px]  container   text-left transition-all transform  h-screen  absolute bottom-0 right-0   bg-[#091031] opacity-80 rounded-lg shadow-xl overflow-hidden ">
                 <div class="flex items-center justify-between space-x-4 py-4 px-5">
-                    <h1 class="text-xl font-bold text-yellow-500  flex"> <img src="{{ asset('assets/img/logo.svg') }}" class="w-10 h-10 mr-2"><span class="font-bold py-2 ">Help Desk  </span> </h1>
+                    <h1 class="text-xl font-bold text-yellow-500  flex"> <img src="{{ asset('assets/img/logo.svg') }}" class="w-10 h-10 mr-2"><span class="font-bold py-2 ">Help Desk </span> </h1>
                     @if($scroll==1)
                     <script>
                         const el = document.getElementById('messages');
@@ -55,12 +55,12 @@
                             @endphp
                             @if($item->repley==1)
                             <div class="flex w-full mt-2 space-x-3 ">
-                                <div class="flex-shrink-0 h-10 w-10 rounded-full bg-black"><img src="{{ asset('assets/img/logo.svg') }}" class="w-10 h-10 p-1"></div>
+                                <div class="flex-shrink-0 h-10 w-10 rounded-full bg-black"><img src="https://www.gravatar.com/avatar/{{ md5($item->email) }}?d=https%3A%2F%2Fui-avatars.com%2Fapi%2F/{!! str_replace('+', ' ', $item->name) !!}/128" class="h-10 w-10 rounded-full  "></div>
                                 <div>
                                     <div class="bg-gray-100 p-3 rounded-r-lg rounded-bl-lg">
                                         <p class="text-sm">{{$item->message}}</p>
                                     </div>
-                                    <span class="text-xs text-gray-500 leading-none left-0 text-left float-left mt-2">{{$item->name}} - {{$waktupesan}}</span>
+                                    <span class="text-xs text-gray-500 leading-none left-0 text-left float-left mt-2"><strong>{{$item->name}}</strong> - {{$waktupesan}}</span>
                                 </div>
                             </div>
                             @else

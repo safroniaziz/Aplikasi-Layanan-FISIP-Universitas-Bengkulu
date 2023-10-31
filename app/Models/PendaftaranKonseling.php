@@ -15,6 +15,7 @@ class PendaftaranKonseling extends Model
         'tanggal_dan_waktu_mulai',
         'tanggal_dan_waktu_selesai',
         'status',
+        'subject',
     ];
 
     public function user()
