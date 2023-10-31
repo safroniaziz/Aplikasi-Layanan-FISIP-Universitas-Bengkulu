@@ -29,6 +29,7 @@ use App\Http\Controllers\PendaftaranKonselingController;
 use App\Http\Controllers\PermohonanSuratController;
 use App\Http\Controllers\RequirementController;
 use App\Http\Controllers\UserProfileController;
+use App\Livewire\ChatOperator;
 use App\Livewire\JadwalPerkuliahanLivewire;
 
 /*
@@ -70,6 +71,7 @@ Route::controller(PermohonanSuratController::class)->middleware('auth','verified
 });
 
 Route::get('/tampil-Jadwal', JadwalPerkuliahanLivewire::class)->name('tampilJadwalLivewire');
+Route::get('/massage', ChatOperator::class)->name('massage');
 
 // Route::controller(JadwalController::class)->prefix('/jadwal')->group(function () {
 //     Route::get('/tampil-Jadwal', 'index')->name('tampilJadwal');
