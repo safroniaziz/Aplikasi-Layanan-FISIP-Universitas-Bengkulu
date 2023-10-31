@@ -186,15 +186,21 @@
                             </div>
                             <div class=" col-span-1  ">
                                 <label class=" after:content-['*'] after:text-red-500 font-semibold text-gray-700 dark:text-gray-300 after:ml-2 text-sm pb-2">Status</label>
-                                <input type="text" name="status" class="   w-full rounded-lg border-2 mt-1 border-[#01052D] dark:border-yellow-500
-                                bg-transparent px-3 py-2.5 text-sm font-normal text-white-700 transition-all duration-500
-                                placeholder:text-gray-600 dark:placeholder:text-yellow-100 focus:border-white
-                                dark:focus:ring-yellow-500 focus:ring-[#01052D]
-                                focus:shadow-[-4px_4px_10px_0px_#01052D]
-                                dark:focus:shadow-[-4px_4px_10px_0px_#eab308]  " placeholder="Status" />
-                                @error('status')
-                                <p class="text-red-500 text-xs font-bold">{{ $message }}</p>
-                                @enderror
+                                <select name="status" class="   w-full rounded-lg border-2 mt-1 border-[#01052D] dark:border-yellow-500
+                                    bg-transparent px-3 py-2.5 text-sm font-normal text-white-700 transition-all duration-500
+                                    placeholder:text-gray-600 dark:placeholder:text-yellow-100 focus:border-white
+                                    dark:focus:ring-yellow-500 focus:ring-[#01052D]
+                                    focus:shadow-[-4px_4px_10px_0px_#01052D]
+                                    dark:focus:shadow-[-4px_4px_10px_0px_#eab308]  " id="">
+                                    <option disabled selected>-- pilih status --</option>
+                                    <option value="mahasiswa">Mahasiswa</option>
+                                    <option value="pelajara">Pelajar</option>
+                                    <option value="bekerja">Bekerja</option>
+                                    <option value="lainnya">Lainnya</option>
+                                </select>
+                                    @error('status')
+                                        <p class="text-red-500 text-xs font-bold">{{ $message }}</p>
+                                    @enderror
                             </div>
                         </div>
                         <div class="grid grid-cols-1 md:grid-cols-2  gap-x-6 gap-y-2 my-3">

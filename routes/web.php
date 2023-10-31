@@ -21,10 +21,14 @@ use App\Http\Controllers\RuanganPoadcastController;
 use App\Http\Controllers\BasisPengetahuanController;
 use App\Http\Controllers\PemesananRuanganController;
 use App\Http\Controllers\JadwalPerkuliahanController;
+use App\Http\Controllers\JenisSuratController;
 use App\Http\Controllers\KonselingController;
 use App\Http\Controllers\MahasiswaMataKuliahController;
 use App\Http\Controllers\ManajemenBukuTamuController;
 use App\Http\Controllers\PendaftaranKonselingController;
+use App\Http\Controllers\PermohonanSuratController;
+use App\Http\Controllers\RequirementController;
+use App\Http\Controllers\UserProfileController;
 use App\Livewire\JadwalPerkuliahanLivewire;
 
 /*
@@ -46,16 +50,23 @@ Route::controller(CariDataController::class)->group(function(){
     Route::get('/cari_mata_kuliah_by_prodi', 'cariMataKuliahByProdi')->name('cariMataKuliahByProdi');
 });
 
-
 Route::controller(BukuTamuController::class)->prefix('/buku_tamu')->group(function(){
     Route::get('/', 'index')->name('bukuTamu');
     Route::post('/', 'store')->name('bukuTamu.store');
 });
 
-Route::controller(KonselingController::class)->middleware('auth','verified')->prefix('/e_konseling')->group(function () {
-    Route::get('/e-konseling', 'index')->name('e-konseling');
-    Route::post('/e-konseling', 'store')->name('e-konseling.store');
+Route::controller(UserProfileController::class)->middleware('auth','verified','guestTamu')->prefix('/user_profile')->group(function () {
+    Route::get('/', 'index')->name('userProfile');
+});
 
+Route::controller(KonselingController::class)->middleware('auth','verified','guestTamu')->prefix('/e_konseling')->group(function () {
+    Route::get('/', 'index')->name('e-konseling');
+    Route::post('/', 'store')->name('e-konseling.store');
+});
+
+Route::controller(PermohonanSuratController::class)->middleware('auth','verified','guestTamu')->prefix('/permohonan_surat')->group(function () {
+    Route::get('/', 'index')->name('permohonanSurat');
+    Route::post('/', 'store')->name('permohonanSurat.store');
 });
 
 Route::get('/tampil-Jadwal', JadwalPerkuliahanLivewire::class)->name('tampilJadwalLivewire');
@@ -64,11 +75,11 @@ Route::get('/tampil-Jadwal', JadwalPerkuliahanLivewire::class)->name('tampilJadw
 //     Route::get('/tampil-Jadwal', 'index')->name('tampilJadwal');
 // });
 
-Route::controller(DashboardController::class)->middleware('auth','verified')->prefix('/dashboard')->group(function(){
+Route::controller(DashboardController::class)->middleware('auth','verified','operator')->prefix('/dashboard')->group(function(){
     Route::get('/', 'index')->name('dashboard');
 });
 
-Route::controller(RuanganPoadcastController::class)->middleware('auth','verified')->prefix('/ruangan_poadcast')->group(function(){
+Route::controller(RuanganPoadcastController::class)->middleware('auth','verified','operator')->prefix('/ruangan_poadcast')->group(function(){
     Route::get('/', 'index')->name('ruanganPoadcast');
     Route::get('/create', 'create')->name('ruanganPoadcast.create');
     Route::post('/', 'store')->name('ruanganPoadcast.store');
@@ -77,7 +88,7 @@ Route::controller(RuanganPoadcastController::class)->middleware('auth','verified
     Route::delete('/{ruanganPoadcast}/delete', 'delete')->name('ruanganPoadcast.delete');
 });
 
-Route::controller(AlatPoadcastController::class)->middleware('auth','verified')->prefix('/alat_poadcast')->group(function(){
+Route::controller(AlatPoadcastController::class)->middleware('auth','verified','operator')->prefix('/alat_poadcast')->group(function(){
     Route::get('/', 'index')->name('alatPoadcast');
     Route::get('/create', 'create')->name('alatPoadcast.create');
     Route::post('/', 'store')->name('alatPoadcast.store');
@@ -86,7 +97,7 @@ Route::controller(AlatPoadcastController::class)->middleware('auth','verified')-
     Route::delete('/{alatPoadcast}/delete', 'delete')->name('alatPoadcast.delete');
 });
 
-Route::controller(ProgramStudiController::class)->middleware('auth','verified')->prefix('/program_studi')->group(function(){
+Route::controller(ProgramStudiController::class)->middleware('auth','verified','operator')->prefix('/program_studi')->group(function(){
     Route::get('/', 'index')->name('programStudi');
     Route::post('/', 'store')->name('programStudi.store');
     Route::get('/{programStudi:kode}/edit', 'edit')->name('programStudi.edit');
@@ -94,7 +105,7 @@ Route::controller(ProgramStudiController::class)->middleware('auth','verified')-
     Route::delete('/{programStudi:kode}/delete', 'delete')->name('programStudi.delete');
 });
 
-Route::controller(MahasiswaController::class)->middleware('auth','verified')->prefix('/mahasiswa')->group(function(){
+Route::controller(MahasiswaController::class)->middleware('auth','verified','operator')->prefix('/mahasiswa')->group(function(){
     Route::get('/', 'index')->name('mahasiswa');
     Route::get('/{prodi:kode}/detail', 'detail')->name('mahasiswa.detail');
     Route::post('/', 'store')->name('mahasiswa.store');
@@ -103,7 +114,7 @@ Route::controller(MahasiswaController::class)->middleware('auth','verified')->pr
     Route::delete('/{mahasiswa:npm}/delete', 'delete')->name('mahasiswa.delete');
 });
 
-Route::controller(MataKuliahController::class)->middleware('auth','verified')->prefix('/mata_kuliah')->group(function(){
+Route::controller(MataKuliahController::class)->middleware('auth','verified','operator')->prefix('/mata_kuliah')->group(function(){
     Route::get('/', 'index')->name('mataKuliah');
     Route::get('/{prodi:kode}/detail', 'detail')->name('mataKuliah.detail');
     Route::post('/', 'store')->name('mataKuliah.store');
@@ -112,7 +123,7 @@ Route::controller(MataKuliahController::class)->middleware('auth','verified')->p
     Route::delete('/{mataKuliah}/delete', 'delete')->name('mataKuliah.delete');
 });
 
-Route::controller(DosenController::class)->middleware('auth','verified')->prefix('/dosen')->group(function(){
+Route::controller(DosenController::class)->middleware('auth','verified','operator')->prefix('/dosen')->group(function(){
     Route::get('/', 'index')->name('dosen');
     Route::get('/{prodi:kode}/detail', 'detail')->name('dosen.detail');
     Route::post('/', 'store')->name('dosen.store');
@@ -121,7 +132,7 @@ Route::controller(DosenController::class)->middleware('auth','verified')->prefix
     Route::delete('/{dosen:nip}/delete', 'delete')->name('dosen.delete');
 });
 
-Route::controller(PengampuController::class)->middleware('auth','verified')->prefix('/pengampu')->group(function(){
+Route::controller(PengampuController::class)->middleware('auth','verified','operator')->prefix('/pengampu')->group(function(){
     Route::get('/', 'index')->name('pengampu');
     Route::post('/', 'store')->name('pengampu.store');
     Route::get('/{pengampu}/edit', 'edit')->name('pengampu.edit');
@@ -129,7 +140,7 @@ Route::controller(PengampuController::class)->middleware('auth','verified')->pre
     Route::delete('/{pengampu}/delete', 'delete')->name('pengampu.delete');
 });
 
-Route::controller(RuanganKelasController::class)->middleware('auth','verified')->prefix('/ruangan_kelas')->group(function(){
+Route::controller(RuanganKelasController::class)->middleware('auth','verified','operator')->prefix('/ruangan_kelas')->group(function(){
     Route::get('/', 'index')->name('ruanganKelas');
     Route::post('/', 'store')->name('ruanganKelas.store');
     Route::get('/{ruanganKelas}/edit', 'edit')->name('ruanganKelas.edit');
@@ -137,37 +148,53 @@ Route::controller(RuanganKelasController::class)->middleware('auth','verified')-
     Route::delete('/{ruanganKelas}/delete', 'delete')->name('ruanganKelas.delete');
 });
 
-Route::controller(JadwalPerkuliahanController::class)->middleware('auth','verified')->prefix('/jadwal_perkuliahan')->group(function(){
+Route::controller(JadwalPerkuliahanController::class)->middleware('auth','verified','operator')->prefix('/jadwal_perkuliahan')->group(function(){
     Route::get('/', 'index')->name('jadwalPerkuliahan');
     Route::post('/', 'store')->name('jadwalPerkuliahan.store');
-    Route::get('/{jadwalPerkuliahan:id}/edit', 'edit')->name('jadwalPerkuliahan.edit');
+    Route::get('/{jadwalPerkuliahan}/edit', 'edit')->name('jadwalPerkuliahan.edit');
     Route::patch('/update', 'update')->name('jadwalPerkuliahan.update');
-    Route::delete('/{jadwalPerkuliahan:id}/delete', 'delete')->name('jadwalPerkuliahan.delete');
+    Route::delete('/{jadwalPerkuliahan}/delete', 'delete')->name('jadwalPerkuliahan.delete');
 });
 
-Route::controller(MahasiswaMataKuliahController::class)->middleware('auth','verified')->prefix('/mahasiswa_mata_kuliah')->group(function(){
+Route::controller(MahasiswaMataKuliahController::class)->middleware('auth','verified','operator')->prefix('/mahasiswa_mata_kuliah')->group(function(){
     Route::get('/', 'index')->name('mahasiswaMataKuliah');
     Route::post('/', 'store')->name('mahasiswaMataKuliah.store');
-    Route::get('/{mahasiswaMataKuliah:id}/edit', 'edit')->name('mahasiswaMataKuliah.edit');
+    Route::get('/{mahasiswaMataKuliah}/edit', 'edit')->name('mahasiswaMataKuliah.edit');
     Route::patch('/update', 'update')->name('mahasiswaMataKuliah.update');
-    Route::delete('/{mahasiswaMataKuliah:id}/delete', 'delete')->name('mahasiswaMataKuliah.delete');
+    Route::delete('/{mahasiswaMataKuliah}/delete', 'delete')->name('mahasiswaMataKuliah.delete');
 });
 
-Route::controller(BasisPengetahuanController::class)->middleware('auth','verified')->prefix('/basis_pengetahuan')->group(function(){
+Route::controller(BasisPengetahuanController::class)->middleware('auth','verified','operator')->prefix('/basis_pengetahuan')->group(function(){
     Route::get('/', 'index')->name('basisPengetahuan');
     Route::post('/', 'store')->name('basisPengetahuan.store');
-    Route::get('/{basisPengetahuan:id}/edit', 'edit')->name('basisPengetahuan.edit');
+    Route::get('/{basisPengetahuan}/edit', 'edit')->name('basisPengetahuan.edit');
     Route::patch('/update', 'update')->name('basisPengetahuan.update');
-    Route::delete('/{basisPengetahuan:id}/delete', 'delete')->name('basisPengetahuan.delete');
+    Route::delete('/{basisPengetahuan}/delete', 'delete')->name('basisPengetahuan.delete');
 });
 
-Route::controller(ManajemenBukuTamuController::class)->middleware('auth','verified')->prefix('/manajemen_buku_tamu')->group(function(){
+Route::controller(ManajemenBukuTamuController::class)->middleware('auth','verified','operator')->prefix('/manajemen_buku_tamu')->group(function(){
     Route::get('/', 'index')->name('manajemenBukuTamu');
     Route::post('/', 'store')->name('manajemenBukuTamu.store');
     Route::get('/{bukuTamu}/download', 'download')->name('manajemenBukuTamu.download');
 });
 
-Route::controller(OperatorController::class)->middleware('auth','verified')->prefix('/operator')->group(function(){
+Route::controller(JenisSuratController::class)->middleware('auth','verified','operator')->prefix('/jenis_surats')->group(function(){
+    Route::get('/', 'index')->name('jenisSurat');
+    Route::post('/', 'store')->name('jenisSurat.store');
+    Route::get('/{jenisSurat}/edit', 'edit')->name('jenisSurat.edit');
+    Route::patch('/update', 'update')->name('jenisSurat.update');
+    Route::delete('/{jenisSurat}/delete', 'delete')->name('jenisSurat.delete');
+});
+
+Route::controller(RequirementController::class)->middleware('auth','verified','operator')->prefix('/jenis_surats/')->group(function(){
+    Route::get('/{jenisSurat}/kelengkapan', 'index')->name('jenisSurat.kelengkapan');
+    Route::post('/{jenisSurat}/kelengkapan', 'store')->name('jenisSurat.kelengkapan.store');
+    Route::get('/{kelengkapan}/kelengkapan_edit', 'edit')->name('jenisSurat.kelengkapan.edit');
+    Route::patch('/{jenisSurat}/update', 'update')->name('jenisSurat.kelengkapan.update');
+    Route::delete('/{jenisSurat}/{kelengkapan}/delete', 'delete')->name('jenisSurat.kelengkapan.delete');
+});
+
+Route::controller(OperatorController::class)->middleware('auth','verified','operator')->prefix('/operator')->group(function(){
     Route::get('/', 'index')->name('operator');
     Route::post('/', 'store')->name('operator.store');
     Route::get('/{operator}/edit', 'edit')->name('operator.edit');
@@ -176,7 +203,7 @@ Route::controller(OperatorController::class)->middleware('auth','verified')->pre
     Route::patch('/ubah_password', 'ubahPassword')->name('operator.ubahPassword');
 });
 
-Route::controller(PermissionController::class)->middleware('auth','verified')->prefix('/permission')->group(function(){
+Route::controller(PermissionController::class)->middleware('auth','verified','operator')->prefix('/permission')->group(function(){
     Route::get('/', 'index')->name('permission');
     Route::post('/', 'store')->name('permission.store');
     Route::get('/{permission}/edit', 'edit')->name('permission.edit');
@@ -184,7 +211,7 @@ Route::controller(PermissionController::class)->middleware('auth','verified')->p
     Route::delete('/{permission}/delete', 'delete')->name('permission.delete');
 });
 
-Route::controller(RoleController::class)->middleware('auth','verified')->prefix('/role')->group(function(){
+Route::controller(RoleController::class)->middleware('auth','verified','operator')->prefix('/role')->group(function(){
     Route::get('/', 'index')->name('role');
     Route::post('/', 'store')->name('role.store');
     Route::get('/{role}/edit', 'edit')->name('role.edit');

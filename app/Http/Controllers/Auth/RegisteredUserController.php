@@ -37,7 +37,7 @@ class RegisteredUserController extends Controller
             'pekerjaan' => ['required', 'string', 'max:255'],
             'alamat' => ['required'],
             'status'    =>  ['required'],
-            'no_hp'    =>  ['required','numeric'],
+            'no_hp'    =>  ['required','numeric','unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
@@ -52,10 +52,12 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
+        $user->assignRole('user');
+
         event(new Registered($user));
 
         Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+        return redirect()->route('userProfile');
     }
 }

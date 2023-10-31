@@ -12,8 +12,8 @@ class PendaftaranKonseling extends Model
 
     protected $fillable = [
         'user_id',
-        'tanggal_dan_waktu_mulai',
-        'tanggal_dan_waktu_selesai',
+        // 'tanggal_dan_waktu_mulai',
+        // 'tanggal_dan_waktu_selesai',
         'status',
     ];
 

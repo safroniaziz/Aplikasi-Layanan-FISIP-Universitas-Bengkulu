@@ -103,10 +103,10 @@
         <div class="grid grid-cols-1 md:grid-cols-2  my-36 ">
             <div class="col-span-1   text-gray-700 dark:text-white  mx-auto   order-2  md:order-first  ">
                 <div class="        text-center md:text-right  -mt-12    ">
-                    <h2 data-aos="fade-down" class="mb-3 font-sans text-3xl border-b-2 border-[#0b3960]  dark:border-yellow-500 px-3 pb-2
+                    <a href="" data-aos="fade-down" class="mb-3 font-sans text-3xl border-b-2 border-[#0b3960]  dark:border-yellow-500 px-3 pb-2
                                 inline-block font-bold text-[#0b3960] dark:text-yellow-500
                               text-sh2 ">
-                        Sewa Podcast</h2>
+                        Sewa Podcast</a>
                     <p data-aos="fade-down" class="text-gray-700 dark:text-gray-300 text-sm  leading-8 mb-5     ">Tersedia beragam
                         peralatan podcast terbaik untuk memenuhi kebutuhan Anda. Nikmati kualitas suara yang
                         luar biasa dengan layanan sewa alat podcast. Temukan solusi lengkap
@@ -203,7 +203,7 @@
                         kasih, atau pesan inspiratif? Ini adalah kesempatan Anda untuk meninggalkan tanda Anda
                         dalam Buku tamu.
                     </p>
-                    <a href="" data-aos="fade-down" class="  text-white  rounded-lg border-2 mt-5    text-center w-full px-4 md:w-1/3 border-blue-600 dark:border-yellow-600  bg-[#091150] dark:bg-yellow-500 hover:bg-blue-600 duration-300 transform dark:hover:bg-yellow-600 font-medium tracking-widest  py-2
+                    <a href="{{ route('bukuTamu') }}" data-aos="fade-down" class="  text-white  rounded-lg border-2 mt-5    text-center w-full px-4 md:w-1/3 border-blue-600 dark:border-yellow-600  bg-[#091150] dark:bg-yellow-500 hover:bg-blue-600 duration-300 transform dark:hover:bg-yellow-600 font-medium tracking-widest  py-2
                               text-sm text-white-700
                               focus:shadow-[-4px_4px_10px_0px_#eab308] ">Buku tamu</a>
                 </div>

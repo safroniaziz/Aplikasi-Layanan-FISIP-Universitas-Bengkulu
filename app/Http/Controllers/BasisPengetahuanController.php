@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\BasisPengetahuan;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use App\Models\BasisPengetahuan;
 use Illuminate\Support\Facades\Validator;
 
 class BasisPengetahuanController extends Controller
@@ -95,5 +97,27 @@ class BasisPengetahuanController extends Controller
         }else{
             return response()->json(['error'  =>  0, 'text'   =>  'Ooopps, Basis Pengetahuan Gagal dihapus'],422);
         }
+    }
+
+    public function sendTawktoMessage(Request $request)
+    {
+        $apiKey = 'aaa8fd5463df210c14b7bc0b5cc7b47c4cef6dec'; // Gantilah dengan API Key Anda
+        $conversationId = $request->input('conversation_id');
+        $message = $request->input('message');
+
+        $url = "https://api.tawk.to/v1/conversations/{$conversationId}/messages";
+
+        $client = new Client();
+
+        $response = $client->request('POST', $url, [
+            'headers' => [
+                'Authorization' => 'Bearer ' . $apiKey,
+            ],
+            'json' => [
+                'message' => $message,
+            ],
+        ]);
+
+        return response()->json(['message' => 'Pesan terkirim']);
     }
 }

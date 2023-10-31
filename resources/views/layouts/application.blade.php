@@ -14,6 +14,7 @@
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css">
         {{-- Select2 --}}
         <link href="{{ asset('assets/select2/dist/css/select2.css') }}" rel="stylesheet"type="text/css" />
+        <link rel="stylesheet" href="//cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
 
         <!-- Theme style -->
         <link rel="stylesheet" href="{{ asset('assets/application/dist/css/AdminLTE.min.css') }}">
@@ -174,11 +175,14 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
         {{-- Select2 --}}
         <script src="{{ asset('assets/select2/dist/js/select2.full.js') }}" type="text/javascript"></script>
+        <script src="//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 
         <script>
             $(document).ready(function () {
                 $('.sidebar-menu').tree()
             });
+
+            let table = new DataTable('.table');
 
             // Toast Notification Setting
             @if(Session::has('message'))

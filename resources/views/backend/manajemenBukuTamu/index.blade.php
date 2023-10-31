@@ -7,7 +7,7 @@
         <div class="col-md-12 table-responsive">
             <form method="GET" id="pencarian">
                 <div class="form-group" style="margin-bottom: 5px !important;">
-                    <label for="nama" class="col-form-label">Cari Nama/Nomor Tendik</label>
+                    <label for="nama" class="col-form-label">Cari Nama Tamu</label>
                     <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukan Nama Tamu..." value="{{$nama}}">
                 </div>
                 <div style="margin-bottom:10px !important;">

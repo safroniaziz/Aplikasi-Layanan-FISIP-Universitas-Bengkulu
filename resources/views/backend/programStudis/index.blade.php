@@ -17,6 +17,7 @@
                         <th>Kode Prodi</th>
                         <th>Nama Prodi</th>
                         <th>Nama Fakultas</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>

@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('no_hp')->unique()->nullable();
-            $table->string('pekerjaan')->unique()->nullable();
-            $table->enum('status',['pelajar','mahasiswa','bekerja','lainnya'])->unique()->nullable();
+            $table->string('pekerjaan')->nullable();
+            $table->enum('status',['pelajar','mahasiswa','bekerja','lainnya'])->nullable();
             $table->text('alamat')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

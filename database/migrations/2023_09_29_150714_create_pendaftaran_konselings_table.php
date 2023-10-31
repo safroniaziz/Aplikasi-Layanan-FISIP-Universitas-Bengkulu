@@ -14,9 +14,10 @@ return new class extends Migration
         Schema::create('pendaftaran_konselings', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->timestamp('tanggal_dan_waktu_mulai');
-            $table->timestamp('tanggal_dan_waktu_selesai');
-            $table->enum('status',['terjadwal','selesai','dibatalkan']);
+            $table->timestamp('tanggal_dan_waktu_mulai')->nullable();
+            $table->timestamp('tanggal_dan_waktu_selesai')->nullable();
+            $table->enum('status',['menunggu','terjadwal','ditolak','selesai','dibatalkan'])->default('menunggu');
+            $table->text('deskripsi')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

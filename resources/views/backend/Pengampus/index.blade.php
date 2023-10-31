@@ -25,7 +25,7 @@
                         <tr>
                             <td>{{ $index+1 }}</td>
                             <td>{{ $pengampu->mataKuliah->nama_mata_kuliah.' ('.$pengampu->mataKuliah->keterangan.' )' }}</td>
-                            <td>{{ $pengampu->dosen->nama_dosen }}</td>
+                            <td>{{ $pengampu->dosen->nama_dosen ? $pengampu->dosen->nama_dosen : '-' }}</td>
                             <td>{{ $pengampu->is_active }}</td>
                             <td>
                                 <table>
