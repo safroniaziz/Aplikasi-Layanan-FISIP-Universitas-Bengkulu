@@ -12,7 +12,7 @@ class Message extends Model
     protected $fillable = [
         'user_id',
         'operator_user_id',
-        'message_tema_id',
+        // 'message_tema_id',
         'message',
         'repley',
     ];

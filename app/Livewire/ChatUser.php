@@ -21,7 +21,7 @@ class ChatUser extends Component
         $pesan = $this->pesan;
         Message::create([
             'user_id' => Auth::user()->id,
-            'operator_user_id' => 1,
+            'operator_user_id' => NULL,
             'message_tema_id' => 1,
             'message' => $pesan,
             'repley' => 0,
@@ -38,7 +38,7 @@ class ChatUser extends Component
 
 
 
-            $chat =  Message::select(['messages.*', 'users.name'])->leftJoin('users', 'messages.operator_user_id', '=', 'users.id')->where('user_id', Auth::user()->id)->orderby('created_at', 'ASC')->get();
+            $chat =  Message::select(['messages.*','users.name', 'users.email'])->leftJoin('users', 'messages.operator_user_id', '=', 'users.id')->where('user_id', Auth::user()->id)->orderby('created_at', 'ASC')->get();
             $this->chat = $chat;
 
             $currentChat = $this->chat;

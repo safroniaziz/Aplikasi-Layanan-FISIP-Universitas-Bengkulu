@@ -32,6 +32,7 @@ use App\Http\Controllers\JadwalPerkuliahanController;
 use App\Http\Controllers\ManajemenBukuTamuController;
 use App\Http\Controllers\MahasiswaMataKuliahController;
 use App\Http\Controllers\PendaftaranKonselingController;
+use App\Http\Controllers\PoadcastController;
 
 /*
 |--------------------------------------------------------------------------
@@ -70,6 +71,12 @@ Route::controller(PermohonanSuratController::class)->middleware('auth','verified
     Route::get('/', 'index')->name('permohonanSurat');
     Route::post('/', 'store')->name('permohonanSurat.store');
 });
+
+Route::controller(PoadcastController::class)->middleware('auth','verified','guestTamu')->prefix('/sewa_poadcast')->group(function () {
+    Route::get('/', 'index')->name('poadcast');
+    Route::post('/', 'store')->name('poadcast.store');
+});
+
 
 Route::get('/tampil-Jadwal', JadwalPerkuliahanLivewire::class)->name('tampilJadwalLivewire');
 Route::get('/massage', ChatOperator::class)->name('massage');

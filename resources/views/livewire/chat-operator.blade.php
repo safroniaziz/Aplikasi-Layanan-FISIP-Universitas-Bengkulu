@@ -2,16 +2,16 @@
     <div class="flex h-screen overflow-hidden antialiased text-gray-800">
         <div class="flex flex-row h-full w-full overflow-x-hidden">
             <div class="flex flex-col py-8     w-64 bg-[#070E30] text-white flex-shrink-0 overflow-hidden">
-                <div class="flex pl-4 flex-row items-center justify-center h-12 w-full">
-                    <div class="flex items-center justify-center rounded-2xl text-indigo-700 bg-indigo-100 h-10 w-10">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
+                <a href="{{ route('dashboard') }}" class="flex   flex-row items-center justify-center h-12 w-full duration-300 transform text-white hover:text-yellow-500">
+                    <div class="flex items-center justify-center rounded-2xl     h-10 w-10">
+                        <svg class="w-6 h-6" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
                         </svg>
                     </div>
-                    <div class="ml-2 font-bold text-2xl">E-Konsling</div>
-                </div>
+                    <div class="  font-extrabold font-[arial] text-2xl uppercase">Kembali</div>
+                </a>
 
-                <div wire:poll.2000ms="listchat" class="flex flex-col mt-8 h-[70vh]  overflow-y-auto overflow-x-hidden">
+                <div wire:poll.5000ms="listchat" class="flex flex-col mt-8 h-[70vh]  overflow-y-auto overflow-x-hidden">
                     @if($listNew->count()!=0)
                     <div class="flex py-2 my-2 px-3 flex-row items-center justify-between text-xs bg-cyan-900">
                         <span class="font-bold">Pesan Terbaru </span>
@@ -19,12 +19,13 @@
                     </div>
                     <div class="flex flex-col space-y-1  mr-2   -ml-2 ">
                         @foreach ($listNew as $item)
-                        <button wire:click="fetchpesan({{ $item->id }})" class="flex {{$id==$item->id?'bg-cyan-600 border-r-4 border-cyan-500':''}} flex-row items-center duration-300 transform hover:bg-cyan-900 border  border-[#070E30] hover:border-r-4 hover:border-cyan-500 rounded-xl py-2  pr-1 pl-6">
+
+                        <button wire:click="fetchpesan({{ $item->id }})" class="flex {{$id==$item->id?'bg-cyan-600 border-r-4 border-cyan-500':''}} flex-row items-center duration-300  transform hover:bg-cyan-900 border  border-[#070E30] hover:border-r-4 hover:border-cyan-500 rounded-xl py-2  pr-1 pl-6">
                             <div class="flex items-center justify-center h-8 w-8 bg-gray-200 rounded-full">
                                 <img class="w-8 h-8 rounded-full ring-2 mr-1 ring-gray-300  " src="https://www.gravatar.com/avatar/{{ md5($item->email) }}?d=https%3A%2F%2Fui-avatars.com%2Fapi%2F/{!! str_replace('+', ' ', $item->name) !!}/128" alt="Bordered avatar">
                             </div>
                             <div class="ml-2 text-sm text-left line-clamp-1 font-semibold">{{ $item->name }}</div>
-                            <div class="flex items-center justify-center   text-xs text-white bg-red-500 h-4 w-4 rounded-full leading-none">
+                            <div class="flex items-center justify-center ml-2  text-xs text-white bg-red-500   h-4 w-4 rounded-full leading-none">
                                 {{ $item->pesan_masuk }}
                             </div>
 
@@ -40,7 +41,7 @@
                     </div>
                     <div class="flex flex-col space-y-1  mr-2   -ml-2 ">
                         @foreach ($listPesan as $item)
-
+                        @if($item->pesan_masuk ==0)
                         <button wire:click="fetchpesan({{ $item->id }})" class="flex flex-row items-center duration-300 transform hover:bg-cyan-900 border {{$id==$item->id?'bg-cyan-600 border-r-4 border-cyan-500':''}} border-[#070E30] hover:border-r-4 hover:border-cyan-500 rounded-xl p-2 pl-6">
                             <div class="flex items-center justify-center h-8 w-8 bg-gray-200 rounded-full">
                                 <img class="w-8 h-8 rounded-full ring-2 mr-1 ring-gray-300  " src="https://www.gravatar.com/avatar/{{ md5($item->email) }}?d=https%3A%2F%2Fui-avatars.com%2Fapi%2F/{!! str_replace('+', ' ', $item->name) !!}/128" alt="Bordered avatar">
@@ -48,6 +49,7 @@
                             <div class="ml-2 text-sm font-semibold line-clamp-1 text-left">{{ $item->name }}</div>
 
                         </button>
+                        @endif
 
                         @endforeach
 
@@ -59,7 +61,7 @@
                 @if($id!=null)
                 @if($pesanKonseling)
 
-                <div wire:poll.2000ms="fetchpesan({{ $id }})" class="flex flex-col flex-grow w-full   h-full bg-white shadow-xl rounded-lg overflow-hidden    ">
+                <div wire:poll.5000ms="fetchpesan({{ $id }})" class="flex flex-col flex-grow w-full   h-full bg-white shadow-xl rounded-lg overflow-hidden    ">
                     <div class="bg-[#070E30] text-white p-4 flex">
                         <div class="flex items-center justify-center h-8 w-8 bg-gray-200 rounded-full">
                             <img class="w-8 h-8 rounded-full ring-2 mr-1 ring-gray-300  " src="https://www.gravatar.com/avatar/{{ md5($user->email) }}?d=https%3A%2F%2Fui-avatars.com%2Fapi%2F/{!! str_replace('+', ' ', $user->name) !!}/128" alt="Bordered avatar">
@@ -85,7 +87,14 @@
                                     <div class="bg-gray-100 p-3 rounded-r-lg rounded-bl-lg">
                                         <p class="text-sm">{{$item->message}}</p>
                                     </div>
-                                    <span class="text-xs text-gray-500 leading-none left-0 text-left float-left mt-2"> {{$waktupesan}}</span>
+                                    <span class="text-xs text-gray-500 leading-none left-0 text-left float-left mt-2"> {{$waktupesan}}
+                                        @if($item->read==0)
+                                        <div class="flex items-center justify-center   text-[9px] float-right text-white bg-red-500 py-1 ml-2 px-2 rounded-full leading-none">
+                                            Belum dibalas
+                                        </div>
+                                        @endif
+                                    </span>
+
                                 </div>
                             </div>
                             @else
@@ -94,9 +103,9 @@
                                     <div class="bg-blue-400 text-white p-3 rounded-l-lg rounded-br-lg">
                                         <p class="text-sm">{{$item->message}}</p>
                                     </div>
-                                    <span class="text-xs text-gray-500 leading-none right-0 text-right float-right mt-2">{{$waktupesan}}</span>
+                                    <span class="text-xs text-gray-500 leading-none right-0 text-right float-right mt-2"><strong>{{ $item->operator_name }}</strong> - {{$waktupesan}}</span>
                                 </div>
-                                <!-- <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300">https://www.gravatar.com/avatar/{{ md5(Auth::user()->email) }}?d=https%3A%2F%2Fui-avatars.com%2Fapi%2F/{!! str_replace('+', ' ', Auth::user()->name) !!}/128</div> -->
+                                <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300"><img src="https://www.gravatar.com/avatar/{{ md5($item->email) }}?d=https%3A%2F%2Fui-avatars.com%2Fapi%2F/{!! str_replace('+', ' ', $item->operator_name) !!}/128" class="h-10 w-10 rounded-full  "></div>
                             </div>
                             @endif
                             @endforeach

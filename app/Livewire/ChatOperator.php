@@ -26,7 +26,7 @@ class ChatOperator extends Component
         Message::create([
             'user_id' => $id,
             'operator_user_id' => Auth::user()->id,
-            'message_tema_id' => 1,
+            // 'message_tema_id' => 1,
             'message' => $pesan,
             'repley' => 1,
             'read' => 1,
@@ -39,7 +39,8 @@ class ChatOperator extends Component
     }
 
     public function listchat(){
-        $list =  Message::select(['users.id', 'users.name', 'users.email' ])->join('users', 'messages.user_id', '=', 'users.id')->where('read', 1)->where('read', '!=', 0)->groupby('user_id')->get();
+        $list =  Message::select(['users.id', 'users.name','users.email', DB::raw('(Select count(*) from messages as a WHERE a.user_id=messages.user_id and a.read=0 ) as pesan_masuk') ])->join('users', 'messages.user_id', '=', 'users.id')->where('read', 1)->where('read', '!=', 0)->groupby('user_id')->get();
+
 
         $listNew =  Message::select(['users.id', 'users.name', 'users.email', DB::raw('COUNT(user_id) as pesan_masuk')])->join('users', 'messages.user_id', '=', 'users.id')->where('read', 0)->groupby('user_id')->get();
 
@@ -52,7 +53,8 @@ class ChatOperator extends Component
     {
         $previousChat = $this->chat;
         $previousChatCount = count($previousChat);
-        $pesanKonseling = Message::select(['messages.*', 'users.name'])->leftJoin('users', 'messages.user_id', '=', 'users.id')->where('user_id', $id)->orderby('created_at', 'ASC')->get();
+        $pesanKonseling = Message::select(['messages.*', 'users.name', 'a.name as operator_name', 'a.email'])->leftJoin('users', 'messages.user_id', '=', 'users.id')->leftJoin('users as a', 'messages.operator_user_id', '=', 'a.id')->where('user_id', $id)->orderby('created_at', 'ASC')->get();
+
         $user = User::where('id',$id)->first();
         $this->user= $user;
         $this->id = $id;

@@ -1,7 +1,7 @@
 <!-- if menu active "active-menu" else "text-gray-600" -->
 <a href="{{ route('user') }}" class="px-2 py-2 mx-2 mt-2  @yield('home', 'text-gray-600')   lg:text-white  text-[14px] text-sh transition-colors  duration-300 transform rounded-md
                     lg:mt-0 hover:text-[#eed488] ">Home</a>
-<a href="podcast.html" class="px-2 py-2 text-gray-600 lg:text-white  text-[14px] text-sh mx-2 mt-2 transition-colors duration-300 transform rounded-md lg:mt-0
+<a href="{{ route('poadcast') }}" class="px-2 py-2  @yield('poadcast','text-gray-600') lg:text-white  text-[14px] text-sh mx-2 mt-2 transition-colors duration-300 transform rounded-md lg:mt-0
                     hover:text-[#eed488] ">Podcast</a>
 
 <a href="{{route('e-konseling')}}" class="px-2 py-2 mx-2 mt-2 @yield('konseling', 'text-gray-600') lg:text-white  text-[14px] text-sh transition-colors
@@ -97,4 +97,3 @@
 </div>
 
 <!-- end navbar -->
-

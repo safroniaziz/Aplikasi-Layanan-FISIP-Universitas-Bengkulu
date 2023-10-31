@@ -55,12 +55,12 @@
                             @endphp
                             @if($item->repley==1)
                             <div class="flex w-full mt-2 space-x-3 ">
-                                <div class="flex-shrink-0 h-10 w-10 rounded-full bg-black"><img src="{{ asset('assets/img/logo.svg') }}" class="w-10 h-10 p-1"></div>
+                                <div class="flex-shrink-0 h-10 w-10 rounded-full bg-black"><img src="https://www.gravatar.com/avatar/{{ md5($item->email) }}?d=https%3A%2F%2Fui-avatars.com%2Fapi%2F/{!! str_replace('+', ' ', $item->name) !!}/128" class="h-10 w-10 rounded-full  "></div>
                                 <div>
                                     <div class="bg-gray-100 p-3 rounded-r-lg rounded-bl-lg">
                                         <p class="text-sm">{{$item->message}}</p>
                                     </div>
-                                    <span class="text-xs text-gray-500 leading-none left-0 text-left float-left mt-2">{{$item->name}} - {{$waktupesan}}</span>
+                                    <span class="text-xs text-gray-500 leading-none left-0 text-left float-left mt-2"><strong>{{$item->name}}</strong> - {{$waktupesan}}</span>
                                 </div>
                             </div>
                             @else

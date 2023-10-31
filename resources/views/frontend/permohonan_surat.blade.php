@@ -1,5 +1,5 @@
 @extends('layouts.user')
-@section('konseling','active-menu')
+@section('permohonan_surat','active-menu')
 
 @section('content')
 <div x-data="{ modalPendaftaranKonseling: false, modalKonseling:false}">
@@ -33,7 +33,7 @@
     <!-- Fitur  -->
     <section id="Fitur" class="duration-300 transform bg-pattren">
 
-        <div class="mx-auto container px-5  pt-32 pb-48 mt-40 section-heading  text-gray-700 dark:text-gray-200 z-10 relative ">
+        <div style="padding-top: 2rem" class="mx-auto container px-5   pb-48 mt-40 section-heading  text-gray-700 dark:text-gray-200 z-10 relative ">
             <h2 data-aos="fade-down"
                 class="mb-6 text-center font-sans text-4xl lg:text-5xl font-bold text-[#0b3960] dark:text-yellow-500 text-sh2">
                 Permohonan surat untuk mahasiswa & tendik</h2>
@@ -371,174 +371,102 @@
         </div>
     </div>
 
-    <!-- modal pendaftaran E-Konseling -->
-    <div x-show="modalPendaftaranKonseling" style="z-index: 70;" class="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    <!-- modal -->
+    <div x-show="modelOpen" style="z-index: 70;" class="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title"
+        role="dialog" aria-modal="true">
         <div class="flex items-end justify-center min-h-screen px-4 text-center md:items-center sm:block sm:p-0">
-            <div x-cloak @click="modalPendaftaranKonseling = false" x-show="modalPendaftaranKonseling" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 transition-opacity bg-gray-500 bg-opacity-40" aria-hidden="true"></div>
+            <div x-cloak @click="modelOpen = false" x-show="modelOpen"
+                x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0"
+                x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200 transform"
+                x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+                class="fixed inset-0 transition-opacity bg-gray-500 bg-opacity-40" aria-hidden="true"></div>
 
-            <div x-cloak x-show="modalPendaftaranKonseling" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" class="inline-block w-full max-w-4xl p-8 my-20 overflow-hidden text-left transition-all transform bg-white dark:bg-gray-800 text-gray-800 dark:text-white rounded-lg shadow-xl 2xl:max-w-5xl">
+            <div x-cloak x-show="modelOpen" x-transition:enter="transition ease-out duration-300 transform"
+                x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+                x-transition:leave="transition ease-in duration-200 transform"
+                x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+                x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                class="inline-block w-full max-w-5xl p-8 my-20 overflow-hidden text-left transition-all transform dark:bg-gray-800 bg-white rounded-lg shadow-xl  ">
                 <div class="flex items-center justify-between space-x-4">
-                    <h1 class="text-xl font-bold text-gray-700 dark:text-gray-300 ">Pendaftaran E-Konseling <span class="font-bold text-[#152042]" x-text="Pendaftaran E-Konseling"></span></h1>
+                    <h1 class="text-xl font-medium text-gray-700 dark:text-gray-300 ">Permohonan Surat <span
+                            class="font-bold text-[#152042]"
+                            x-text="Permohonan Surat"></span></h1>
 
-                    <button @click="modalPendaftaranKonseling = false" class="text-gray-600 dark:text-gray-200 dark:hover:text-gray-300 focus:outline-none hover:text-gray-700">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    <button @click="modelOpen = false" class="text-gray-600 dark:text-gray-200 dark:hover:text-gray-300 focus:outline-none hover:text-gray-700">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                     </button>
                 </div>
-                <form class="mt-5" action="{{ route('e-konseling.store') }}" method="POST">
-                    @csrf
-                    <div class="grid grid-cols-1 md:grid-cols-2   gap-x-6 gap-y-2 my-3">
-                        <div class=" col-span-1  ">
-                            <label class=" after:content-['*'] after:text-red-500 font-semibold text-gray-700 dark:text-gray-300 after:ml-2 text-sm pb-2">Nama Lengkap</label>
-                            <input type="text" class="   w-full rounded-lg border-2 mt-1 border-[#01052D] dark:border-yellow-500
-                                bg-transparent px-3 py-2.5 text-sm font-normal text-white-700 transition-all duration-500
-                                placeholder:text-gray-600 dark:placeholder:text-yellow-100 focus:border-white
-                                dark:focus:ring-yellow-500 focus:ring-[#01052D]
-                                focus:shadow-[-4px_4px_10px_0px_#01052D]
-                                dark:focus:shadow-[-4px_4px_10px_0px_#eab308] disabled:bg-gray-200 disabled:dark:bg-gray-900 cursor-not-allowed " disabled value="{{Auth::user()->name}}" placeholder="Nama Lengkap" />
-                        </div>
-                        <div class=" col-span-1  ">
-                            <label class=" after:content-['*'] after:text-red-500 font-semibold text-gray-700 dark:text-gray-300 after:ml-2 text-sm pb-2">Nomor Telepon</label>
-                            <input type="text" class="   w-full rounded-lg border-2 mt-1 border-[#01052D] dark:border-yellow-500
-                                bg-transparent px-3 py-2.5 text-sm font-normal text-white-700 transition-all duration-500
-                                placeholder:text-gray-600 dark:placeholder:text-yellow-100 focus:border-white
-                                dark:focus:ring-yellow-500 focus:ring-[#01052D]
-                                focus:shadow-[-4px_4px_10px_0px_#01052D]
-                                dark:focus:shadow-[-4px_4px_10px_0px_#eab308]  disabled:bg-gray-200 disabled:dark:bg-gray-900 cursor-not-allowed" disabled value="{{Auth::user()->no_hp}}" placeholder="Nomor Telepon" />
-                        </div>
-                        <div class=" col-span-1  ">
-                            <label class=" after:content-['*'] after:text-red-500 font-semibold text-gray-700 dark:text-gray-300 after:ml-2 text-sm pb-2">Email</label>
-                            <input type="email" class="   w-full rounded-lg border-2 mt-1 border-[#01052D] dark:border-yellow-500
-                                bg-transparent px-3 py-2.5 text-sm font-normal text-white-700 transition-all duration-500
-                                placeholder:text-gray-600 dark:placeholder:text-yellow-100 focus:border-white
-                                dark:focus:ring-yellow-500 focus:ring-[#01052D]
-                                focus:shadow-[-4px_4px_10px_0px_#01052D]
-                                dark:focus:shadow-[-4px_4px_10px_0px_#eab308] disabled:bg-gray-200 dark:disabled:bg-gray-900 dark:disabled:text-gray-900 cursor-not-allowed " disabled value="{{Auth::user()->email}}" placeholder="Email" />
-                        </div>
-                        <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
 
+                <form class="mt-5" action=" " method="GET">
+
+                    <label
+                        class=" after:content-['*'] after:text-red-500 font-semibold  text-gray-700 dark:text-gray-300 after:ml-2 text-sm pb-2">Subject Surat</label>
+                    <input type="text" class="   w-full rounded-lg border-2 mt-1 border-[#01052D] dark:border-yellow-500
+                                    bg-transparent px-3 py-2.5 text-sm font-normal text-white-700 transition-all duration-500
+                                    placeholder:text-gray-600 dark:placeholder:text-yellow-100 focus:border-white
+                                    dark:focus:ring-yellow-500 focus:ring-[#01052D]
+                                    focus:shadow-[-4px_4px_10px_0px_#01052D]
+                                    dark:focus:shadow-[-4px_4px_10px_0px_#eab308] " placeholder="Subject Surat" />
+                    <div class="mt-1">
+                        <label
+                            class=" after:content-['*'] after:text-red-500 font-semibold  text-gray-700 dark:text-gray-300 after:ml-2 text-sm pb-2">Pesan</label>
+                        <textarea class="  h-20 w-full rounded-lg border-2 mt-1 border-[#01052D] dark:border-yellow-500
+                                    bg-transparent px-3 py-2.5 text-sm font-normal text-white-700 transition-all duration-500
+                                    placeholder:text-gray-600 dark:placeholder:text-yellow-100 focus:border-white
+                                    dark:focus:ring-yellow-500 focus:ring-[#01052D]
+                                    focus:shadow-[-4px_4px_10px_0px_#01052D]
+                                    dark:focus:shadow-[-4px_4px_10px_0px_#eab308]  " placeholder="Pesan"></textarea>
                     </div>
-
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-2 my-1">
-                        <div class=" col-span-1 grid  grid-cols-3 gap-3">
-                            <div class="col-span-2">
-                                <label class=" after:content-['*'] after:text-red-500 font-semibold text-gray-700 dark:text-gray-300 after:ml-2 text-sm pb-2">Tanggal Mulai</label>
-                                <input type="date" name="tgl_start" class="   w-full rounded-lg border-2 mt-1 border-[#01052D] dark:border-yellow-500
-                                bg-transparent px-3 py-2.5 text-sm font-normal text-white-700 transition-all duration-500
-                                placeholder:text-gray-600 dark:placeholder:text-yellow-100 focus:border-white
-                                dark:focus:ring-yellow-500 focus:ring-[#01052D]
-                                focus:shadow-[-4px_4px_10px_0px_#01052D]
-                                dark:focus:shadow-[-4px_4px_10px_0px_#eab308]   " placeholder="Tanggal Mulai" />
-                                @error('tgl_start')
-                                <p class="text-red-500 text-xs font-bold">{{ $message }}</p>
-                                @enderror
-                            </div>
-                            <div class="col-span-1">
-                                <label class=" after:content-['*'] after:text-red-500 font-semibold text-gray-700 dark:text-gray-300 after:ml-2 text-sm pb-2">Waktu Mulai</label>
-                                <input type="time" name="waktu_start" class="   w-full rounded-lg border-2 mt-1 border-[#01052D] dark:border-yellow-500
-                                bg-transparent px-3 py-2.5 text-sm font-normal text-white-700 transition-all duration-500
-                                placeholder:text-gray-600 dark:placeholder:text-yellow-100 focus:border-white
-                                dark:focus:ring-yellow-500 focus:ring-[#01052D]
-                                focus:shadow-[-4px_4px_10px_0px_#01052D]
-                                dark:focus:shadow-[-4px_4px_10px_0px_#eab308]   " placeholder="Waktu Mulai" />
-                                @error('waktu_start')
-                                <p class="text-red-500 text-xs font-bold">{{ $message }}</p>
-                                @enderror
-                            </div>
-
+                        <div class=" col-span-1  ">
+                            <label
+                                class=" after:content-['*'] after:text-red-500 font-semibold text-gray-700 dark:text-gray-300 after:ml-2 text-sm pb-2">Penerima</label>
+                            <input type="text" class="   w-full rounded-lg border-2 mt-1 border-[#01052D] dark:border-yellow-500
+                                    bg-transparent px-3 py-2.5 text-sm font-normal text-white-700 transition-all duration-500
+                                    placeholder:text-gray-600 dark:placeholder:text-yellow-100 focus:border-white
+                                    dark:focus:ring-yellow-500 focus:ring-[#01052D]
+                                    focus:shadow-[-4px_4px_10px_0px_#01052D]
+                                    dark:focus:shadow-[-4px_4px_10px_0px_#eab308] " placeholder="Penerima" />
                         </div>
-
-                        <div class=" col-span-1 grid  grid-cols-3 gap-3">
-                            <div class="col-span-2">
-                                <label class=" after:content-['*'] after:text-red-500 font-semibold text-gray-700 dark:text-gray-300 after:ml-2 text-sm pb-2">Tanggal Selesai</label>
-                                <input type="date" name="tgl_end" class="   w-full rounded-lg border-2 mt-1 border-[#01052D] dark:border-yellow-500
-                                bg-transparent px-3 py-2.5 text-sm font-normal text-white-700 transition-all duration-500
-                                placeholder:text-gray-600 dark:placeholder:text-yellow-100 focus:border-white
-                                dark:focus:ring-yellow-500 focus:ring-[#01052D]
-                                focus:shadow-[-4px_4px_10px_0px_#01052D]
-                                dark:focus:shadow-[-4px_4px_10px_0px_#eab308]   " placeholder="Tanggal Selesai" />
-                                @error('tgl_end')
-                                <p class="text-red-500 text-xs font-bold">{{ $message }}</p>
-                                @enderror
-                            </div>
-                            <div class="col-span-1">
-                                <label class=" after:content-['*'] after:text-red-500 font-semibold text-gray-700 dark:text-gray-300 after:ml-2 text-sm pb-2">Waktu Selesai</label>
-                                <input type="time" name="waktu_end" class="   w-full rounded-lg border-2 mt-1 border-[#01052D] dark:border-yellow-500
-                                bg-transparent px-3 py-2.5 text-sm font-normal text-white-700 transition-all duration-500
-                                placeholder:text-gray-600 dark:placeholder:text-yellow-100 focus:border-white
-                                dark:focus:ring-yellow-500 focus:ring-[#01052D]
-                                focus:shadow-[-4px_4px_10px_0px_#01052D]
-                                dark:focus:shadow-[-4px_4px_10px_0px_#eab308]   " placeholder="Waktu Selesai" />
-                                @error('waktu_end')
-                                <p class="text-red-500 text-xs font-bold">{{ $message }}</p>
-                                @enderror
-                            </div>
-
+                        <div class=" col-span-1  ">
+                            <label
+                                class=" after:content-['*'] after:text-red-500 font-semibold text-gray-700 dark:text-gray-300 after:ml-2 text-sm pb-2">Tanggal Surat</label>
+                            <input type="date" class="   w-full rounded-lg border-2 mt-1 border-[#01052D] dark:border-yellow-500
+                                    bg-transparent px-3 py-2.5 text-sm font-normal text-white-700 transition-all duration-500
+                                    placeholder:text-gray-600 dark:placeholder:text-yellow-100 focus:border-white
+                                    dark:focus:ring-yellow-500 focus:ring-[#01052D]
+                                    focus:shadow-[-4px_4px_10px_0px_#01052D]
+                                    dark:focus:shadow-[-4px_4px_10px_0px_#eab308]  " placeholder="Tanggal Surat" />
                         </div>
-
-
-
+                    </div>
+                    <div class="mt-1">
+                        <label
+                            class=" after:content-['*'] after:text-red-500 font-semibold  text-gray-700 dark:text-gray-300 after:ml-2 text-sm pb-2">Lampiran</label>
+                        <input type="file" class="   w-full rounded-lg border-2 mt-1 border-[#01052D] dark:border-yellow-500
+                                    bg-transparent px-3 py-2.5 text-sm font-normal text-white-700 transition-all duration-500
+                                    placeholder:text-gray-600 dark:placeholder:text-yellow-100 focus:border-white
+                                    dark:focus:ring-yellow-500 focus:ring-[#01052D]
+                                    focus:shadow-[-4px_4px_10px_0px_#01052D]
+                                    dark:focus:shadow-[-4px_4px_10px_0px_#eab308]  " placeholder="Lampiran">
                     </div>
 
 
 
                     <div class="flex justify-end mt-6">
-                        <button type="submit" class="px-3 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-[#152042] rounded-md dark:bg-yellow-600 dark:hover:bg-yellow-500 dark:focus:bg-[#1f3882] hover:bg-[#060f2a] focus:outline-none focus:bg-[#152042] focus:ring focus:ring-indigo-300 focus:ring-opacity-50">
+                        <button type="submit"
+                            class="px-3 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-[#152042] rounded-md dark:bg-yellow-600 dark:hover:bg-yellow-500 dark:focus:bg-[#1f3882] hover:bg-[#060f2a] focus:outline-none focus:bg-[#152042] focus:ring focus:ring-indigo-300 focus:ring-opacity-50">
                             Kirim Permohonan
                         </button>
                     </div>
                 </form>
-
             </div>
         </div>
     </div>
-    <!-- end modal pendaftaran E-Konseling -->
-
-    <!-- modal Konseling -->
-    <div x-show="modalKonseling" style="z-index: 70;" class="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-        <div class="flex items-end justify-center h-screen overflow-hidden px-4 text-center md:items-center sm:block sm:p-0">
-            <div x-cloak @click="modalKonseling = false" x-show="modalKonseling" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 transition-opacity bg-gray-500 bg-opacity-40" aria-hidden="true"></div>
-
-            <div x-cloak x-show="modalKonseling" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" class="inline-block w-full  p-8  container   text-left transition-all transform dark:bg-gray-800 h-screen overflow-auto bg-white rounded-lg shadow-xl  ">
-                <div class="flex items-center justify-between space-x-4">
-                    <h1 class="text-xl font-bold text-gray-700 dark:text-gray-300 ">Konseling Online <span class="font-bold text-[#152042]" x-text="Konseling Online"></span></h1>
-
-                    <button @click="modalKonseling = false" class="text-gray-600 dark:text-gray-200 dark:hover:text-gray-300 focus:outline-none hover:text-gray-700">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                    </button>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 mt-6">
-                    <div class="col-span-1">
-                        <lottie-player src="{{ asset('assets/user/src/konseling.json') }}" background="transparent" speed="1" class="w-full mx-auto lottie-login " loop autoplay></lottie-player>
-                        <h2 class="text-center text-gray-700 text-2sh  font-extrabold relative -mt-10 text-2xl font-[arial]">E-Konseling </h2>
-                    </div>
-                    <div class="col-span-1 md:col-span-2">
-                        <div class="flex flex-col space-y-2   text-xs md:text-sm">
-                            <div x-data="{penjelasan: ''}">
-                            
-                                <div class="w-full min-h-[350px] border border-gray-300 p-5 mt-5 leading-7 text-sm text-justify rounded-md shadow-md">
-                                    <template x-if="penjelasan==''">
-                                        <div class="text-gray-800 dark:text-gray-300 font-semibold grid  text-center my-20  w-full duration-300 transform ">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-28 w-28 mx-auto" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
-                                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                                                <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z" />
-                                            </svg>
-                                            <h2 class="text-lg mt-4">Harap pilih Pertanyaan yang ingin di ajukan terlebih dahulu</h2>
-                                        </div>
-                                    </template>
-                                    <h3 x-text="penjelasan" class="text-gray-800 dark:text-gray-300"> </h3>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- end modal Konseling -->
+<!-- end modal -->
 </div>
 @endsection
