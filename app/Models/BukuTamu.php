@@ -10,10 +10,15 @@ class BukuTamu extends Model
     use HasFactory;
 
     protected $fillable = [
+        'tanggal',
         'nama_tamu',
         'keperluan',
         'tujuan',
         'no_hp',
         'foto',
+    ];
+
+    protected $casts = [
+        'tanggal' => 'datetime',
     ];
 }

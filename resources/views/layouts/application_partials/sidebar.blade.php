@@ -81,6 +81,13 @@
     </ul>
 </li>
 
+<li class="{{ set_active(['manajemenBukuTamu']) }}">
+    <a href="{{ route('manajemenBukuTamu') }}">
+        <i class="fa fa-graduation-cap"></i>
+        <span>Buku Tamu</span>
+    </a>
+</li>
+
 <li class="header">PENGATURAN</li>
 
 <li class="treeview {{ set_active([
