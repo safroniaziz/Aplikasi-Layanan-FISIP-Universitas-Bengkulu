@@ -12,7 +12,7 @@
         <div class="flex items-end    overflow-hidden px-4 text-center   sm:p-0">
             <div x-cloak x-show="modelOpen" style="z-index: 20;" :class="{ 'fadeInRight': modelOpen, 'fadeInLeft': !modelOpen }" class="  w-full max-w-lg   pb-[70px]  container   text-left transition-all transform  h-screen  absolute bottom-0 right-0   bg-[#091031] opacity-80 rounded-lg shadow-xl overflow-hidden ">
                 <div class="flex items-center justify-between space-x-4 py-4 px-5">
-                    <h1 class="text-xl font-bold text-yellow-500  flex"> <img src="{{ asset('assets/img/logo.svg') }}" class="w-10 h-10 mr-2"><span class="font-bold py-2 ">Help Desk  </span> </h1>
+                    <h1 class="text-xl font-bold text-yellow-500  flex"> <img src="{{ asset('assets/img/logo.svg') }}" class="w-10 h-10 mr-2"><span class="font-bold py-2 ">E-Konseling  </span> </h1>
                     @if($scroll==1)
                     <script>
                         const el = document.getElementById('messages');
@@ -82,8 +82,7 @@
                     <form wire:submit.prevent="kirimPesan" method="POST">
                         <div class="bg-gray-300 p-4">
                             <div class="relative flex ">
-
-                                <input name="pesan" wire:model="pesan" type="text" placeholder="Tuliskan pesan/pertanyaan anda!" class="w-full focus:outline-none focus:placeholder-gray-400 text-gray-600 placeholder-gray-600 pl-3 pr-28 bg-white rounded-md py-3 text-sm">
+                                <input name="pesan" wire:model="pesan" type="text" placeholder="Tuliskan pesan/pertanyaan anda!" class="w-full focus:outline-none focus:placeholder-gray-400 text-gray-600 placeholder-gray-600 pl-3 pr-28 bg-white rounded-md py-3 text-sm" autocomplete="off">
                                 <div class="absolute right-0 items-center inset-y-0 hidden sm:flex">
 
                                     <button type="submit" class="inline-flex text-sm items-center justify-center rounded-lg px-4 py-3 transition duration-500 ease-in-out text-white bg-[#091150] hover:bg-blue-700 focus:outline-none">

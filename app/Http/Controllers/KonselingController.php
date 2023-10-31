@@ -33,7 +33,8 @@ class KonselingController extends Controller
             'user_id' => $request->user_id,
             // 'tanggal_dan_waktu_mulai' => $request->tgl_start.' '. $request->waktu_start,
             // 'tanggal_dan_waktu_selesai' => $request->tgl_end.' '. $request->waktu_end,
-            'status' => 'terjadwal',
+            'status' => 'menunggu',
+            'deskripsi' => $request->deskripsi,
         ]);
 
         if ($save) {

@@ -8,7 +8,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
                         </svg>
                     </div>
-                    <div class="ml-2 font-bold text-2xl">QuickChat</div>
+                    <div class="ml-2 font-bold text-2xl">E-Konsling</div>
                 </div>
 
                 <div wire:poll.2000ms="listchat" class="flex flex-col mt-8 h-[70vh]  overflow-y-auto overflow-x-hidden">
@@ -108,7 +108,7 @@
                         <div class="bg-gray-300 p-4">
                             <div class="relative flex ">
 
-                                <input name="pesan" wire:model="pesan" type="text" placeholder="Tuliskan pesan/pertanyaan anda!" class="w-full focus:outline-none focus:placeholder-gray-400 text-gray-600 placeholder-gray-600 pl-3 pr-28 bg-white rounded-md py-3 text-sm">
+                                <input name="pesan" wire:model="pesan" type="text" placeholder="Tuliskan pesan/pertanyaan anda!" class="w-full focus:outline-none focus:placeholder-gray-400 text-gray-600 placeholder-gray-600 pl-3 pr-28 bg-white rounded-md py-3 text-sm" autocomplete="off">
                                 <div class="absolute right-0 items-center inset-y-0 hidden sm:flex">
 
                                     <button type="submit" class="inline-flex text-sm items-center justify-center rounded-lg px-4 py-3 transition duration-500 ease-in-out text-white bg-[#091150] hover:bg-blue-700 focus:outline-none">

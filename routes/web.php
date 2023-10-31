@@ -1,36 +1,37 @@
 <?php
 
+use App\Livewire\ChatOperator;
 use App\Livewire\JadwalPerkuliahan;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\DosenController;
 use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\ProfileController;
+use App\Livewire\JadwalPerkuliahanLivewire;
 use App\Http\Controllers\BukuTamuController;
 use App\Http\Controllers\CariDataController;
 use App\Http\Controllers\OperatorController;
 use App\Http\Controllers\PengampuController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\KonselingController;
 use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\JenisSuratController;
 use App\Http\Controllers\MataKuliahController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\RequirementController;
+use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\AlatPoadcastController;
 use App\Http\Controllers\ProgramStudiController;
 use App\Http\Controllers\RuanganKelasController;
+use App\Http\Controllers\PermohonanSuratController;
 use App\Http\Controllers\RuanganPoadcastController;
 use App\Http\Controllers\BasisPengetahuanController;
+use App\Http\Controllers\KonselingOfflineController;
 use App\Http\Controllers\PemesananRuanganController;
 use App\Http\Controllers\JadwalPerkuliahanController;
-use App\Http\Controllers\JenisSuratController;
-use App\Http\Controllers\KonselingController;
-use App\Http\Controllers\MahasiswaMataKuliahController;
 use App\Http\Controllers\ManajemenBukuTamuController;
+use App\Http\Controllers\MahasiswaMataKuliahController;
 use App\Http\Controllers\PendaftaranKonselingController;
-use App\Http\Controllers\PermohonanSuratController;
-use App\Http\Controllers\RequirementController;
-use App\Http\Controllers\UserProfileController;
-use App\Livewire\ChatOperator;
-use App\Livewire\JadwalPerkuliahanLivewire;
 
 /*
 |--------------------------------------------------------------------------
@@ -172,6 +173,11 @@ Route::controller(BasisPengetahuanController::class)->middleware('auth','verifie
     Route::get('/{basisPengetahuan}/edit', 'edit')->name('basisPengetahuan.edit');
     Route::patch('/update', 'update')->name('basisPengetahuan.update');
     Route::delete('/{basisPengetahuan}/delete', 'delete')->name('basisPengetahuan.delete');
+});
+
+Route::controller(KonselingOfflineController::class)->middleware('auth','verified','operator')->prefix('/konseling_offline')->group(function () {
+    Route::get('/', 'index')->name('konselingOffline');
+    Route::patch('/verify', 'verify')->name('konselingOffline.verify');
 });
 
 Route::controller(ManajemenBukuTamuController::class)->middleware('auth','verified','operator')->prefix('/manajemen_buku_tamu')->group(function(){

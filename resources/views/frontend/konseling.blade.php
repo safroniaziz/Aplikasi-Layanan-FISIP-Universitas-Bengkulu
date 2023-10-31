@@ -84,7 +84,7 @@
                                 text-sm text-white-700 font-bold
                                 focus:shadow-[-4px_4px_10px_0px_#2563eb]
                                 dark:focus:shadow-[-4px_4px_10px_0px_#eab308]" @click="modalPendaftaranKonseling =!modalPendaftaranKonseling">
-                    Pendaftaran E-Konseling
+                    Pendaftaran Konseling Offline
                 </button>
                 <button data-aos="fade-right" class="text-gray-200 rounded-lg   float-right py-4 px-4
                      bg-[#091150] dark:bg-yellow-500 hover:bg-blue-600 duration-300 transform
@@ -144,11 +144,11 @@
 
                                         </td>
                                         <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
-                                            <h2 class="font-medium text-gray-800 dark:text-white ">{{ $item->tanggal_dan_waktu_mulai }}</h2>
+                                            <h2 class="font-medium text-gray-800 dark:text-white ">{{ $item->tanggal_dan_waktu_mulai  ?  $item->tanggal_dan_waktu_mulai : '-'}}</h2>
 
                                         </td>
                                         <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
-                                            <h2 class="font-medium text-gray-800 dark:text-white ">{{ $item->tanggal_dan_waktu_selesai }}</h2>
+                                            <h2 class="font-medium text-gray-800 dark:text-white ">{{ $item->tanggal_dan_waktu_selesai ?  $item->tanggal_dan_waktu_selesai : '-' }}</h2>
                                         </td>
                                         <td class="px-12 py-4 text-sm font-medium whitespace-nowrap">
                                             @if($item->status=='selesai')
@@ -277,69 +277,22 @@
 
                     </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-2 my-1">
-                        <div class=" col-span-1 grid  grid-cols-3 gap-3">
+                    <div class="grid grid-cols-1 md:grid-cols-1 gap-x-6 gap-y-2 my-1">
+                        <div class=" col-span-1 grid  gap-3">
                             <div class="col-span-2">
                                 <label class=" after:content-['*'] after:text-red-500 font-semibold text-gray-700 dark:text-gray-300 after:ml-2 text-sm pb-2">Tanggal Mulai</label>
-                                <input type="date" name="tgl_start" class="   w-full rounded-lg border-2 mt-1 border-[#01052D] dark:border-yellow-500
+                                <textarea name="deskripsi" class="   w-full rounded-lg border-2 mt-1 border-[#01052D] dark:border-yellow-500
                                 bg-transparent px-3 py-2.5 text-sm font-normal text-white-700 transition-all duration-500
                                 placeholder:text-gray-600 dark:placeholder:text-yellow-100 focus:border-white
                                 dark:focus:ring-yellow-500 focus:ring-[#01052D]
                                 focus:shadow-[-4px_4px_10px_0px_#01052D]
-                                dark:focus:shadow-[-4px_4px_10px_0px_#eab308]   " placeholder="Tanggal Mulai" />
-                                @error('tgl_start')
+                                dark:focus:shadow-[-4px_4px_10px_0px_#eab308]   " placeholder="ceritakan permasalahan anda secara singkat disini"></textarea>
+                                @error('deskripsi')
                                 <p class="text-red-500 text-xs font-bold">{{ $message }}</p>
                                 @enderror
                             </div>
-                            <div class="col-span-1">
-                                <label class=" after:content-['*'] after:text-red-500 font-semibold text-gray-700 dark:text-gray-300 after:ml-2 text-sm pb-2">Waktu Mulai</label>
-                                <input type="time" name="waktu_start" class="   w-full rounded-lg border-2 mt-1 border-[#01052D] dark:border-yellow-500
-                                bg-transparent px-3 py-2.5 text-sm font-normal text-white-700 transition-all duration-500
-                                placeholder:text-gray-600 dark:placeholder:text-yellow-100 focus:border-white
-                                dark:focus:ring-yellow-500 focus:ring-[#01052D]
-                                focus:shadow-[-4px_4px_10px_0px_#01052D]
-                                dark:focus:shadow-[-4px_4px_10px_0px_#eab308]   " placeholder="Waktu Mulai" />
-                                @error('waktu_start')
-                                <p class="text-red-500 text-xs font-bold">{{ $message }}</p>
-                                @enderror
-                            </div>
-
                         </div>
-
-                        <div class=" col-span-1 grid  grid-cols-3 gap-3">
-                            <div class="col-span-2">
-                                <label class=" after:content-['*'] after:text-red-500 font-semibold text-gray-700 dark:text-gray-300 after:ml-2 text-sm pb-2">Tanggal Selesai</label>
-                                <input type="date" name="tgl_end" class="   w-full rounded-lg border-2 mt-1 border-[#01052D] dark:border-yellow-500
-                                bg-transparent px-3 py-2.5 text-sm font-normal text-white-700 transition-all duration-500
-                                placeholder:text-gray-600 dark:placeholder:text-yellow-100 focus:border-white
-                                dark:focus:ring-yellow-500 focus:ring-[#01052D]
-                                focus:shadow-[-4px_4px_10px_0px_#01052D]
-                                dark:focus:shadow-[-4px_4px_10px_0px_#eab308]   " placeholder="Tanggal Selesai" />
-                                @error('tgl_end')
-                                <p class="text-red-500 text-xs font-bold">{{ $message }}</p>
-                                @enderror
-                            </div>
-                            <div class="col-span-1">
-                                <label class=" after:content-['*'] after:text-red-500 font-semibold text-gray-700 dark:text-gray-300 after:ml-2 text-sm pb-2">Waktu Selesai</label>
-                                <input type="time" name="waktu_end" class="   w-full rounded-lg border-2 mt-1 border-[#01052D] dark:border-yellow-500
-                                bg-transparent px-3 py-2.5 text-sm font-normal text-white-700 transition-all duration-500
-                                placeholder:text-gray-600 dark:placeholder:text-yellow-100 focus:border-white
-                                dark:focus:ring-yellow-500 focus:ring-[#01052D]
-                                focus:shadow-[-4px_4px_10px_0px_#01052D]
-                                dark:focus:shadow-[-4px_4px_10px_0px_#eab308]   " placeholder="Waktu Selesai" />
-                                @error('waktu_end')
-                                <p class="text-red-500 text-xs font-bold">{{ $message }}</p>
-                                @enderror
-                            </div>
-
-                        </div>
-
-
-
                     </div>
-
-
-
                     <div class="flex justify-end mt-6">
                         <button type="submit" class="px-3 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-[#152042] rounded-md dark:bg-yellow-600 dark:hover:bg-yellow-500 dark:focus:bg-[#1f3882] hover:bg-[#060f2a] focus:outline-none focus:bg-[#152042] focus:ring focus:ring-indigo-300 focus:ring-opacity-50">
                             Kirim Permohonan
