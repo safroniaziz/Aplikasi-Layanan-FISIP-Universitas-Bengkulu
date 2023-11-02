@@ -1,32 +1,33 @@
 <?php
 
+use App\Livewire\ChatOperator;
 use App\Livewire\JadwalPerkuliahan;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\DosenController;
 use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\ProfileController;
+use App\Livewire\JadwalPerkuliahanLivewire;
 use App\Http\Controllers\BukuTamuController;
 use App\Http\Controllers\CariDataController;
 use App\Http\Controllers\OperatorController;
 use App\Http\Controllers\PengampuController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\KonselingController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MataKuliahController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\AlatPoadcastController;
 use App\Http\Controllers\ProgramStudiController;
 use App\Http\Controllers\RuanganKelasController;
+use App\Http\Controllers\SettingJadwalController;
 use App\Http\Controllers\RuanganPoadcastController;
 use App\Http\Controllers\BasisPengetahuanController;
 use App\Http\Controllers\PemesananRuanganController;
 use App\Http\Controllers\JadwalPerkuliahanController;
-use App\Http\Controllers\KonselingController;
-use App\Http\Controllers\MahasiswaMataKuliahController;
 use App\Http\Controllers\ManajemenBukuTamuController;
+use App\Http\Controllers\MahasiswaMataKuliahController;
 use App\Http\Controllers\PendaftaranKonselingController;
-use App\Livewire\ChatOperator;
-use App\Livewire\JadwalPerkuliahanLivewire;
 
 /*
 |--------------------------------------------------------------------------
@@ -195,6 +196,10 @@ Route::controller(RoleController::class)->middleware('auth','verified')->prefix(
     Route::get('/role/{role}/detail', 'detail')->name('role.detail');
     Route::delete('/role/{role}/revoke/{permission}', 'revoke')->name('role.revoke');
     Route::post('/role/{role}/assign/', 'assign')->name('role.assign');
+});
+
+Route::controller(SettingJadwalController::class)->middleware('auth', 'verified')->prefix('/jadwal_settings')->group(function () {
+    Route::get('/', 'index')->name('jadwal_settings');
 });
 
 Route::middleware('auth')->group(function () {

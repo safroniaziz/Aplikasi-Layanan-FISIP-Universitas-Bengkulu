@@ -63,6 +63,7 @@
         <li class="{{ set_active(['pengampu']) }}"><a href="{{ route('pengampu') }}"><i class="fa fa-circle-o"></i> Pengampu</a></li>
         <li class="{{ set_active(['ruanganKelas']) }}"><a href="{{ route('ruanganKelas') }}"><i class="fa fa-circle-o"></i> Ruang Kelas</a></li>
         <li class="{{ set_active(['jadwalPerkuliahan']) }}"><a href="{{ route('jadwalPerkuliahan') }}"><i class="fa fa-circle-o"></i> Jadwal Perkuliahan</a></li>
+        <li class="{{ set_active(['jadwal_settings']) }}"><a href="{{ route('jadwal_settings') }}"><i class="fa fa-circle-o"></i> Jadwal Setting View</a></li>
     </ul>
 </li>
 
