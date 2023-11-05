@@ -50,6 +50,7 @@ Route::get('/', function () {
 })->name('user');
 
 Route::controller(CariDataController::class)->group(function(){
+    Route::get('/wa','wa')->name('wa');
     Route::get('/cari_mata_kuliah_by_prodi', 'cariMataKuliahByProdi')->name('cariMataKuliahByProdi');
 });
 
