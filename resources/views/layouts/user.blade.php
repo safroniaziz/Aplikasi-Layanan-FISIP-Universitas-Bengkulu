@@ -9,7 +9,7 @@
     <link rel="shortcut icon" href="{{ asset('assets/img/logo.svg') }}">
 
     <!-- stylesheets tailwind -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
     <link rel="stylesheet" href="{{ asset('assets/user/src/output.css') }}">
 
     <!-- tailwindcss flag-icon  -->
@@ -122,6 +122,8 @@
 
 
         @yield('content')
+
+
 
 
         <div class=" relative ">
@@ -240,8 +242,8 @@
 </body>
 
 <!-- script -->
-@livewireScripts
 
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script src="{{ asset('assets/scripts.js') }}"></script>
+<script src="{{ asset('assets/scripts2.js') }}"></script>
+@livewireScripts

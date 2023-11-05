@@ -68,7 +68,7 @@
 </li>
 
 <li class="treeview {{ set_active([
-    'basisPengetahuan',
+    'basisPengetahuan','jadwalKonseling','massage',
 ]) }}">
     <a href="#">
         <i class="fa fa-comments"></i> <span>Layanan Konseling</span>
@@ -78,6 +78,7 @@
     </a>
     <ul class="treeview-menu">
         <li class="{{ set_active(['basisPengetahuan']) }}"><a href="{{ route('basisPengetahuan') }}"><i class="fa fa-circle-o"></i> Basis Pengetahuan</a></li>
+        <li class="{{ set_active(['jadwalKonseling']) }}"><a href="{{ route('jadwalKonseling') }}"><i class="fa fa-circle-o"></i> Jadwal Konseling</a></li>
         <li class="{{ set_active(['massage']) }}"><a href="{{ route('massage') }}"><i class="fa fa-circle-o"></i> Mesagge</a></li>
     </ul>
 </li>
