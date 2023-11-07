@@ -10,7 +10,7 @@
                     <tr>
                         <th>No</th>
                         <th>Nama Prodi</th>
-                        <th class="text-center">Jumlah Mahasiswa</th>
+                        <th style="text-align: center">Jumlah Mahasiswa</th>
                         <th>Detail</th>
                     </tr>
                 </thead>
@@ -20,7 +20,7 @@
                             <td>{{ $index+1 }}</td>
                             <td>{{ $prodi->nama_prodi }}</td>
                             <td class="text-center">
-                                <a class="btn btn-success btn-sm btn-flat">{{ $prodi->mahasiswas_count }}</a>
+                                {{ $prodi->mahasiswas_count }}
                             </td>
                             <td>
                                 <table>

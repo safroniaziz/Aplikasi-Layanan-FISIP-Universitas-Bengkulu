@@ -1,40 +1,11 @@
 @extends('layouts.application')
-@section('halaman', 'Dosen Detail')
-@section('menu', 'Dosen Detail')
+@section('halaman', 'Pegawai Detail')
+@section('menu', 'Pegawai Detail')
 @section('content')
 <div class="box-body">
     <div class="row">
-        <div class="col-md-12">
-            <table class="table table-hover table-striped">
-                <tr>
-                    <th>Kode Program Studi</th>
-                    <td> : </td>
-                    <td>{{ $prodi->kode }}</td>
-                </tr>
-                <tr>
-                    <th>Program Studi</th>
-                    <td> : </td>
-                    <td>{{ $prodi->nama_prodi }}</td>
-                </tr>
-                <tr>
-                    <th>Fakultas</th>
-                    <td> : </td>
-                    <td>{{ $prodi->nama_fakultas }}</td>
-                </tr>
-                <tr>
-                    <th>Dosen Aktif</th>
-                    <td> : </td>
-                    <td>{{ $prodi->jumlah_dosen_prodi }} Dosen</td>
-                </tr>
-            </table>
-        </div>
-    </div>
-</div>
-
-<div class="box-body">
-    <div class="row">
         <div class="col-md-12 table-responsive">
-            <a href="{{ route('dosen') }}" class="btn btn-warning btn-sm btn-flat"><i class="fa fa-arrow-circle-left"></i>&nbsp; Kembali</a>
+            <a href="{{ route('pegawai') }}" class="btn btn-warning btn-sm btn-flat"><i class="fa fa-arrow-circle-left"></i>&nbsp; Kembali</a>
             <button type="button" class="btn btn-primary btn-sm btn-flat" data-toggle="modal" data-target="#modal-default">
                 <i class="fa fa-plus"></i>&nbsp; Tambah Data
             </button>
@@ -43,30 +14,29 @@
                     <tr>
                         <th>No</th>
                         <th>NIP</th>
-                        <th>Nama Prodi</th>
-                        <th>Nama Dosen</th>
+                        <th>Nama Pegawai</th>
+                        <th>Jabatan</th>
                         <th>No WA</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($dosens as $index => $dosen)
+                    @forelse ($pegawais as $index => $pegawai)
                         <tr>
                             <td>{{ $index+1 }}</td>
-                            <td>{{ $dosen->nip }}</td>
-                            <td>{{ $dosen->prodi->nama_prodi }}</td>
-                            <td>{{ $dosen->nama_dosen }}</td>
-                            <td>{{ $dosen->no_hp ? $dosen->no_hp : '-' }}</td>
+                            <td>{{ $pegawai->nip }}</td>
+                            <td>{{ $pegawai->nama_pegawai }}</td>
+                            <td>{{ $pegawai->jabatan }}</td>
+                            <td>{{ $pegawai->no_hp ? $pegawai->no_hp : '-' }}</td>
                             <td>
                                 <table>
                                     <tr>
                                         <td>
-                                            <a onclick='editDosen("{{ $dosen->nip }}")' class="btn btn-success btn-sm btn-flat"><i class="fa fa-edit"></i>&nbsp; Edit</a>
+                                            <a onclick='editPegawai("{{ $pegawai->id }}")' class="btn btn-success btn-sm btn-flat"><i class="fa fa-edit"></i>&nbsp; Edit</a>
                                         </td>
                                         <td>
-                                            <form action="{{ route('dosen.delete',[$dosen->nip]) }}" method="POST" id="form">
+                                            <form action="{{ route('pegawai.delete',[$pegawai->id]) }}" method="POST" id="form">
                                                 @csrf @method('DELETE')
-                                                <input type="hidden" name="prodiKode" value="{{ $prodi->kode }}">
                                                 <button type="submit" class="btn btn-danger btn-sm btn-flat show_confirm"><i class="fa fa-trash"></i>&nbsp; Hapus</button>
                                             </form>
                                         </td>
@@ -77,20 +47,19 @@
                     @empty
                         <tr>
                             <td colspan="5" class="text-danger text-center">
-                                data dosen masih kosong
+                                data pegawai masih kosong
                             </td>
                         </tr>
                     @endforelse
                 </tbody>
-                @include('backend/dosens/partials.modal_add')
+                @include('backend/pegawai/partials.modal_add')
             </table>
-            @include('backend/dosens/partials.modal_edit')
+            @include('backend/pegawai/partials.modal_edit')
         </div>
     </div>
 </div>
 @endsection
-
-@include('backend/dosens/form')
+@include('backend/pegawai/form')
 
 @push('scripts')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
@@ -113,21 +82,21 @@
             });
         });
 
-        function editDosen(nip){
+        function editPegawai(id){
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-            url = "{{ url('dosen').'/' }}"+nip+'/edit';
+            url = "{{ url('pegawai').'/' }}"+id+'/edit';
             $.ajax({
                 url : url,
                 type : 'GET',
                 success : function(data){
                     $('#modalEdit').modal('show');
                     $('#nip_edit').val(data.nip);
-                    $('#prodi_kode_edit').val(data.prodi_kode);
-                    $('#nama_dosen_edit').val(data.nama_dosen);
+                    $('#nama_pegawai_edit').val(data.nama_pegawai);
+                    $('#jabatan_edit').val(data.jabatan);
                     $('#no_hp_edit').val(data.no_hp);
 
                 },

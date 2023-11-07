@@ -155,7 +155,6 @@ class JadwalPerkuliahanLivewire extends Component
             } else {
                 $batal = 0;
             }
-
             $jadwalPerProdiBelumMulai[$prodiKode]['jadwal'][] = [
                 'id' => $jadwal2->id,
                 'mata_kuliah_id' => $jadwal2->mata_kuliah_id,
@@ -171,7 +170,6 @@ class JadwalPerkuliahanLivewire extends Component
                 'nama_ruangan_kelas' => $jadwal2->nama_ruangan_kelas,
                 'pengampuh' => $nama_dosen,
                 'batal' => $batal ,
-
             ];
         }
 

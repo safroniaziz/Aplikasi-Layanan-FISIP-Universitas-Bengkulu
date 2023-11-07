@@ -1,7 +1,7 @@
 <div class="modal fade" id="modalEdit">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="{{ route('dosen.update') }}" method="POST" id="form">
+            <form action="{{ route('pegawai.update') }}" method="POST" class="form">
                 {{ csrf_field() }} {{ method_field('PATCH') }}
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -10,20 +10,19 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <input type="hidden" class="form-control" name="prodiKode" value="{{ $prodi->kode }}">
-                        <div class="form-group col-md-12">
-                            <label for="exampleInputEmail1">Nama Prodi</label>
-                            <input type="text" class="form-control" value="{{ $prodi->nama_prodi }}" disabled>
-                        </div>
-
                         <div class="form-group col-md-12">
                             <label for="exampleInputEmail1">NIP</label>
                             <input type="text" class="form-control" name="nip" id="nip_edit" readonly>
                         </div>
 
                         <div class="form-group col-md-12">
-                            <label for="exampleInputEmail1">Nama Dosen</label>
-                            <input type="text" class="form-control" name="nama_dosen" id="nama_dosen_edit">
+                            <label for="exampleInputEmail1">Nama Pegawai</label>
+                            <input type="text" class="form-control" name="nama_pegawai" id="nama_pegawai_edit">
+                        </div>
+
+                        <div class="form-group col-md-12">jabatan
+                            <label for="exampleInputEmail1">Jabatan</label>
+                            <input type="text" class="form-control" name="jabatan" id="jabatan_edit">
                         </div>
 
                         <div class="form-group col-md-12">

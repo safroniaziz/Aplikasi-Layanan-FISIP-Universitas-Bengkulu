@@ -31,7 +31,9 @@ use App\Http\Controllers\PemesananRuanganController;
 use App\Http\Controllers\JadwalPerkuliahanController;
 use App\Http\Controllers\ManajemenBukuTamuController;
 use App\Http\Controllers\MahasiswaMataKuliahController;
+use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\PendaftaranKonselingController;
+use App\Http\Controllers\PerubahanJadwalController;
 use App\Http\Controllers\PoadcastController;
 
 /*
@@ -143,6 +145,14 @@ Route::controller(DosenController::class)->middleware('auth','verified','operato
     Route::delete('/{dosen:nip}/delete', 'delete')->name('dosen.delete');
 });
 
+Route::controller(PegawaiController::class)->middleware('auth','verified','operator')->prefix('/pegawai')->group(function(){
+    Route::get('/', 'index')->name('pegawai');
+    Route::post('/', 'store')->name('pegawai.store');
+    Route::get('/{pegawai}/edit', 'edit')->name('pegawai.edit');
+    Route::patch('/update', 'update')->name('pegawai.update');
+    Route::delete('/{pegawai}/delete', 'delete')->name('pegawai.delete');
+});
+
 Route::controller(PengampuController::class)->middleware('auth','verified','operator')->prefix('/pengampu')->group(function(){
     Route::get('/', 'index')->name('pengampu');
     Route::post('/', 'store')->name('pengampu.store');
@@ -165,6 +175,12 @@ Route::controller(JadwalPerkuliahanController::class)->middleware('auth','verifi
     Route::get('/{jadwalPerkuliahan}/edit', 'edit')->name('jadwalPerkuliahan.edit');
     Route::patch('/update', 'update')->name('jadwalPerkuliahan.update');
     Route::delete('/{jadwalPerkuliahan}/delete', 'delete')->name('jadwalPerkuliahan.delete');
+});
+
+Route::controller(PerubahanJadwalController::class)->middleware('auth','verified','operator')->prefix('/perubahan_jadwal')->group(function(){
+    Route::get('/', 'index')->name('perubahanJadwal');
+    Route::get('/{jadwal}/get_data', 'getData')->name('perubahanJadwal.getData');
+    Route::patch('/update', 'update')->name('perubahanJadwal.update');
 });
 
 Route::controller(MahasiswaMataKuliahController::class)->middleware('auth','verified','operator')->prefix('/mahasiswa_mata_kuliah')->group(function(){

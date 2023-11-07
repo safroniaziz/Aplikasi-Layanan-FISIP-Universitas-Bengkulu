@@ -5,7 +5,7 @@
 <div class="box-body">
     <div class="row">
         <div class="col-md-12">
-            <table class="table table-bordered table-hover table-striped">
+            <table class="table table-hover table-striped">
                 <tr>
                     <th>Kode Program Studi</th>
                     <td> : </td>
@@ -38,8 +38,8 @@
             <button type="button" class="btn btn-primary btn-sm btn-flat" data-toggle="modal" data-target="#modal-default">
                 <i class="fa fa-plus"></i>&nbsp; Tambah Data
             </button>
-            <a href="{{ route('mahasiswa') }}" class="btn btn-success btn-sm btn-flat"><i class="fa fa-refresh fa-spin"></i>&nbsp; Sync Siakad</a>
-            <table class="table table-bordered table-hover table-striped" style="width: 100%">
+            {{-- <a href="{{ route('mahasiswa') }}" class="btn btn-success btn-sm btn-flat"><i class="fa fa-refresh fa-spin"></i>&nbsp; Sync Siakad</a> --}}
+            <table class="table table-hover table-striped" style="width: 100%">
                 <thead>
                     <tr>
                         <th>No</th>

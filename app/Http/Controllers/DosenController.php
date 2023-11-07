@@ -28,12 +28,15 @@ class DosenController extends Controller
         $rules = [
             'nip'         => 'required|unique:dosens|numeric',
             'nama_dosen'  => 'required',
+            'no_hp'  => 'required|numeric',
         ];
 
         $text = [
             'nip.required'      => 'NIP harus diisi.',
             'nip.unique'        => 'NIP sudah digunakan, harap pilih NIP lain.',
             'nama_dosen.required' => 'Nama dosen harus diisi.',
+            'no_hp.required' => 'Nomor WhatsApp harus diisi.',
+            'no_hp.numeric' => 'Nomor WhatsApp harus berupa angka.',
         ];
 
         $validasi = Validator::make($request->all(), $rules, $text);
@@ -45,6 +48,7 @@ class DosenController extends Controller
             'nip'                 =>  $request->nip,
             'prodi_kode'          =>  $request->prodiKode,
             'nama_dosen'          =>  $request->nama_dosen,
+            'no_hp'             =>  $request->no_hp,
         ]);
 
         if ($create) {
@@ -64,10 +68,13 @@ class DosenController extends Controller
     public function update(Request $request){
         $rules = [
             'nama_dosen'  => 'required',
+            'no_hp'  => 'required|numeric',
         ];
 
         $text = [
             'nama_dosen.required' => 'Nama dosen harus diisi.',
+            'no_hp.required' => 'Nomor WhatsApp harus diisi.',
+            'no_hp.numeric' => 'Nomor WhatsApp harus berupa angka.',
         ];
 
         $validasi = Validator::make($request->all(), $rules, $text);
@@ -77,6 +84,7 @@ class DosenController extends Controller
 
         $update = Dosen::where('nip',$request->nip)->update([
             'nama_dosen'      =>  $request->nama_dosen,
+            'no_hp'             =>  $request->no_hp,
         ]);
 
         if ($update) {

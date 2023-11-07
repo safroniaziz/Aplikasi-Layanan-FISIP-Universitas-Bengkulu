@@ -17,6 +17,7 @@ class Dosen extends Model
         'nip',
         'prodi_kode',
         'nama_dosen',
+        'no_hp',
     ];
 
     public function prodi()

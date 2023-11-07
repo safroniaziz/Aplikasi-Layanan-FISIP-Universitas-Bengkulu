@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dosen;
+use App\Models\Pegawai;
 use App\Models\BukuTamu;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -10,7 +12,12 @@ use Illuminate\Support\Facades\Validator;
 class BukuTamuController extends Controller
 {
     public function index(){
-        return view('frontend.buku_tamu');
+        $dosens = Dosen::select('nip','nama_dosen as nama');
+        $pegawais = Pegawai::select('nip','nama_pegawai as nama');
+        $pegawai_gabungan = $dosens->union($pegawais)->get();
+        return view('frontend.buku_tamu',[
+            'pegawais'  =>  $pegawai_gabungan,
+        ]);
     }
 
     public function store(Request $request){
@@ -38,26 +45,31 @@ class BukuTamuController extends Controller
         $base64Image = $request->input('foto');
         if ($base64Image) {
             $imageData = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $base64Image));
-
             $namaTamu = $request->input('nama_tamu');
-            $tanggal = date('Y-m-d');
-            $tanggalJam = date('Y-m-d H:i:s');
+            $tanggalJam = now();
             $keperluan = $request->input('keperluan');
             $tujuan = $request->input('tujuan');
             $noHp = $request->input('no_hp');
+            $token = "VUPG2eveV7sG+9ZzEIMz";
 
-            // Buat path lengkap untuk penyimpanan
+            $target = null;
+
+            if ($dosen = Dosen::where('nip', $tujuan)->first()) {
+                $target = $dosen->no_hp;
+                $nm = $dosen->nama_dosen;
+            } elseif ($pegawai = Pegawai::where('nip', $tujuan)->first()) {
+                $target = $pegawai->no_hp;
+                $nm = $dosen->nama_pegawai;
+            }
+
+            // Simpan gambar
+            $tanggal = $tanggalJam->format('Y-m-d');
             $filePath = "buku_tamu/$tanggal/";
-
-            // Buat nama file unik dengan menggabungkan nama tamu dan waktu saat ini
             $fileName = $namaTamu . '_' . time() . '.jpg';
-
-            // Gabungkan path dan nama file
             $fullPath = $filePath . $fileName;
-            
             Storage::disk('public')->put($fullPath, $imageData);
 
-            // Simpan nama file ke database (jika diperlukan)
+            // Simpan data ke database
             $imageModel = new BukuTamu();
             $imageModel->tanggal = $tanggalJam;
             $imageModel->nama_tamu = $namaTamu;
@@ -67,7 +79,13 @@ class BukuTamuController extends Controller
             $imageModel->foto = $fullPath;
             $imageModel->save();
 
-            return redirect()->route('bukuTamu')->with(['success'   =>  'Data tersimpan, terimakasih']);
+            if ($target) {
+                // Kirim pesan WhatsApp
+                $messageController = new WaController();
+                $message = "Halo $nm, $namaTamu ingin bertamu dengan anda sekarang dengan keperluan $keperluan";
+                $response = $messageController->sendWa($token, $target, $message);
+            }
+            return redirect()->route('bukuTamu')->with(['success' => 'Data tersimpan, terimakasih']);
         }
         else{
             return redirect()->route('bukuTamu')->with(['success'   =>  'Data tersimpan, coba lagi !!!']);

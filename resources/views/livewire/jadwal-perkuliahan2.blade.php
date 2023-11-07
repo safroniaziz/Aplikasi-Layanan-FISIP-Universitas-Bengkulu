@@ -69,19 +69,24 @@
 
                                                     <td class="px-4  whitespace-nowrap lg:text-lg 2xl:text-2xl py-2 leading-7 font-bold text-gray-700">
                                                         {{ $jadwal['waktu_mulai'] }} - {{ $jadwal['waktu_selesai'] }}
-                                                        @if($jadwal['batal']==1)
-                                                        <br><span class="bg-red-500 text-white font-normal text-lg py-2 px-4 mt-1 rounded-full">Dibatalkan</span>
-                                                        @endif
+                                                        
                                                     </td>
                                                     <td class="px-4  whitespace-nowrap lg:text-lg 2xl:text-2xl py-2 leading-7 font-bold text-gray-700">
                                                         {{ $jadwal['nama_ruangan_kelas'] }}
                                                     </td>
-                                                    <td class="px-4     lg:text-lg 2xl:text-2xl py-2 leading-7 font-bold text-gray-700">
+                                                    <td rowspan="2" class="px-4     lg:text-lg 2xl:text-2xl py-2 leading-7 font-bold text-gray-700">
                                                         <div class="line-clamp-3">{{ $jadwal['nama_mata_kuliah'] }}</div>
                                                     </td>
-                                                    <td class="px-4    lg:text-lg 2xl:text-2xl py-2 leading-7 font-bold text-gray-700">
+                                                    <td  rowspan="2" class="px-4    lg:text-lg 2xl:text-2xl py-2 leading-7 font-bold text-gray-700">
                                                         <div class="line-clamp-2">{{ $jadwal['pengampuh'] }}</div>
                                                     </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="2" style="padding: 0px !important;margin:0px !important">
+                                                            @if($jadwal['batal']==1)
+                                                         <span class="bg-red-500 inline-block text-center text-white font-normal text-lg px-4 mt-1 rounded-md before:">lorem ipsum dadoadaadada adas lorem</span>
+                                                        @endif
+                                                        </td>
                                                     </tr>
 
                                                     @endif
@@ -191,9 +196,7 @@
                     <div class="bg-[#010347] p-3 w-full h-full      ">
                         <iframe class="w-full h-full " src="https://www.youtube.com/embed/{{ $link }}?autoplay=1&controls=1&loop=1&mute=0" frameborder="0" allow="  autoplay;  " allowfullscreen></iframe>
                     </div>
-
                 </div>
-
             </div>
             <div class="w-full   overflow-hidden  ">
                 <div wire:poll.2000ms="jadwalBelumMulai" class="bg-white bg-opacity-70 h-[35vh]    w-full pl-3  ">

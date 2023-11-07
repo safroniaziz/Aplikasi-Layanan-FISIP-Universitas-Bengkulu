@@ -182,7 +182,7 @@
                 $('.sidebar-menu').tree()
             });
 
-            let table = new DataTable('.table');
+            let table = new DataTable('.table-bordered');
 
             // Toast Notification Setting
             @if(Session::has('message'))
