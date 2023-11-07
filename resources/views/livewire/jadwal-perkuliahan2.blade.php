@@ -189,7 +189,7 @@
                 </div>
                 <div wire:poll.10000ms="link" class="col-span-1 w-full  rounded-md overflow-hidden ">
                     <div class="bg-[#010347] p-3 w-full h-full      ">
-                        <iframe class="w-full h-full " src="https://www.youtube.com/embed/{{ $link }}?autoplay=1&controls=1&loop=1&mute=0" frameborder="0" allow="  autoplay;  " allowfullscreen></iframe>
+                        <iframe class="w-full h-full " src="https://www.youtube.com/embed/{{ $link }}?autoplay=1&controls=1&loop=1&mute=0&playlist={{ $link }}" frameborder="0" allow="  autoplay;  " allowfullscreen></iframe>
                     </div>
 
                 </div>
@@ -382,7 +382,7 @@
             </p> -->
             <marquee class="py-2" loop="infinite" scrollamount="5">
                 @foreach ($footer as $item)
-                    {{$item->text_footer}} |
+                {{$item->text_footer}} |
                 @endforeach
 
             </marquee>
