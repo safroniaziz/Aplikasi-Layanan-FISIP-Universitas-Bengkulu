@@ -1,18 +1,22 @@
 <?php
 
 use Livewire\Livewire;
+use App\Livewire\SewaPodcast;
 use App\Livewire\ChatOperator;
 use App\Livewire\JadwalPerkuliahan;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\DosenController;
 use App\Http\Controllers\JadwalController;
+use App\Http\Controllers\DaftarSewaRuangan;
+use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\ProfileController;
 use App\Livewire\JadwalPerkuliahanLivewire;
 use App\Http\Controllers\BukuTamuController;
 use App\Http\Controllers\CariDataController;
 use App\Http\Controllers\OperatorController;
 use App\Http\Controllers\PengampuController;
+use App\Http\Controllers\PoadcastController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KonselingController;
 use App\Http\Controllers\MahasiswaController;
@@ -20,14 +24,15 @@ use App\Http\Controllers\JenisSuratController;
 use App\Http\Controllers\MataKuliahController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RequirementController;
-use App\Http\Controllers\UserProfileController;
-use App\Http\Controllers\PermohonanSuratController;
 use App\Http\Controllers\sewaPodcastController;
+use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\AlatPoadcastController;
 use App\Http\Controllers\ProgramStudiController;
 use App\Http\Controllers\RuanganKelasController;
 use App\Http\Controllers\SettingJadwalController;
 use App\Http\Controllers\JadwalKonselingController;
+use App\Http\Controllers\PermohonanSuratController;
+use App\Http\Controllers\PerubahanJadwalController;
 use App\Http\Controllers\RuanganPoadcastController;
 use App\Http\Controllers\BasisPengetahuanController;
 use App\Http\Controllers\KonselingOfflineController;
@@ -35,10 +40,7 @@ use App\Http\Controllers\PemesananRuanganController;
 use App\Http\Controllers\JadwalPerkuliahanController;
 use App\Http\Controllers\ManajemenBukuTamuController;
 use App\Http\Controllers\MahasiswaMataKuliahController;
-use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\PendaftaranKonselingController;
-use App\Http\Controllers\PerubahanJadwalController;
-use App\Http\Controllers\PoadcastController;
 
 /*
 |--------------------------------------------------------------------------
@@ -290,6 +292,17 @@ Route::controller(SewaPodcastController::class)->middleware('auth', 'verified')-
     Route::post('/sewaruang', 'store')->name('sewaruang.store');
 
 });
+Route::get('/sewa-podcast', SewaPodcast::class)->name('sewa_podcast_livewire');
+
+
+Route::controller(DaftarSewaRuangan::class)->middleware('auth', 'verified', 'operator')->prefix('/daftar_sewa_ruangan')->group(function () {
+    Route::get('/', 'index')->name('sewaRuangan');
+    Route::get('/create', 'create')->name('sewaRuangan.create');
+    Route::post('/', 'store')->name('sewaRuangan.store');
+    Route::get('/{sewaRuangan}/konfirmasi', 'konfirmasi')->name('sewaRuangan.konfirmasi');
+    Route::patch('/{sewaRuangan}/update', 'update')->name('sewaRuangan.update');
+    Route::delete('/{sewaRuangan}/delete', 'delete')->name('sewaRuangan.delete');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -297,5 +310,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 // });
+
 
 require __DIR__.'/auth.php';

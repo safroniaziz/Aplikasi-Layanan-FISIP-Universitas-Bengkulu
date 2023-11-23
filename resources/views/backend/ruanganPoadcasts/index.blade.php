@@ -18,37 +18,38 @@
                         <th>Lokasi</th>
                         <th>Harga Sewa</th>
                         <th>Foto</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($ruanganPoadcasts as $index => $ruanganPoadcast)
-                        <tr>
-                            <td>{{ $index+1 }}</td>
-                            <td>{{ $ruanganPoadcast->nama_ruangan }}</td>
-                            <td>{{ $ruanganPoadcast->deskripsi }}</td>
-                            <td>{{ $ruanganPoadcast->kapasitas }}</td>
-                            <td>{{ $ruanganPoadcast->lokasi }}</td>
-                            <td>{{ $ruanganPoadcast->harga_sewa }}</td>
-                            <td>
-                                <img src="{{ asset('upload/foto_ruangan/'.$ruanganPoadcast->foto) }}" alt="" height="100">
-                            </td>
-                            <td>
-                                <table>
-                                    <tr>
-                                        <td>
-                                            <a href="{{ route('ruanganPoadcast.edit',[$ruanganPoadcast->id]) }}" class="btn btn-success btn-sm btn-flat"><i class="fa fa-edit"></i>&nbsp; Edit</a>
-                                        </td>
-                                        <td>
-                                            <form action="{{ route('ruanganPoadcast.delete',[$ruanganPoadcast->id]) }}" method="POST" id="form">
-                                                @csrf @method('DELETE')
+                    <tr>
+                        <td>{{ $index+1 }}</td>
+                        <td>{{ $ruanganPoadcast->nama_ruangan }}</td>
+                        <td>{{ $ruanganPoadcast->deskripsi }}</td>
+                        <td>{{ $ruanganPoadcast->kapasitas }}</td>
+                        <td>{{ $ruanganPoadcast->lokasi }}</td>
+                        <td>{{ $ruanganPoadcast->harga_sewa }}</td>
+                        <td>
+                            <img src="{{ asset('upload/foto_ruangan/'.$ruanganPoadcast->foto) }}" alt="" height="100">
+                        </td>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <a href="{{ route('ruanganPoadcast.edit',[$ruanganPoadcast->id]) }}" class="btn btn-success btn-sm btn-flat"><i class="fa fa-edit"></i>&nbsp; Edit</a>
+                                    </td>
+                                    <td>
+                                        <form action="{{ route('ruanganPoadcast.delete',[$ruanganPoadcast->id]) }}" method="POST" id="form">
+                                            @csrf @method('DELETE')
 
-                                                <button type="submit" class="btn btn-danger btn-sm btn-flat show_confirm"><i class="fa fa-trash"></i>&nbsp; Hapus</button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </td>
-                        </tr>
+                                            <button type="submit" class="btn btn-danger btn-sm btn-flat show_confirm"><i class="fa fa-trash"></i>&nbsp; Hapus</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
                     @endforeach
                 </tbody>
             </table>
@@ -60,13 +61,13 @@
 @include('backend/ruanganPoadcasts/form')
 
 @push('scripts')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
-    <script>
-        $('.show_confirm').click(function(event) {
-            var form =  $(this).closest("form");
-            var name = $(this).data("name");
-            event.preventDefault();
-            swal({
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+<script>
+    $('.show_confirm').click(function(event) {
+        var form = $(this).closest("form");
+        var name = $(this).data("name");
+        event.preventDefault();
+        swal({
                 title: `Apakah Anda Yakin?`,
                 text: "Harap untuk memeriksa kembali sebelum menghapus data.",
                 icon: "warning",
@@ -75,9 +76,9 @@
             })
             .then((willDelete) => {
                 if (willDelete) {
-                form.submit();
+                    form.submit();
                 }
             });
-        });
-    </script>
+    });
+</script>
 @endpush

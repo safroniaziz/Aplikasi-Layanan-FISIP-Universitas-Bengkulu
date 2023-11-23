@@ -1,18 +1,18 @@
 @if (auth()->user()->hasRole('operator'))
-    <li class="header">MENU UTAMA</li>
-    <li class="{{ set_active('dashboard') }}">
-        <a href="{{ route('dashboard') }}">
-            <i class="fa fa-desktop"></i>
-            <span>Dashboard</span>
-        </a>
-    </li>
+<li class="header">MENU UTAMA</li>
+<li class="{{ set_active('dashboard') }}">
+    <a href="{{ route('dashboard') }}">
+        <i class="fa fa-desktop"></i>
+        <span>Dashboard</span>
+    </a>
+</li>
 
-    <li class="{{ set_active(['programStudi']) }}">
-        <a href="{{ route('programStudi') }}">
-            <i class="fa fa-graduation-cap"></i>
-            <span>Program Studi</span>
-        </a>
-    </li>
+<li class="{{ set_active(['programStudi']) }}">
+    <a href="{{ route('programStudi') }}">
+        <i class="fa fa-graduation-cap"></i>
+        <span>Program Studi</span>
+    </a>
+</li>
 
 <li class="treeview {{ set_active([
     'mahasiswa','mahasiswa.detail',
@@ -46,6 +46,7 @@
     <ul class="treeview-menu">
         <li class="{{ set_active(['ruanganPoadcast']) }}"><a href="{{ route('ruanganPoadcast') }}"><i class="fa fa-circle-o"></i> Ruangan Poadcast</a></li>
         <li class="{{ set_active(['alatPoadcast']) }}"><a href="{{ route('alatPoadcast') }}"><i class="fa fa-circle-o"></i> Alat Poadcast</a></li>
+        <li class="{{ set_active(['sewaRuangan']) }}"><a href="{{ route('sewaRuangan') }}"><i class="fa fa-circle-o"></i> list Sewa Ruangan </a></li>
     </ul>
 </li>
 
@@ -93,26 +94,26 @@
     </ul>
 </li>
 
-    <li class="{{ set_active(['manajemenBukuTamu']) }}">
-        <a href="{{ route('manajemenBukuTamu') }}">
-            <i class="fa fa-book-open"></i>
-            <span>Buku Tamu</span>
-        </a>
-    </li>
+<li class="{{ set_active(['manajemenBukuTamu']) }}">
+    <a href="{{ route('manajemenBukuTamu') }}">
+        <i class="fa fa-book-open"></i>
+        <span>Buku Tamu</span>
+    </a>
+</li>
 
-    <li class="treeview {{ set_active([
+<li class="treeview {{ set_active([
         'jenisSurat','jenisSurat.kelengkapan'
     ]) }}">
-        <a href="#">
-            <i class="fa fa-envelope"></i> <span>Permohonan Surat </span>
-            <span class="pull-right-container">
+    <a href="#">
+        <i class="fa fa-envelope"></i> <span>Permohonan Surat </span>
+        <span class="pull-right-container">
             <i class="fa fa-angle-left pull-right"></i>
-            </span>
-        </a>
-        <ul class="treeview-menu">
-            <li class="{{ set_active(['jenisSurat','jenisSurat.kelengkapan']) }}"><a href="{{ route('jenisSurat') }}"><i class="fa fa-circle-o"></i> Jenis Surat</a></li>
-        </ul>
-    </li>
+        </span>
+    </a>
+    <ul class="treeview-menu">
+        <li class="{{ set_active(['jenisSurat','jenisSurat.kelengkapan']) }}"><a href="{{ route('jenisSurat') }}"><i class="fa fa-circle-o"></i> Jenis Surat</a></li>
+    </ul>
+</li>
 
 <li class="treeview {{ set_active([
     'permission',

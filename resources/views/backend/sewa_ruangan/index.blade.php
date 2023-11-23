@@ -1,42 +1,47 @@
 @extends('layouts.application')
-@section('halaman', 'Alat Poadcast')
-@section('menu', 'Alat Poadcast')
+@section('halaman', 'Pemesanan Ruangan Poadcast')
+@section('menu', 'Pemesanan Ruangan Poadcast')
 @section('content')
 <div class="box-body">
     <div class="row">
         <div class="col-md-12" style="margin-bottom: 10px !important;">
-            <a href="{{ route('alatPoadcast.create') }}" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-plus"></i>&nbsp;Tambah Data</a>
+            <a href="{{ route('ruanganPoadcast.create') }}" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-plus"></i>&nbsp;Tambah Data</a>
         </div>
         <div class="col-md-12 table-responsive">
             <table class="table table-bordered table-hover table-striped" style="width: 100%">
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Nama Alat</th>
-                        <th>Deskripsi</th>
-                        <th>Jumlah Alat</th>
-                        <th>Foto</th>
+                        <th>Nama Pemesan</th>
+                        <th>No Wa</th>
+                        <th>Keperluan</th>
+                        <th>Tanggal dan Waktu</th>
+                        <th>Status</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($alatPoadcasts as $index => $alatPoadcast)
+                    @foreach ($PemesananRuangan as $index => $data)
                     <tr>
                         <td>{{ $index+1 }}</td>
-                        <td>{{ $alatPoadcast->nama_alat }}</td>
-                        <td>{{ $alatPoadcast->deskripsi }}</td>
-                        <td>{{ $alatPoadcast->jumlah_alat }}</td>
-                        <td>
-                            <img src="{{ asset('upload/foto_alat/'.$alatPoadcast->foto) }}" alt="" height="100">
+                        <td>{{ $data->user->name }}</td>
+                        <td>{{ $data->no_wa }}</td>
+                        <td>{{ $data->keperluan }}</td>
+                        <td>{{ $data->tanggal_dan_waktu_mulai }}</td>
+                        <td>@if( $data->status==0)
+                            <span class="label label-warning">Belum DiKonformasi</span>
+                            @else
+                            <span class="label label-success">Dikonfirmasi</span>
+                            @endif
                         </td>
                         <td>
                             <table>
                                 <tr>
                                     <td>
-                                        <a href="{{ route('alatPoadcast.edit',[$alatPoadcast->id]) }}" class="btn btn-success btn-sm btn-flat"><i class="fa fa-edit"></i>&nbsp; Edit</a>
+                                        <a href="{{ route('sewaRuangan.konfirmasi',[$data->id]) }}" class="btn btn-success btn-sm btn-flat"><i class="fa fa-check-circle"></i>&nbsp; Konfirmasi</a>
                                     </td>
                                     <td>
-                                        <form action="{{ route('alatPoadcast.delete',[$alatPoadcast->id]) }}" method="POST" id="form">
+                                        <form action="{{ route('sewaRuangan.delete',[$data->id]) }}" method="POST" id="form">
                                             @csrf @method('DELETE')
 
                                             <button type="submit" class="btn btn-danger btn-sm btn-flat show_confirm"><i class="fa fa-trash"></i>&nbsp; Hapus</button>
@@ -54,7 +59,7 @@
 </div>
 @endsection
 
-@include('backend/alatPoadcasts/form')
+@include('backend/ruanganPoadcasts/form')
 
 @push('scripts')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
