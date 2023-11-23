@@ -8,10 +8,10 @@
             <button type="button" class="btn btn-primary btn-sm btn-flat" data-toggle="modal" data-target="#modal-default">
                 <i class="fa fa-plus"></i>&nbsp; Tambah Data
             </button>
-            <a href="{{ route('jadwalPerkuliahan.semuaJadwal') }}" class="btn btn-success btn-sm btn-flat"><i class="fa fa-list-alt"></i>&nbsp; Lihat Semua Jadwal</a>
+            <a href="{{ route('jadwalPerkuliahan') }}" class="btn btn-success btn-sm btn-flat"><i class="fa fa-list-alt"></i>&nbsp; Lihat Jadwal Hari Ini</a>
         </div>
         <div class="col-md-12">
-            <div class="alert alert-danger">Menampilkan Jadwal Perkuliahan Pada Hari <b>{{ $hariIni }}</b></div>
+            <div class="alert alert-danger">Menampilkan Jadwal Di Semua Hari</div>
         </div>
         <div class="col-md-12 table-responsive">
             <table class="table table-bordered table-hover table-striped" style="width: 100%">

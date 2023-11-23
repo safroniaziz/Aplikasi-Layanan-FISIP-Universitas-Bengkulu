@@ -55,6 +55,7 @@
     'ruanganKelas',
     'jadwalPerkuliahan',
     'perubahanJadwal',
+    'jadwalPerkuliahan.semuaJadwal',
 ]) }}">
     <a href="#">
         <i class="fa fa-calendar"></i> <span>Jadwal Mata Kuliah</span>
@@ -66,7 +67,7 @@
         <li class="{{ set_active(['mataKuliah','mataKuliah.detail']) }}"><a href="{{ route('mataKuliah') }}"><i class="fa fa-circle-o"></i> Mata Kuliah</a></li>
         <li class="{{ set_active(['pengampu']) }}"><a href="{{ route('pengampu') }}"><i class="fa fa-circle-o"></i> Pengampu</a></li>
         <li class="{{ set_active(['ruanganKelas']) }}"><a href="{{ route('ruanganKelas') }}"><i class="fa fa-circle-o"></i> Ruang Kelas</a></li>
-        <li class="{{ set_active(['jadwalPerkuliahan']) }}"><a href="{{ route('jadwalPerkuliahan') }}"><i class="fa fa-circle-o"></i> Jadwal Perkuliahan</a></li>
+        <li class="{{ set_active(['jadwalPerkuliahan','jadwalPerkuliahan.semuaJadwal']) }}"><a href="{{ route('jadwalPerkuliahan') }}"><i class="fa fa-circle-o"></i> Jadwal Perkuliahan</a></li>
         <li class="{{ set_active(['perubahanJadwal']) }}"><a href="{{ route('perubahanJadwal') }}"><i class="fa fa-circle-o"></i> Perubahan Jadwal</a></li>
         <li class="{{ set_active(['jadwal_settings']) }}"><a href="{{ route('jadwal_settings') }}"><i class="fa fa-circle-o"></i> Jadwal Setting View</a></li>
     </ul>

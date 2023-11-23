@@ -79,10 +79,10 @@ Route::controller(PermohonanSuratController::class)->middleware('auth','verified
     Route::post('/', 'store')->name('permohonanSurat.store');
 });
 
-Route::controller(PoadcastController::class)->middleware('auth','verified','guestTamu')->prefix('/sewa_poadcast')->group(function () {
-    Route::get('/', 'index')->name('poadcast');
-    Route::post('/', 'store')->name('poadcast.store');
-});
+// Route::controller(PoadcastController::class)->middleware('auth','verified','guestTamu')->prefix('/sewa_poadcast')->group(function () {
+//     Route::get('/', 'index')->name('poadcast');
+//     Route::post('/', 'store')->name('poadcast.store');
+// });
 
 
 Route::get('/tampil-Jadwal', JadwalPerkuliahanLivewire::class)->name('tampilJadwalLivewire');
@@ -181,6 +181,7 @@ Route::controller(JadwalPerkuliahanController::class)->middleware('auth','verifi
     Route::delete('/{jadwalPerkuliahan}/delete', 'delete')->name('jadwalPerkuliahan.delete');
     Route::patch('/{jadwalPerkuliahan}/batalkan', 'batalkan')->name('jadwalPerkuliahan.batalkan');
     Route::post('/alihkan', 'alihkan')->name('jadwalPerkuliahan.alihkan');
+    Route::get('/semua_jadwal', 'semuaJadwal')->name('jadwalPerkuliahan.semuaJadwal');
 });
 
 Route::controller(PerubahanJadwalController::class)->middleware('auth','verified','operator')->prefix('/perubahan_jadwal')->group(function(){
@@ -210,7 +211,7 @@ Route::controller(KonselingOfflineController::class)->middleware('auth','verifie
     Route::patch('/verify', 'verify')->name('konselingOffline.verify');
 });
 
-Route::controller(ManajemenBukuTamuController::class)->middleware('auth','verified','operator')->prefix('/manajemen_buku_tamu')->group(function(){
+// Route::controller(ManajemenBukuTamuController::class)->middleware('auth','verified','operator')->prefix('/manajemen_buku_tamu')->group(function(){
 
 
 Route::controller(JadwalKonselingController::class)->middleware('auth', 'verified')->prefix('/jadwal_konseling')->group(function () {
@@ -281,7 +282,7 @@ Route::controller(SettingJadwalController::class)->middleware('auth', 'verified'
     Route::get('/', 'index')->name('jadwal_settings');
 });
 
-Route::controller(sewaPodcastController::class)->middleware('auth', 'verified')->prefix('/sewa_podcast')->group(function () {
+Route::controller(SewaPodcastController::class)->middleware('auth', 'verified')->prefix('/sewa_podcast')->group(function () {
     Route::get('/', 'index')->name('sewa_podcast');
     Route::post('/sewaruang', 'store')->name('sewaruang.store');
 
@@ -292,6 +293,6 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-});
+// });
 
 require __DIR__.'/auth.php';

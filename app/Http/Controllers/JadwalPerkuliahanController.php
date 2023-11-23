@@ -17,13 +17,30 @@ class JadwalPerkuliahanController extends Controller
     public function index(){
         $mataKuliahs = MataKuliah::all();
         $ruanganKelas = RuanganKelas::all();
-        $jadwalPerkuliahans = JadwalPerkuliahan::all();
+        $hariIni = Carbon::now()->isoFormat('dddd');
+        $jadwalPerkuliahans = JadwalPerkuliahan::with(['mataKuliah','ruanganKelas'])->where('hari',$hariIni)->get();
         $prodis = ProgramStudi::all();
         return view('backend/jadwalPerkuliahans.index',[
             'jadwalPerkuliahans'  =>  $jadwalPerkuliahans,
             'mataKuliahs'  =>  $mataKuliahs,
             'ruanganKelas'  =>  $ruanganKelas,
             'prodis'  =>  $prodis,
+            'hariIni'  =>  $hariIni,
+        ]);
+    }
+
+    public function semuaJadwal(){
+        $mataKuliahs = MataKuliah::all();
+        $ruanganKelas = RuanganKelas::all();
+        $hariIni = Carbon::now()->isoFormat('dddd');
+        $jadwalPerkuliahans = JadwalPerkuliahan::with(['mataKuliah','ruanganKelas'])->get();
+        $prodis = ProgramStudi::all();
+        return view('backend/jadwalPerkuliahans.semuaJadwal',[
+            'jadwalPerkuliahans'  =>  $jadwalPerkuliahans,
+            'mataKuliahs'  =>  $mataKuliahs,
+            'ruanganKelas'  =>  $ruanganKelas,
+            'prodis'  =>  $prodis,
+            'hariIni'  =>  $hariIni,
         ]);
     }
 
