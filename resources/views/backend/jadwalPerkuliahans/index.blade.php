@@ -14,7 +14,7 @@
             <div class="alert alert-danger">Menampilkan Jadwal Perkuliahan Pada Hari <b>{{ $hariIni }}</b></div>
         </div>
         <div class="col-md-12 table-responsive">
-            <table class="table table-bordered table-hover table-striped" style="width: 100%">
+            <table class="table table-hover table-striped" style="width: 100%">
                 <thead>
                     <tr>
                         <th>No</th>
@@ -24,6 +24,7 @@
                         <th>Hari</th>
                         <th>Waktu Mulai</th>
                         <th>Waktu Selesai</th>
+                        <th>Kehadiran</th>
                         <th style="text-align: center">Aksi</th>
                     </tr>
                 </thead>
@@ -41,9 +42,13 @@
                             <td>{{ $jadwalPerkuliahan->hari }}</td>
                             <td>{{ $jadwalPerkuliahan->waktu_mulai }}</td>
                             <td>{{ $jadwalPerkuliahan->waktu_selesai }}</td>
+                            <th>
+                                <a href="{{ route('jadwalPerkuliahan.kehadiran',[$id]) }}" class="btn btn-default btn-sm btn-flat"><i class="fa fa-qrcode"></i>&nbsp; Kehadiran</a>
+                            </th>
                             <td>
                                 <table>
                                     <tr>
+                                        
                                         @if (!$jadwalPerkuliahan->dialihkan()->exists() && !$jadwalPerkuliahan->status_dibatalkan)
                                             <td>
                                                 <a onclick="alihkan({{ $jadwalPerkuliahan->id }})" class="btn btn-info btn-sm btn-flat"><i class="fa fa-exchange"></i>&nbsp; Alihkan</a>

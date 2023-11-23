@@ -182,6 +182,9 @@ Route::controller(JadwalPerkuliahanController::class)->middleware('auth','verifi
     Route::patch('/{jadwalPerkuliahan}/batalkan', 'batalkan')->name('jadwalPerkuliahan.batalkan');
     Route::post('/alihkan', 'alihkan')->name('jadwalPerkuliahan.alihkan');
     Route::get('/semua_jadwal', 'semuaJadwal')->name('jadwalPerkuliahan.semuaJadwal');
+    Route::get('/{id}/kehadiran', 'kehadiran')->name('jadwalPerkuliahan.kehadiran');
+    Route::get('/scan-qr-code/{id}', [JadwalPerkuliahanController::class, 'scanQRCode'])->name('scan-qr-code');
+
 });
 
 Route::controller(PerubahanJadwalController::class)->middleware('auth','verified','operator')->prefix('/perubahan_jadwal')->group(function(){

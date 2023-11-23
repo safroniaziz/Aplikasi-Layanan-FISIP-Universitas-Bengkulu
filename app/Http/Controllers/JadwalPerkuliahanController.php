@@ -9,8 +9,9 @@ use App\Models\RuanganKelas;
 use Illuminate\Http\Request;
 use App\Models\JadwalPerkuliahan;
 use App\Models\JadwalPerkuliahanStatus;
-use App\Models\PengalihanPembatalanJadwal;
 use Illuminate\Support\Facades\Validator;
+use App\Models\PengalihanPembatalanJadwal;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class JadwalPerkuliahanController extends Controller
 {
@@ -18,7 +19,7 @@ class JadwalPerkuliahanController extends Controller
         $mataKuliahs = MataKuliah::all();
         $ruanganKelas = RuanganKelas::all();
         $hariIni = Carbon::now()->isoFormat('dddd');
-        $jadwalPerkuliahans = JadwalPerkuliahan::with(['mataKuliah','ruanganKelas'])->where('hari',$hariIni)->get();
+        $jadwalPerkuliahans = JadwalPerkuliahan::with(['mataKuliah','ruanganKelas'])->where('hari',$hariIni)->paginate(10);
         $prodis = ProgramStudi::all();
         return view('backend/jadwalPerkuliahans.index',[
             'jadwalPerkuliahans'  =>  $jadwalPerkuliahans,
@@ -190,5 +191,30 @@ class JadwalPerkuliahanController extends Controller
             'text'  =>  'Berhasil, jadwal sudah dialihkan',
             'url'   =>  route('jadwalPerkuliahan'),
         ]);
+    }
+
+    public function kehadiran($id){
+        $jadwalPerkuliahan = JadwalPerkuliahan::with(['mataKuliah','ruanganKelas'])->where('id',$id)->first();
+        return view('backend.jadwalPerkuliahans.kehadiran',[
+            'jadwalPerkuliahan' =>  $jadwalPerkuliahan,
+        ]);
+    }
+
+    public function scanQRCode($id)
+    {
+        // Temukan data berdasarkan ID
+        $data = JadwalPerkuliahan::find($id);
+        dd($data);
+        if (!$data) {
+            abort(404);
+        }
+
+        // Lakukan pembaruan data sesuai kebutuhan
+        $data->update([
+            'status' => 'Sudah Dipindai', // Ganti dengan kolom yang ingin Anda perbarui
+        ]);
+
+        // Redirect atau kembalikan respons sesuai kebutuhan
+        return redirect()->route('jadwalPerkuliahan')->with('success', 'Data berhasil diperbarui setelah pemindaian QR code.');
     }
 }
