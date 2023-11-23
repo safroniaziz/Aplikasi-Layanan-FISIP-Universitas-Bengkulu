@@ -24,7 +24,7 @@
                 @if($link)
 
                 <div style="width: 100%; height: 100%;background-color: #ccc;display: grid;  ">
-                    <iframe wire:loading.remove wire:target="simpan" class="w-full h-full " style="width: 100%; height:100%;" src="https://www.youtube.com/embed/{{ $link }}?autoplay=1&controls=1&loop=1&mute=0" frameborder="0" allow="  autoplay;  " allowfullscreen></iframe>
+                    <iframe wire:loading.remove wire:target="simpan" class="w-full h-full " style="width: 100%; height:100%;" src="https://www.youtube.com/embed/{{ $link }}?autoplay=1&controls=1&loop=1&mute=0&playlist={{ $link }}" frameborder="0" allow="  autoplay;  " allowfullscreen></iframe>
                     <div wire:loading wire:target="simpan" style="place-self: center;">
 
                         <span style="font-weight: 800; padding: 10px 0px;" ;>Processing...</span>
