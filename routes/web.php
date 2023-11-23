@@ -1,5 +1,6 @@
 <?php
 
+use Livewire\Livewire;
 use App\Livewire\ChatOperator;
 use App\Livewire\JadwalPerkuliahan;
 use Illuminate\Support\Facades\Route;
@@ -20,10 +21,13 @@ use App\Http\Controllers\MataKuliahController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RequirementController;
 use App\Http\Controllers\UserProfileController;
+use App\Http\Controllers\PermohonanSuratController;
+use App\Http\Controllers\sewaPodcastController;
 use App\Http\Controllers\AlatPoadcastController;
 use App\Http\Controllers\ProgramStudiController;
 use App\Http\Controllers\RuanganKelasController;
-use App\Http\Controllers\PermohonanSuratController;
+use App\Http\Controllers\SettingJadwalController;
+use App\Http\Controllers\JadwalKonselingController;
 use App\Http\Controllers\RuanganPoadcastController;
 use App\Http\Controllers\BasisPengetahuanController;
 use App\Http\Controllers\KonselingOfflineController;
@@ -205,6 +209,20 @@ Route::controller(KonselingOfflineController::class)->middleware('auth','verifie
 });
 
 Route::controller(ManajemenBukuTamuController::class)->middleware('auth','verified','operator')->prefix('/manajemen_buku_tamu')->group(function(){
+
+
+Route::controller(JadwalKonselingController::class)->middleware('auth', 'verified')->prefix('/jadwal_konseling')->group(function () {
+    Route::get('/', 'index')->name('jadwalKonseling');
+    Route::post('/jadwal_konseling/list', 'listPendaftaranKonseling')->name('jadwalKonseling.list');
+});
+
+Route::get('events/list', [JadwalKonselingController::class, 'listPendaftaranKonseling'])->name('events.list');
+Route::resource('events', JadwalKonselingController::class);
+
+Route::resource('jadwalKonseling', JadwalKonselingController::class);
+
+
+Route::controller(ManajemenBukuTamuController::class)->middleware('auth','verified')->prefix('/manajemen_buku_tamu')->group(function(){
     Route::get('/', 'index')->name('manajemenBukuTamu');
     Route::post('/', 'store')->name('manajemenBukuTamu.store');
     Route::get('/{bukuTamu}/download', 'download')->name('manajemenBukuTamu.download');
@@ -254,10 +272,24 @@ Route::controller(RoleController::class)->middleware('auth','verified','operator
     Route::post('/role/{role}/assign/', 'assign')->name('role.assign');
 });
 
+
+
+
+Route::controller(SettingJadwalController::class)->middleware('auth', 'verified')->prefix('/jadwal_settings')->group(function () {
+    Route::get('/', 'index')->name('jadwal_settings');
+});
+
+Route::controller(sewaPodcastController::class)->middleware('auth', 'verified')->prefix('/sewa_podcast')->group(function () {
+    Route::get('/', 'index')->name('sewa_podcast');
+    Route::post('/sewaruang', 'store')->name('sewaruang.store');
+
+});
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 });
 
 require __DIR__.'/auth.php';

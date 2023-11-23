@@ -68,12 +68,14 @@
         <li class="{{ set_active(['ruanganKelas']) }}"><a href="{{ route('ruanganKelas') }}"><i class="fa fa-circle-o"></i> Ruang Kelas</a></li>
         <li class="{{ set_active(['jadwalPerkuliahan']) }}"><a href="{{ route('jadwalPerkuliahan') }}"><i class="fa fa-circle-o"></i> Jadwal Perkuliahan</a></li>
         <li class="{{ set_active(['perubahanJadwal']) }}"><a href="{{ route('perubahanJadwal') }}"><i class="fa fa-circle-o"></i> Perubahan Jadwal</a></li>
+        <li class="{{ set_active(['jadwal_settings']) }}"><a href="{{ route('jadwal_settings') }}"><i class="fa fa-circle-o"></i> Jadwal Setting View</a></li>
     </ul>
 </li>
 
 <li class="treeview {{ set_active([
     'basisPengetahuan',
     'konselingOffline',
+    'basisPengetahuan','jadwalKonseling','massage',
 ]) }}">
     <a href="#">
         <i class="fa fa-comments"></i> <span>Layanan Konseling</span>
@@ -85,6 +87,8 @@
         <li class="{{ set_active(['basisPengetahuan']) }}"><a href="{{ route('basisPengetahuan') }}"><i class="fa fa-circle-o"></i> Basis Pengetahuan</a></li>
         <li class="{{ set_active(['massage']) }}"><a href="{{ route('massage') }}"><i class="fa fa-circle-o"></i> E-Konsling (Live Chat)</a></li>
         <li class="{{ set_active(['konselingOffline']) }}"><a href="{{ route('konselingOffline') }}"><i class="fa fa-circle-o"></i> Konseling Offline</a></li>
+        <li class="{{ set_active(['jadwalKonseling']) }}"><a href="{{ route('jadwalKonseling') }}"><i class="fa fa-circle-o"></i> Jadwal Konseling</a></li>
+        <li class="{{ set_active(['massage']) }}"><a href="{{ route('massage') }}"><i class="fa fa-circle-o"></i> Mesagge</a></li>
     </ul>
 </li>
 
