@@ -15,7 +15,9 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('jenis_surat_id');
+            $table->text('keperluan');
             $table->enum('status',['terkirim','diproses','ditolak','selesai']);
+            $table->text('keterangan_status');
             $table->timestamps();
         });
     }

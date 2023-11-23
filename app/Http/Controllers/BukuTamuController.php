@@ -82,7 +82,7 @@ class BukuTamuController extends Controller
             if ($target) {
                 // Kirim pesan WhatsApp
                 $messageController = new WaController();
-                $message = "Halo $nm, $namaTamu ingin bertamu dengan anda sekarang dengan keperluan $keperluan";
+                $message = "Halo $nm, $namaTamu ingin bertamu dengan anda dengan keperluan $keperluan";
                 $response = $messageController->sendWa($token, $target, $message);
             }
             return redirect()->route('bukuTamu')->with(['success' => 'Data tersimpan, terimakasih']);
