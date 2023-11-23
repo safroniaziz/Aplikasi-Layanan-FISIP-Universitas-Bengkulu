@@ -84,7 +84,7 @@
                                                     <tr>
                                                         <td colspan="2" style="padding: 0px !important;margin:0px !important">
                                                             @if($jadwal['batal']==1)
-                                                         <span class="bg-red-500 inline-block text-center text-white font-normal text-lg px-4 mt-1 rounded-md before:">lorem ipsum dadoadaadada adas lorem</span>
+                                                         <span class="bg-red-500 inline-block text-center text-white font-normal text-lg px-4 mt-1 rounded-md before:">Perkuliahan Dibatalkan</span>
                                                         @endif
                                                         </td>
                                                     </tr>
@@ -131,7 +131,9 @@
                                                     <td class="px-4  whitespace-nowrap lg:text-lg 2xl:text-2xl py-2 leading-7 font-bold text-gray-700">
                                                         {{ $jadwal['waktu_mulai'] }} - {{ $jadwal['waktu_selesai'] }}
                                                         @if($jadwal['batal']==1)
-                                                        <br><span class="bg-red-500 text-white font-normal text-lg py-2 px-4 mt-1 rounded-full">Dibatalkan</span>
+                                                        <br><span class="bg-red-500 text-white font-normal text-lg py-2 px-4 mt-1 rounded-full">Perkuliahan Dibatalkan</span>
+                                                        @elseif($jadwal['dialihkan_ke'] != null)
+                                                        <br><span class="bg-red-500 inline-block text-center text-white font-normal text-lg px-4 mt-1 rounded-md before:">Dialihkan Ke Tanggal {{ $jadwal['dialihkan_ke'] }}</span>
                                                         @endif
                                                     </td>
                                                     <td class="px-4  whitespace-nowrap lg:text-lg 2xl:text-2xl py-2 leading-7 font-bold text-gray-700">
@@ -252,7 +254,9 @@
                                                 <td class="px-4  whitespace-nowrap lg:text-lg 2xl:text-2xl py-2 leading-7 font-bold text-gray-700">
                                                     {{ $jadwal['waktu_mulai'] }} - {{ $jadwal['waktu_selesai'] }}
                                                     @if($jadwal['batal']==1)
-                                                    <span class="bg-red-500 text-white font-normal text-lg py-2 px-4 ml-3 rounded-full">Dibatalkan</span>
+                                                    <span class="bg-red-500 text-white font-normal text-lg py-2 px-4 ml-3 rounded-full">Perkuliahan Dibatalkan</span>
+                                                    @elseif($jadwal['dialihkan_ke'] != null)
+                                                    <span class="bg-red-500 inline-block text-center text-white font-normal text-lg px-4 mt-1 rounded-md before:">Dialihkan Ke Tanggal {{ $jadwal['dialihkan_ke'] }}</span>
                                                     @endif
                                                 </td>
                                                 <td class="px-4  whitespace-nowrap lg:text-lg 2xl:text-2xl py-2 leading-7 font-bold text-gray-700">
@@ -309,7 +313,9 @@
                                                 <td class=" px-4 whitespace-nowrap lg:text-lg 2xl:text-2xl py-2 leading-7 font-bold text-gray-700">
                                                     {{ $jadwal['waktu_mulai'] }} - {{ $jadwal['waktu_selesai'] }}
                                                     @if($jadwal['batal']==1)
-                                                    <span class="bg-red-500 text-white font-normal text-lg py-2 px-4 ml-3 rounded-full">Dibatalkan</span>
+                                                    <span class="bg-red-500 text-white font-normal text-lg py-2 px-4 ml-3 rounded-full">Perkuliahan Dibatalkan</span>
+                                                    @elseif($jadwal['dialihkan_ke'] != null)
+                                                    <span class="bg-red-500 inline-block text-center text-white font-normal text-lg px-4 mt-1 rounded-md before:">Dialihkan Ke Tanggal {{ $jadwal['dialihkan_ke'] }}</span>
                                                     @endif
                                                 </td>
                                                 <td class="px-4  whitespace-nowrap lg:text-lg 2xl:text-2xl py-2 leading-7 font-bold text-gray-700">

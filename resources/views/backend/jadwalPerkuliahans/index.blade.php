@@ -24,7 +24,11 @@
                 </thead>
                 <tbody>
                     @forelse ($jadwalPerkuliahans as $index => $jadwalPerkuliahan)
-                        <tr>
+                        <tr @if ($jadwalPerkuliahan->status_dibatalkan)
+                            style="background:#F08080"
+                            @elseif($jadwalPerkuliahan->dialihkan()->exists())
+                            style="background:#ffe787"
+                        @endif>
                             <td>{{ $index+1 }}</td>
                             <td>{{ $jadwalPerkuliahan->mataKuliah->nama_mata_kuliah }}</td>
                             <td>{{ $jadwalPerkuliahan->ruanganKelas->nama_ruangan_kelas }}</td>
@@ -34,6 +38,17 @@
                             <td>
                                 <table>
                                     <tr>
+                                        @if (!$jadwalPerkuliahan->dialihkan()->exists() && !$jadwalPerkuliahan->status_dibatalkan)
+                                            <td>
+                                                <a onclick="alihkan({{ $jadwalPerkuliahan->id }})" class="btn btn-info btn-sm btn-flat"><i class="fa fa-exchange"></i>&nbsp; Alihkan</a>
+                                            </td>
+                                            <td>
+                                                <form action="{{ route('jadwalPerkuliahan.batalkan',[$jadwalPerkuliahan->id]) }}" method="POST" id="form">
+                                                    @csrf @method('PATCH')
+                                                    <button type="submit" class="btn btn-warning btn-sm btn-flat show_confirm"><i class="fa fa-close"></i>&nbsp; Batalkan</button>
+                                                </form>
+                                            </td>
+                                        @endif
                                         <td>
                                             <a onclick='editJadwalPerkuliahan("{{ $jadwalPerkuliahan->id }}")' class="btn btn-success btn-sm btn-flat"><i class="fa fa-edit"></i>&nbsp; Edit</a>
                                         </td>
@@ -61,6 +76,7 @@
             @include('backend/jadwalPerkuliahans/partials.modal_edit')
         </div>
     </div>
+    @include('backend/jadwalPerkuliahans/partials.modal_alihkan')
 </div>
 @endsection
 
@@ -72,6 +88,11 @@
         $(document).ready(function() {
             $('.select2').select2();
         });
+
+        function alihkan(id){
+            $('#modalAlihkan').modal('show');
+            $('#id_alihkan').val(id);
+        }
         
         $('.show_confirm').click(function(event) {
             var form =  $(this).closest("form");

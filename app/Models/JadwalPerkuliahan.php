@@ -26,4 +26,19 @@ class JadwalPerkuliahan extends Model
     {
         return $this->belongsTo(RuanganKelas::class, 'ruangan_kelas_id');
     }
+
+    public function dibatalkan()
+    {
+        return $this->hasMany(JadwalPerkuliahanStatus::class,'jadwal_perkuliahan_id');
+    }
+
+    public function dialihkan()
+    {
+        return $this->hasOne(PengalihanPembatalanJadwal::class,'jadwal_id','id');
+    }
+
+    public function getStatusDibatalkanAttribute()
+    {
+        return $this->dibatalkan()->whereDate('tanggal', now()->toDateString())->exists();
+    }
 }

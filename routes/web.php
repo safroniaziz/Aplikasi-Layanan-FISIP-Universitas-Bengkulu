@@ -179,6 +179,8 @@ Route::controller(JadwalPerkuliahanController::class)->middleware('auth','verifi
     Route::get('/{jadwalPerkuliahan}/edit', 'edit')->name('jadwalPerkuliahan.edit');
     Route::patch('/update', 'update')->name('jadwalPerkuliahan.update');
     Route::delete('/{jadwalPerkuliahan}/delete', 'delete')->name('jadwalPerkuliahan.delete');
+    Route::patch('/{jadwalPerkuliahan}/batalkan', 'batalkan')->name('jadwalPerkuliahan.batalkan');
+    Route::post('/alihkan', 'alihkan')->name('jadwalPerkuliahan.alihkan');
 });
 
 Route::controller(PerubahanJadwalController::class)->middleware('auth','verified','operator')->prefix('/perubahan_jadwal')->group(function(){

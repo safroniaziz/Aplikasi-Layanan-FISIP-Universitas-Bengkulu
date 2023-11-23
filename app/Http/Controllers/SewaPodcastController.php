@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\RuanganPoadcast;
 use App\Models\PemesananRuangan;
 
-class sewaPodcastController extends Controller
+class SewaPodcastController extends Controller
 {
     public function index( )
     {

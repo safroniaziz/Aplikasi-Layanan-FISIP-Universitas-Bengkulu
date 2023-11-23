@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\MataKuliah;
 use App\Models\ProgramStudi;
 use App\Models\RuanganKelas;
 use Illuminate\Http\Request;
 use App\Models\JadwalPerkuliahan;
+use App\Models\JadwalPerkuliahanStatus;
+use App\Models\PengalihanPembatalanJadwal;
 use Illuminate\Support\Facades\Validator;
 
 class JadwalPerkuliahanController extends Controller
@@ -122,5 +125,53 @@ class JadwalPerkuliahanController extends Controller
         }else{
             return response()->json(['error'  =>  0, 'text'   =>  'Ooopps, Jadwal Perkuliahan Gagal dihapus'],422);
         }
+    }
+
+    public function batalkan(JadwalPerkuliahan $jadwalPerkuliahan){
+        $sekarang = Carbon::now();
+        JadwalPerkuliahanStatus::create([
+            'jadwal_perkuliahan_id' =>  $jadwalPerkuliahan->id,
+            'is_cancel'             =>  1,
+            'tanggal'               =>  $sekarang->format('Y-m-d'),
+        ]);
+
+        return response()->json([
+            'text'  =>  'Berhasil, jadwal sudah dibatalkan',
+            'url'   =>  route('jadwalPerkuliahan'),
+        ]);
+    }
+
+    public function alihkan(Request $request){
+        $rules = [
+            'dialihkan_ke'   => 'required',
+            'dialihkan_dari' => 'required',
+            'waktu_mulai'      => 'required',
+            'waktu_selesai'    => 'required',
+        ];
+
+        $text = [
+            'dialihkan_dari.required'      => 'Tanggal Dialihkan harus diisi.',
+            'dialihkan_ke.required'      => 'Dialihkan Ke harus diisi.',
+            'waktu_mulai.required'      => 'Waktu Mulai harus diisi.',
+            'waktu_selesai.required'    => 'Waktu Selesai harus diisi.',
+        ];
+
+        $validasi = Validator::make($request->all(), $rules, $text);
+        if ($validasi->fails()) {
+            return response()->json(['error'  =>  0, 'text'   =>  $validasi->errors()->first()],422);
+        }
+
+        PengalihanPembatalanJadwal::create([
+            'jadwal_id' =>  $request->id,
+            'dialihkan_dari'    =>  $request->dialihkan_dari,
+            'dialihkan_ke'  =>  $request->dialihkan_ke,
+            'waktu_mulai'   =>  $request->waktu_mulai,
+            'waktu_selesai' =>  $request->waktu_selesai,
+        ]);
+
+        return response()->json([
+            'text'  =>  'Berhasil, jadwal sudah dialihkan',
+            'url'   =>  route('jadwalPerkuliahan'),
+        ]);
     }
 }

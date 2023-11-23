@@ -10,6 +10,7 @@ use App\Models\JadwalPerkuliahan;
 use App\Models\JadwalSettingFooter;
 use Illuminate\Support\Facades\Date;
 use App\Models\JadwalPerkuliahanStatus;
+use App\Models\PengalihanPembatalanJadwal;
 
 class JadwalPerkuliahanLivewire extends Component
 {
@@ -62,6 +63,7 @@ class JadwalPerkuliahanLivewire extends Component
 
             $pengampuh = Pengampu::select('nama_dosen')->join('dosens', 'pengampus.dosen_nip', '=', 'dosens.nip')->where('pengampus.mata_kuliah_id', $jadwal->mata_kuliah_id)->where('is_active', 1)->first();
             $batal = JadwalPerkuliahanStatus::select('is_cancel')->where('jadwal_perkuliahan_id', $jadwal->id)->where('tanggal', $now->toDateString())->first();
+            $dialihkan = PengalihanPembatalanJadwal::select('dialihkan_ke','waktu_mulai','waktu_selesai')->where('jadwal_id', $jadwal->id)->where('dialihkan_dari', $now->toDateString())->first();
 
             if ($batal) {
                 $batal = $batal->is_cancel;
@@ -73,6 +75,16 @@ class JadwalPerkuliahanLivewire extends Component
                 $nama_dosen = $pengampuh->nama_dosen;
             } else {
                 $nama_dosen = '-';
+            }
+
+            if ($dialihkan) {
+                $dialihkan_ke = $dialihkan->dialihkan_ke;
+                $dialihkan_mulai = $dialihkan->waktu_mulai;
+                $dialihkan_selesai = $dialihkan->waktu_selesai;
+            } else {
+                $dialihkan_ke = null;
+                $dialihkan_mulai = null;
+                $dialihkan_selesai = null;
             }
 
             $jadwalPerProdiBerlangsung[$prodiKode]['jadwal'][] = [
@@ -90,7 +102,9 @@ class JadwalPerkuliahanLivewire extends Component
                 'nama_ruangan_kelas' => $jadwal->nama_ruangan_kelas,
                 'pengampuh' => $nama_dosen,
                 'batal' => $batal,
-
+                'dialihkan_ke' => $dialihkan_ke ,
+                'dialihkan_mulai' => $dialihkan_mulai ,
+                'dialihkan_selesai' => $dialihkan_selesai ,
             ];
         }
 
@@ -145,6 +159,7 @@ class JadwalPerkuliahanLivewire extends Component
 
             $pengampuh = Pengampu::select('nama_dosen')->join('dosens', 'pengampus.dosen_nip', '=', 'dosens.nip')->where('pengampus.mata_kuliah_id', $jadwal2->mata_kuliah_id)->where('is_active', 1)->first();
             $batal = JadwalPerkuliahanStatus::select('is_cancel')->where('jadwal_perkuliahan_id', $jadwal2->id)->where('tanggal', $now->toDateString())->first();
+            $dialihkan = PengalihanPembatalanJadwal::select('dialihkan_ke','waktu_mulai','waktu_selesai')->where('jadwal_id', $jadwal2->id)->where('dialihkan_dari', $now->toDateString())->first();
             if ($pengampuh) {
                 $nama_dosen = $pengampuh->nama_dosen;
             } else {
@@ -154,6 +169,16 @@ class JadwalPerkuliahanLivewire extends Component
                 $batal = $batal->is_cancel;
             } else {
                 $batal = 0;
+            }
+            if ($dialihkan) {
+                $dialihkan_ke = $dialihkan->dialihkan_ke;
+                $dialihkan_mulai = $dialihkan->waktu_mulai;
+                $dialihkan_selesai = $dialihkan->waktu_selesai;
+            } else {
+                $dialihkan = null;
+                $dialihkan_ke = null;
+                $dialihkan_mulai = null;
+                $dialihkan_selesai = null;
             }
             $jadwalPerProdiBelumMulai[$prodiKode]['jadwal'][] = [
                 'id' => $jadwal2->id,
@@ -170,6 +195,9 @@ class JadwalPerkuliahanLivewire extends Component
                 'nama_ruangan_kelas' => $jadwal2->nama_ruangan_kelas,
                 'pengampuh' => $nama_dosen,
                 'batal' => $batal ,
+                'dialihkan_ke' => $dialihkan_ke ,
+                'dialihkan_mulai' => $dialihkan_mulai ,
+                'dialihkan_selesai' => $dialihkan_selesai ,
             ];
         }
 

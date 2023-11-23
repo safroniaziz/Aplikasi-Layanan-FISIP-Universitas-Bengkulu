@@ -18,7 +18,6 @@ return new class extends Migration
             $table->date('tanggal');
             $table->timestamps();
             $table->foreign('jadwal_perkuliahan_id')->references('id')->on('jadwal_perkuliahans');
-
         });
     }
 

@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('pengalihan_pembatalan_jadwals', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('jadwal_id');
-            $table->string('hari');
+            $table->date('dialihkan_dari');
+            $table->date('dialihkan_ke');
             $table->string('waktu_mulai');
             $table->string('waktu_selesai');
             $table->enum('status',['dialihkan']);

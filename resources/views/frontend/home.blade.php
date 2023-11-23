@@ -35,7 +35,7 @@
         </svg>
         <div class="grid grid-cols-1 md:grid-cols-2  z-10 overflow-hidden h-screen justify-center relative">
             <div class="col-span-1 px-8 lg:px-12 text-white  mx-auto     place-self-center">
-                <div data-aos="fade-left" class=" lg:mt-20 2xl:mt-0  max-w-lg 2xl:max-w-xl">
+                <div data-aos="fade-left" class=" lg:mt-8 2xl:mt-0  max-w-lg 2xl:max-w-xl">
                     <h2 class="font-extrabold font-[arial] text-2xl lg:text-2xl       inline-block text-transparent
                               bg-clip-text bg-gradient-to-b from-orange-500 from-30% to-yellow-500 text-h2-sh  ">
                         FAKULTAS ILMU SOSIAL DAN POLITIK <br>UNIVERSITAS BENGKULU</h2>
@@ -46,8 +46,8 @@
                     </p>
                 </div>
             </div>
-            <div class="col-span-1 lg:mt-20 2xl:mt-0 md:block hidden ">
-                <lottie-player data-aos="fade-right" src="{{ asset('assets/user/src/animation_ln6b4eb3.json') }}" style="filter: drop-shadow(10px 10px 0px #EAB308);" background="transparent" speed="1" class="w-4/6 mx-auto " loop autoplay></lottie-player>
+            <div class="col-span-1 lg:mt-0 2xl:mt-0 md:block hidden ">
+                <lottie-player data-aos="fade-right" src="{{ asset('assets/user/src/welcome2.json') }}" style="filter: drop-shadow(10px 10px 0px #EAB308);" background="transparent" speed="1" class="w-6/6 mx-auto " loop autoplay></lottie-player>
             </div>
         </div>
     </div>
