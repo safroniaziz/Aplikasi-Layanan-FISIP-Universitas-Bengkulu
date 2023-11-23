@@ -1,49 +1,10 @@
 @extends('layouts.user')
 @section('konseling','active-menu')
-@push('styles')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css" integrity="sha512-O03ntXoVqaGUTAeAmvQ2YSzkCvclZEcPQu1eqloPaHfJ5RuNGiS4l+3duaidD801P50J28EHyonCV06CUlTSag==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" integrity="sha512-mSYUmp1HYZDFaVKK//63EcZq4iFWFjxSL+Z3T/aCt4IO9Cejm03q3NKKYN6pFQzY0SBOr8h+eCIAZHPXcpZaNw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css' rel='stylesheet'>
 
-@endpush
 @section('content')
 <div x-data="{ modalPendaftaranKonseling: false, modalKonseling:false}">
     <!-- slider -->
-    @if ($message = Session::get('success'))
-        <div x-data x-init="isShow = true"></div>
-        <div x-show="isShow" style="z-index: 99;" class="fixed top-24 right-0 m-3 w-2/3 md:w-1/3" x-transition:enter="transition transform ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-1" x-transition:enter-end="opacity-100 translate-y-0" x-transition:leave="transition transform ease-in duration-300" x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 translate-y-1">
-            <div class="bg-white border-gray-300 border p-3 flex items-start shadow-lg rounded-md space-x-2">
-                <svg class="flex-shrink-0 h-6 w-6 text-green-400" stroke="currentColor" viewBox="0 0 20 20">
-                    <path stroke-width="1" d="M10.219,1.688c-4.471,0-8.094,3.623-8.094,8.094s3.623,8.094,8.094,8.094s8.094-3.623,8.094-8.094S14.689,1.688,10.219,1.688 M10.219,17.022c-3.994,0-7.242-3.247-7.242-7.241c0-3.994,3.248-7.242,7.242-7.242c3.994,0,7.241,3.248,7.241,7.242C17.46,13.775,14.213,17.022,10.219,17.022 M15.099,7.03c-0.167-0.167-0.438-0.167-0.604,0.002L9.062,12.48l-2.269-2.277c-0.166-0.167-0.437-0.167-0.603,0c-0.166,0.166-0.168,0.437-0.002,0.603l2.573,2.578c0.079,0.08,0.188,0.125,0.3,0.125s0.222-0.045,0.303-0.125l5.736-5.751C15.268,7.466,15.265,7.196,15.099,7.03"></path>
-                </svg>
-                <div class="flex-1 space-y-1">
-                    <p class="text-base leading-6 font-medium text-gray-700">Proses Berhasil!</p>
-                    <p class="text-sm leading-5 text-gray-600">{{ $message }}</p>
-                </div>
-                <svg class="flex-shrink-0 h-5 w-5 text-gray-400 cursor-pointer" x-on:click="isShow = false" stroke="currentColor" viewBox="0 0 20 20">
-                    <path stroke-width="1.2" d="M15.898,4.045c-0.271-0.272-0.713-0.272-0.986,0l-4.71,4.711L5.493,4.045c-0.272-0.272-0.714-0.272-0.986,0s-0.272,0.714,0,0.986l4.709,4.711l-4.71,4.711c-0.272,0.271-0.272,0.713,0,0.986c0.136,0.136,0.314,0.203,0.492,0.203c0.179,0,0.357-0.067,0.493-0.203l4.711-4.711l4.71,4.711c0.137,0.136,0.314,0.203,0.494,0.203c0.178,0,0.355-0.067,0.492-0.203c0.273-0.273,0.273-0.715,0-0.986l-4.711-4.711l4.711-4.711C16.172,4.759,16.172,4.317,15.898,4.045z"></path>
-                </svg>
-            </div>
-        </div>
-    @endif
-    
-    @if ($message = Session::get('error'))
-    <div x-data x-init="isShow = true"></div>
-    <div x-show="isShow" style="z-index: 99;" class="fixed top-24 right-0 m-3 w-2/3 md:w-1/3" x-transition:enter="transition transform ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-1" x-transition:enter-end="opacity-100 translate-y-0" x-transition:leave="transition transform ease-in duration-300" x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 translate-y-1">
-        <div class="bg-red-100 border-gray-300 border p-3 flex items-start shadow-lg rounded-md space-x-2">
-            <svg class="flex-shrink-0 h-6 w-6 text-red-400 fill-red-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="flex-none fill-current text-red-500 h-4 w-4">
-                <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm4.597 17.954l-4.591-4.55-4.555 4.596-1.405-1.405 4.547-4.592-4.593-4.552 1.405-1.405 4.588 4.543 4.545-4.589 1.416 1.403-4.546 4.587 4.592 4.548-1.403 1.416z" />
-            </svg>
-            <div class="flex-1 space-y-1">
-                <p class="text-base leading-6 font-medium text-red-600">Mohon Maaf!</p>
-                <p class="text-sm leading-5 text-gray-600">{{ $message }}</p>
-            </div>
-            <svg class="flex-shrink-0 h-5 w-5 text-gray-400 cursor-pointer" x-on:click="isShow = false" stroke="currentColor" viewBox="0 0 20 20">
-                <path stroke-width="1.2" d="M15.898,4.045c-0.271-0.272-0.713-0.272-0.986,0l-4.71,4.711L5.493,4.045c-0.272-0.272-0.714-0.272-0.986,0s-0.272,0.714,0,0.986l4.709,4.711l-4.71,4.711c-0.272,0.271-0.272,0.713,0,0.986c0.136,0.136,0.314,0.203,0.492,0.203c0.179,0,0.357-0.067,0.493-0.203l4.711-4.711l4.71,4.711c0.137,0.136,0.314,0.203,0.494,0.203c0.178,0,0.355-0.067,0.492-0.203c0.273-0.273,0.273-0.715,0-0.986l-4.711-4.711l4.711-4.711C16.172,4.759,16.172,4.317,15.898,4.045z"></path>
-            </svg>
-        </div>
-    </div>
-    @endif
+
     <section id="home">
         <div class=" text-center overflow-hidden bg-[#010347] dark:bg-[#f5ca3c] duration-300 transform">
             <div class="   z-10   mt-20 justify-center relative">
@@ -89,7 +50,7 @@
                                 text-sm text-white-700 font-bold
                                 focus:shadow-[-4px_4px_10px_0px_#2563eb]
                                 dark:focus:shadow-[-4px_4px_10px_0px_#eab308]" @click="modalPendaftaranKonseling =!modalPendaftaranKonseling">
-                    Pendaftaran Konseling Offline
+                    Pendaftaran E-Konseling
                 </button>
                 <button data-aos="fade-right" class="text-gray-200 rounded-lg   float-right py-4 px-4
                      bg-[#091150] dark:bg-yellow-500 hover:bg-blue-600 duration-300 transform
@@ -120,6 +81,9 @@
                                             contact
                                         </th>
                                         <th scope="col" class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                            Keterangan Konseling
+                                        </th>
+                                        <th scope="col" class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
                                             Tanggal Dan Waktu
                                         </th>
 
@@ -141,6 +105,10 @@
                                         <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
                                             <h2 class="font-medium text-gray-800 dark:text-white ">{{ Auth::user()->no_hp }}</h2>
                                             <p class="text-gray-500 dark:text-gray-400">{{ Auth::user()->email }}</p>
+
+                                        </td>
+                                        <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
+                                            <h2 class="font-medium text-gray-800 dark:text-white ">{{ $item->subject }}</h2>
 
                                         </td>
                                         <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
@@ -196,6 +164,7 @@
 
     </section>
 
+
     <!-- end Fitur  -->
 
 
@@ -237,7 +206,7 @@
     </div>
 
     <!-- modal pendaftaran E-Konseling -->
-    {{-- <div x-show="modalPendaftaranKonseling" style="z-index: 70;" class="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    <div x-show="modalPendaftaranKonseling" style="z-index: 70;" class="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
         <div class="flex items-end justify-center min-h-screen px-4 text-center md:items-center sm:block sm:p-0">
             <div x-cloak @click="modalPendaftaranKonseling = false" x-show="modalPendaftaranKonseling" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 transition-opacity bg-gray-500 bg-opacity-40" aria-hidden="true"></div>
 
@@ -261,7 +230,7 @@
                                 placeholder:text-gray-600 dark:placeholder:text-yellow-100 focus:border-white
                                 dark:focus:ring-yellow-500 focus:ring-[#01052D]
                                 focus:shadow-[-4px_4px_10px_0px_#01052D]
-                                dark:focus:shadow-[-4px_4px_10px_0px_#eab308] disabled:bg-gray-200 disabled:dark:bg-gray-900 cursor-not-allowed " disabled value="{{Auth::user()->name}}" placeholder="Nama Lengkap" />
+                                dark:focus:shadow-[-4px_4px_10px_0px_#eab308] disabled:bg-gray-200 disabled:dark:bg-gray-700 cursor-not-allowed " disabled value="{{Auth::user()->name}}" placeholder="Nama Lengkap" />
                         </div>
                         <div class=" col-span-1  ">
                             <label class=" after:content-['*'] after:text-red-500 font-semibold text-gray-700 dark:text-gray-300 after:ml-2 text-sm pb-2">Nomor Telepon</label>
@@ -270,29 +239,29 @@
                                 placeholder:text-gray-600 dark:placeholder:text-yellow-100 focus:border-white
                                 dark:focus:ring-yellow-500 focus:ring-[#01052D]
                                 focus:shadow-[-4px_4px_10px_0px_#01052D]
-                                dark:focus:shadow-[-4px_4px_10px_0px_#eab308]  disabled:bg-gray-200 disabled:dark:bg-gray-900 cursor-not-allowed" disabled value="{{Auth::user()->no_hp}}" placeholder="Nomor Telepon" />
+                                dark:focus:shadow-[-4px_4px_10px_0px_#eab308]  disabled:bg-gray-200 disabled:dark:bg-gray-700 cursor-not-allowed" disabled value="{{Auth::user()->no_hp}}" placeholder="Nomor Telepon" />
                         </div>
                         <div class=" col-span-1  ">
                             <label class=" after:content-['*'] after:text-red-500 font-semibold text-gray-700 dark:text-gray-300 after:ml-2 text-sm pb-2">Email</label>
-                            <input type="email" class="   w-full rounded-lg border-2 mt-1 border-[#01052D] dark:border-yellow-500
+                            <input type="email" class="  w-full rounded-lg border-2 mt-1 border-[#01052D] dark:border-yellow-500
                                 bg-transparent px-3 py-2.5 text-sm font-normal text-white-700 transition-all duration-500
                                 placeholder:text-gray-600 dark:placeholder:text-yellow-100 focus:border-white
                                 dark:focus:ring-yellow-500 focus:ring-[#01052D]
                                 focus:shadow-[-4px_4px_10px_0px_#01052D]
-                                dark:focus:shadow-[-4px_4px_10px_0px_#eab308] disabled:bg-gray-200 dark:disabled:bg-gray-900 dark:disabled:text-gray-900 cursor-not-allowed " disabled value="{{Auth::user()->email}}" placeholder="Email" />
+                                dark:focus:shadow-[-4px_4px_10px_0px_#eab308]  disabled:bg-gray-200 disabled:dark:bg-gray-700 cursor-not-allowed " disabled value="{{Auth::user()->email}}" placeholder="Email" />
                         </div>
                         <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
 
                     </div>
                     <div>
                         <label class=" after:content-['*'] after:text-red-500 font-semibold text-gray-700 dark:text-gray-300 after:ml-2 text-sm pb-2">Keterangan Konseling</label>
-                        <textarea type="text" name="deskripsi" class=" h-40  w-full rounded-lg border-2 mt-1 border-[#01052D] dark:border-yellow-500
+                        <textarea type="text" name="subject" class=" h-40  w-full rounded-lg border-2 mt-1 border-[#01052D] dark:border-yellow-500
                                 bg-transparent px-3 py-2.5 text-sm font-normal text-white-700 transition-all duration-500
                                 placeholder:text-gray-600 dark:placeholder:text-yellow-100 focus:border-white
                                 dark:focus:ring-yellow-500 focus:ring-[#01052D]
                                 focus:shadow-[-4px_4px_10px_0px_#01052D]
-                                dark:focus:shadow-[-4px_4px_10px_0px_#eab308]   " placeholder="Ceritakan secara singkat permasalahan anda"></textarea>
-                        @error('deskripsi')
+                                dark:focus:shadow-[-4px_4px_10px_0px_#eab308]   " placeholder="Tulisakan Keterangan Pendaftaran Konseling"></textarea>
+                        @error('subject')
                         <p class="text-red-500 text-xs font-bold">{{ $message }}</p>
                         @enderror
                     </div>
@@ -301,16 +270,29 @@
                         <div class=" col-span-1 grid  grid-cols-3 gap-3">
                             <div class="col-span-2">
                                 <label class=" after:content-['*'] after:text-red-500 font-semibold text-gray-700 dark:text-gray-300 after:ml-2 text-sm pb-2">Tanggal Mulai</label>
-                                <textarea name="deskripsi" class="   w-full rounded-lg border-2 mt-1 border-[#01052D] dark:border-yellow-500
+                                <input type="date" name="tgl_start" class="   w-full rounded-lg border-2 mt-1 border-[#01052D] dark:border-yellow-500
                                 bg-transparent px-3 py-2.5 text-sm font-normal text-white-700 transition-all duration-500
                                 placeholder:text-gray-600 dark:placeholder:text-yellow-100 focus:border-white
                                 dark:focus:ring-yellow-500 focus:ring-[#01052D]
                                 focus:shadow-[-4px_4px_10px_0px_#01052D]
-                                dark:focus:shadow-[-4px_4px_10px_0px_#eab308]   " placeholder="ceritakan permasalahan anda secara singkat disini"></textarea>
-                                @error('deskripsi')
+                                dark:focus:shadow-[-4px_4px_10px_0px_#eab308]   " placeholder="Tanggal Mulai" />
+                                @error('tgl_start')
                                 <p class="text-red-500 text-xs font-bold">{{ $message }}</p>
                                 @enderror
                             </div>
+                            <div class="col-span-1">
+                                <label class=" after:content-['*'] after:text-red-500 font-semibold text-gray-700 dark:text-gray-300 after:ml-2 text-sm pb-2">Waktu Mulai</label>
+                                <input type="time" name="waktu_start" class="   w-full rounded-lg border-2 mt-1 border-[#01052D] dark:border-yellow-500
+                                bg-transparent px-3 py-2.5 text-sm font-normal text-white-700 transition-all duration-500
+                                placeholder:text-gray-600 dark:placeholder:text-yellow-100 focus:border-white
+                                dark:focus:ring-yellow-500 focus:ring-[#01052D]
+                                focus:shadow-[-4px_4px_10px_0px_#01052D]
+                                dark:focus:shadow-[-4px_4px_10px_0px_#eab308]   " placeholder="Waktu Mulai" />
+                                @error('waktu_start')
+                                <p class="text-red-500 text-xs font-bold">{{ $message }}</p>
+                                @enderror
+                            </div>
+
                         </div>
 
                         <div class=" col-span-1 grid  grid-cols-3 gap-3">
@@ -356,9 +338,7 @@
 
             </div>
         </div>
-    </div> --}}
-    <div id='calendar'></div>
-    
+    </div>
     <!-- end modal pendaftaran E-Konseling -->
 
     <!-- modal Konseling -->
@@ -379,12 +359,25 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-3 mt-6">
                     <div class="col-span-1">
-                        <lottie-player src="{{ asset('assets/user/src/konseling.json') }}" background="transparent" speed="1" class="w-full mx-auto lottie-login " loop autoplay></lottie-player>
-                        <h2 class="text-center text-gray-700 text-2sh  font-extrabold relative -mt-10 text-2xl font-[arial]">E-Konseling </h2>
+                        <div>
+                            <lottie-player src="{{ asset('assets/user/src/konseling.json') }}" background="transparent" speed="1" class="w-full mx-auto  h-full " loop autoplay></lottie-player>
+                            <h2 class="text-center text-gray-700 dark:text-yellow-500 text-2sh  font-extrabold relative -mt-10 text-2xl font-[arial]">E-Konseling </h2>
+                        </div>
+
                     </div>
                     <div class="col-span-1 md:col-span-2">
                         <div class="flex flex-col space-y-2   text-xs md:text-sm">
                             <!-- item -->
+                            @if($basisPengetahuans->count()==0)
+                            <div class="text-gray-800 dark:text-gray-300 font-semibold grid  text-center my-20  w-full duration-300 transform ">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-28 w-28 mx-auto" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                    <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z" />
+                                </svg>
+                                <h2 class="text-lg mt-4">Belum Ada Basis Pengetahuan E-konseling</h2>
+                            </div>
+
+                            @else
                             @foreach ( $basisPengetahuans as $index => $data )
 
                             <div x-data="{ open: {{$index==0? 'true':'false'}} }">
@@ -395,34 +388,14 @@
 
                                     </div>
                                 </div>
-                                <div x-show.transition.in.duration.800ms="open" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100" x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-90" class="border px-4 py-2 leading-7  rounded-b-lg mb-3 bg-yellow-100 text-gray-700 dark:text-gray-200 ">
+                                <div x-show.transition.in.duration.800ms="open" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100" x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-90" class="border px-4 py-2 leading-7  rounded-b-lg mb-3 bg-yellow-100 text-gray-700   ">
                                     {{$data->jawaban}}
                                 </div>
                             </div>
                             @endforeach
+                            @endif
                             <!-- end item -->
-                            <div x-data="{penjelasan: ''}">
-                                <select class="flex w-full text-white border p-4 bg-[#010347] mt-20 dark:bg-yellow-500 rounded-lg" x-model="penjelasan">
-                                    <option value="">--- Pilih Konseling ---</option>
-                                    @foreach ( $basisPengetahuans as $data )
-                                    <option value="{{$data->jawaban}}">
-                                        {{$data->pertanyaan}}
-                                    </option>
-                                    @endforeach
-                                </select>
-                                <div class="w-full min-h-[350px] border border-gray-300 p-5 mt-5 leading-7 text-sm text-justify rounded-md shadow-md">
-                                    <template x-if="penjelasan==''">
-                                        <div class="text-gray-800 dark:text-gray-300 font-semibold grid  text-center my-20  w-full duration-300 transform ">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-28 w-28 mx-auto" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
-                                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                                                <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z" />
-                                            </svg>
-                                            <h2 class="text-lg mt-4">Harap pilih Pertanyaan yang ingin di ajukan terlebih dahulu</h2>
-                                        </div>
-                                    </template>
-                                    <h3 x-text="penjelasan" class="text-gray-800 dark:text-gray-300"> </h3>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -432,10 +405,3 @@
     <!-- end modal Konseling -->
 </div>
 @endsection
-
-@push('scripts')
-    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.7/index.global.min.js'></script>
-    <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/bootstrap5@6.1.7/index.global.min.js'></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js" integrity="sha512-Zq9o+E00xhhR/7vJ49mxFNJ0KQw1E1TMWkPTxrWcnpfEFDEXgUiwJHIKit93EW/XxE31HSI5GEOW06G6BF1AtA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" integrity="sha512-T/tUfKSV1bihCnd+MxKD0Hm1uBBroVYBOYSk1knyvQ9VyZJpc/ALb4P0r6ubwVPSGB2GvjeoMAJJImBG12TiaQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-@endpush

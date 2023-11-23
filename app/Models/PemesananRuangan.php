@@ -13,6 +13,8 @@ class PemesananRuangan extends Model
     protected $fillable = [
         'user_id',
         'ruangan_id',
+        'keperluan',
+        'no_wa',
         'mahasiswa_npm',
         'tanggal_dan_waktu_mulai',
         'tanggal_dan_waktu_selesai',

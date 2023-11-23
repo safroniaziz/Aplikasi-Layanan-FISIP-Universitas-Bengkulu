@@ -1,9 +1,7 @@
-@extends('layouts.user')
+<div>
 @section('poadcast','active-menu')
 
-@section('content')
-
-<div x-data="app() " x-init="[initDate(), getNoOfDays()]" x-cloak>
+    <div x-data="app() " x-init="[initDate(), getNoOfDays()]" x-cloak>
     <div x-data="{ event_date3: '' }">
         <section id="home">
             <div class=" text-center overflow-hidden bg-[#010347] dark:bg-[#f5ca3c] duration-300 transform">
@@ -260,20 +258,20 @@
 
                                 <label class=" after:content-['*'] after:text-red-500 font-semibold text-gray-700 dark:text-gray-300 after:ml-2 text-sm pb-2">Waktu  Tersedia</label>
 
-                                    <select name="waktu" class="   w-full rounded-lg border-2 mt-1 border-[#01052D] dark:border-yellow-500
+                                    <select   name="waktu" class="   w-full rounded-lg border-2 mt-1 border-[#01052D] dark:border-yellow-500
                                     bg-transparent px-3 py-2.5 text-sm font-normal text-white-700 transition-all duration-500
                                     placeholder:text-gray-600 dark:placeholder:text-yellow-100 focus:border-white
                                     dark:focus:ring-yellow-500 focus:ring-[#01052D]
                                     focus:shadow-[-4px_4px_10px_0px_#01052D]
-                                    dark:focus:shadow-[-4px_4px_10px_0px_#eab308]   ">
+                                    dark:focus:shadow-[-4px_4px_10px_0px_#eab308]   " required />
                                     <option value=""  class="bg-white dark:bg-gray-900 dark:text-gray-300"> --- pilih waktu sewa ---</option>
                                         @for ($i = 6; $i <= 22; $i++)
                                             @php
                                                 $hour = str_pad($i, 2, '0', STR_PAD_LEFT); // Pad with leading zero if needed
                                                 $minute = '00';
                                                 $timeOption = $hour . ":" . $minute;
-                                                $disabled = in_array( 'event_date3 ' . $timeOption . ':00', $cek_waktu) ? 'disabled' : '';
-                                                $disabled = in_array( 'event_date3 ' . $timeOption . ':00', $cek_waktu) ? 'disabled' : '';
+                                                $disabled = in_array( '2023-11-1 ' . $timeOption . ':00', $cek_waktu) ? 'disabled' : '';
+                                                $disabled = in_array( '2023-11-1 ' . $timeOption . ':00', $cek_waktu) ? 'disabled' : '';
                                                 $class = $disabled ? 'bg-red-300 dark:bg-red-900' : '';
 
                                             @endphp
@@ -293,8 +291,11 @@
                                     placeholder:text-gray-600 dark:placeholder:text-yellow-100 focus:border-white
                                     dark:focus:ring-yellow-500 focus:ring-[#01052D]
                                     focus:shadow-[-4px_4px_10px_0px_#01052D]
-                                    dark:focus:shadow-[-4px_4px_10px_0px_#eab308] h-20" type="text" x-model="keperluan" name="keperluan"></textarea>
+                                    dark:focus:shadow-[-4px_4px_10px_0px_#eab308] h-20"   type="text" x-model="keperluan" name="keperluan" required /></textarea>
                         </div>
+                        @error('keperluan')
+                                <p class="text-red-500 text-xs font-bold">{{ $message }}</p>
+                                @enderror
                         <input class="hidden  " type="text" x-model="event_date" readonly>
                         <input class="hidden  " type="text" id="event_date3" x-model="event_date3" readonly>
 
@@ -446,4 +447,5 @@
         }
     }
 </script>
-@endsection
+
+</div>

@@ -98,7 +98,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2  my-36 ">
             <div class="col-span-1   text-gray-700 dark:text-white  mx-auto   order-2  md:order-first  ">
                 <div class="        text-center md:text-right  -mt-12    ">
-                    <a href="{{ route('poadcast') }}" data-aos="fade-down" class="mb-3 font-sans text-3xl border-b-2 border-[#0b3960]  dark:border-yellow-500 px-3 pb-2
+                    <a href="{{ route('sewa_podcast') }}" data-aos="fade-down" class="mb-3 font-sans text-3xl border-b-2 border-[#0b3960]  dark:border-yellow-500 px-3 pb-2
                                 inline-block font-bold text-[#0b3960] dark:text-yellow-500
                               text-sh2 ">
                         Sewa Podcast</a>
@@ -110,7 +110,7 @@
                         butuhkan untuk menciptakan konten podcast yang menarik dan profesional. Segera mulai
                         rekaman Anda dengan peralatan terbaik dalam bisnis ini.
                     </p>
-                    <a href="{{ route('poadcast') }}" data-aos="fade-down" class=" rounded-lg border-2 mt-5 text-white text-center w-full px-4 md:w-1/3
+                    <a href="{{ route('sewa_podcast') }}" data-aos="fade-down" class=" rounded-lg border-2 mt-5 text-white text-center w-full px-4 md:w-1/3
                                 border-blue-600 dark:border-yellow-600 bg-[#091150] dark:bg-yellow-500 hover:bg-blue-600 duration-300 transform dark:hover:bg-yellow-600 font-medium tracking-widest py-2
                               text-sm   text-white-700   focus:shadow-[-4px_4px_10px_0px_#eab308] ">Sewa Podcast</a>
                 </div>
@@ -180,7 +180,7 @@
                         tanpa ribet. Ini adalah langkah kecil yang kami ambil untuk memudahkan perjalanan
                         akademis dan profesional Anda.
                     </p>
-                    <a href="" data-aos="fade-down" class="  text-white  rounded-lg border-2 mt-5    text-center w-full px-4 md:w-1/3 border-blue-600 dark:border-yellow-600  bg-[#091150] dark:bg-yellow-500 hover:bg-blue-600 duration-300 transform dark:hover:bg-yellow-600 font-medium tracking-widest  py-2
+                    <a href="{{ route('permohonanSurat') }}" data-aos="fade-down" class="  text-white  rounded-lg border-2 mt-5    text-center w-full px-4 md:w-1/3 border-blue-600 dark:border-yellow-600  bg-[#091150] dark:bg-yellow-500 hover:bg-blue-600 duration-300 transform dark:hover:bg-yellow-600 font-medium tracking-widest  py-2
                               text-sm text-white-700
                               focus:shadow-[-4px_4px_10px_0px_#eab308] ">Permohonan surat</a>
                 </div>
