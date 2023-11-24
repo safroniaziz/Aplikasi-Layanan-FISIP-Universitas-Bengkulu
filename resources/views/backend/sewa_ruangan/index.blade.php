@@ -4,9 +4,9 @@
 @section('content')
 <div class="box-body">
     <div class="row">
-        <div class="col-md-12" style="margin-bottom: 10px !important;">
+        <!-- <div class="col-md-12" style="margin-bottom: 10px !important;">
             <a href="{{ route('ruanganPoadcast.create') }}" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-plus"></i>&nbsp;Tambah Data</a>
-        </div>
+        </div> -->
         <div class="col-md-12 table-responsive">
             <table class="table table-bordered table-hover table-striped" style="width: 100%">
                 <thead>

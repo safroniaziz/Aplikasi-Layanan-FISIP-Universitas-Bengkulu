@@ -272,8 +272,8 @@
                                                 $hour = str_pad($i, 2, '0', STR_PAD_LEFT); // Pad with leading zero if needed
                                                 $minute = '00';
                                                 $timeOption = $hour . ":" . $minute;
-                                                $disabled = in_array( 'event_date3 ' . $timeOption . ':00', $cek_waktu) ? 'disabled' : '';
-                                                $disabled = in_array( 'event_date3 ' . $timeOption . ':00', $cek_waktu) ? 'disabled' : '';
+                                                $disabled = in_array( '2023-11-01 ' . $timeOption . ':00', $cek_waktu) ? 'disabled' : '';
+                                                $disabled = in_array( '2023-11-01 ' . $timeOption . ':00', $cek_waktu) ? 'disabled' : '';
                                                 $class = $disabled ? 'bg-red-300 dark:bg-red-900' : '';
 
                                             @endphp
