@@ -38,7 +38,11 @@
                             <table>
                                 <tr>
                                     <td>
-                                        <a href="{{ route('sewaRuangan.konfirmasi',[$data->id]) }}" class="btn btn-success btn-sm btn-flat"><i class="fa fa-check-circle"></i>&nbsp; Konfirmasi</a>
+                                        @if ($data->status == 1)
+                                            <a href="" disabled class="btn btn-success btn-sm btn-flat"><i class="fa fa-check-circle"></i>&nbsp; Konfirmasi</a>
+                                            @else
+                                            <a href="{{ route('sewaRuangan.konfirmasi',[$data->id]) }}" class="btn btn-success btn-sm btn-flat"><i class="fa fa-check-circle"></i>&nbsp; Konfirmasi</a>
+                                        @endif
                                     </td>
                                     <td>
                                         <form action="{{ route('sewaRuangan.delete',[$data->id]) }}" method="POST" id="form">

@@ -1,6 +1,9 @@
 @extends('layouts.application')
 @section('halaman', 'BasisPengetahuan')
 @section('menu', 'BasisPengetahuan')
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('assets/ckeditor/styles.css') }}">
+@endpush
 @section('content')
 <div class="box-body">
     <div class="row">
@@ -23,8 +26,8 @@
                     @foreach ($basisPengetahuans as $index => $basisPengetahuan)
                         <tr>
                             <td>{{ $index+1 }}</td>
-                            <td>{{ $basisPengetahuan->pertanyaan }}</td>
-                            <td>{{ $basisPengetahuan->jawaban }}</td>
+                            <td>{!! $basisPengetahuan->pertanyaan !!}</td>
+                            <td>{!! $basisPengetahuan->jawaban !!}</td>
                             <td>
                                 <table>
                                     <tr>

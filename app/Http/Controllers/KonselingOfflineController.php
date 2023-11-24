@@ -44,6 +44,11 @@ class KonselingOfflineController extends Controller
         ]);
 
         if ($update) {
+            $target = $konselingOffline->user->no_hp;
+            $token = "VUPG2eveV7sG+9ZzEIMz";
+            $messageController = new WaController();
+            $message = "Halo '".$konselingOffline->user->name."', Permohonan Konseling telah disetujui oleh admin, jadwal anda adalah pada tanggal '".$request->tanggal_mulai."' pukul '".$request->waktu_mulai."' - '".$request->tanggal_selesai."' pukul '".$request->waktu_selesai."', silahkan hubungi operator melalui live chat untuk informasi lebih lanjut";
+            $response = $messageController->sendWa($token, $target, $message);
             return response()->json([
                 'text'  =>  'Yeay, Verifikasi Berhasil',
                 'url'   => route('konselingOffline'),

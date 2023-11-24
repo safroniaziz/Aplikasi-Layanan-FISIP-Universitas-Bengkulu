@@ -1,6 +1,6 @@
 @extends('layouts.application')
-@section('halaman', 'Jenis Surat')
-@section('menu', 'Jenis Surat')
+@section('halaman', 'Konseling Offline')
+@section('menu', 'Konseling Offline')
 @section('content')
 <div class="box-body">
     <div class="row">

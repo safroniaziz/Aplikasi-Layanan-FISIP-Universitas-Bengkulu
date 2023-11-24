@@ -18,8 +18,13 @@ class DaftarSewaRuangan extends Controller
     public function konfirmasi(Request $request)
     {
         $update = PemesananRuangan::where('id', $request->sewaRuangan)->update([ 'status'  =>  1  ]);
-
+        $pemesanan = PemesananRuangan::with(['user'])->where('id',$request->sewaRuangan)->first();
         if ($update) {
+            $target = $pemesanan->user->no_hp;
+            $token = "VUPG2eveV7sG+9ZzEIMz";
+            $messageController = new WaController();
+            $message = "Halo '".$pemesanan->user->name."', Permohonan sewa ruangan telah disetujui oleh admin, silahkan datang ke fakultas ilmu sosial dan politik universitas bengkulu untuk informasi lebih lanjut";
+            $response = $messageController->sendWa($token, $target, $message);
             // return response()->json([
             //     'text'  =>  'Berhasil konfirmasi Pemesanan Ruangan',
             //     'url'   =>  route('sewaRuangan' ),

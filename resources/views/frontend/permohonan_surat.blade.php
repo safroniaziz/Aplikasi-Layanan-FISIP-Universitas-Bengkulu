@@ -370,13 +370,18 @@
                 <form class="mt-5" action=" " method="GET">
 
                     <label
-                        class=" after:content-['*'] after:text-red-500 font-semibold  text-gray-700 dark:text-gray-300 after:ml-2 text-sm pb-2">Subject Surat</label>
-                    <input type="text" class="   w-full rounded-lg border-2 mt-1 border-[#01052D] dark:border-yellow-500
+                        class=" after:content-['*'] after:text-red-500 font-semibold  text-gray-700 dark:text-gray-300 after:ml-2 text-sm pb-2">Jenis Surat</label>
+                    <select name="jenis_surat_id" class="   w-full rounded-lg border-2 mt-1 border-[#01052D] dark:border-yellow-500
                                     bg-transparent px-3 py-2.5 text-sm font-normal text-white-700 transition-all duration-500
                                     placeholder:text-gray-600 dark:placeholder:text-yellow-100 focus:border-white
                                     dark:focus:ring-yellow-500 focus:ring-[#01052D]
                                     focus:shadow-[-4px_4px_10px_0px_#01052D]
-                                    dark:focus:shadow-[-4px_4px_10px_0px_#eab308] " placeholder="Subject Surat" />
+                                    dark:focus:shadow-[-4px_4px_10px_0px_#eab308] " placeholder="Subject Surat">
+                        <option disabled selected>-- pilih jenis surat --</option>
+                        @foreach ($jenisSurats as $jenisSurat)
+                            <option value="{{ $jenisSurat->id }}">{{ $jenisSurat->jenis_surat }}</option>
+                        @endforeach
+                    </select>
                     <div class="mt-1">
                         <label
                             class=" after:content-['*'] after:text-red-500 font-semibold  text-gray-700 dark:text-gray-300 after:ml-2 text-sm pb-2">Pesan</label>

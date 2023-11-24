@@ -89,8 +89,8 @@
         <li class="{{ set_active(['basisPengetahuan']) }}"><a href="{{ route('basisPengetahuan') }}"><i class="fa fa-circle-o"></i> Basis Pengetahuan</a></li>
         <li class="{{ set_active(['massage']) }}"><a href="{{ route('massage') }}"><i class="fa fa-circle-o"></i> E-Konsling (Live Chat)</a></li>
         <li class="{{ set_active(['konselingOffline']) }}"><a href="{{ route('konselingOffline') }}"><i class="fa fa-circle-o"></i> Konseling Offline</a></li>
-        <li class="{{ set_active(['jadwalKonseling']) }}"><a href="{{ route('jadwalKonseling') }}"><i class="fa fa-circle-o"></i> Jadwal Konseling</a></li>
-        <li class="{{ set_active(['massage']) }}"><a href="{{ route('massage') }}"><i class="fa fa-circle-o"></i> Mesagge</a></li>
+        {{-- <li class="{{ set_active(['jadwalKonseling']) }}"><a href="{{ route('jadwalKonseling') }}"><i class="fa fa-circle-o"></i> Jadwal Konseling</a></li> --}}
+        {{-- <li class="{{ set_active(['massage']) }}"><a href="{{ route('massage') }}"><i class="fa fa-circle-o"></i> Mesagge</a></li> --}}
     </ul>
 </li>
 

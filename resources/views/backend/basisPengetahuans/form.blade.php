@@ -1,5 +1,10 @@
 @push('scripts')
+<script src="https://cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
+
+
     <script>
+        CKEDITOR.replace('pertanyaan');
+        CKEDITOR.replace('jawaban');
         $(document).on('submit','#form',function (event){
             event.preventDefault();
             $.ajax({

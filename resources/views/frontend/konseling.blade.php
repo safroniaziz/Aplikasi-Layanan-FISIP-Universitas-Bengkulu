@@ -384,12 +384,12 @@
                                 <div @click="open = !open" class="flex w-full text-gray-700   border-b  border-gray-300 p-4   dark:bg-yellow-500  marker:">
                                     <div class="text-left w-4/6">
                                         <span :class="open ? 'fa-chevron-down' : 'fa-chevron-up'" class="fas float-left mr-2 py-1 text-yellow-400 dark:text-white"></span>
-                                        <p class="font-semibold line-clamp-3">{{$data->pertanyaan}} </p>
+                                        <p class="font-semibold line-clamp-3">{!! $data->pertanyaan !!} </p>
 
                                     </div>
                                 </div>
                                 <div x-show.transition.in.duration.800ms="open" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100" x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-90" class="border px-4 py-2 leading-7  rounded-b-lg mb-3 bg-yellow-100 text-gray-700   ">
-                                    {{$data->jawaban}}
+                                    {!! $data->jawaban !!}
                                 </div>
                             </div>
                             @endforeach
