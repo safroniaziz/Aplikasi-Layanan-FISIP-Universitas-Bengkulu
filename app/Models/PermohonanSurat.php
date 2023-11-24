@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class PermohonanSurat extends Model
 {
     use HasFactory;
+
+    public $guarded = [];
+
+    /**
+     * Get the user that owns the PermohonanSurat
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function jenisSurat()
+    {
+        return $this->belongsTo(JenisSurat::class);
+    }
 }

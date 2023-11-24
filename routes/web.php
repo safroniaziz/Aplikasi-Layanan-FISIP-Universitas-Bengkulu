@@ -41,6 +41,7 @@ use App\Http\Controllers\JadwalPerkuliahanController;
 use App\Http\Controllers\ManajemenBukuTamuController;
 use App\Http\Controllers\MahasiswaMataKuliahController;
 use App\Http\Controllers\PendaftaranKonselingController;
+use App\Livewire\PermohonanSurat;
 
 /*
 |--------------------------------------------------------------------------
@@ -90,6 +91,8 @@ Route::controller(PermohonanSuratController::class)->middleware('auth','verified
 Route::get('/tampil-Jadwal', JadwalPerkuliahanLivewire::class)->name('tampilJadwalLivewire');
 Route::get('/massage', ChatOperator::class)->name('massage');
 
+
+Route::get( '/permohonan_surat', PermohonanSurat::class)->name('permohonan_surat_livewire');
 // Route::controller(JadwalController::class)->prefix('/jadwal')->group(function () {
 //     Route::get('/tampil-Jadwal', 'index')->name('tampilJadwal');
 // });
@@ -295,9 +298,7 @@ Route::get('/sewa-podcast', SewaPodcast::class)->name('sewa_podcast_livewire');
 Route::controller(DaftarSewaRuangan::class)->middleware('auth', 'verified', 'operator')->prefix('/daftar_sewa_ruangan')->group(function () {
     Route::get('/', 'index')->name('sewaRuangan');
     Route::get('/create', 'create')->name('sewaRuangan.create');
-    Route::post('/', 'store')->name('sewaRuangan.store');
     Route::get('/{sewaRuangan}/konfirmasi', 'konfirmasi')->name('sewaRuangan.konfirmasi');
-    Route::patch('/{sewaRuangan}/update', 'update')->name('sewaRuangan.update');
     Route::delete('/{sewaRuangan}/delete', 'delete')->name('sewaRuangan.delete');
 });
 

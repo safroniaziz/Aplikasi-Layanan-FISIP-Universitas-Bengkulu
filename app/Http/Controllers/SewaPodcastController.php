@@ -14,8 +14,8 @@ class SewaPodcastController extends Controller
     {
         $ruanganPoadcasts = RuanganPoadcast::first();
         $alatPoadcasts = AlatPoadcast::all();
-        $pemesananRuangan = PemesananRuangan::with('mahasiswa')->get();
-        $cek_waktu = PemesananRuangan::pluck('tanggal_dan_waktu_mulai')->toArray();
+        $pemesananRuangan = PemesananRuangan::with('mahasiswa')->where('deleted_at', NULL)->get();
+        $cek_waktu = PemesananRuangan::pluck('tanggal_dan_waktu_mulai')->where('deleted_at', NULL)->toArray();
 
 
 
