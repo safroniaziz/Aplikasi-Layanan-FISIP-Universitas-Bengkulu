@@ -12,7 +12,7 @@
         <div class="flex items-end    overflow-hidden px-4 text-center   sm:p-0">
             <div x-cloak x-show="modelOpen" style="z-index: 20;" :class="{ 'fadeInRight': modelOpen, 'fadeInLeft': !modelOpen }" class="  w-full max-w-lg   pb-[70px]  container   text-left transition-all transform  h-screen  absolute bottom-0 right-0   bg-[#091031] opacity-80 rounded-lg shadow-xl overflow-hidden ">
                 <div class="flex items-center justify-between space-x-4 py-4 px-5">
-                    <h1 class="text-xl font-bold text-yellow-500  flex"> <img src="{{ asset('assets/img/logo.svg') }}" class="w-10 h-10 mr-2"><span class="font-bold py-2 ">E-Konseling  </span> </h1>
+                    <h1 class="text-xl font-bold text-yellow-500  flex"> <img src="{{ asset('assets/img/logo.png') }}" class="w-10 h-10 mr-2"><span class="font-bold py-2 ">E-Konseling  </span> </h1>
                     @if($scroll==1)
                     <script>
                         const el = document.getElementById('messages');
@@ -35,7 +35,7 @@
                     @if(isset(Auth::user()->name))
                     <div id="messages" class="flex flex-col flex-grow h-0 p-4 overflow-auto scroll-smooth  pb-20 ">
                         <div class="flex w-full mt-3 space-x-3 ">
-                            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-black"><img src="{{ asset('assets/img/logo.svg') }}" class="w-10 h-10 p-1"></div>
+                            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-black"><img src="{{ asset('assets/img/logo.png') }}" class="w-10 h-10 p-1"></div>
                             <div>
                                 <div class="bg-gray-100 p-3 rounded-r-lg rounded-bl-lg">
                                     <p class="text-sm">Hi... <strong class="text-yellow-500">{{ Auth::user()->name }}</strong>, ada yang bisa dibantu? silakan tanyakan pertannyaan anda dan akan di jawab oleh operator</p>
@@ -109,7 +109,7 @@
 
                     <div class="p-8">
                         <div class="flex w-full mt-2 space-x-3 max-w-xs">
-                            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-black"><img src="{{ asset('assets/img/logo.svg') }}" class="w-10 h-10 p-1"></div>
+                            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-black"><img src="{{ asset('assets/img/logo.png') }}" class="w-10 h-10 p-1"></div>
                             <div>
                                 <div class="bg-gray-100 p-3 rounded-r-lg rounded-bl-lg">
                                     <p class="text-sm">Hi... untuk menggunakan fitur silakan <strong class="text-yellow-500">LOGIN</strong> terlebih dalulu</p>

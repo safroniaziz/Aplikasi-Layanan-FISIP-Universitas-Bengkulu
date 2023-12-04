@@ -92,7 +92,7 @@ Route::get('/tampil-Jadwal', JadwalPerkuliahanLivewire::class)->name('tampilJadw
 Route::get('/massage', ChatOperator::class)->name('massage');
 
 
-Route::get( '/permohonan_surat', PermohonanSurat::class)->name('permohonan_surat_livewire');
+Route::get( '/permohonan_surat_user', PermohonanSurat::class)->middleware('auth','verified')->name('permohonan_surat_livewire');
 // Route::controller(JadwalController::class)->prefix('/jadwal')->group(function () {
 //     Route::get('/tampil-Jadwal', 'index')->name('tampilJadwal');
 // });

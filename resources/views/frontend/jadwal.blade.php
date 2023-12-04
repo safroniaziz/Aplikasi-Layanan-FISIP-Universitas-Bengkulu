@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Layanan Fisip - Universitas Bengkulu</title>
-    <link rel="shortcut icon" href="{{ asset('assets/img/logo.svg') }}">
+    <link rel="shortcut icon" href="{{ asset('assets/img/logo.png') }}">
 
     <!-- stylesheets tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -38,7 +38,7 @@
         <header class=" bg-[#010347] grid">
             <div class="  flex w-full         font-[arial] mx-auto pt-3 pb-6 ">
                 <a href="{{ route('user') }}" class="flex items-center   z-50 relative   mx-4 md:ml-6">
-                    <img src="{{ asset('assets/img/logo.svg') }}" class=" lg:h-20 2xl:h-20 h-10 aspect-square">
+                    <img src="{{ asset('assets/img/logo.png') }}" class=" lg:h-20 2xl:h-20 h-10 aspect-square">
                 </a>
                 <div class="text-center absolute font-extrabold text-[10px] lg:text-lg 2xl:text-2xl text-gray-200 w-full">
                     <h2 class=" lg:leading-6">JADWAL MATA KULIAH <br> FAKULTAS ILMU SOSIAL DAN POLITIK <br>UNIVERSITAS BENGKULU</h2>

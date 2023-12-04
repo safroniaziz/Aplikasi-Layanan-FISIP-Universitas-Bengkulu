@@ -107,7 +107,7 @@
                 <!-- Sidebar user panel -->
                 <div class="user-panel" style="padding: 14px 10px !important;">
                     <div class="pull-left image">
-                        <img src="{{ asset('assets/img/logo.svg') }}" alt="User Image">
+                        <img src="{{ asset('assets/img/logo.png') }}" alt="User Image">
                     </div>
                     <div class="pull-left info" style="padding: 7px 5px 5px 15px;">
                         <p>Selamat Datang,</p>

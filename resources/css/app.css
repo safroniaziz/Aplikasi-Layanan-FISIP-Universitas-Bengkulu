@@ -614,7 +614,7 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 #loader-logo {
-  background: url('{{ asset('assets/img/logo.svg') }}') no-repeat;
+  background: url('{{ asset('assets/img/logo.png') }}') no-repeat;
   background-size: 70px;
 
   width: 80px;

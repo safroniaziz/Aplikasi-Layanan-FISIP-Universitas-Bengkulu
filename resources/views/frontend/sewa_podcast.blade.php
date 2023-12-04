@@ -62,9 +62,6 @@
 
                         </ul>
                     </div>
-                    <h2 class="mb-6 text-center font-sans text-4xl lg:text-5xl font-bold text-[#0b3960] dark:text-yellow-500 text-sh2">
-                        {{ $ruanganPoadcasts->nama_ruangan }}
-                    </h2>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mx-auto px-6">
                         <div class="flex max-w-md overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-1/5 bg-cover px-5 bg-[#010347] dark:bg-[#f5ca3c] shadow-md fill-white rounded-md" fill="currentColor" class="bi bi-coin" viewBox="0 0 16 16">
@@ -74,7 +71,7 @@
                             </svg>
                             <div class="w-2/3 p-4 md:p-4 ">
                                 <h1 class="text-xl font-bold text-gray-800 dark:text-white">Harga Sewa</h1>
-                                <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Rp. {{ number_format($ruanganPoadcasts->harga_sewa, 0, ',', '.') }}</p>
+                                <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Rp. {{ number_format($ruanganPoadcasts->harga_sewa, 0, ',', '.') }},-</p>
                             </div>
                         </div>
                         <div class="flex max-w-md overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">
@@ -83,7 +80,7 @@
                             </svg>
                             <div class="w-2/3 p-4 md:p-4 ">
                                 <h1 class="text-xl font-bold text-gray-800 dark:text-white">Kapasitas</h1>
-                                <p class="mt-2 text-sm text-gray-600 dark:text-gray-400"> {{ $ruanganPoadcasts->kapasitas }}</p>
+                                <p class="mt-2 text-sm text-gray-600 dark:text-gray-400"> {{ $ruanganPoadcasts->kapasitas }} Orang</p>
                             </div>
                         </div>
                         <div class="flex max-w-md overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">
@@ -98,11 +95,10 @@
                         </div>
                     </div>
 
-                    <p class="p-6 leading-8 text-sm text-justify">{{ $ruanganPoadcasts->deskripsi }} </p>
-                    <h2 class="mt-6 text-center font-sans text-4xl lg:text-5xl font-bold text-[#0b3960] dark:text-yellow-500 text-sh2">
-                        Paket Tersedia</h2>
+                    <h2 class="mt-6 text-center font-sans text-2xl lg:text-2xl font-bold text-[#0b3960] dark:text-yellow-500 text-sh2">
+                        PILIH TANGGAL TERLEBIH DAHULU</h2>
 
-                    <div class="px-6    pb-12    ">
+                    <div class="px-6 flex   pb-0    ">
                         <!-- <button class="hidden"></button>
                         <button @click="openEventModal =!openEventModal;id_sewa =1, durasi='20 september 2023 - 30 september 2023'
                                     " class="bg-[#001344]  hover:bg-blue-500 px-4 py-3 w-full md:max-w-[200px]   duration-300 transform text-gray-200 text-sm rounded-lg">
@@ -181,26 +177,90 @@
                                     </div>
                                 </div>
                             </div>
-
-
-
-
-
                         </div>
-
-
-
-
-
                     </div>
+                    <h2 class="mt-2 text-center font-sans text-2xl lg:text-2xl font-bold text-[#0b3960] dark:text-yellow-500 text-sh2">
+                        DAFTAR PERMOHONAN PEMINJAMAN RUANG</h2>
+                    <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                        <thead class="bg-gray-50 dark:bg-gray-800">
+                            <tr>
+                                <th scope="col" class="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                    No
+                                </th>
 
+                                <th scope="col" class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                    Nama Lengkap
+                                </th>
+                                <th scope="col" class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                    Nomor WhatsApp
+                                </th>
+                                <th scope="col" class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                    Keperluan
+                                </th>
+                                <th scope="col" class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                    Tanggal Dan Waktu 
+                                </th>
+                                <th scope="col" class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                    Status Permohonan
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-800">
+                            <tr>
+                                <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
+                                    <h2 class="font-medium text-gray-800 dark:text-white "></h2>
+                                </td>
+                                <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
+                                    <h2 class="font-medium text-gray-800 dark:text-white "></h2>
+                                </td>
+                                <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
+                                    <h2 class="font-medium text-gray-800 dark:text-white "></h2>
+                                    <p class="text-gray-500 dark:text-gray-400"></p>
 
+                                </td>
+                                <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
+                                    <h2 class="font-medium text-gray-800 dark:text-white "></h2>
 
+                                </td>
+                                <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
+                                    {{-- @if($item->tanggal_dan_waktu_selesai==NULL AND $item->tanggal_dan_waktu_mulai==NULL)
+                                    <span class='text-red-500 italic font-bold'>Belum dijadwalkan</span>
+                                    @else
+                                    <h2 class="font-medium text-gray-800 dark:text-white ">{{ $item->tanggal_dan_waktu_mulai }}
+                                        <div class="inline px-3   text-sm ml-2 font-normal rounded-full capitalize  text-purple-500 gap-x-2 bg-purple-100/60  dark:bg-purple-800">waktu mulai</div>
+                                    </h2>
+                                    <h2 class="font-medium text-gray-800 dark:text-white ">{{ $item->tanggal_dan_waktu_selesai  }}
+                                        <div class="inline px-3   text-sm ml-2 font-normal rounded-full capitalize  text-purple-500 gap-x-2 bg-purple-100/60  dark:bg-purple-800">waktu Selesai</div>
+                                    </h2>
+                                    @endif --}}
+
+                                </td>
+                                {{-- <td class="px-12 py-4 text-sm font-medium whitespace-nowrap">
+                                    @if($item->status=='selesai')
+                                    <div class="inline px-3 py-1 text-sm font-normal rounded-full capitalize  text-emerald-500 gap-x-2 bg-emerald-100/60 dark:bg-gray-800">
+                                        @elseif($item->status=='terjadwal')
+                                        <div class="inline px-3 py-1 text-sm font-normal rounded-full capitalize  text-orange-500 gap-x-2 bg-orange-100/60 dark:bg-gray-800">
+                                            @elseif($item->status=='diproses')
+                                            <div class="inline px-3 py-1 text-sm font-normal rounded-full capitalize  text-blue-500 gap-x-2 bg-blue-100/60 dark:bg-gray-800">
+                                                @else
+                                                <div class="inline px-3 py-1 text-sm font-normal rounded-full capitalize  text-red-500 gap-x-2 bg-red-100/60 dark:bg-gray-800">
+
+                                                    @endif
+                                                    {{ $item->status }}
+                                                </div>
+
+                                </td> --}}
+
+                                <!-- <td class="px-4 py-4 text-sm whitespace-nowrap">
+                                    <a class="px-1 py-1 text-gray-500 transition-colors duration-200 rounded-lg dark:text-gray-300 hover:bg-gray-100">
+
+                                    </a>
+                                </td> -->
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-
             </div>
-
-
         </section>
         <!-- end Fitur  -->
         <!-- Modal -->
@@ -232,7 +292,7 @@
                             </div>
                             <div class=" col-span-1  ">
                                 <label class=" after:content-['*'] after:text-red-500 font-semibold text-gray-700 dark:text-gray-300 after:ml-2 text-sm pb-2">Nomor WhatsApp </label>
-                                <input type="text" class="   w-full rounded-lg border-2 mt-1 border-[#01052D] dark:border-yellow-500
+                                <input type="text" value="{{ Auth::user()->no_hp }}" readonly class="   w-full rounded-lg border-2 mt-1 border-[#01052D] dark:border-yellow-500
                                     bg-transparent px-3 py-2.5 text-sm font-normal text-white-700 transition-all duration-500
                                     placeholder:text-gray-600 dark:placeholder:text-yellow-100 focus:border-white
                                     dark:focus:ring-yellow-500 focus:ring-[#01052D]
@@ -258,9 +318,9 @@
 
                         <div class=" col-span-1 ">
 
-                                <label class=" after:content-['*'] after:text-red-500 font-semibold text-gray-700 dark:text-gray-300 after:ml-2 text-sm pb-2">Waktu  Tersedia</label>
+                                <label class=" after:content-['*'] after:text-red-500 font-semibold text-gray-700 dark:text-gray-300 after:ml-2 text-sm pb-2">Pilih Waktu</label>
 
-                                    <select name="waktu" class="   w-full rounded-lg border-2 mt-1 border-[#01052D] dark:border-yellow-500
+                                    <select name="waktu" required class="   w-full rounded-lg border-2 mt-1 border-[#01052D] dark:border-yellow-500
                                     bg-transparent px-3 py-2.5 text-sm font-normal text-white-700 transition-all duration-500
                                     placeholder:text-gray-600 dark:placeholder:text-yellow-100 focus:border-white
                                     dark:focus:ring-yellow-500 focus:ring-[#01052D]
@@ -293,7 +353,7 @@
                                     placeholder:text-gray-600 dark:placeholder:text-yellow-100 focus:border-white
                                     dark:focus:ring-yellow-500 focus:ring-[#01052D]
                                     focus:shadow-[-4px_4px_10px_0px_#01052D]
-                                    dark:focus:shadow-[-4px_4px_10px_0px_#eab308] h-20" type="text" x-model="keperluan" name="keperluan"></textarea>
+                                    dark:focus:shadow-[-4px_4px_10px_0px_#eab308] h-20" type="text" x-model="keperluan" name="keperluan" required></textarea>
                         </div>
                         <input class="hidden  " type="text" x-model="event_date" readonly>
                         <input class="hidden  " type="text" id="event_date3" x-model="event_date3" readonly>

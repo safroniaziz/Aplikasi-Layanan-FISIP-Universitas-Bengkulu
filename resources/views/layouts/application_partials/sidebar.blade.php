@@ -102,7 +102,8 @@
 </li>
 
 <li class="treeview {{ set_active([
-        'jenisSurat','jenisSurat.kelengkapan','daftarSurat'
+        'jenisSurat','jenisSurat.kelengkapan',
+        // 'daftarSurat'
     ]) }}">
     <a href="#">
         <i class="fa fa-envelope"></i> <span>Permohonan Surat </span>
@@ -112,7 +113,7 @@
     </a>
     <ul class="treeview-menu">
         <li class="{{ set_active(['jenisSurat','jenisSurat.kelengkapan']) }}"><a href="{{ route('jenisSurat') }}"><i class="fa fa-circle-o"></i> Jenis Surat</a></li>
-        <li class="{{ set_active(['daftarSurat']) }}"><a href="{{ route('daftarSurat') }}"><i class="fa fa-check-circle"></i> Daftar Permohonan Surat</a></li>
+        {{-- <li class="{{ set_active(['daftarSurat']) }}"><a href="{{ route('daftarSurat') }}"><i class="fa fa-check-circle"></i> Daftar Permohonan Surat</a></li> --}}
     </ul>
 </li>
 

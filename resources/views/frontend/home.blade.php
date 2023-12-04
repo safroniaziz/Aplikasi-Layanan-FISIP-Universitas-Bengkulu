@@ -35,14 +35,17 @@
         </svg>
         <div class="grid grid-cols-1 md:grid-cols-2  z-10 overflow-hidden h-screen justify-center relative">
             <div class="col-span-1 px-8 lg:px-12 text-white  mx-auto     place-self-center">
-                <div data-aos="fade-left" class=" lg:mt-8 2xl:mt-0  max-w-lg 2xl:max-w-xl">
-                    <h2 class="font-extrabold font-[arial] text-2xl lg:text-2xl       inline-block text-transparent
+                <div data-aos="fade-left" class=" lg:mt-8 3xl:mt-0  max-w-lg 3xl:max-w-xl">
+                    <h2 class="font-extrabold font-[arial] text-3xl lg:text-3xl       inline-block text-transparent
                               bg-clip-text bg-gradient-to-b from-orange-500 from-30% to-yellow-500 text-h2-sh  ">
-                        FAKULTAS ILMU SOSIAL DAN POLITIK <br>UNIVERSITAS BENGKULU</h2>
-                    <p class="text-gray-300 text-xs leading-6 md:leading-7 md:text-sm  ">Memiliki Visi yaitu menjadi fakultas yang membangun
-                        kajian
-                        ilmu-ilmu sosial dan politik pada masyarakat pesisir berkelas regional ASEAN pada tahun
-                        2025!
+                        SAYA SIAP MEWUJUDKAN<br></h2>
+                    <p class="text-gray-300 text-xs leading-6 md:leading-7 md:text-sm  ">
+                        ZONA INTEGRITAS DI WILAYAH FAKULTAS ILMU SOSIAL DAN ILMU POLITIK UNIVERSITAS BEBNGKULU
+                        MENUJU WBK(WILAYAH BEBAS DARI KORUPSI) & WBBM(WILAYAH BIROKRASI BERSIH MELAYANI)
+                        <hr style="padding: 10px 0px 10px 0px !important; margin-top:10px !important;">
+                        NO PUNGLI, NO KORUPSI, NO GRATIFIKASI, NO SUAP
+                        <br>
+                        BERANI-EKUALITAS-RESPONSIF-EMPATI-SOLUSI
                     </p>
                 </div>
             </div>

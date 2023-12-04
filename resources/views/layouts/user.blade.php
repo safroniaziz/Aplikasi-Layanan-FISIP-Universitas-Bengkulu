@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Layanan Fisip - Universitas Bengkulu</title>
-    <link rel="shortcut icon" href="{{ asset('assets/img/logo.svg') }}">
+    <link rel="shortcut icon" href="{{ asset('assets/img/logo.png') }}">
 
     <!-- stylesheets tailwind -->
     <!-- <script src="https://cdn.tailwindcss.com"></script> -->
@@ -90,7 +90,7 @@
                     <div class="flex items-center justify-between">
                         <!-- logo -->
                         <a href="{{ route('user') }}" class="flex items-center text-black   mx-4 md:ml-6">
-                            <img src="{{ asset('assets/img/logo.svg') }}" class="md:w-14 md:h-14 w-12 h-12">
+                            <img src="{{ asset('assets/img/logo.png') }}" class="md:w-14 md:h-14 w-12 h-12">
 
                             <div class="ml-3 text-slate-100  font-sans  ">
                                 <strong class=" text-2xl md:text-3xl font-extrabold   text-sh uppercase">SI-FISIP</strong>
@@ -230,7 +230,7 @@
             md:flex-row md:flex-nowrap flex-wrap flex-col">
                 <div class="lg:w-2/4 md:w-1/2 w-full flex-shrink-0 md:mx-0 mx-auto    text-left">
                     <a href="{{ route('user') }}" class="flex items-center text-black    ">
-                        <img src="{{ asset('assets/img/logo.svg') }}" class="md:w-14 md:h-14 w-12 h-12">
+                        <img src="{{ asset('assets/img/logo.png') }}" class="md:w-14 md:h-14 w-12 h-12">
 
                         <div class="ml-3 text-slate-100  font-sans  ">
                             <strong class=" text-2xl md:text-3xl font-extrabold   text-sh uppercase">SI-FISIP</strong>
