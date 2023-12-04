@@ -16,8 +16,8 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id')->nullable();
             $table->unsignedBigInteger('ruangan_id');
             $table->string('mahasiswa_npm')->nullable();
-            $table->timestamp('tanggal_dan_waktu_mulai');
-            $table->timestamp('tanggal_dan_waktu_selesai');
+            $table->timestamp('tanggal_dan_waktu_mulai')->nullable();
+            $table->timestamp('tanggal_dan_waktu_selesai')->nullable();
             $table->timestamps();
             $table->softDeletes();
 
