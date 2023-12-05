@@ -84,10 +84,10 @@
                     <div class="flex items-center justify-between">
                         <!-- logo -->
                         <a href="{{ route('user') }}" class="flex items-center text-black   mx-4 md:ml-6">
-                            <img src="{{ asset('assets/img/logo.png') }}" class="md:w-14 md:h-14 w-12 h-12">
+                            <img style="width:100px !important;" src="{{ asset('assets/img/logo.png') }}" class="md:w-14 md:h-14 w-12 h-12">
 
                             <div class="ml-3 text-slate-100  font-sans  ">
-                                <strong class=" text-2xl md:text-3xl font-extrabold   text-sh uppercase">SI-FISIP</strong>
+                                <strong class=" text-2xl md:text-3xl font-extrabold   text-sh uppercase">E-BERES FISIP</strong>
                                 <p class="text-[13px] md:text-[16px]    text-yellow-500     uppercase -mt-2
                                 relative">
                                     UNIVERSITAS BENGKULU</p>
@@ -227,7 +227,7 @@
                         <img src="{{ asset('assets/img/logo.png') }}" class="md:w-14 md:h-14 w-12 h-12">
 
                         <div class="ml-3 text-slate-100  font-sans  ">
-                            <strong class=" text-2xl md:text-3xl font-extrabold   text-sh uppercase">SI-FISIP</strong>
+                            <strong class=" text-2xl md:text-3xl font-extrabold   text-sh uppercase">E-BERES FISIP</strong>
                             <p class="text-[13px] md:text-[16px]    text-yellow-500       uppercase -mt-2
                                 relative">
                                 UNIVERSITAS BENGKULU</p>
@@ -276,7 +276,7 @@
 
             <div class="px-12 mx-auto py-4   flex flex-wrap flex-col sm:flex-row bg-[#101235]  ">
                 <p class="text-gray-300 mx-auto   text-sm text-center sm:text-left">Copyright&copy; 2023 |
-                    <a href="#" class="text-yellow-500 font-bold">SI-FISIP</a>. All rights reserved.
+                    <a href="#" class="text-yellow-500 font-bold">E-BERES FISIP</a>. All rights reserved.
                 </p>
             </div>
         </footer>

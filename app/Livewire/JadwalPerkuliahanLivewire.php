@@ -234,6 +234,6 @@ class JadwalPerkuliahanLivewire extends Component
         $this->link();
         $this->jadwalBerlangsung();
         $this->jadwalBelumMulai();
-        return view('livewire.jadwal-perkuliahan2')->layout('Layouts.jadwal');;
+        return view('livewire.jadwal-perkuliahan2')->layout('layouts.jadwal');;
     }
 }

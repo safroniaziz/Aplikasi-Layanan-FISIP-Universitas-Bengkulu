@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->timestamp('tanggal');
+            $table->text('pokok_permasalahan');
+            $table->string('bukti_pendukung')->nullable();
             $table->timestamps();
         });
     }

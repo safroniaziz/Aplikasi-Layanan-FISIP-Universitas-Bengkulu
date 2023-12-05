@@ -387,7 +387,7 @@
 
         <div class="      flex   bg-[#010347] text-gray-300 whitespace-nowrap text-2xl font-semibold ">
             <!-- <p class=" px-5 bg-[#050616] py-2 lg:py-3 2xl:py-2  h-screen text-left">Copyright&copy; 2023 |
-                <a href="#" class="text-yellow-500 font-bold ">SI-FISIP</a>. All rights reserved.
+                <a href="#" class="text-yellow-500 font-bold ">E-BERES FISIP</a>. All rights reserved.
             </p> -->
             <marquee class="py-2" loop="infinite" scrollamount="5">
                 @foreach ($footer as $item)

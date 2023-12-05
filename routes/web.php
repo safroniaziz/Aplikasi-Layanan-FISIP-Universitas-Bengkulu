@@ -3,6 +3,7 @@
 use Livewire\Livewire;
 use App\Livewire\SewaPodcast;
 use App\Livewire\ChatOperator;
+use App\Livewire\PermohonanSurat;
 use App\Livewire\JadwalPerkuliahan;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoleController;
@@ -36,12 +37,12 @@ use App\Http\Controllers\PerubahanJadwalController;
 use App\Http\Controllers\RuanganPoadcastController;
 use App\Http\Controllers\BasisPengetahuanController;
 use App\Http\Controllers\KonselingOfflineController;
+use App\Http\Controllers\LayananPengaduanController;
 use App\Http\Controllers\PemesananRuanganController;
 use App\Http\Controllers\JadwalPerkuliahanController;
 use App\Http\Controllers\ManajemenBukuTamuController;
 use App\Http\Controllers\MahasiswaMataKuliahController;
 use App\Http\Controllers\PendaftaranKonselingController;
-use App\Livewire\PermohonanSurat;
 
 /*
 |--------------------------------------------------------------------------
@@ -88,7 +89,7 @@ Route::controller(PermohonanSuratController::class)->middleware('auth','verified
 // });
 
 
-Route::get('/tampil-Jadwal', JadwalPerkuliahanLivewire::class)->name('tampilJadwalLivewire');
+Route::get('/tampil-jadwal', JadwalPerkuliahanLivewire::class)->name('tampilJadwalLivewire');
 Route::get('/massage', ChatOperator::class)->name('massage');
 
 
@@ -295,6 +296,12 @@ Route::controller(SewaPodcastController::class)->middleware('auth', 'verified')-
     Route::post('/sewaruang', 'store')->name('sewaruang.store');
 
 });
+
+Route::controller(LayananPengaduanController::class)->middleware('auth', 'verified')->prefix('/layanan_pengaduan')->group(function () {
+    Route::get('/', 'index')->name('layanan_pengaduan');
+
+});
+
 Route::get('/sewa-podcast', SewaPodcast::class)->name('sewa_podcast_livewire');
 
 
