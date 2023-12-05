@@ -15,8 +15,11 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->timestamp('tanggal');
+            $table->string('unit_tujuan');
             $table->text('pokok_permasalahan');
             $table->string('bukti_pendukung')->nullable();
+            $table->string('tiket_pengaduan');
+            $table->text('respon');
             $table->timestamps();
         });
     }

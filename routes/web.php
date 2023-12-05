@@ -59,6 +59,9 @@ Route::get('/', function () {
     return view('frontend.home');
 })->name('user');
 
+Route::get('/cari_nomor_tiket', [App\Http\Controllers\LayananPengaduanController::class, 'cariNomorTiket'])->name('cari_nomor_tiket');
+
+
 Route::controller(CariDataController::class)->group(function(){
     Route::get('/wa','wa')->name('wa');
     Route::get('/cari_mata_kuliah_by_prodi', 'cariMataKuliahByProdi')->name('cariMataKuliahByProdi');
@@ -69,21 +72,21 @@ Route::controller(BukuTamuController::class)->prefix('/buku_tamu')->group(functi
     Route::post('/', 'store')->name('bukuTamu.store');
 });
 
-Route::controller(UserProfileController::class)->middleware('auth','verified','guestTamu')->prefix('/user_profile')->group(function () {
+Route::controller(UserProfileController::class)->middleware('auth','verified')->prefix('/user_profile')->group(function () {
     Route::get('/', 'index')->name('userProfile');
 });
 
-Route::controller(KonselingController::class)->middleware('auth','verified','guestTamu')->prefix('/e_konseling')->group(function () {
+Route::controller(KonselingController::class)->middleware('auth','verified')->prefix('/e_konseling')->group(function () {
     Route::get('/', 'index')->name('e-konseling');
     Route::post('/', 'store')->name('e-konseling.store');
 });
 
-Route::controller(PermohonanSuratController::class)->middleware('auth','verified','guestTamu')->prefix('/permohonan_surat')->group(function () {
+Route::controller(PermohonanSuratController::class)->middleware('auth','verified')->prefix('/permohonan_surat')->group(function () {
     Route::get('/', 'index')->name('permohonanSurat');
     Route::post('/', 'store')->name('permohonanSurat.store');
 });
 
-// Route::controller(PoadcastController::class)->middleware('auth','verified','guestTamu')->prefix('/sewa_poadcast')->group(function () {
+// Route::controller(PoadcastController::class)->middleware('auth','verified')->prefix('/sewa_poadcast')->group(function () {
 //     Route::get('/', 'index')->name('poadcast');
 //     Route::post('/', 'store')->name('poadcast.store');
 // });
@@ -299,6 +302,7 @@ Route::controller(SewaPodcastController::class)->middleware('auth', 'verified')-
 
 Route::controller(LayananPengaduanController::class)->middleware('auth', 'verified')->prefix('/layanan_pengaduan')->group(function () {
     Route::get('/', 'index')->name('layanan_pengaduan');
+    Route::post('/', 'store')->name('layanan_pengaduan.store');
 
 });
 
