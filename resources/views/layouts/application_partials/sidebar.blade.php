@@ -101,6 +101,14 @@
     </a>
 </li>
 
+<li class="{{ set_active(['pengaduan']) }}">
+    <a href="{{ route('pengaduan') }}">
+        <i class="fa fa-comments"></i>
+        <span>Laporan Pengaduan</span>
+    </a>
+</li>
+
+
 <li class="treeview {{ set_active([
         'jenisSurat','jenisSurat.kelengkapan',
         // 'daftarSurat'

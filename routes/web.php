@@ -43,6 +43,7 @@ use App\Http\Controllers\JadwalPerkuliahanController;
 use App\Http\Controllers\ManajemenBukuTamuController;
 use App\Http\Controllers\MahasiswaMataKuliahController;
 use App\Http\Controllers\PendaftaranKonselingController;
+use App\Http\Controllers\PengaduanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -249,6 +250,12 @@ Route::controller(JenisSuratController::class)->middleware('auth','verified','op
     Route::get('/{jenisSurat}/edit', 'edit')->name('jenisSurat.edit');
     Route::patch('/update', 'update')->name('jenisSurat.update');
     Route::delete('/{jenisSurat}/delete', 'delete')->name('jenisSurat.delete');
+});
+
+Route::controller(PengaduanController::class)->middleware('auth','verified','operator')->prefix('/laporan_pengaduan')->group(function(){
+    Route::get('/', 'index')->name('pengaduan');
+    Route::get('/{pengaduan}/respon', 'respon')->name('pengaduan.respon');
+    Route::patch('/respon', 'responPost')->name('pengaduan.responPost');
 });
 
 Route::controller(RequirementController::class)->middleware('auth','verified','operator')->prefix('/jenis_surats/')->group(function(){
