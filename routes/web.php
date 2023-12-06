@@ -25,7 +25,7 @@ use App\Http\Controllers\JenisSuratController;
 use App\Http\Controllers\MataKuliahController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RequirementController;
-use App\Http\Controllers\sewaPodcastController;
+use App\Http\Controllers\SewaPodcastController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\AlatPoadcastController;
 use App\Http\Controllers\ProgramStudiController;
