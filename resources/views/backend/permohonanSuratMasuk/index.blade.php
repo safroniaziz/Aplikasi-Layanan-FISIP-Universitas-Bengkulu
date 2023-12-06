@@ -44,7 +44,7 @@
                                 @elseif ($permohonanSurat->status == "selesai")
                                     <small class="label label-success">Selesai</small>
                                 @else
-                                    <small class="label label-success">Sedang Diproses</small>
+                                    <small class="label label-primary">Sedang Diproses</small>
                                 @endif
                             </td>
                             <td>
