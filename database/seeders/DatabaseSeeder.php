@@ -33,5 +33,6 @@ class DatabaseSeeder extends Seeder
         $this->call(JenisSuratSeeder::class);
         $this->call(RequirementSuratSeeder::class);
         $this->call(DosenSeeder::class);
+        $this->call(UnitSeeder::class);
     }
 }

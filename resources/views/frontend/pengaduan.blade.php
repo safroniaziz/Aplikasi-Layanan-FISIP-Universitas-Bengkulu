@@ -1,5 +1,5 @@
 @extends('layouts.user')
-@section('layanan_pengaduan','active-menu')
+@section('pengaduan','active-menu')
 @push('styles')
     <style>
         .pengaduanPattern{
@@ -53,7 +53,7 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
         <div class="col-span-1 lg:col-span-2 border-r-4 border-gray-700" > <section class="container px-4 pt-12 lg:px-16  mx-auto "  >
             <h1 class="mb-4 text-center font-sans text-2xl lg:text-4xl font-bold text-yellow-500   "
                 style="text-shadow:5px 5px 5px #ffffff31;">
-                LAYANAN PENYAMPAIAN IDE DAN PENGADUAN</h1>
+                LAYANAN PENYAMPAIAN PENGADUAN</h1>
             <p class="capitalize text-gray-400 text-center text-[14px] leading-7">
                 Selamat datang di Layanan Pengadugan E-BERES Fakultas Ilmu Sosial dan Ilmu Politik Universitas Bengkulu! <br>
                 Punya ide atau keluhan? Ayo gunakan aplikasi pengaduan kami dan rasakan perubahan positif. Setiap tanggapan Anda membentuk pengalaman layanan ke arah yang lebih baik!
@@ -143,19 +143,19 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
         </section>
     </div>
         <div class="col-span-1 mt-8  pr-10"> 
-            <h2 class="text-gray-300 text-lg uppercase font-normal px-5  ">Lengkapi formulir dibawah ini!</h2>
+            <h2 class="text-gray-300 text-lg uppercase font-normal px-5  ">Sampaikan Pengaduan dibawah ini!</h2>
             <form action="{{ route('layanan_pengaduan.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf @method('POST')
                 <div class="mt-5">
                     <label for="" class="text-white mx-5 after:content-['*'] after:text-red-500 after:pl-2">Pokok Permasalahan</label>
-                    <textarea name="pokok_permasalahan" class=" bg-white text-sm  ring-blue-500 h-20 text-grat-700 px-5 mx-5 rounded-md w-full " placeholder="tes"></textarea>
+                    <textarea name="pokok_permasalahan" class=" bg-white text-sm  ring-blue-500 h-28 text-grat-700 px-5 mx-5 rounded-md w-full " placeholder="tuliskan pokok permasalahan di sini"></textarea>
                     @error('pokok_permasalahan')
                         <div class="text-red-300 px-5 text-sm">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="mt-5">
 
-                    <label for="" class="text-white mx-5 after:content-['*'] after:text-red-500   after:pl-2">Bukti Pendukung</label>
+                    <label for="" class="text-white mx-5 ">Bukti Pendukung</label>
                     <input type="file" name="bukti_pendukung" class="py-2 text-sm bg-white ring-blue-500 text-grat-700 px-5 mx-5 rounded-md w-full ">
                     @error('bukti_pendukung')
                         <div class="text-red-300 px-5 text-sm">{{ $message }}</div>
@@ -163,17 +163,13 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
                 </div>
                 <div class="mt-5">
                     <label for="" class="text-white mx-5 after:content-['*'] after:text-red-500 after:pl-2">Unit Tujuan</label>
-                    <select name="unit_tujuan" class="py-2 text-sm bg-white ring-blue-500 text-grat-700 px-5 mx-5 rounded-md w-full ">
-                        <option value="akademik">Bagian Akademik</option>
-                        <option value="kemahasiswaan">Bagaian Kemahasiswaan</option>
-                        <option value="sdm">Bagian Sumber Daya</option>
-                        <option value="prodi">Program Studi</option>
-                        <option value="tu">Tata Usaha</option>
-                        <option value="upm">UPM</option>
-                        <option value="ukm">UKM</option>
-                        <option value="dekan">Dekan</option>
+                    <select name="unit_id" class="py-2 text-sm bg-white ring-blue-500 text-grat-700 px-5 mx-5 rounded-md w-full ">
+                        <option disabled selected>-- pilih unit --</option>
+                        @foreach ($units as $unit)
+                            <option value="{{ $unit->id }}">{{ $unit->nama_unit }}</option>
+                        @endforeach
                     </select>
-                    @error('unit_tujuan')
+                    @error('unit_id')
                         <div class="text-red-300 px-5 text-sm">{{ $message }}</div>
                     @enderror
                 </div>
@@ -214,7 +210,6 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
                         <option disabled selected>-- pilih jenis surat --</option>
                   
                     </select>
-                    <div x-show="ShowReq"> test</div>
 
                     <div class=" mt-1">
                         <label class=" after:content-['*'] after:text-red-500 font-semibold  text-gray-700 dark:text-gray-300 after:ml-2 text-sm pb-2">Keperluan</label>

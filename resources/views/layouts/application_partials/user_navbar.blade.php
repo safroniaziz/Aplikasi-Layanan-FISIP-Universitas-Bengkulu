@@ -8,7 +8,7 @@
                     duration-300 transform rounded-md lg:mt-0 hover:text-[#eed488] ">Konseling</a>
 <a href="{{ route('permohonan_surat_livewire') }}" class="px-2 py-2 mx-2 mt-2 @yield('permohonan_surat', 'text-gray-600') lg:text-white  text-[14px] text-sh transition-colors
                     duration-300 transform rounded-md lg:mt-0 hover:text-[#eed488] ">Permohonan surat</a>
-                <a href="{{ route('layanan_pengaduan') }}" class="px-2 py-2 mx-2 mt-2 @yield('permohonan_surat', 'text-gray-600') lg:text-white  text-[14px] text-sh transition-colors
+                <a href="{{ route('layanan_pengaduan') }}" class="px-2 py-2 mx-2 mt-2 @yield('pengaduan', 'text-gray-600') lg:text-white  text-[14px] text-sh transition-colors
                     duration-300 transform rounded-md lg:mt-0 hover:text-[#eed488] ">Pengaduan</a>
 @if( isset(Auth::user()->name) )
 <div class="flex items-center mt-4 mx-4 lg:mt-0">

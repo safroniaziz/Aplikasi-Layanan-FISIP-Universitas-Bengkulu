@@ -14,29 +14,23 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Jenis Surat</th>
-                        <th>Keterangan</th>
-                        <th>Kelengkapan</th>
+                        <th>Nama Unit</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($jenisSurats as $index => $jenisSurat)
+                    @forelse ($units as $index => $unit)
                         <tr>
                             <td>{{ $index+1 }}</td>
-                            <td>{{ $jenisSurat->jenis_surat }}</td>
-                            <td>{{ $jenisSurat->keterangan ? $jenisSurat->keterangan : '-' }}</td>
-                            <td>
-                                <a href="{{ route('jenisSurat.kelengkapan',[$jenisSurat->id]) }}" class="btn btn-info btn-sm btn-flat">{{ $jenisSurat->requirements_count }}</a>
-                            </td>
+                            <td>{{ $unit->nama_unit }}</td>
                             <td>
                                 <table>
                                     <tr>
                                         <td>
-                                            <a onclick='editJenisSurat("{{ $jenisSurat->id }}")' class="btn btn-success btn-sm btn-flat"><i class="fa fa-edit"></i>&nbsp; Edit</a>
+                                            <a onclick='editUnit("{{ $unit->id }}")' class="btn btn-success btn-sm btn-flat"><i class="fa fa-edit"></i>&nbsp; Edit</a>
                                         </td>
                                         <td>
-                                            <form action="{{ route('jenisSurat.delete',[$jenisSurat->id]) }}" method="POST" class="form">
+                                            <form action="{{ route('unit.delete',[$unit->id]) }}" method="POST" class="form">
                                                 @csrf @method('DELETE')
 
                                                 <button type="submit" class="btn btn-danger btn-sm btn-flat show_confirm btnSubmit"><i class="fa fa-trash"></i>&nbsp; Hapus</button>
@@ -54,12 +48,12 @@
                         </tr>
                     @endforelse
                 </tbody>
-                @include('backend/jenisSurat/partials.modal_add')
+                @include('backend/units/partials.modal_add')
             </table>
-            @include('backend/jenisSurat/partials.modal_edit')
+            @include('backend/units/partials.modal_edit')
         </div>
     </div>
 </div>
 @endsection
 
-@include('backend/jenisSurat.partials.js')
+@include('backend/units.partials.js')

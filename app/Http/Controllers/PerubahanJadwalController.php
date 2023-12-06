@@ -10,14 +10,29 @@ use App\Models\RuanganKelas;
 
 class PerubahanJadwalController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
         setlocale(LC_ALL, 'IND');
-        $hariIni = Carbon::now()->formatLocalized('%A');
         $ruangans = RuanganKelas::all();
-        $jadwalBerlangsung = JadwalPerkuliahan::with(['matakuliah.prodi'])->where('hari',$hariIni)->get();
+        $hariIni = Carbon::now()->dayName; // Pastikan Anda mendapatkan nama hari dengan benar
+        $tanggalSekarang = Carbon::now()->toDateString();
+        $pembatalanKelas = JadwalPerkuliahanStatus::where('tanggal',$tanggalSekarang)->pluck('jadwal_perkuliahan_id');
+        $nama = $request->query('nama');
+        if (!empty($nama)) {
+            $jadwalBerlangsung = JadwalPerkuliahan::with(['matakuliah.prodi'])
+                                                    ->whereHas('mataKuliah',function($query) use ($nama){
+                                                        $query->where('nama_mata_kuliah', 'like', '%' . $nama . '%');
+                                                    })
+                                                    ->whereNotIn('id',$pembatalanKelas)
+                                                    ->where('hari',$hariIni)
+                                                    ->paginate(10);
+        }else{
+            $jadwalBerlangsung = JadwalPerkuliahan::with(['matakuliah.prodi'])->whereNotIn('id',$pembatalanKelas)->where('hari',$hariIni)->paginate(10);
+        }
         return view('backend.perubahanJadwal.index',[
             'jadwalBerlangsungs'   =>  $jadwalBerlangsung,
             'ruangans'   =>  $ruangans,
+            'hariIni'   =>  $hariIni,
+            'nama'   =>  $nama,
         ]);
     }
 
@@ -37,6 +52,12 @@ class PerubahanJadwalController extends Controller
                 'is_cancel' =>  1,
                 'tanggal'   =>  Carbon::now()->toDateString(),
             ]);
+
+            $notification = array(
+                'message' => 'Berhasil, Jadwal berhasil dibatalkan',
+                'alert-type' => 'success'
+            );
+            return redirect()->route('perubahanJadwal')->with($notification);
         }
     }
 }

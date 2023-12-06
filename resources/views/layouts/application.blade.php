@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Layanan FISIP | @yield('halaman')</title>
+        <title>E-Beres FISIP UNIB | @yield('halaman')</title>
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <!-- Bootstrap 3.3.7 -->
@@ -19,7 +19,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Layanan FISIP | @yield('halaman')</title>
+    <title>E-Beres FISIP UNIB | @yield('halaman')</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
@@ -61,7 +61,7 @@
                 <!-- mini logo for sidebar mini 50x50 pixels -->
                 <span class="logo-mini"><i class="fa fa-home"></i></span>
                 <!-- logo for regular state and mobile devices -->
-                <span class="logo-lg" style="font-size:16px;"><b>LAYANAN</b>&nbsp;FISIP</span>
+                <span class="logo-lg" style="font-size:16px;"><b>E-BERES</b>&nbsp;FISIP UNIB</span>
             </a>
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top">
@@ -105,13 +105,9 @@
             <!-- sidebar: style can be found in sidebar.less -->
             <section class="sidebar">
                 <!-- Sidebar user panel -->
-                <div class="user-panel" style="padding: 14px 10px !important;">
-                    <div class="pull-left image">
-                        <img src="{{ asset('assets/img/logo.png') }}" alt="User Image">
-                    </div>
-                    <div class="pull-left info" style="padding: 7px 5px 5px 15px;">
-                        <p>Selamat Datang,</p>
-                        <a href="#" style="text-transform: capitalize; font-size:13px !important;"><i class="fa fa-user"></i> {{ auth()->user()->name }}</a>
+                <div class="user-panel" style="padding: 10px 10px 10px 10px !important; margin:0 auto;">
+                    <div class="pull-left image" style="left: 0px !important;">
+                        <img src="{{ asset('assets/img/logo.png') }}" style="width:210px !important; max-width:210px !important;"  alt="User Image">
                     </div>
                 </div>
                 <!-- sidebar menu: : style can be found in sidebar.less -->
@@ -129,7 +125,7 @@
             <!-- Content Header (Page header) -->
             <section class="content-header">
                 <h1>
-                    Layanan FISIP
+                    E-BERES FISIP
                     <small>Layanan Satu Pintu Fakultas Ilmu Sosial & Politik Universitas Bengkulu</small>
                 </h1>
                 <ol class="breadcrumb">

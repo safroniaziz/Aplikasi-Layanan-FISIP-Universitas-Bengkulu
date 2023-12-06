@@ -28,9 +28,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($bukuTamus as $index => $bukuTamu)
+                    @foreach ($bukuTamus as $key => $bukuTamu)
                         <tr>
-                            <td>{{ $index+1 }}</td>
+                            <td>
+                                {{ $bukuTamus->firstItem() + $key }}
+                            </td>
                             <td>{{ $bukuTamu->nama_tamu }}</td>
                             <td>{{ $bukuTamu->tanggal->isoFormat('dddd, DD MMMM YYYY') }}</td>
                             <td>{{ $bukuTamu->tanggal->isoFormat('HH:mm:ss') }}</td>

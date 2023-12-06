@@ -11,14 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('permohonan_surats', function (Blueprint $table) {
+        Schema::create('kelengkapan_surats', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('jenis_surat_id');
-            $table->text('keperluan');
-            $table->enum('status',['terkirim','diproses','ditolak','selesai']);
-            $table->text('keterangan_status')->nullable();
+            $table->unsignedBigInteger('permohonan_surat_id');
+            $table->string('nama_kelengkapan')->nullable();
+            $table->string('file_path')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('permohonan_surats');
+        Schema::dropIfExists('kelengkapan_surats');
     }
 };

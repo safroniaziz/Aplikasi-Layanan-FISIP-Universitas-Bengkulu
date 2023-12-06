@@ -23,21 +23,20 @@
             });
         });
 
-        function editJenisSurat(id){
+        function editUnit(id){
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-            url = "{{ url('jenis_surats').'/' }}"+id+'/edit';
+            url = "{{ url('data_unit').'/' }}"+id+'/edit';
             $.ajax({
                 url : url,
                 type : 'GET',
                 success : function(data){
                     $('#modalEdit').modal('show');
                     $('#id_edit').val(data.id);
-                    $('#jenis_surat_edit').val(data.jenis_surat);
-                    $('#keterangan_edit').val(data.keterangan);
+                    $('#nama_unit_edit').val(data.nama_unit);
                 },
                 error:function(){
                     $('#gagal').show(100);

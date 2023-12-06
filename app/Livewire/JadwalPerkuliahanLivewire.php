@@ -50,8 +50,18 @@ class JadwalPerkuliahanLivewire extends Component
         ->whereRaw('CURRENT_TIME BETWEEN STR_TO_DATE(waktu_mulai, "%H.%i") and STR_TO_DATE(waktu_selesai, "%H.%i")')
         ->orderBy('waktu_mulai', 'ASC')
         ->get();
-
-        foreach ($jadwalBerlangsung as $jadwal) {
+        $jadwalDialihkanMulai = PengalihanPembatalanJadwal::select(['jadwal_perkuliahans.*','pengalihan_pembatalan_jadwals.waktu_mulai','pengalihan_pembatalan_jadwals.waktu_selesai', 'mata_kuliahs.nama_mata_kuliah', 'program_studis.nama_prodi', 'ruangan_kelas.nama_ruangan_kelas', 'mata_kuliahs.prodi_kode'])
+        ->join('jadwal_perkuliahans', 'jadwal_perkuliahans.id', '=', 'pengalihan_pembatalan_jadwals.jadwal_id')
+        ->join('mata_kuliahs', 'jadwal_perkuliahans.mata_kuliah_id', '=', 'mata_kuliahs.id')
+        ->join('program_studis', 'program_studis.kode', '=', 'mata_kuliahs.prodi_kode')
+        ->join('ruangan_kelas', 'ruangan_kelas.id', '=', 'jadwal_perkuliahans.ruangan_kelas_id')
+        // ->where('hari', 'Senin')
+        ->where('dialihkan_ke', $now->toDateString())
+        ->whereRaw('CURRENT_TIME BETWEEN pengalihan_pembatalan_jadwals.waktu_mulai and pengalihan_pembatalan_jadwals.waktu_selesai')
+        ->orderBy('pengalihan_pembatalan_jadwals.waktu_mulai', 'ASC')
+        ->get();
+        $gabunganJadwal = $jadwalBerlangsung->merge($jadwalDialihkanMulai);
+        foreach ($gabunganJadwal as $jadwal) {
             $prodiKode = $jadwal->nama_prodi;
             if (!isset($jadwalPerProdiBerlangsung[$prodiKode])) {
                 $jadwalPerProdiBerlangsung[$prodiKode] = [
@@ -63,8 +73,7 @@ class JadwalPerkuliahanLivewire extends Component
 
             $pengampuh = Pengampu::select('nama_dosen')->join('dosens', 'pengampus.dosen_nip', '=', 'dosens.nip')->where('pengampus.mata_kuliah_id', $jadwal->mata_kuliah_id)->where('is_active', 1)->first();
             $batal = JadwalPerkuliahanStatus::select('is_cancel')->where('jadwal_perkuliahan_id', $jadwal->id)->where('tanggal', $now->toDateString())->first();
-            $dialihkan = PengalihanPembatalanJadwal::select('dialihkan_ke','waktu_mulai','waktu_selesai')->where('jadwal_id', $jadwal->id)->where('dialihkan_dari', $now->toDateString())->first();
-
+            $dialihkan = PengalihanPembatalanJadwal::select('dialihkan_dari','dialihkan_ke','waktu_mulai','waktu_selesai')->where('jadwal_id', $jadwal->id)->where('dialihkan_dari', $now->toDateString())->first();
             if ($batal) {
                 $batal = $batal->is_cancel;
             } else {
@@ -79,10 +88,12 @@ class JadwalPerkuliahanLivewire extends Component
 
             if ($dialihkan) {
                 $dialihkan_ke = $dialihkan->dialihkan_ke;
+                $dialihkan_dari = $dialihkan->dialihkan_dari;
                 $dialihkan_mulai = $dialihkan->waktu_mulai;
                 $dialihkan_selesai = $dialihkan->waktu_selesai;
             } else {
                 $dialihkan_ke = null;
+                $dialihkan_dari = null;
                 $dialihkan_mulai = null;
                 $dialihkan_selesai = null;
             }
@@ -103,13 +114,13 @@ class JadwalPerkuliahanLivewire extends Component
                 'pengampuh' => $nama_dosen,
                 'batal' => $batal,
                 'dialihkan_ke' => $dialihkan_ke ,
+                'dialihkan_dari' => $dialihkan_dari ,
                 'dialihkan_mulai' => $dialihkan_mulai ,
                 'dialihkan_selesai' => $dialihkan_selesai ,
+                'id_pengalihan' =>  $jadwal->id_pengalihan
             ];
         }
-
         $jumlahLoop = 0;
-
         foreach ($jadwalPerProdiBerlangsung as $prodiData) {
             $jadwalsProdi = $prodiData['jadwal'];
             foreach ($jadwalsProdi as $index => $jadwal) {
@@ -121,7 +132,7 @@ class JadwalPerkuliahanLivewire extends Component
             }
         }
 
-        $this->cekJadwal = $jadwalBerlangsung->count();
+        $this->cekJadwal = $gabunganJadwal->count();
         $this->jadwalPerProdiBerlangsung = $jadwalPerProdiBerlangsung;
         $this->jumlahLoop = $jumlahLoop;
 
@@ -134,7 +145,7 @@ class JadwalPerkuliahanLivewire extends Component
         $now = Carbon::now();
 
         $jadwalPerProdiBelumMulai = [];
-
+        
 
         $jadwalBelumMulai = JadwalPerkuliahan::select(['jadwal_perkuliahans.*', 'mata_kuliahs.nama_mata_kuliah', 'program_studis.nama_prodi', 'ruangan_kelas.nama_ruangan_kelas', 'mata_kuliahs.prodi_kode'])
         ->join('mata_kuliahs', 'jadwal_perkuliahans.mata_kuliah_id', '=', 'mata_kuliahs.id')
@@ -145,8 +156,18 @@ class JadwalPerkuliahanLivewire extends Component
             ->whereRaw('CURRENT_TIME <= STR_TO_DATE(waktu_mulai, "%H.%i") ')
             ->orderBy('waktu_mulai', 'ASC')
             ->get();
-
-        foreach ($jadwalBelumMulai as $jadwal2) {
+        $jadwalDialihkanBelumMulai = PengalihanPembatalanJadwal::select(['jadwal_perkuliahans.*','pengalihan_pembatalan_jadwals.waktu_mulai', 'mata_kuliahs.nama_mata_kuliah', 'program_studis.nama_prodi', 'ruangan_kelas.nama_ruangan_kelas', 'mata_kuliahs.prodi_kode'])
+                ->join('jadwal_perkuliahans', 'jadwal_perkuliahans.id', '=', 'pengalihan_pembatalan_jadwals.jadwal_id')
+                ->join('mata_kuliahs', 'jadwal_perkuliahans.mata_kuliah_id', '=', 'mata_kuliahs.id')
+                ->join('program_studis', 'program_studis.kode', '=', 'mata_kuliahs.prodi_kode')
+                ->join('ruangan_kelas', 'ruangan_kelas.id', '=', 'jadwal_perkuliahans.ruangan_kelas_id')
+                ->where('hari', $now->formatLocalized('%A'))
+                    // ->where('hari', 'Senin')
+                    ->whereRaw('CURRENT_TIME <= pengalihan_pembatalan_jadwals.waktu_mulai ')
+                    ->orderBy('pengalihan_pembatalan_jadwals.waktu_mulai', 'ASC')
+                    ->get();
+        $gabunganJadwal = $jadwalBelumMulai->merge($jadwalDialihkanBelumMulai);
+        foreach ($gabunganJadwal as $jadwal2) {
             $prodiKode = $jadwal2->nama_prodi;
 
             if (!isset($jadwalPerProdiBelumMulai[$prodiKode])) {
@@ -160,6 +181,7 @@ class JadwalPerkuliahanLivewire extends Component
             $pengampuh = Pengampu::select('nama_dosen')->join('dosens', 'pengampus.dosen_nip', '=', 'dosens.nip')->where('pengampus.mata_kuliah_id', $jadwal2->mata_kuliah_id)->where('is_active', 1)->first();
             $batal = JadwalPerkuliahanStatus::select('is_cancel')->where('jadwal_perkuliahan_id', $jadwal2->id)->where('tanggal', $now->toDateString())->first();
             $dialihkan = PengalihanPembatalanJadwal::select('dialihkan_ke','waktu_mulai','waktu_selesai')->where('jadwal_id', $jadwal2->id)->where('dialihkan_dari', $now->toDateString())->first();
+            
             if ($pengampuh) {
                 $nama_dosen = $pengampuh->nama_dosen;
             } else {
@@ -214,7 +236,7 @@ class JadwalPerkuliahanLivewire extends Component
             }
         }
 
-        $this->cekJadwalBelumMulai = $jadwalBelumMulai->count();
+        $this->cekJadwalBelumMulai = $gabunganJadwal->count();
         $this->jadwalPerProdiBelumMulai = $jadwalPerProdiBelumMulai;
         $this->jumlahLoopBelumMulai = $jumlahLoopBelumMulai;
 

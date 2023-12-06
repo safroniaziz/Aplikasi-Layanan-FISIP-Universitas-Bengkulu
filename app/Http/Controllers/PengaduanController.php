@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Pengaduan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class PengaduanController extends Controller
 {
@@ -14,96 +16,18 @@ class PengaduanController extends Controller
         ]);
     }
 
-    public function store(Request $request){
-        $rules = [
-            'nip'         => 'required|unique:pengaduans|numeric',
-            'nama_pegawai'  => 'required',
-            'jabatan'  => 'required',
-            'no_hp'  => 'required|numeric',
-        ];
-
-        $text = [
-            'nip.required'      => 'NIP harus diisi.',
-            'nip.unique'        => 'NIP sudah digunakan, harap pilih NIP lain.',
-            'nama_pegawai.required' => 'Nama pegawai harus diisi.',
-            'jabatan.required' => 'Jabatan pegawai harus diisi.',
-            'no_hp.required' => 'Nomor WhatsApp harus diisi.',
-            'no_hp.numeric' => 'Nomor WhatsApp harus berupa angka.',
-        ];
-
-        $validasi = Validator::make($request->all(), $rules, $text);
-        if ($validasi->fails()) {
-            return response()->json(['error'  =>  0, 'text'   =>  $validasi->errors()->first()],422);
-        }
-
-        $create = Pengaduan::create([
-            'nip'                 =>  $request->nip,
-            'nama_pegawai'          =>  $request->nama_pegawai,
-            'jabatan'          =>  $request->jabatan,
-            'no_hp'             =>  $request->no_hp,
-        ]);
-
-        if ($create) {
-            return response()->json([
-                'text'  =>  'Yeay, Pegawai Berhasil Ditambahkan',
-                'url'   =>  route('pegawai'),
-            ]);
-        }else{
-            return response()->json(['error'  =>  0, 'text'   =>  'Ooopps, Pegawai Gagal Ditambahkan'],422);
-        }
-    }
-
-    public function edit(Pegawai $pegawai){
-        return $pegawai;
-    }
-
-    public function update(Request $request){
-        $rules = [
-            'nip'         => 'required|numeric',
-            'nama_pegawai'  => 'required',
-            'jabatan'  => 'required',
-            'no_hp'  => 'required|numeric',
-        ];
-
-        $text = [
-            'nip.required'      => 'NIP harus diisi.',
-            'nip.unique'        => 'NIP sudah digunakan, harap pilih NIP lain.',
-            'nama_pegawai.required' => 'Nama pegawai harus diisi.',
-            'jabatan.required' => 'Jabatan pegawai harus diisi.',
-            'no_hp.required' => 'Nomor WhatsApp harus diisi.',
-            'no_hp.numeric' => 'Nomor WhatsApp harus berupa angka.',
-        ];
-
-        $validasi = Validator::make($request->all(), $rules, $text);
-        if ($validasi->fails()) {
-            return response()->json(['error'  =>  0, 'text'   =>  $validasi->errors()->first()],422);
-        }
-
-        $update = Pengaduan::where('nip',$request->nip)->update([
-            'nama_pegawai'      =>  $request->nama_pegawai,
-            'jabatan'      =>  $request->jabatan,
-            'no_hp'             =>  $request->no_hp,
-        ]);
-
-        if ($update) {
-            return response()->json([
-                'text'  =>  'Yeay, Pegawai Berhasil Diubah',
-                'url'   =>  route('pegawai'),
-            ]);
-        }else{
-            return response()->json(['error'  =>  0, 'text'   =>  'Ooopps, Pegawai Gagal Diubah'],422);
-        }
-    }
-
-    public function delete(Request $request, Pegawai $pegawai){
-        $delete = Pengaduan::where('nip',$pegawai->nip)->delete();
-        if ($delete) {
-            return response()->json([
-                'text'  =>  'Yeay, Pegawai Berhasil dihapus',
-                'url'   =>  route('pegawai'),
-            ]);
-        }else{
-            return response()->json(['error'  =>  0, 'text'   =>  'Ooopps, Pegawai Gagal dihapus'],422);
+    public function download(Pengaduan $pengaduan){
+        if ($pengaduan) {
+            $filePath = storage_path("app/public/{$pengaduan->bukti_pendukung}");
+            if (Storage::disk('public')->exists("{$pengaduan->bukti_pendukung}")) {
+                return response()->download($filePath);
+            } else {
+                // Handle file not found in storage
+                abort(404);
+            }
+        } else {
+            // Handle file record not found in the database
+            abort(404);
         }
     }
 
@@ -112,6 +36,19 @@ class PengaduanController extends Controller
     }
 
     public function responPost(Request $request){
+        $rules = [
+            'respon' => 'required',
+        ];
+        
+        $text = [
+            'respon.required'  => 'tanggapan harus diisi.',
+        ];
+        
+        $validasi = Validator::make($request->all(), $rules, $text);
+        if ($validasi->fails()) {
+            return response()->json(['error'  =>  0, 'text'   =>  $validasi->errors()->first()],422);
+        }
+
         $pengaduan = Pengaduan::where('id',$request->id_respon)->first();
         $respon = Pengaduan::where('id',$request->id_respon)->update([
             'respon'    =>  $request->respon,

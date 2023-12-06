@@ -20,7 +20,7 @@
                 contentType:false,
                 success : function(res) {
                     $(".btnSubmit"). attr("disabled", true);
-                    toastr.success(res.text, 'Success: Your submission was successful');
+                    toastr.success(res.text, 'Success: Submit data berhasil');
                     setTimeout(function () {
                         window.location.href=res.url;
                     } , 500);

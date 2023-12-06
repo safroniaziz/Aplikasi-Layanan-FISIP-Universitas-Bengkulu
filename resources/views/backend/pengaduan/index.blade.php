@@ -18,7 +18,7 @@
                         <th>Pokok Permasalahan</th>
                         <th>Bukti Pendukung</th>
                         <th>Unit Dituju</th>
-                        <th>Respon</th>
+                        <th>Tanggapan</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -29,7 +29,13 @@
                             <td>{{ $pengaduan->user->name }}</td>
                             <td>{{ $pengaduan->tiket_pengaduan }}</td>
                             <td>{{ $pengaduan->pokok_permasalahan }}</td>
-                            <td>{{ $pengaduan->bukti_pendukung }}</td>
+                            <td>
+                                @if ($pengaduan->bukti_pendukung != null || $pengaduan->bukti_pendukung != "")
+                                    <a href="{{ route('pengaduan.download',[$pengaduan->id]) }}">{{ $pengaduan->bukti_pendukung }}</a>
+                                @else
+                                    -
+                                @endif
+                            </td>
                             <td>{{ $pengaduan->unit_tujuan }}</td>
                             <td>{{ $pengaduan->respon ? $pengaduan->respon : '-' }}</td>
                             <td>
@@ -37,9 +43,8 @@
                                     <tr>
                                         <td>
                                             @if ($pengaduan->respon == null || $pengaduan->respon == "")
-                                                <a onclick='respon("{{ $pengaduan->id }}")' class="btn btn-success btn-sm btn-flat"><i class="fa fa-comment"></i>&nbsp; Respon</a>
+                                                <a onclick='respon("{{ $pengaduan->id }}")' class="btn btn-success btn-sm btn-flat"><i class="fa fa-comment"></i>&nbsp; Tanggapi</a>
                                             @else
-                                                
                                             @endif
                                         </td>
                                     </tr>

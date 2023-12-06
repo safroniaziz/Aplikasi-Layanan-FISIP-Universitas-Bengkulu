@@ -4,13 +4,20 @@
 @section('content')
 <div class="box-body">
     <div class="row">
-        <div class="col-md-12" style="margin-bottom: 10px !important;">
-            <button type="button" class="btn btn-primary btn-sm btn-flat" data-toggle="modal" data-target="#modal-default">
-                <i class="fa fa-plus"></i>&nbsp; Tambah Data
-            </button>
+        <div class="col-md-12">
+            <div class="alert alert-danger">Menampilkan Jadwal Perkuliahan Pada Hari <b>{{ $hariIni }}</b></div>
         </div>
         <div class="col-md-12 table-responsive">
-            <table class="table table-bordered table-hover table-striped" style="width: 100%">
+            <form method="GET" id="pencarian">
+                <div class="form-group" style="margin-bottom: 5px !important;">
+                    <label for="nama" class="col-form-label">Cari Mata Kuliah</label>
+                    <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukan Mata Kuliah..." value="{{$nama}}">
+                </div>
+                <div style="margin-bottom:10px !important;">
+                    <button type="submit" class="btn btn-success btn-sm btn-flat mb-2"><i class="fa fa-search"></i>&nbsp;Cari Data</button>
+                </div>
+            </form>
+            <table class="table table-hover table-striped" style="width: 100%">
                 <thead>
                     <tr>
                         <th>No</th>
@@ -24,9 +31,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($jadwalBerlangsungs as $index => $jadwalPerkuliahan)
+                    @forelse ($jadwalBerlangsungs as $key => $jadwalPerkuliahan)
                         <tr>
-                            <td>{{ $index+1 }}</td>
+                            <td>
+                                {{ $jadwalBerlangsungs->firstItem() + $key }}
+                            </td>
                             <td>{{ $jadwalPerkuliahan->matakuliah->prodi->nama_prodi }}</td>
                             <td>{{ $jadwalPerkuliahan->mataKuliah->nama_mata_kuliah }}</td>
                             <td>{{ $jadwalPerkuliahan->ruanganKelas->nama_ruangan_kelas }}</td>
@@ -52,6 +61,7 @@
                     @endforelse
                 </tbody>
             </table>
+            {{ $jadwalBerlangsungs->appends(request()->has('nama') ? ['nama' => $nama] : [])->links("pagination::bootstrap-4") }}
             @include('backend/perubahanJadwal/partials.modal_ubah')
         </div>
     </div>

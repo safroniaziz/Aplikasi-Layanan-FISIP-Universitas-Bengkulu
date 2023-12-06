@@ -15,11 +15,21 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class JadwalPerkuliahanController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
         $mataKuliahs = MataKuliah::all();
         $ruanganKelas = RuanganKelas::all();
         $hariIni = Carbon::now()->isoFormat('dddd');
-        $jadwalPerkuliahans = JadwalPerkuliahan::with(['mataKuliah','ruanganKelas'])->where('hari',$hariIni)->paginate(10);
+        $nama = $request->query('nama');
+        if (!empty($nama)) {
+            $jadwalPerkuliahans = JadwalPerkuliahan::with(['mataKuliah','ruanganKelas'])
+                                                    ->whereHas('mataKuliah',function($query) use ($nama){
+                                                        $query->where('nama_mata_kuliah', 'like', '%' . $nama . '%');
+                                                    })
+                                                    ->where('hari',$hariIni)
+                                                    ->paginate(10);
+        }else{
+            $jadwalPerkuliahans = JadwalPerkuliahan::with(['mataKuliah','ruanganKelas'])->where('hari',$hariIni)->paginate(10);
+        }
         $prodis = ProgramStudi::all();
         return view('backend/jadwalPerkuliahans.index',[
             'jadwalPerkuliahans'  =>  $jadwalPerkuliahans,
@@ -27,6 +37,7 @@ class JadwalPerkuliahanController extends Controller
             'ruanganKelas'  =>  $ruanganKelas,
             'prodis'  =>  $prodis,
             'hariIni'  =>  $hariIni,
+            'nama'  =>  $nama,
         ]);
     }
 

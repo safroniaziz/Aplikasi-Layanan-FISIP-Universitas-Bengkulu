@@ -14,6 +14,15 @@
             <div class="alert alert-danger">Menampilkan Jadwal Perkuliahan Pada Hari <b>{{ $hariIni }}</b></div>
         </div>
         <div class="col-md-12 table-responsive">
+            <form method="GET" id="pencarian">
+                <div class="form-group" style="margin-bottom: 5px !important;">
+                    <label for="nama" class="col-form-label">Cari Mata Kuliah</label>
+                    <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukan Mata Kuliah..." value="{{$nama}}">
+                </div>
+                <div style="margin-bottom:10px !important;">
+                    <button type="submit" class="btn btn-success btn-sm btn-flat mb-2"><i class="fa fa-search"></i>&nbsp;Cari Data</button>
+                </div>
+            </form>
             <table class="table table-hover table-striped" style="width: 100%">
                 <thead>
                     <tr>
@@ -29,21 +38,23 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($jadwalPerkuliahans as $index => $jadwalPerkuliahan)
+                    @forelse ($jadwalPerkuliahans as $key => $jadwalPerkuliahan)
                         <tr @if ($jadwalPerkuliahan->status_dibatalkan)
                             style="background:#F08080"
                             @elseif($jadwalPerkuliahan->dialihkan()->exists())
                             style="background:#ffe787"
                         @endif>
-                            <td>{{ $index+1 }}</td>
-                            <td>{{ $jadwalPerkuliahan->mataKuliah->nama_mata_kuliah }}</td>
+                            <td>
+                                {{ $jadwalPerkuliahans->firstItem() + $key }}
+                            </td>
+                            <td>{{ $jadwalPerkuliahan->mataKuliah->nama_mata_kuliah.' ('.$jadwalPerkuliahan->matakuliah->keterangan.') ' }}</td>
                             <td>{{ $jadwalPerkuliahan->mataKuliah->prodi->nama_prodi }}</td>
                             <td>{{ $jadwalPerkuliahan->ruanganKelas->nama_ruangan_kelas }}</td>
                             <td>{{ $jadwalPerkuliahan->hari }}</td>
                             <td>{{ $jadwalPerkuliahan->waktu_mulai }}</td>
                             <td>{{ $jadwalPerkuliahan->waktu_selesai }}</td>
                             <th>
-                                <a href="{{ route('jadwalPerkuliahan.kehadiran',[$id]) }}" class="btn btn-default btn-sm btn-flat"><i class="fa fa-qrcode"></i>&nbsp; Kehadiran</a>
+                                <a href="{{ route('jadwalPerkuliahan.kehadiran',[$jadwalPerkuliahan->id]) }}" class="btn btn-default btn-sm btn-flat"><i class="fa fa-qrcode"></i>&nbsp; Kehadiran</a>
                             </th>
                             <td>
                                 <table>
@@ -82,10 +93,11 @@
                         </tr>
                     @endforelse
                 </tbody>
-                @include('backend/jadwalPerkuliahans/partials.modal_add')
             </table>
+            {{ $jadwalPerkuliahans->appends(request()->has('nama') ? ['nama' => $nama] : [])->links("pagination::bootstrap-4") }}
             @include('backend/jadwalPerkuliahans/partials.modal_edit')
         </div>
+        @include('backend/jadwalPerkuliahans/partials.modal_add')
     </div>
     @include('backend/jadwalPerkuliahans/partials.modal_alihkan')
 </div>

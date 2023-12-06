@@ -14,12 +14,12 @@ return new class extends Migration
         Schema::create('pengaduans', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('unit_id');
             $table->timestamp('tanggal');
-            $table->string('unit_tujuan');
             $table->text('pokok_permasalahan');
             $table->string('bukti_pendukung')->nullable();
             $table->string('tiket_pengaduan');
-            $table->text('respon');
+            $table->text('respon')->nullable();
             $table->timestamps();
         });
     }

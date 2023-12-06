@@ -23,21 +23,20 @@
             });
         });
 
-        function editJenisSurat(id){
+        function verifikasi(id){
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-            url = "{{ url('jenis_surats').'/' }}"+id+'/edit';
+            url = "{{ url('permohonan_surat_masuk').'/' }}"+id+'/verifikasi';
             $.ajax({
                 url : url,
                 type : 'GET',
                 success : function(data){
-                    $('#modalEdit').modal('show');
-                    $('#id_edit').val(data.id);
-                    $('#jenis_surat_edit').val(data.jenis_surat);
-                    $('#keterangan_edit').val(data.keterangan);
+                    console.log(data);
+                    $('#modalVerifikasi').modal('show');
+                    $('#id_verifikasi').val(data.id);
                 },
                 error:function(){
                     $('#gagal').show(100);

@@ -44,6 +44,8 @@ use App\Http\Controllers\ManajemenBukuTamuController;
 use App\Http\Controllers\MahasiswaMataKuliahController;
 use App\Http\Controllers\PendaftaranKonselingController;
 use App\Http\Controllers\PengaduanController;
+use App\Http\Controllers\PermohonanSuratMasukController;
+use App\Http\Controllers\UnitController;
 
 /*
 |--------------------------------------------------------------------------
@@ -93,13 +95,13 @@ Route::controller(PermohonanSuratController::class)->middleware('auth','verified
 // });
 
 
-Route::get('/tampil-jadwal', JadwalPerkuliahanLivewire::class)->name('tampilJadwalLivewire');
+Route::get('/jadwal_kuliah', JadwalPerkuliahanLivewire::class)->name('tampilJadwalLivewire');
 Route::get('/massage', ChatOperator::class)->name('massage');
 
 
 Route::get( '/permohonan_surat_user', PermohonanSurat::class)->middleware('auth','verified')->name('permohonan_surat_livewire');
 // Route::controller(JadwalController::class)->prefix('/jadwal')->group(function () {
-//     Route::get('/tampil-Jadwal', 'index')->name('tampilJadwal');
+//     Route::get('/_', 'index')->name('tampilJadwal');
 // });
 
 Route::controller(DashboardController::class)->middleware('auth','verified','operator')->prefix('/dashboard')->group(function(){
@@ -252,9 +254,25 @@ Route::controller(JenisSuratController::class)->middleware('auth','verified','op
     Route::delete('/{jenisSurat}/delete', 'delete')->name('jenisSurat.delete');
 });
 
+Route::controller(PermohonanSuratMasukController::class)->middleware('auth','verified','operator')->prefix('/permohonan_surat_masuk')->group(function(){
+    Route::get('/', 'index')->name('permohonan');
+    Route::get('/{permohonan}/verifikasi', 'verifikasi')->name('permohonan.verifikasi');
+    Route::patch('/verifikasi_post', 'verifikasiPost')->name('permohonan.verifikasiPost');
+    Route::get('/{kelengkapan}/download', 'download')->name('kelengkapan.download');
+});
+
+Route::controller(UnitController::class)->middleware('auth','verified','operator')->prefix('/data_unit')->group(function(){
+    Route::get('/', 'index')->name('unit');
+    Route::post('/', 'store')->name('unit.store');
+    Route::get('/{unit}/edit', 'edit')->name('unit.edit');
+    Route::patch('/update', 'update')->name('unit.update');
+    Route::delete('/{unit}/delete', 'delete')->name('unit.delete');
+});
+
 Route::controller(PengaduanController::class)->middleware('auth','verified','operator')->prefix('/laporan_pengaduan')->group(function(){
     Route::get('/', 'index')->name('pengaduan');
     Route::get('/{pengaduan}/respon', 'respon')->name('pengaduan.respon');
+    Route::get('/{pengaduan}/download', 'download')->name('pengaduan.download');
     Route::patch('/respon', 'responPost')->name('pengaduan.responPost');
 });
 

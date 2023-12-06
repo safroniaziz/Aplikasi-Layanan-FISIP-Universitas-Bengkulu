@@ -1,25 +1,19 @@
 <div class="modal fade" id="modal-default">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="{{ route('jenisSurat.store') }}" method="POST" class="form">
+            <form action="{{ route('unit.store') }}" method="POST" class="form">
                 {{ csrf_field() }} {{ method_field('POST') }}
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span></button>
-                    <p style="font-weight: bold"><i class="fa fa-plus"></i>&nbsp;Form Tambah Jenis Surat</p>
+                    <p style="font-weight: bold"><i class="fa fa-plus"></i>&nbsp;Form Tambah Unit</p>
                 </div>
                 <div class="modal-body">
                     <div class="row">
                         <div class="form-group col-md-12">
-                            <label for="exampleInputEmail1">Jenis Surat</label>
-                            <input type="text" class="form-control" name="jenis_surat">
+                            <label for="exampleInputEmail1">Nama Unit</label>
+                            <input type="text" class="form-control" name="nama_unit">
                         </div>
-
-                        <div class="form-group col-md-12">
-                            <label for="exampleInputEmail1">Keterangan</label>
-                            <textarea name="keterangan" class="form-control" cols="30" rows="3"></textarea>
-                        </div>
-
                     </div>
                 </div>
                 <div class="modal-footer">

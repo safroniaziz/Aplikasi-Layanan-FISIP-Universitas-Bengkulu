@@ -35,7 +35,8 @@
 <li class="header">FITUR UTAMA</li>
 <li class="treeview {{ set_active([
     'ruanganPoadcast','ruanganPoadcast.create','ruanganPoadcast.edit',
-    'alatPoadcast','alatPoadcast.creata','alatPoadcast.edit',
+    'alatPoadcast','alatPoadcast.create','alatPoadcast.edit',
+    'sewaRuangan', 
 ]) }}">
     <a href="#">
         <i class="fa fa-microphone"></i> <span>Sewa Alat Poadcast</span>
@@ -44,8 +45,8 @@
         </span>
     </a>
     <ul class="treeview-menu">
-        <li class="{{ set_active(['ruanganPoadcast']) }}"><a href="{{ route('ruanganPoadcast') }}"><i class="fa fa-circle-o"></i> Ruangan Poadcast</a></li>
-        <li class="{{ set_active(['alatPoadcast']) }}"><a href="{{ route('alatPoadcast') }}"><i class="fa fa-circle-o"></i> Alat Poadcast</a></li>
+        <li class="{{ set_active(['ruanganPoadcast','ruanganPoadcast.create','ruanganPoadcast.edit']) }}"><a href="{{ route('ruanganPoadcast') }}"><i class="fa fa-circle-o"></i> Ruangan Poadcast</a></li>
+        <li class="{{ set_active(['alatPoadcast','alatPoadcast.create','alatPoadcast.edit']) }}"><a href="{{ route('alatPoadcast') }}"><i class="fa fa-circle-o"></i> Alat Poadcast</a></li>
         <li class="{{ set_active(['sewaRuangan']) }}"><a href="{{ route('sewaRuangan') }}"><i class="fa fa-circle-o"></i> list Sewa Ruangan </a></li>
     </ul>
 </li>
@@ -57,6 +58,7 @@
     'jadwalPerkuliahan',
     'perubahanJadwal',
     'jadwalPerkuliahan.semuaJadwal',
+    'jadwal_settings',
 ]) }}">
     <a href="#">
         <i class="fa fa-calendar"></i> <span>Jadwal Mata Kuliah</span>
@@ -70,7 +72,7 @@
         <li class="{{ set_active(['ruanganKelas']) }}"><a href="{{ route('ruanganKelas') }}"><i class="fa fa-circle-o"></i> Ruang Kelas</a></li>
         <li class="{{ set_active(['jadwalPerkuliahan','jadwalPerkuliahan.semuaJadwal']) }}"><a href="{{ route('jadwalPerkuliahan') }}"><i class="fa fa-circle-o"></i> Jadwal Perkuliahan</a></li>
         <li class="{{ set_active(['perubahanJadwal']) }}"><a href="{{ route('perubahanJadwal') }}"><i class="fa fa-circle-o"></i> Perubahan Jadwal</a></li>
-        <li class="{{ set_active(['jadwal_settings']) }}"><a href="{{ route('jadwal_settings') }}"><i class="fa fa-circle-o"></i> Jadwal Setting View</a></li>
+        <li class="{{ set_active(['jadwal_settings']) }}"><a href="{{ route('jadwal_settings') }}"><i class="fa fa-circle-o"></i> Video Youtube</a></li>
     </ul>
 </li>
 
@@ -89,8 +91,6 @@
         <li class="{{ set_active(['basisPengetahuan']) }}"><a href="{{ route('basisPengetahuan') }}"><i class="fa fa-circle-o"></i> Basis Pengetahuan</a></li>
         <li class="{{ set_active(['massage']) }}"><a href="{{ route('massage') }}"><i class="fa fa-circle-o"></i> E-Konsling (Live Chat)</a></li>
         <li class="{{ set_active(['konselingOffline']) }}"><a href="{{ route('konselingOffline') }}"><i class="fa fa-circle-o"></i> Konseling Offline</a></li>
-        {{-- <li class="{{ set_active(['jadwalKonseling']) }}"><a href="{{ route('jadwalKonseling') }}"><i class="fa fa-circle-o"></i> Jadwal Konseling</a></li> --}}
-        {{-- <li class="{{ set_active(['massage']) }}"><a href="{{ route('massage') }}"><i class="fa fa-circle-o"></i> Mesagge</a></li> --}}
     </ul>
 </li>
 
@@ -101,16 +101,25 @@
     </a>
 </li>
 
-<li class="{{ set_active(['pengaduan']) }}">
-    <a href="{{ route('pengaduan') }}">
-        <i class="fa fa-comments"></i>
-        <span>Laporan Pengaduan</span>
+<li class="treeview {{ set_active([
+    'pengaduan',
+    'unit',
+]) }}">
+    <a href="#">
+        <i class="fa fa-exclamation-circle"></i> <span>Laporan Pengaduan</span>
+        <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+        </span>
     </a>
+    <ul class="treeview-menu">
+        <li class="{{ set_active(['unit']) }}"><a href="{{ route('unit') }}"><i class="fa fa-circle-o"></i> Data Unit</a></li>
+        <li class="{{ set_active(['pengaduan']) }}"><a href="{{ route('pengaduan') }}"><i class="fa fa-circle-o"></i> Data Pengaduan</a></li>
+    </ul>
 </li>
-
 
 <li class="treeview {{ set_active([
         'jenisSurat','jenisSurat.kelengkapan',
+        'permohonan',
         // 'daftarSurat'
     ]) }}">
     <a href="#">
@@ -121,6 +130,7 @@
     </a>
     <ul class="treeview-menu">
         <li class="{{ set_active(['jenisSurat','jenisSurat.kelengkapan']) }}"><a href="{{ route('jenisSurat') }}"><i class="fa fa-circle-o"></i> Jenis Surat</a></li>
+        <li class="{{ set_active(['permohonan','permohonan']) }}"><a href="{{ route('permohonan') }}"><i class="fa fa-circle-o"></i>Permohonan Surat Diterima</a></li>
         {{-- <li class="{{ set_active(['daftarSurat']) }}"><a href="{{ route('daftarSurat') }}"><i class="fa fa-check-circle"></i> Daftar Permohonan Surat</a></li> --}}
     </ul>
 </li>
