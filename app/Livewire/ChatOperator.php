@@ -75,6 +75,6 @@ class ChatOperator extends Component
     {
 
         $this->listchat();
-        return view('livewire.chat-operator')->layout('Layouts.chat');
+        return view('livewire.chat-operator')->layout('layouts.chat');
     }
 }
