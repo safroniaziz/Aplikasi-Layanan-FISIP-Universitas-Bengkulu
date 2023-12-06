@@ -53,9 +53,6 @@
                             <td>{{ $jadwalPerkuliahan->hari }}</td>
                             <td>{{ $jadwalPerkuliahan->waktu_mulai }}</td>
                             <td>{{ $jadwalPerkuliahan->waktu_selesai }}</td>
-                            <th>
-                                <a href="{{ route('jadwalPerkuliahan.kehadiran',[$jadwalPerkuliahan->id]) }}" class="btn btn-default btn-sm btn-flat"><i class="fa fa-qrcode"></i>&nbsp; Kehadiran</a>
-                            </th>
                             <td>
                                 <table>
                                     <tr>
