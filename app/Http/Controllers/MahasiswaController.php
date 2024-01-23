@@ -19,7 +19,7 @@ class MahasiswaController extends Controller
 
     public function detail(ProgramStudi $prodi){
         $mahasiswas = Mahasiswa::where('prodi_kode',$prodi->kode)->get();
-        return view('backend.Mahasiswas.detail',[
+        return view('backend.mahasiswas.detail',[
             'prodi' =>  $prodi,
             'mahasiswas' =>  $mahasiswas,
         ]);

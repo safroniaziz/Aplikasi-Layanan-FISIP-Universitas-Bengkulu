@@ -161,6 +161,13 @@ class UserRolePermissionSeeder extends Seeder
         $permission = Permission::create(['name'  =>  'sewaRuangan.konfirmasi']);
         $permission = Permission::create(['name'  =>  'sewaRuangan.delete']);
 
+        // Assume you have already created permissions in the database
+        $permissions = Permission::all();
+
+        foreach ($permissions as $permission) {
+            $roleOperator->givePermissionTo($permission);
+        }
+
         $user = User::create([
             'name' => 'Operator',
             'username' => 'operator',
