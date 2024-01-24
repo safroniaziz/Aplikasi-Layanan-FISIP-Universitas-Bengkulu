@@ -20,7 +20,7 @@ class RoleController extends Controller
         $rules = [
             'name'      =>  'required',
         ];
-        
+
         $text = [
             'name.required'           => 'Nama User harus diisi',
         ];
@@ -50,7 +50,7 @@ class RoleController extends Controller
         $rules = [
             'name'      =>  'required',
         ];
-        
+
         $text = [
             'name.required'           => 'Nama User harus diisi',
         ];
@@ -118,7 +118,7 @@ class RoleController extends Controller
             'message' => 'Permission berhasil dicabut dari role',
             'alert-type' => 'success'
         );
-    
+
         return redirect()->route('role.detail',[$role->id])->with($notification);
     }
 }

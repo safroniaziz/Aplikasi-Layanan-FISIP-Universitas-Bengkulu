@@ -4,11 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\JenisSurat;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Validator;
 
 class JenisSuratController extends Controller
 {
     public function index(){
+        if (!Gate::allows('jenisSurat')) {
+            abort(403);
+        }
         $jenisSurats = JenisSurat::withCount(['requirements'])->orderBy('created_at','desc')->get();
         return view('backend/jenisSurat.index',[
             'jenisSurats'   =>  $jenisSurats,
@@ -19,12 +23,12 @@ class JenisSuratController extends Controller
         $rules = [
             'jenis_surat' => 'required|unique:jenis_surats,jenis_surat',
         ];
-        
+
         $text = [
             'jenis_surat.required'  => 'Jenis Surat harus diisi.',
             'jenis_surat.unique'    => 'Jenis Surat sudah ada.',
         ];
-        
+
         $validasi = Validator::make($request->all(), $rules, $text);
         if ($validasi->fails()) {
             return response()->json(['error'  =>  0, 'text'   =>  $validasi->errors()->first()],422);
@@ -53,11 +57,11 @@ class JenisSuratController extends Controller
         $rules = [
             'jenis_surat' => 'required',
         ];
-        
+
         $text = [
             'jenis_surat.required'  => 'Jenis Surat harus diisi.',
         ];
-        
+
         $validasi = Validator::make($request->all(), $rules, $text);
         if ($validasi->fails()) {
             return response()->json(['error'  =>  0, 'text'   =>  $validasi->errors()->first()],422);

@@ -8,6 +8,7 @@ use App\Models\ProgramStudi;
 use App\Models\RuanganKelas;
 use Illuminate\Http\Request;
 use App\Models\JadwalPerkuliahan;
+use Illuminate\Support\Facades\Gate;
 use App\Models\JadwalPerkuliahanStatus;
 use Illuminate\Support\Facades\Validator;
 use App\Models\PengalihanPembatalanJadwal;
@@ -16,6 +17,9 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
 class JadwalPerkuliahanController extends Controller
 {
     public function index(Request $request){
+        if (!Gate::allows('jadwalPerkuliahan')) {
+            abort(403);
+        }
         $mataKuliahs = MataKuliah::all();
         $ruanganKelas = RuanganKelas::all();
         $hariIni = Carbon::now()->isoFormat('dddd');

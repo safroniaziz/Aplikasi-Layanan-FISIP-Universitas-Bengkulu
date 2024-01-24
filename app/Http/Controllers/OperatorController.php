@@ -15,8 +15,10 @@ class OperatorController extends Controller
 {
     public function index(){
         $operators = User::all();
+        $roles = Role::all();
         return view('backend/operators.index',[
             'operators'  =>  $operators,
+            'roles'  =>  $roles,
         ]);
     }
 
@@ -25,10 +27,11 @@ class OperatorController extends Controller
             'name'      =>  'required',
             'username'      =>  'required|unique:users',
             'email' => 'required|email|unique:users',
+            'role_id'   =>  'required',
             'password' => 'required|min:8|regex:/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/',
             'password_confirmation' => 'required|same:password', // Ini adalah validasi konfirmasi password
         ];
-        
+
         $text = [
             'name.required'           => 'Nama User harus diisi',
             'username.required'           => 'Nama User harus diisi',
@@ -54,7 +57,7 @@ class OperatorController extends Controller
             'password'          =>  Hash::make($request->password),
         ]);
 
-        $operatorRole = Role::where('name', 'operator')->first();
+        $operatorRole = Role::where('id', $request->role_id)->first();
         $simpan->assignRole($operatorRole);
 
         if ($simpan) {
@@ -84,7 +87,7 @@ class OperatorController extends Controller
                 Rule::unique('users')->ignore($user->id), // $user adalah instance dari model User yang sedang diedit
             ],
         ];
-        
+
         $text = [
             'name.required'           => 'Nama User harus diisi',
             'username.required'           => 'Username harus diisi',
@@ -134,7 +137,7 @@ class OperatorController extends Controller
             'password' => 'required|min:8|regex:/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/',
             'password_confirmation' => 'required|same:password', // Ini adalah validasi konfirmasi password
         ];
-        
+
         $text = [
             'password.required'            => 'Password harus diisi',
             'password.min'                 => 'Password harus memiliki setidaknya :min karakter',

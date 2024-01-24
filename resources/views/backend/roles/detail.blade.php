@@ -5,7 +5,7 @@
 <div class="box-body">
     <div class="row">
         <div class="col-md-12">
-            <table class="table table-bordered table-hover table-striped" style="width: 100%">
+            <table class="table table-hover table-striped" style="width: 100%">
                 <tbody>
                     <tr>
                         <th>Nama Role</th>
@@ -20,14 +20,26 @@
 </div>
 <div class="box-body">
     <div class="row">
+        <div class="col-md-12">
+            <form action="{{ route('role.assign',[$role->id]) }}" method="POST">
+                @csrf @method('POST')
+                <div class="form-group">
+                    <select name="permission_id" class="form-control select2" id="">
+                        <option selected disabled>-- pilih permission --</option>
+                        @foreach ($unassignedPermissions as $permission)
+                            <option value="{{ $permission->id }}">{{ $permission->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div style="margin-bottom: 10px !important;">
+                    <a href="{{ route('role') }}" class="btn btn-warning btn-sm btn-flat"><i class="fa fa-arrow-circle-left"></i>&nbsp; Kembali</a>
+                    <button type="submit" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-check-circle"></i>&nbsp; Simpan</button>
+                </div>
+            </form>
+        </div>
         <div class="col-md-12 table-responsive">
-            <div style="margin-bottom: 5px !important;">
-                <a href="{{ route('role') }}" class="btn btn-warning btn-sm btn-flat"><i class="fa fa-arrow-circle-left"></i>&nbsp; Kembali</a>
-                <button type="button" class="btn btn-primary btn-sm btn-flat" data-toggle="modal" data-target="#modal-default">
-                    <i class="fa fa-plus"></i>&nbsp; Tambah Data
-                </button>
-            </div>
-            <table class="table table-bordered table-hover table-striped" style="width: 100%">
+            <table class="table table-hover table-striped" style="width: 100%">
                 <thead class="bg-primary">
                     <tr>
                         <th>No</th>
@@ -49,7 +61,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="2" class="text-center">
+                            <td colspan="3" class="text-center">
                                 <a class="text-danger">Data Kosong</a>
                             </td>
                         </tr>
@@ -74,6 +86,10 @@
 
         $(".selectPermission").select2({
             placeholder: 'Masukan Nama Permission',
+        });
+
+        $(document).ready(function() {
+            $('.select2').select2();
         });
 
     </script>

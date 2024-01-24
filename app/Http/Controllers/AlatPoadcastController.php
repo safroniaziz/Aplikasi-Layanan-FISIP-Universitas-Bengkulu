@@ -2,16 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AlatPoadcast;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use App\Models\AlatPoadcast;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class AlatPoadcastController extends Controller
 {
     public function index(){
+        if (!Gate::allows('alatPoadcast')) {
+            abort(403);
+        }
         $alatPoadcasts = AlatPoadcast::all();
         return view('backend/alatPoadcasts.index',[
             'alatPoadcasts'  =>  $alatPoadcasts,

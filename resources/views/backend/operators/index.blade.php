@@ -17,6 +17,7 @@
                         <th style=" vertical-align:middle">Nama Operator</th>
                         <th style=" vertical-align:middle">Username</th>
                         <th style=" vertical-align:middle">Email</th>
+                        <th style=" vertical-align:middle">Role</th>
                         <th style=" vertical-align:middle; text-align:center">Ubah Password</th>
                         <th style=" vertical-align:middle">Terdaftar Sejak</th>
                         <th style="text-align:center; vertical-align:middle">Aksi</th>
@@ -32,6 +33,7 @@
                             <td>{{ $operator->name }}</td>
                             <td>{{ $operator->username }}</td>
                             <td>{{ $operator->email }}</td>
+                            <td>{{ $operator->getRoleNames()->first() }}</td>
                             <td>{{ $operator->created_at }}</td>
                             <td class="text-center">
                                 <a onclick="ubahPassword({{ $operator->id }})" class="btn btn-primary btn-sm btn-flat" style="color:white; cursor:pointer;"><i class="fa fa-key"></i></a>
@@ -87,6 +89,7 @@
                     $('#modalEdit').modal('show');
                     $('#operator_id_edit').val(data.id);
                     $('#name_edit').val(data.name);
+                    $('#role_id_edit').val(data.role.id);
                     $('#email_edit').val(data.email);
                     $('#username_edit').val(data.username);
                 },

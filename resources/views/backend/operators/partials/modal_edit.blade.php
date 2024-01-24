@@ -22,6 +22,16 @@
                         </div>
 
                         <div class="form-group col-md-12" >
+                            <label for="nip" class="col-form-label">Pilih Role</label>
+                            <select name="role_id" id="role_id_edit" class="form-control" id="">
+                                <option disabled selected>-- pilih role --</option>
+                                @foreach ($roles as $role)
+                                    <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="form-group col-md-12" >
                             <label for="nip" class="col-form-label">Email</label>
                             <input type="text" class="form-control" name="email" id="email_edit">
                         </div>

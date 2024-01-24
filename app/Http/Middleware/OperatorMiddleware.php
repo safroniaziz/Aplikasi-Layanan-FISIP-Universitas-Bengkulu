@@ -16,7 +16,7 @@ class OperatorMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         // Periksa apakah pengguna saat ini memiliki role 'operator'
-        if (auth()->check() && auth()->user()->hasRole('operator')) {
+        if (auth()->check() && auth()->user()->hasRole('admin')) {
             return $next($request); // Lanjutkan ke rute jika pengguna adalah operator
         }
 

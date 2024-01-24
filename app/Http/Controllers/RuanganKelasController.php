@@ -4,12 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\RuanganKelas;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Validator;
 
 
 class RuanganKelasController extends Controller
 {
     public function index(){
+        if (!Gate::allows('ruanganKelas')) {
+            abort(403);
+        }
         $ruanganKelas = RuanganKelas::all();
         return view('backend/ruanganKelas.index',[
             'ruanganKelas'  =>  $ruanganKelas,

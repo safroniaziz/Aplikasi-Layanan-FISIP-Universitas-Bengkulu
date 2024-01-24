@@ -5,12 +5,16 @@ namespace App\Http\Controllers;
 use App\Models\MataKuliah;
 use App\Models\ProgramStudi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Validator;
 
 
 class MataKuliahController extends Controller
 {
     public function index(){
+        if (!Gate::allows('mataKuliah')) {
+            abort(403);
+        }
         $prodis = ProgramStudi::withCount('mataKuliahs')->get();
         return view('backend/mataKuliahs.index',[
             'prodis' =>  $prodis,

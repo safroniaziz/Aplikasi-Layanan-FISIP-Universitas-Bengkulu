@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\RuanganPoadcast;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -13,6 +14,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class RuanganPoadcastController extends Controller
 {
     public function index(){
+        if (!Gate::allows('ruanganPoadcast')) {
+            abort(403);
+        }
         $ruanganPoadcasts = RuanganPoadcast::all();
         return view('backend/ruanganPoadcasts.index',[
             'ruanganPoadcasts'  =>  $ruanganPoadcasts,
@@ -32,7 +36,7 @@ class RuanganPoadcastController extends Controller
             'harga_sewa'        => 'required|numeric',
             'foto'              => 'required|image|mimes:jpeg,png,jpg|max:2048', // Ganti ini sesuai dengan kebutuhan
         ];
-        
+
         $text = [
             'nama_ruangan.required'     => 'Nama Ruangan harus diisi',
             'deskripsi.required'        => 'Deskripsi harus diisi',
@@ -59,7 +63,7 @@ class RuanganPoadcastController extends Controller
             $model['foto'] = Str::slug($model['nama_ruangan'], '-').'.'.$request->foto->getClientOriginalExtension();
             $request->foto->move(public_path('/upload/foto_ruangan/'), $model['foto']);
         }
-        
+
         $create = RuanganPoadcast::create([
             'nama_ruangan'  =>  $request->nama_ruangan,
             'deskripsi'     =>  $request->deskripsi,
@@ -94,7 +98,7 @@ class RuanganPoadcastController extends Controller
             'harga_sewa'        => 'required|numeric',
             'foto'              => 'image|mimes:jpeg,png,jpg|max:2048', // Ganti ini sesuai dengan kebutuhan
         ];
-        
+
         $text = [
             'nama_ruangan.required'     => 'Nama Ruangan harus diisi',
             'deskripsi.required'        => 'Deskripsi harus diisi',

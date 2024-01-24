@@ -26,6 +26,16 @@
                         </div>
 
                         <div class="form-group col-md-12" >
+                            <label for="nip" class="col-form-label">Pilih Role</label>
+                            <select name="role_id" id="role_id" class="form-control" id="">
+                                <option disabled selected>-- pilih role --</option>
+                                @foreach ($roles as $role)
+                                    <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="form-group col-md-12" >
                             <label for="nip" class="col-form-label">Password</label>
                             <input type="password" class="form-control" id="password" name="password">
                         </div>

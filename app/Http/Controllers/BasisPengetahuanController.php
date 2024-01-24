@@ -6,11 +6,15 @@ use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use App\Models\BasisPengetahuan;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Validator;
 
 class BasisPengetahuanController extends Controller
 {
     public function index(){
+        if (!Gate::allows('basisPengetahuan')) {
+            abort(403);
+        }
         $basisPengetahuans = BasisPengetahuan::all();
         return view('backend/basisPengetahuans.index',[
             'basisPengetahuans'  =>  $basisPengetahuans,

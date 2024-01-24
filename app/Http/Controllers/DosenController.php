@@ -3,13 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dosen;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 use App\Models\ProgramStudi;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Validator;
 
 class DosenController extends Controller
 {
     public function index(){
+        if (!Gate::allows('dosen')) {
+            abort(403);
+        }
         $prodis = ProgramStudi::withCount('dosens')->get();
         return view('backend/dosens.index',[
             'prodis' =>  $prodis,

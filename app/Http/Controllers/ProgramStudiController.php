@@ -5,11 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Str;
 use App\Models\ProgramStudi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Validator;
 
 class ProgramStudiController extends Controller
 {
     public function index(){
+        if (!Gate::allows('programStudi')) {
+            abort(403);
+        }
         $programStudis = ProgramStudi::all();
         return view('backend/programStudis.index',[
             'programStudis'  =>  $programStudis,
@@ -22,7 +26,7 @@ class ProgramStudiController extends Controller
             'kode'              => 'required|unique:program_studis',
             'nama_fakultas'     => 'required',
         ];
-        
+
         $text = [
             'nama.required'             => 'Nama Prodi harus diisi',
             'kode.required'             => 'Kode Prodi harus diisi',
@@ -60,7 +64,7 @@ class ProgramStudiController extends Controller
             'nama_prodi'        => 'required',
             'nama_fakultas'     => 'required',
         ];
-        
+
         $text = [
             'nama_prodi.required'       => 'Nama Prodi harus diisi',
             'nama_fakultas.required'    => 'Nama Fakultas harus diisi',

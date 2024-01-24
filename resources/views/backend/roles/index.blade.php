@@ -10,7 +10,7 @@
             </button>
         </div>
         <div class="col-md-12 table-responsive">
-            <table class="table table-striped table-bordered" id="table" style="width:100%; margin-bottom: 5px !important;">
+            <table class="table table-striped table-bordered" style="width:100%; margin-bottom: 5px !important;">
                 <thead class="bg-primary">
                     <tr>
                         <th style=" vertical-align:middle">No</th>

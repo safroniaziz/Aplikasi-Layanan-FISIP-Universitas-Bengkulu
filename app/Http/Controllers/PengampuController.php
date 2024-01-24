@@ -3,15 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dosen;
-use App\Models\MataKuliah;
 use App\Models\Pengampu;
+use App\Models\MataKuliah;
 use App\Models\ProgramStudi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Validator;
 
 class PengampuController extends Controller
 {
     public function index(){
+        if (!Gate::allows('pengampu')) {
+            abort(403);
+        }
         $mataKuliahs = MataKuliah::all();
         $dosens = Dosen::all();
         $pengampus = Pengampu::all();

@@ -4,11 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\BukuTamu;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 
 class ManajemenBukuTamuController extends Controller
 {
     public function index(Request $request){
+        if (!Gate::allows('bukuTamu')) {
+            abort(403);
+        }
         $nama = $request->query('nama');
         if (!empty($nama)) {
             $bukuTamus = BukuTamu::where('nama_tamu', 'LIKE', '%' . $nama . '%')->orderBy('created_at','desc')->paginate(10);

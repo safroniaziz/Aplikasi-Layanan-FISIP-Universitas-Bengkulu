@@ -3,14 +3,18 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
+use App\Models\RuanganKelas;
 use Illuminate\Http\Request;
 use App\Models\JadwalPerkuliahan;
+use Illuminate\Support\Facades\Gate;
 use App\Models\JadwalPerkuliahanStatus;
-use App\Models\RuanganKelas;
 
 class PerubahanJadwalController extends Controller
 {
     public function index(Request $request){
+        if (!Gate::allows('perubahanJadwal')) {
+            abort(403);
+        }
         setlocale(LC_ALL, 'IND');
         $ruangans = RuanganKelas::all();
         $hariIni = Carbon::now()->dayName; // Pastikan Anda mendapatkan nama hari dengan benar

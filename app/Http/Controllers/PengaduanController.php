@@ -4,12 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\Pengaduan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class PengaduanController extends Controller
 {
     public function index(){
+        if (!Gate::allows('laporanPengaduan')) {
+            abort(403);
+        }
         $pengaduans = Pengaduan::orderBy('created_at','desc')->get();
         return view('backend/pengaduan.index',[
             'pengaduans' =>  $pengaduans,
@@ -39,11 +43,11 @@ class PengaduanController extends Controller
         $rules = [
             'respon' => 'required',
         ];
-        
+
         $text = [
             'respon.required'  => 'tanggapan harus diisi.',
         ];
-        
+
         $validasi = Validator::make($request->all(), $rules, $text);
         if ($validasi->fails()) {
             return response()->json(['error'  =>  0, 'text'   =>  $validasi->errors()->first()],422);

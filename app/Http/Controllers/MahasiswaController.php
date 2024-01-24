@@ -5,12 +5,16 @@ namespace App\Http\Controllers;
 use App\Models\Mahasiswa;
 use App\Models\ProgramStudi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Validator;
 
 
 class MahasiswaController extends Controller
 {
     public function index(){
+        if (!Gate::allows('mahasiswa')) {
+            abort(403);
+        }
         $prodis = ProgramStudi::withCount('mahasiswas')->get();
         return view('backend/mahasiswas.index',[
             'prodis'  =>  $prodis,

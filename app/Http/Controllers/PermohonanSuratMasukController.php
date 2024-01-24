@@ -2,15 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\KelengkapanSurat;
 use Illuminate\Http\Request;
 use App\Models\PermohonanSurat;
+use App\Models\KelengkapanSurat;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class PermohonanSuratMasukController extends Controller
 {
     public function index(){
+        if (!Gate::allows('permohonan')) {
+            abort(403);
+        }
         $permohonanSurats = PermohonanSurat::with(['jenisSurat','user','kelengkapanSurats'])->orderBy('created_at','desc')->get();
         return view('backend/permohonanSuratMasuk.index',[
             'permohonanSurats'   =>  $permohonanSurats,
@@ -26,12 +30,12 @@ class PermohonanSuratMasukController extends Controller
             'status' => 'required',
             'keterangan_status' => 'required',
         ];
-        
+
         $text = [
             'status.required'  => 'Status Permohonan harus diisi.',
             'keterangan_status.required'  => 'Keterangan Permohonan harus diisi.',
         ];
-        
+
         $validasi = Validator::make($request->all(), $rules, $text);
         if ($validasi->fails()) {
             return response()->json(['error'  =>  0, 'text'   =>  $validasi->errors()->first()],422);

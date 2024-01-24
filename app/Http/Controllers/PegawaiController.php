@@ -4,11 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Pegawai;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Validator;
 
 class PegawaiController extends Controller
 {
     public function index(){
+        if (!Gate::allows('pegawai')) {
+            abort(403);
+        }
         $pegawais = Pegawai::orderBy('created_at','desc')->get();
         return view('backend/pegawai.index',[
             'pegawais' =>  $pegawais,

@@ -4,11 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\PemesananRuangan;
+use Illuminate\Support\Facades\Gate;
 
 class DaftarSewaRuangan extends Controller
 {
     public function index()
     {
+        if (!Gate::allows('sewaRuangan')) {
+            abort(403);
+        }
         $PemesananRuangan = PemesananRuangan::with('user')->where('deleted_at', NULL)->get();
         return view('backend/sewa_ruangan.index', [
             'PemesananRuangan'  =>  $PemesananRuangan,

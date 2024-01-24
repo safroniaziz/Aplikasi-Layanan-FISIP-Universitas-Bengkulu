@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Unit;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Validator;
 
 class UnitController extends Controller
 {
     public function index(){
-        $units = Unit::all();
+        if (!Gate::allows('unit')) {
+            abort(403);
+        }        $units = Unit::all();
         return view('backend/units.index',[
             'units'   =>  $units,
         ]);
@@ -19,11 +22,11 @@ class UnitController extends Controller
         $rules = [
             'nama_unit' => 'required',
         ];
-        
+
         $text = [
             'nama_unit.required'  => 'nama unit harus diisi.',
         ];
-        
+
         $validasi = Validator::make($request->all(), $rules, $text);
         if ($validasi->fails()) {
             return response()->json(['error'  =>  0, 'text'   =>  $validasi->errors()->first()],422);
@@ -51,11 +54,11 @@ class UnitController extends Controller
         $rules = [
             'nama_unit' => 'required',
         ];
-        
+
         $text = [
             'nama_unit.required'  => 'nama unit harus diisi.',
         ];
-        
+
         $validasi = Validator::make($request->all(), $rules, $text);
         if ($validasi->fails()) {
             return response()->json(['error'  =>  0, 'text'   =>  $validasi->errors()->first()],422);
