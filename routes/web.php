@@ -305,6 +305,7 @@ Route::controller(RoleController::class)->middleware('auth','verified','operator
     Route::get('/', 'index')->name('role');
     Route::post('/', 'store')->name('role.store');
     Route::get('/{role}/edit', 'edit')->name('role.edit');
+    Route::get('/{role}/detail', 'detail')->name('role.detail');
     Route::patch('/update', 'update')->name('role.update');
     Route::delete('/{role}/delete', 'delete')->name('role.delete');
     Route::get('/role/{role}/detail', 'permissionPost')->name('role.permissionPost');
