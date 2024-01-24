@@ -210,7 +210,7 @@
     </ul>
 </li>
 @endif
-@if (auth()->check() && auth()->user()->hasRole('admin'))
+@if (auth()->check() && auth()->user()->hasRole('operator'))
 <li class="{{ set_active(['tampilJadwalLivewire']) }}">
     <a href="{{ route('tampilJadwalLivewire') }}">
         <i class="fa fa-book-open"></i>
@@ -218,7 +218,7 @@
     </a>
 </li>
 @endif
-@if (auth()->check() && auth()->user()->hasRole('admin'))
+@if (auth()->check() && auth()->user()->hasRole('operator'))
 <li class="{{ set_active(['bukuTamu']) }}">
     <a href="{{ route('bukuTamu') }}">
         <i class="fa fa-book"></i>
