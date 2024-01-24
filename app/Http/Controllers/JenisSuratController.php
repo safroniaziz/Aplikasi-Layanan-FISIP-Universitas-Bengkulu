@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Validator;
 class JenisSuratController extends Controller
 {
     public function index(){
-        if (!Gate::allows('jenisSurat')) {
+        if (!Gate::allows('jenisSurat.kelengkapan')) {
             abort(403);
         }
         $jenisSurats = JenisSurat::withCount(['requirements'])->orderBy('created_at','desc')->get();
