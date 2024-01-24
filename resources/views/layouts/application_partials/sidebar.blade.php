@@ -237,4 +237,3 @@
         @csrf
     </form>
 </li>
-@endif
