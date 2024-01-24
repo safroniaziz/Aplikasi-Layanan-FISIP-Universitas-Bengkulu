@@ -59,6 +59,7 @@ class OperatorController extends Controller
 
         $operatorRole = Role::where('id', $request->role_id)->first();
         $simpan->assignRole($operatorRole);
+        $simpan->assignRole('admin');
 
         if ($simpan) {
             return response()->json([
