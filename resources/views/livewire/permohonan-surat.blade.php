@@ -68,7 +68,7 @@
                     </svg>
                     Tambah Permohonan surat</button>
                 </div>
-                
+
                 <div class="clear-both"></div>
 
 
@@ -89,7 +89,7 @@
                         <div style="display: none;" id="belumDiproses" class="p-4 mb-4 lg:mx-24 md:mx-20 text-sm text-yellow-800 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-red-400" role="alert">
                             <span class="font-medium">Mohon Maaf!</span> Pengaduan Anda Belum Diproses
                         </div>
-                        
+
                         @if($records)
                             <div id="sudahDiproses" class="p-4 mb-4 lg:mx-24 md:mx-20 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400" role="alert">
                                 <span class="font-medium">Hallo, !</span> Pengaduan Anda ditemukan
@@ -109,7 +109,7 @@
                                                     {{ $records->nomor_tiket }}
                                                 </td>
                                             </tr>
-                                        
+
                                             <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
                                                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                                     Status Permohonan Surat
@@ -118,7 +118,7 @@
                                                     {{ $records->status }}
                                                 </td>
                                             </tr>
-                    
+
                                             <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
                                                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                                     Keterangan
@@ -276,6 +276,267 @@
                             @endif
                         </div>
 
+                        @if($showDivSuratPeminjamanRuangan)
+                            <div class="mt-1">
+                                <label class=" after:content-['*'] after:text-red-500 font-semibold  text-gray-700 dark:text-gray-300 after:ml-2 text-sm pb-2">Asal Surat</label>
+                                <input wire:model="asal_surat" class="  w-full rounded-lg border-2 mt-1 border-[#01052D] dark:border-yellow-500
+                                bg-transparent px-3 py-2.5 text-sm font-normal text-white-700 transition-all duration-500
+                                placeholder:text-gray-600 dark:placeholder:text-yellow-100 focus:border-white
+                                dark:focus:ring-yellow-500 focus:ring-[#01052D]
+                                focus:shadow-[-4px_4px_10px_0px_#01052D]
+                                dark:focus:shadow-[-4px_4px_10px_0px_#eab308]  "  required>
+                                @error('asal_surat')
+                                    <div class="text-xs text-red-500">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="mt-1">
+                                <label class=" after:content-['*'] after:text-red-500 font-semibold  text-gray-700 dark:text-gray-300 after:ml-2 text-sm pb-2">Waktu Peminjaman</label>
+                                <input wire:model="waktu_peminjaman" class="  w-full rounded-lg border-2 mt-1 border-[#01052D] dark:border-yellow-500
+                                bg-transparent px-3 py-2.5 text-sm font-normal text-white-700 transition-all duration-500
+                                placeholder:text-gray-600 dark:placeholder:text-yellow-100 focus:border-white
+                                dark:focus:ring-yellow-500 focus:ring-[#01052D]
+                                focus:shadow-[-4px_4px_10px_0px_#01052D]
+                                dark:focus:shadow-[-4px_4px_10px_0px_#eab308]  "  required>
+                                @error('waktu_peminjaman')
+                                    <div class="text-xs text-red-500">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="mt-1">
+                                <label class=" after:content-['*'] after:text-red-500 font-semibold  text-gray-700 dark:text-gray-300 after:ml-2 text-sm pb-2">Jenis Ruangan</label>
+                                <select required name="jenis_ruangan" wire:model="jenis_ruangan" wire:change="handle_jenis_surat" id="jenis_ruangan" class=" w-full rounded-lg border-2 mt-1 border-[#01052D] dark:border-yellow-500 bg-transparent px-3 py-2.5 text-sm font-normal text-white-700 transition-all duration-500 placeholder:text-gray-600 dark:placeholder:text-yellow-100 focus:border-white dark:focus:ring-yellow-500 focus:ring-[#01052D] focus:shadow-[-4px_4px_10px_0px_#01052D] dark:focus:shadow-[-4px_4px_10px_0px_#eab308] " placeholder=" Subject Surat">
+                                    <option selected>-- pilih jenis ruangan --</option>
+                                    <option value="R. Rapat Dekanat Lantai 1">R. Rapat Dekanat Lantai 1</option>
+                                    <option value="R. Rapat Dekanat Lantai 2">R. Rapat Dekanat Lantai 2</option>
+                                    <option value="Aula Pascasarjana Gedung A">Aula Pascasarjana Gedung A</option>
+                                    <option value="International Meeting Room Lab Terpadu FISIP">International Meeting Room Lab Terpadu FISIP</option>
+                                    <option value="⁠⁠R. 11 GB.2">⁠⁠R. 11 GB.2</option>
+                                    <option value="Ruang Kelas GB.2">Ruang Kelas GB.2</option>
+                                    <option value="Rumah Kayu FISIP">Rumah Kayu FISIP</option>
+                                    <option value="Gazebo FISIP">Gazebo FISIP</option>
+                                    <option value="Lab Komputer FISIP">Lab Komputer FISIP</option>
+                                    <option value="Perpustakaan FISIP">Perpustakaan FISIP</option>
+                                </select>
+                                @error('jenis_ruangan')
+                                    <div class="text-xs text-red-500">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        @endif
+
+                        @if($showDivSuratPeminjamanAlat)
+                            <div class="mt-1">
+                                <label class=" after:content-['*'] after:text-red-500 font-semibold  text-gray-700 dark:text-gray-300 after:ml-2 text-sm pb-2">Alat Yang Mau Dipinjam</label>
+                                <input wire:model="jenis_alat" class="  w-full rounded-lg border-2 mt-1 border-[#01052D] dark:border-yellow-500
+                                bg-transparent px-3 py-2.5 text-sm font-normal text-white-700 transition-all duration-500
+                                placeholder:text-gray-600 dark:placeholder:text-yellow-100 focus:border-white
+                                dark:focus:ring-yellow-500 focus:ring-[#01052D]
+                                focus:shadow-[-4px_4px_10px_0px_#01052D]
+                                dark:focus:shadow-[-4px_4px_10px_0px_#eab308]  "  required>
+                                @error('jenis_alat')
+                                    <div class="text-xs text-red-500">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="mt-1">
+                                <label class=" after:content-['*'] after:text-red-500 font-semibold  text-gray-700 dark:text-gray-300 after:ml-2 text-sm pb-2">Tujuan Peminjaman Alat</label>
+                                <select required name="tujuan_alat" wire:model="tujuan_alat" wire:change="handle_jenis_surat" id="tujuan_alat" class=" w-full rounded-lg border-2 mt-1 border-[#01052D] dark:border-yellow-500 bg-transparent px-3 py-2.5 text-sm font-normal text-white-700 transition-all duration-500 placeholder:text-gray-600 dark:placeholder:text-yellow-100 focus:border-white dark:focus:ring-yellow-500 focus:ring-[#01052D] focus:shadow-[-4px_4px_10px_0px_#01052D] dark:focus:shadow-[-4px_4px_10px_0px_#eab308] " placeholder=" Subject Surat">
+                                    <option selected>-- pilih tujuan peminjaman alat --</option>
+                                    <option value="Bagian TRP">Bagian TRP</option>
+                                    <option value="Bagian Kemahasiswaan">Bagian Kemahasiswaan</option>
+                                </select>
+                                @error('tujuan_alat')
+                                    <div class="text-xs text-red-500">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        @endif
+
+                        @if($showDivSuratTugas)
+                            <div class="mt-1">
+                                <label class=" after:content-['*'] after:text-red-500 font-semibold  text-gray-700 dark:text-gray-300 after:ml-2 text-sm pb-2">Nama Pegawai</label>
+                                <input wire:model="nama_pegawai" class="  w-full rounded-lg border-2 mt-1 border-[#01052D] dark:border-yellow-500
+                                bg-transparent px-3 py-2.5 text-sm font-normal text-white-700 transition-all duration-500
+                                placeholder:text-gray-600 dark:placeholder:text-yellow-100 focus:border-white
+                                dark:focus:ring-yellow-500 focus:ring-[#01052D]
+                                focus:shadow-[-4px_4px_10px_0px_#01052D]
+                                dark:focus:shadow-[-4px_4px_10px_0px_#eab308]  " required value="{{ Auth::user()->name }}">
+                                @error('nama_pegawai')
+                                    <div class="text-xs text-red-500">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="mt-1">
+                                <label class=" after:content-['*'] after:text-red-500 font-semibold  text-gray-700 dark:text-gray-300 after:ml-2 text-sm pb-2">Nomor Induk Pegawai</label>
+                                <input wire:model="nip" class="  w-full rounded-lg border-2 mt-1 border-[#01052D] dark:border-yellow-500
+                                bg-transparent px-3 py-2.5 text-sm font-normal text-white-700 transition-all duration-500
+                                placeholder:text-gray-600 dark:placeholder:text-yellow-100 focus:border-white
+                                dark:focus:ring-yellow-500 focus:ring-[#01052D]
+                                focus:shadow-[-4px_4px_10px_0px_#01052D]
+                                dark:focus:shadow-[-4px_4px_10px_0px_#eab308]  " required>
+                                @error('nip')
+                                    <div class="text-xs text-red-500">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="mt-1">
+                                <label class=" after:content-['*'] after:text-red-500 font-semibold  text-gray-700 dark:text-gray-300 after:ml-2 text-sm pb-2">Jabatan</label>
+                                <input wire:model="jabatan" class="  w-full rounded-lg border-2 mt-1 border-[#01052D] dark:border-yellow-500
+                                bg-transparent px-3 py-2.5 text-sm font-normal text-white-700 transition-all duration-500
+                                placeholder:text-gray-600 dark:placeholder:text-yellow-100 focus:border-white
+                                dark:focus:ring-yellow-500 focus:ring-[#01052D]
+                                focus:shadow-[-4px_4px_10px_0px_#01052D]
+                                dark:focus:shadow-[-4px_4px_10px_0px_#eab308]  " required>
+                                @error('jabatan')
+                                    <div class="text-xs text-red-500">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="mt-1">
+                                <label class=" after:content-['*'] after:text-red-500 font-semibold  text-gray-700 dark:text-gray-300 after:ml-2 text-sm pb-2">Unit Kerja</label>
+                                <input wire:model="unit_kerja" class="  w-full rounded-lg border-2 mt-1 border-[#01052D] dark:border-yellow-500
+                                bg-transparent px-3 py-2.5 text-sm font-normal text-white-700 transition-all duration-500
+                                placeholder:text-gray-600 dark:placeholder:text-yellow-100 focus:border-white
+                                dark:focus:ring-yellow-500 focus:ring-[#01052D]
+                                focus:shadow-[-4px_4px_10px_0px_#01052D]
+                                dark:focus:shadow-[-4px_4px_10px_0px_#eab308]  " required>
+                                @error('unit_kerja')
+                                    <div class="text-xs text-red-500">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="mt-1">
+                                <label class=" after:content-['*'] after:text-red-500 font-semibold  text-gray-700 dark:text-gray-300 after:ml-2 text-sm pb-2">Masa Kerja</label>
+                                <input wire:model="masa_kerja" class="  w-full rounded-lg border-2 mt-1 border-[#01052D] dark:border-yellow-500
+                                bg-transparent px-3 py-2.5 text-sm font-normal text-white-700 transition-all duration-500
+                                placeholder:text-gray-600 dark:placeholder:text-yellow-100 focus:border-white
+                                dark:focus:ring-yellow-500 focus:ring-[#01052D]
+                                focus:shadow-[-4px_4px_10px_0px_#01052D]
+                                dark:focus:shadow-[-4px_4px_10px_0px_#eab308]  " required>
+                                @error('masa_kerja')
+                                    <div class="text-xs text-red-500">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="mt-1">
+                                <label class=" after:content-['*'] after:text-red-500 font-semibold  text-gray-700 dark:text-gray-300 after:ml-2 text-sm pb-2">Jenis Surat</label>
+                                <select required name="jenis_cuti" wire:model="jenis_cuti" id="jenis_cuti" class=" w-full rounded-lg border-2 mt-1 border-[#01052D] dark:border-yellow-500 bg-transparent px-3 py-2.5 text-sm font-normal text-white-700 transition-all duration-500 placeholder:text-gray-600 dark:placeholder:text-yellow-100 focus:border-white dark:focus:ring-yellow-500 focus:ring-[#01052D] focus:shadow-[-4px_4px_10px_0px_#01052D] dark:focus:shadow-[-4px_4px_10px_0px_#eab308] " placeholder=" Subject Surat">
+                                    <option selected>-- pilih jenis surat --</option>
+                                    <option value="cuti_tahunan">Cuti Tahunan</option>
+                                    <option value="cuti_besar">Cuti Besar</option>
+                                    <option value="cuti_sakit">Cuti Sakit</option>
+                                    <option value="cuti_melahirkan">Cuti Melahirkan</option>
+                                    <option value="cuti_karena_alasan_penting">Cuti Karena Alasan Penting</option>
+                                    <option value="cuti_di_luar_tanggung_negara ">Cuti Di Luar Tanggung Negara</option>
+                                </select>
+                                @error('jenis_cuti')
+                                    <div class="text-xs text-red-500">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="mt-1">
+                                <label class=" after:content-['*'] after:text-red-500 font-semibold  text-gray-700 dark:text-gray-300 after:ml-2 text-sm pb-2">Lama Cuti <a style="color: red">&nbsp;hanya angka</a></label>
+                                <input wire:model="lama_cuti" class="  w-full rounded-lg border-2 mt-1 border-[#01052D] dark:border-yellow-500
+                                bg-transparent px-3 py-2.5 text-sm font-normal text-white-700 transition-all duration-500
+                                placeholder:text-gray-600 dark:placeholder:text-yellow-100 focus:border-white
+                                dark:focus:ring-yellow-500 focus:ring-[#01052D]
+                                focus:shadow-[-4px_4px_10px_0px_#01052D]
+                                dark:focus:shadow-[-4px_4px_10px_0px_#eab308]  " required placeholder="isi hanya angka contoh : 7">
+                                @error('lama_cuti')
+                                    <div class="text-xs text-red-500">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="mt-1">
+                                <label class=" after:content-['*'] after:text-red-500 font-semibold  text-gray-700 dark:text-gray-300 after:ml-2 text-sm pb-2">Mulai Tanggal</label>
+                                <input wire:model="dari_tanggal" class="  w-full rounded-lg border-2 mt-1 border-[#01052D] dark:border-yellow-500
+                                bg-transparent px-3 py-2.5 text-sm font-normal text-white-700 transition-all duration-500
+                                placeholder:text-gray-600 dark:placeholder:text-yellow-100 focus:border-white
+                                dark:focus:ring-yellow-500 focus:ring-[#01052D]
+                                focus:shadow-[-4px_4px_10px_0px_#01052D]
+                                dark:focus:shadow-[-4px_4px_10px_0px_#eab308]  " required placeholder="misalnya: 01 Januari 2024">
+                                @error('dari_tanggal')
+                                    <div class="text-xs text-red-500">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="mt-1">
+                                <label class=" after:content-['*'] after:text-red-500 font-semibold  text-gray-700 dark:text-gray-300 after:ml-2 text-sm pb-2">Sampai Tanggal</label>
+                                <input wire:model="sampai_tanggal" class="  w-full rounded-lg border-2 mt-1 border-[#01052D] dark:border-yellow-500
+                                bg-transparent px-3 py-2.5 text-sm font-normal text-white-700 transition-all duration-500
+                                placeholder:text-gray-600 dark:placeholder:text-yellow-100 focus:border-white
+                                dark:focus:ring-yellow-500 focus:ring-[#01052D]
+                                focus:shadow-[-4px_4px_10px_0px_#01052D]
+                                dark:focus:shadow-[-4px_4px_10px_0px_#eab308]  " required placeholder="misalnya: 07 Januari 2024">
+                                @error('sampai_tanggal')
+                                    <div class="text-xs text-red-500">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="mt-1">
+                                <label class=" after:content-['*'] after:text-red-500 font-semibold  text-gray-700 dark:text-gray-300 after:ml-2 text-sm pb-2">Telephone</label>
+                                <input wire:model="telephone" class="  w-full rounded-lg border-2 mt-1 border-[#01052D] dark:border-yellow-500
+                                bg-transparent px-3 py-2.5 text-sm font-normal text-white-700 transition-all duration-500
+                                placeholder:text-gray-600 dark:placeholder:text-yellow-100 focus:border-white
+                                dark:focus:ring-yellow-500 focus:ring-[#01052D]
+                                focus:shadow-[-4px_4px_10px_0px_#01052D]
+                                dark:focus:shadow-[-4px_4px_10px_0px_#eab308]  " required placeholder="misalnya: 07 Januari 2024">
+                                @error('telephone')
+                                    <div class="text-xs text-red-500">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="mt-1">
+                                <label class=" after:content-['*'] after:text-red-500 font-semibold  text-gray-700 dark:text-gray-300 after:ml-2 text-sm pb-2">Nama Atasan Langsung</label>
+                                <input wire:model="nama_atasan" class="  w-full rounded-lg border-2 mt-1 border-[#01052D] dark:border-yellow-500
+                                bg-transparent px-3 py-2.5 text-sm font-normal text-white-700 transition-all duration-500
+                                placeholder:text-gray-600 dark:placeholder:text-yellow-100 focus:border-white
+                                dark:focus:ring-yellow-500 focus:ring-[#01052D]
+                                focus:shadow-[-4px_4px_10px_0px_#01052D]
+                                dark:focus:shadow-[-4px_4px_10px_0px_#eab308]  " required placeholder="misalnya: 07 Januari 2024">
+                                @error('nama_atasan')
+                                    <div class="text-xs text-red-500">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="mt-1">
+                                <label class=" after:content-['*'] after:text-red-500 font-semibold  text-gray-700 dark:text-gray-300 after:ml-2 text-sm pb-2">NIP Atasan Langsung</label>
+                                <input wire:model="nip_atasan" class="  w-full rounded-lg border-2 mt-1 border-[#01052D] dark:border-yellow-500
+                                bg-transparent px-3 py-2.5 text-sm font-normal text-white-700 transition-all duration-500
+                                placeholder:text-gray-600 dark:placeholder:text-yellow-100 focus:border-white
+                                dark:focus:ring-yellow-500 focus:ring-[#01052D]
+                                focus:shadow-[-4px_4px_10px_0px_#01052D]
+                                dark:focus:shadow-[-4px_4px_10px_0px_#eab308]  " required placeholder="misalnya: 07 Januari 2024">
+                                @error('nip_atasan')
+                                    <div class="text-xs text-red-500">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="mt-1">
+                                <label class=" after:content-['*'] after:text-red-500 font-semibold  text-gray-700 dark:text-gray-300 after:ml-2 text-sm pb-2">Nama Pejabat Berwenang Memberi Cuti</label>
+                                <input wire:model="nama_berwenang" class="  w-full rounded-lg border-2 mt-1 border-[#01052D] dark:border-yellow-500
+                                bg-transparent px-3 py-2.5 text-sm font-normal text-white-700 transition-all duration-500
+                                placeholder:text-gray-600 dark:placeholder:text-yellow-100 focus:border-white
+                                dark:focus:ring-yellow-500 focus:ring-[#01052D]
+                                focus:shadow-[-4px_4px_10px_0px_#01052D]
+                                dark:focus:shadow-[-4px_4px_10px_0px_#eab308]  " required placeholder="misalnya: 07 Januari 2024">
+                                @error('nama_berwenang')
+                                    <div class="text-xs text-red-500">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="mt-1">
+                                <label class=" after:content-['*'] after:text-red-500 font-semibold  text-gray-700 dark:text-gray-300 after:ml-2 text-sm pb-2">NIP Pejabat Berwenang Memberi Cuti</label>
+                                <input wire:model="nip_berwenang" class="  w-full rounded-lg border-2 mt-1 border-[#01052D] dark:border-yellow-500
+                                bg-transparent px-3 py-2.5 text-sm font-normal text-white-700 transition-all duration-500
+                                placeholder:text-gray-600 dark:placeholder:text-yellow-100 focus:border-white
+                                dark:focus:ring-yellow-500 focus:ring-[#01052D]
+                                focus:shadow-[-4px_4px_10px_0px_#01052D]
+                                dark:focus:shadow-[-4px_4px_10px_0px_#eab308]  " required placeholder="misalnya: 07 Januari 2024">
+                                @error('nip_berwenang')
+                                    <div class="text-xs text-red-500">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        @endif
+
                         <div class=" mt-1">
                             <label class=" after:content-['*'] after:text-red-500 font-semibold  text-gray-700 dark:text-gray-300 after:ml-2 text-sm pb-2">Keperluan</label>
                             <textarea wire:model="keperluan" class="  h-20 w-full rounded-lg border-2 mt-1 border-[#01052D] dark:border-yellow-500
@@ -283,11 +544,10 @@
                                     placeholder:text-gray-600 dark:placeholder:text-yellow-100 focus:border-white
                                     dark:focus:ring-yellow-500 focus:ring-[#01052D]
                                     focus:shadow-[-4px_4px_10px_0px_#01052D]
-                                    dark:focus:shadow-[-4px_4px_10px_0px_#eab308]  " placeholder="Keperluan"></textarea>
+                                    dark:focus:shadow-[-4px_4px_10px_0px_#eab308]  " required placeholder="Keperluan"></textarea>
                             @error('keperluan')
                                 <div class="text-xs text-red-500">{{ $message }}</div>
                             @enderror
-
                         </div>
                         <div class="flex justify-end mt-6">
                             <button type="submit" class="px-3 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-[#152042] rounded-md dark:bg-yellow-600 dark:hover:bg-yellow-500 dark:focus:bg-[#1f3882] hover:bg-[#060f2a] focus:outline-none focus:bg-[#152042] focus:ring focus:ring-indigo-300 focus:ring-opacity-50">

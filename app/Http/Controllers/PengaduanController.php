@@ -60,7 +60,7 @@ class PengaduanController extends Controller
 
         if ($respon) {
             $target = $pengaduan->user->no_hp;
-            $token = "VUPG2eveV7sG+9ZzEIMz";
+            $token = "vp2sn#edisDCEdeRLbxP";
             $messageController = new WaController();
             $message = "Halo '".$pengaduan->user->name."', Respon pengaduan anda : ".$request->respon;
             $response = $messageController->sendWa($token, $target, $message);

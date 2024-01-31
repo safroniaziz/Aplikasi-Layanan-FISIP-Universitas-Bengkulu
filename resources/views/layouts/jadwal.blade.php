@@ -46,8 +46,15 @@
         <!-- header -->
         <header class=" bg-[#010347] grid">
             <div class="  flex w-full         font-[arial] mx-auto pt-3 pb-6 ">
-                <a href="{{ route('user') }}" class="flex items-center   z-50 relative   mx-4 md:ml-6">
-                    <img src="{{ asset('assets/img/logo.png') }}" class=" lg:h-20 2xl:h-20 h-10 aspect-square">
+                <a href="{{ route('user') }}" class="flex items-center text-black   mx-4 md:ml-6">
+                    <img style="width:100px !important;" src="{{ asset('assets/img/logo.png') }}" class="md:w-14 md:h-14 w-12 h-12">
+
+                    <div class="ml-3 text-slate-100  font-sans  ">
+                        <strong class=" text-2xl md:text-3xl font-extrabold   text-sh uppercase">E-BERES FISIP</strong>
+                        <p class="text-[13px] md:text-[16px]    text-yellow-500     uppercase -mt-2
+                        relative">
+                            UNIVERSITAS BENGKULU</p>
+                    </div>
                 </a>
                 <div class="text-center absolute font-extrabold text-[10px] lg:text-lg 2xl:text-2xl text-gray-200 w-full">
                     <h2 class=" lg:leading-6">JADWAL MATA KULIAH <br> FAKULTAS ILMU SOSIAL DAN POLITIK <br>UNIVERSITAS BENGKULU</h2>

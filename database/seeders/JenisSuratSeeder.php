@@ -21,6 +21,8 @@ class JenisSuratSeeder extends Seeder
             'PEMBUATAN TRANSKRIP NILAI',
             'SURAT IZIN PENELITIAN/ PRA PENELITIAN',
             'LEGALISIR IJAZAH, TRANSKRIP NILAI, DAN SERTIFIKAT AKREDITASI',
+            'SURAT TUGAS DOSEN DAN TENDIK',
+            'SURAT CUTI DOSEN DAN TENDIK',
         ];
 
         foreach ($jenisSuratData as $jenisSurat) {

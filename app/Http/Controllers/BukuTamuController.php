@@ -41,7 +41,7 @@ class BukuTamuController extends Controller
         if ($validasi->fails()) {
             return redirect()->back()->withErrors($validasi)->withInput();
         }
-        
+
         $base64Image = $request->input('foto');
         if ($base64Image) {
             $imageData = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $base64Image));
@@ -50,7 +50,7 @@ class BukuTamuController extends Controller
             $keperluan = $request->input('keperluan');
             $tujuan = $request->input('tujuan');
             $noHp = $request->input('no_hp');
-            $token = "VUPG2eveV7sG+9ZzEIMz";
+            $token = "vp2sn#edisDCEdeRLbxP";
 
             $target = null;
 

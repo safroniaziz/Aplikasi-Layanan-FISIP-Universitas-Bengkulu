@@ -25,7 +25,7 @@ class DaftarSewaRuangan extends Controller
         $pemesanan = PemesananRuangan::with(['user'])->where('id',$request->sewaRuangan)->first();
         if ($update) {
             $target = $pemesanan->user->no_hp;
-            $token = "VUPG2eveV7sG+9ZzEIMz";
+            $token = "vp2sn#edisDCEdeRLbxP";
             $messageController = new WaController();
             $message = "Halo '".$pemesanan->user->name."', Permohonan sewa ruangan telah disetujui oleh admin, silahkan datang ke fakultas ilmu sosial dan politik universitas bengkulu untuk informasi lebih lanjut";
             $response = $messageController->sendWa($token, $target, $message);

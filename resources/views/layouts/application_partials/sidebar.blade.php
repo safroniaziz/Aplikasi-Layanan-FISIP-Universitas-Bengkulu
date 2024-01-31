@@ -167,6 +167,8 @@
 <li class="treeview {{ set_active([
         'jenisSurat','jenisSurat.kelengkapan',
         'permohonan',
+        'suratTugas',
+        'suratTugas.anggota',
         // 'daftarSurat'
     ]) }}">
     <a href="#">
@@ -178,6 +180,7 @@
     <ul class="treeview-menu">
         @if (auth()->user()->can('permohonan'))
         <li class="{{ set_active(['jenisSurat','jenisSurat.kelengkapan']) }}"><a href="{{ route('jenisSurat') }}"><i class="fa fa-circle-o"></i> Jenis Surat</a></li>
+        <li class="{{ set_active(['suratTugas','suratTugas.anggota']) }}"><a href="{{ route('suratTugas') }}"><i class="fa fa-circle-o"></i> Surat Tugas</a></li>
         <li class="{{ set_active(['permohonan','permohonan']) }}"><a href="{{ route('permohonan') }}"><i class="fa fa-circle-o"></i>Permohonan Surat Diterima</a></li>
         {{-- <li class="{{ set_active(['daftarSurat']) }}"><a href="{{ route('daftarSurat') }}"><i class="fa fa-check-circle"></i> Daftar Permohonan Surat</a></li> --}}
         @endif

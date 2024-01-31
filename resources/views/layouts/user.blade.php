@@ -161,8 +161,6 @@
             </div>
         </div>
         @endif
-
-
         @yield('content')
 
         @livewire('chat-user')
@@ -244,5 +242,6 @@
 
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script src="{{ asset('assets/scripts2.js') }}"></script>
+
 @stack('scripts')
 @livewireScripts

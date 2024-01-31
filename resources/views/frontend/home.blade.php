@@ -7,7 +7,9 @@
     </path>
     <path d="M 101 -11 C 1522 -11 101 122 1522 122 L 1522 122 L 1522 0 L 101 0 Z" stroke-width="0"></path>
 </svg>
-
+<audio autoplay loop>
+    <source src="{{ asset('assets/jingle.mp3') }}" type="audio/mp3">
+</audio>
 <!-- slider -->
 <section id="home">
     <div class=" text-center overflow-hidden bg-gradient-to-r h-screen justify-center from-[#010347] to-[#111e58] ">
@@ -33,13 +35,18 @@
                 </mask>
             </defs>
         </svg>
-        <div class="grid grid-cols-1 md:grid-cols-2  z-10 overflow-hidden h-screen justify-center relative">
-            <div class="col-span-1 px-8 lg:px-12 text-white  mx-auto     place-self-center">
-                <div data-aos="fade-left" class=" lg:mt-8 3xl:mt-0  max-w-lg 3xl:max-w-xl">
-                    <h2 class="font-extrabold font-[arial] text-3xl lg:text-3xl       inline-block text-transparent
+        <div class="grid grid-cols-1 container mx-auto md:grid-cols-2   z-10 overflow-hidden h-screen justify-center relative">
+
+            <div class="col-span-1 lg:mt-0 2xl:mt-0 md:block hidden grid">
+                <img src="{{ asset('assets/maskot.png') }}" alt="" class="place-self-center px-32 pt-16 h-[860px] mx-auto" >
+                {{-- <lottie-player data-aos="fade-right" src="{{ asset('assets/user/src/welcome2.json') }}" style="filter: drop-shadow(10px 10px 0px #EAB308);" background="transparent" speed="1" class="w-6/6 mx-auto " loop autoplay></lottie-player> --}}
+            </div>
+            <div class="col-span-1    text-white  mx-auto     place-self-center text-left">
+                <div data-aos="fade-left" class=" lg:mt-8 3xl:mt-0">
+                    <h2 class="font-extrabold font-[arial] text-3xl lg:text-5xl       inline-block text-transparent
                               bg-clip-text bg-gradient-to-b from-orange-500 from-30% to-yellow-500 text-h2-sh  ">
                         SAYA SIAP MEWUJUDKAN<br></h2>
-                    <p class="text-gray-300 text-xs leading-6 md:leading-7 md:text-sm  ">
+                    <p class="text-gray-300 text-xs leading-7 md:leading-7 lg:leading-9 md:text-sm  ">
                         ZONA INTEGRITAS DI WILAYAH FAKULTAS ILMU SOSIAL DAN ILMU POLITIK UNIVERSITAS BEBNGKULU
                         MENUJU WBK(WILAYAH BEBAS DARI KORUPSI) & WBBM(WILAYAH BIROKRASI BERSIH MELAYANI)
                         <hr style="padding: 10px 0px 10px 0px !important; margin-top:10px !important;">
@@ -48,9 +55,6 @@
                         BERANI-EKUALITAS-RESPONSIF-EMPATI-SOLUSI
                     </p>
                 </div>
-            </div>
-            <div class="col-span-1 lg:mt-0 2xl:mt-0 md:block hidden ">
-                <lottie-player data-aos="fade-right" src="{{ asset('assets/user/src/welcome2.json') }}" style="filter: drop-shadow(10px 10px 0px #EAB308);" background="transparent" speed="1" class="w-6/6 mx-auto " loop autoplay></lottie-player>
             </div>
         </div>
     </div>
@@ -100,26 +104,23 @@
     <div class="mx-auto container px-5  py-32    text-gray-700 dark:text-gray-200 z-10 relative ">
         <div class="grid grid-cols-1 md:grid-cols-2  my-36 ">
             <div class="col-span-1   text-gray-700 dark:text-white  mx-auto   order-2  md:order-first  ">
-                <div class="        text-center md:text-right  -mt-12    ">
-                    <a href="{{ route('sewa_podcast') }}" data-aos="fade-down" class="mb-3 font-sans text-3xl border-b-2 border-[#0b3960]  dark:border-yellow-500 px-3 pb-2
-                                inline-block font-bold text-[#0b3960] dark:text-yellow-500
-                              text-sh2 ">
-                        Sewa Podcast</a>
-                    <p data-aos="fade-down" class="text-gray-700 dark:text-gray-300 text-sm  leading-8 mb-5     ">Tersedia beragam
-                        peralatan podcast terbaik untuk memenuhi kebutuhan Anda. Nikmati kualitas suara yang
-                        luar biasa dengan layanan sewa alat podcast. Temukan solusi lengkap
-                        untuk produksi podcast Anda dengan layanan sewa alat podcast. Dari mikrofon
-                        berkualitas tinggi hingga perangkat perekam canggih, memiliki semua yang Anda
-                        butuhkan untuk menciptakan konten podcast yang menarik dan profesional. Segera mulai
-                        rekaman Anda dengan peralatan terbaik dalam bisnis ini.
+                <div class="        text-center md:text-right  -mt-12 md:mt-20  ">
+                    <h2 data-aos="fade-down" class="mb-3   font-sans text-3xl  border-b-2 border-[#0b3960] dark:border-yellow-500 px-3 pb-2 inline-block font-bold text-[#0b3960] dark:text-yellow-500 text-sh2  ">
+                        Buku tamu</h2>
+                    <p data-aos="fade-down" class="text-gray-700 dark:text-gray-300 text-sm  leading-8 mb-5     ">Buku tamu adalah
+                        lembaran kosong
+                        yang menunggu cerita Anda untuk mengisi halaman-halaman ini
+                        dengan kata-kata Anda berbagi momen, ucapan terima
+                        kasih, atau pesan inspiratif? Ini adalah kesempatan Anda untuk meninggalkan tanda Anda
+                        dalam Buku tamu.
                     </p>
-                    <a href="{{ route('sewa_podcast') }}" data-aos="fade-down" class=" rounded-lg border-2 mt-5 text-white text-center w-full px-4 md:w-1/3
-                                border-blue-600 dark:border-yellow-600 bg-[#091150] dark:bg-yellow-500 hover:bg-blue-600 duration-300 transform dark:hover:bg-yellow-600 font-medium tracking-widest py-2
-                              text-sm   text-white-700   focus:shadow-[-4px_4px_10px_0px_#eab308] ">Sewa Podcast</a>
+                    <a href="{{ route('bukuTamu') }}" data-aos="fade-down" class="  text-white  rounded-lg border-2 mt-5    text-center w-full px-4 md:w-1/3 border-blue-600 dark:border-yellow-600  bg-[#091150] dark:bg-yellow-500 hover:bg-blue-600 duration-300 transform dark:hover:bg-yellow-600 font-medium tracking-widest  py-2
+                              text-sm text-white-700
+                              focus:shadow-[-4px_4px_10px_0px_#eab308] ">Buku tamu</a>
                 </div>
             </div>
             <div class="col-span-1     -mt-14">
-                <lottie-player data-aos="fade-left" src="{{ asset('assets/user/src/p2.json') }}" background="transparent" speed="1" class="w-5/6 mx-auto lottie-sh" loop autoplay></lottie-player>
+                <lottie-player data-aos="fade-left" src="{{ asset('assets/user/src/b.json') }}" background="transparent" speed="1" class="w-5/6 mx-auto lottie-sh" loop autoplay></lottie-player>
             </div>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2  my-36 ">
@@ -141,28 +142,6 @@
                     <a href="{{route('tampilJadwalLivewire')}}" data-aos="fade-down" class="    rounded-lg border-2 mt-5 text-white   text-center w-full px-4 md:w-1/3 border-blue-600 dark:border-yellow-600  bg-[#091150] dark:bg-yellow-500 hover:bg-blue-600 duration-300 transform dark:hover:bg-yellow-600 font-medium tracking-widest  py-2
                               text-sm   text-white-700   focus:shadow-[-4px_4px_10px_0px_#eab308] ">Jadwal Matkul</a>
                 </div>
-            </div>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2  my-36 ">
-            <div class="col-span-1   text-gray-700 dark:text-white  mx-auto   order-2  md:order-first  ">
-                <div class="        text-center md:text-right  mt-5 md:mt-20  ">
-                    <h2 data-aos="fade-down" class="mb-3   font-sans text-3xl  border-b-2 border-[#0b3960] dark:border-yellow-500 px-3 pb-2 inline-block font-bold text-[#0b3960] dark:text-yellow-500 text-sh2  ">
-                        E-konseling</h2>
-                    <p data-aos="fade-down" class="text-gray-700 dark:text-gray-300 text-sm  leading-8 mb-5     ">E-konseling
-                        dirancang untuk
-                        memberikan dukungan yang mudah diakses dan profesional untuk kebutuhan kesehatan mental
-                        Anda. Dengan berbagai pilihan sesi daring yang aman dan terpercaya, Anda dapat dengan
-                        nyaman berkonsultasi dengan terapis berlisensi tanpa meninggalkan kenyamanan rumah
-                        Anda. Jangan biarkan stres, kecemasan, atau masalah emosional menghambat Anda. Temukan
-                        keseimbangan dan dukungan yang Anda butuhkan dengan layanan E-konseling.
-                    </p>
-                    <a href="{{route('e-konseling')}}" data-aos="fade-down" class="   text-white rounded-lg border-2 mt-5    text-center w-full px-4 md:w-1/3 border-blue-600 dark:border-yellow-600  bg-[#091150] dark:bg-yellow-500 hover:bg-blue-600 duration-300 transform dark:hover:bg-yellow-600 font-medium tracking-widest  py-2
-                              text-sm text-white-700
-                              focus:shadow-[-4px_4px_10px_0px_#eab308] ">E-konseling</a>
-                </div>
-            </div>
-            <div class="col-span-1     -mt-14">
-                <lottie-player data-aos="fade-left" src="{{ asset('assets/user/src/K.json') }}" background="transparent" speed="1" class="w-5/6 mx-auto lottie-sh" loop autoplay></lottie-player>
             </div>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2  my-36 ">
@@ -191,26 +170,69 @@
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2  my-36 ">
             <div class="col-span-1   text-gray-700 dark:text-white  mx-auto   order-2  md:order-first  ">
-                <div class="        text-center md:text-right  -mt-12 md:mt-20  ">
-                    <h2 data-aos="fade-down" class="mb-3   font-sans text-3xl  border-b-2 border-[#0b3960] dark:border-yellow-500 px-3 pb-2 inline-block font-bold text-[#0b3960] dark:text-yellow-500 text-sh2  ">
-                        Buku tamu</h2>
-                    <p data-aos="fade-down" class="text-gray-700 dark:text-gray-300 text-sm  leading-8 mb-5     ">Buku tamu adalah
-                        lembaran kosong
-                        yang menunggu cerita Anda untuk mengisi halaman-halaman ini
-                        dengan kata-kata Anda berbagi momen, ucapan terima
-                        kasih, atau pesan inspiratif? Ini adalah kesempatan Anda untuk meninggalkan tanda Anda
-                        dalam Buku tamu.
+                <div class="        text-center md:text-right  -mt-12    ">
+                    <a href="{{ route('sewa_podcast') }}" data-aos="fade-down" class="mb-3 font-sans text-3xl border-b-2 border-[#0b3960]  dark:border-yellow-500 px-3 pb-2
+                                inline-block font-bold text-[#0b3960] dark:text-yellow-500
+                              text-sh2 ">
+                        Sewa Podcast</a>
+                    <p data-aos="fade-down" class="text-gray-700 dark:text-gray-300 text-sm  leading-8 mb-5     ">Tersedia beragam
+                        peralatan podcast terbaik untuk memenuhi kebutuhan Anda. Nikmati kualitas suara yang
+                        luar biasa dengan layanan sewa alat podcast. Temukan solusi lengkap
+                        untuk produksi podcast Anda dengan layanan sewa alat podcast. Dari mikrofon
+                        berkualitas tinggi hingga perangkat perekam canggih, memiliki semua yang Anda
+                        butuhkan untuk menciptakan konten podcast yang menarik dan profesional. Segera mulai
+                        rekaman Anda dengan peralatan terbaik dalam bisnis ini.
                     </p>
-                    <a href="{{ route('bukuTamu') }}" data-aos="fade-down" class="  text-white  rounded-lg border-2 mt-5    text-center w-full px-4 md:w-1/3 border-blue-600 dark:border-yellow-600  bg-[#091150] dark:bg-yellow-500 hover:bg-blue-600 duration-300 transform dark:hover:bg-yellow-600 font-medium tracking-widest  py-2
-                              text-sm text-white-700
-                              focus:shadow-[-4px_4px_10px_0px_#eab308] ">Buku tamu</a>
+                    <a href="{{ route('sewa_podcast') }}" data-aos="fade-down" class=" rounded-lg border-2 mt-5 text-white text-center w-full px-4 md:w-1/3
+                                border-blue-600 dark:border-yellow-600 bg-[#091150] dark:bg-yellow-500 hover:bg-blue-600 duration-300 transform dark:hover:bg-yellow-600 font-medium tracking-widest py-2
+                              text-sm   text-white-700   focus:shadow-[-4px_4px_10px_0px_#eab308] ">Sewa Podcast</a>
                 </div>
             </div>
             <div class="col-span-1     -mt-14">
-                <lottie-player data-aos="fade-left" src="{{ asset('assets/user/src/b.json') }}" background="transparent" speed="1" class="w-5/6 mx-auto lottie-sh" loop autoplay></lottie-player>
+                <lottie-player data-aos="fade-left" src="{{ asset('assets/user/src/p2.json') }}" background="transparent" speed="1" class="w-5/6 mx-auto lottie-sh" loop autoplay></lottie-player>
             </div>
         </div>
-
+        <div class="grid grid-cols-1 md:grid-cols-2  my-36 ">
+            <div class="col-span-1   text-gray-700 dark:text-white  mx-auto   order-2  md:order-first  ">
+                <div class="        text-center md:text-right  mt-5 md:mt-20  ">
+                    <h2 data-aos="fade-down" class="mb-3   font-sans text-3xl  border-b-2 border-[#0b3960] dark:border-yellow-500 px-3 pb-2 inline-block font-bold text-[#0b3960] dark:text-yellow-500 text-sh2  ">
+                        E-konseling</h2>
+                    <p data-aos="fade-down" class="text-gray-700 dark:text-gray-300 text-sm  leading-8 mb-5     ">E-konseling
+                        dirancang untuk
+                        memberikan dukungan yang mudah diakses dan profesional untuk kebutuhan kesehatan mental
+                        Anda. Dengan berbagai pilihan sesi daring yang aman dan terpercaya, Anda dapat dengan
+                        nyaman berkonsultasi dengan terapis berlisensi tanpa meninggalkan kenyamanan rumah
+                        Anda. Jangan biarkan stres, kecemasan, atau masalah emosional menghambat Anda. Temukan
+                        keseimbangan dan dukungan yang Anda butuhkan dengan layanan E-konseling.
+                    </p>
+                    <a href="{{route('e-konseling')}}" data-aos="fade-down" class="   text-white rounded-lg border-2 mt-5    text-center w-full px-4 md:w-1/3 border-blue-600 dark:border-yellow-600  bg-[#091150] dark:bg-yellow-500 hover:bg-blue-600 duration-300 transform dark:hover:bg-yellow-600 font-medium tracking-widest  py-2
+                              text-sm text-white-700
+                              focus:shadow-[-4px_4px_10px_0px_#eab308] ">E-konseling</a>
+                </div>
+            </div>
+            <div class="col-span-1     -mt-14">
+                <lottie-player data-aos="fade-left" src="{{ asset('assets/user/src/K.json') }}" background="transparent" speed="1" class="w-5/6 mx-auto lottie-sh" loop autoplay></lottie-player>
+            </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2  my-36 ">
+            <div class="col-span-1   text-gray-700 dark:text-white  mx-auto   order-2  md:order-first  ">
+                <div class="        text-center md:text-right  -mt-12    ">
+                    <a href="{{ route('sewa_podcast') }}" data-aos="fade-down" class="mb-3 font-sans text-3xl border-b-2 border-[#0b3960]  dark:border-yellow-500 px-3 pb-2
+                                inline-block font-bold text-[#0b3960] dark:text-yellow-500
+                              text-sh2 ">
+                        Layanan Pengaduan</a>
+                    <p data-aos="fade-down" class="text-gray-700 dark:text-gray-300 text-sm  leading-8 mb-5     ">Tersedia beragam
+                        FISIP UNIB menyediakan aplikasi layanan pengaduan yang memungkinkan mahasiswa dan stakeholder lainnya untuk dengan mudah melaporkan masalah, memberikan umpan balik, atau menyampaikan keluhan terkait dengan layanan akademik, administratif, atau hal-hal lainnya. Aplikasi ini dirancang untuk memastikan respons cepat dan penanganan yang efektif terhadap setiap isu yang muncul, sehingga memperbaiki pengalaman mahasiswa dan memelihara kualitas layanan
+                    </p>
+                    <a href="{{ route('layanan_pengaduan') }}" data-aos="fade-down" class=" rounded-lg border-2 mt-5 text-white text-center w-full px-4 md:w-1/3
+                                border-blue-600 dark:border-yellow-600 bg-[#091150] dark:bg-yellow-500 hover:bg-blue-600 duration-300 transform dark:hover:bg-yellow-600 font-medium tracking-widest py-2
+                              text-sm   text-white-700   focus:shadow-[-4px_4px_10px_0px_#eab308] ">Layanan Pengaduan</a>
+                </div>
+            </div>
+            <div class="col-span-1     -mt-14">
+                <lottie-player data-aos="fade-left" src="{{ asset('assets/user/src/layanan_pengaduan.json') }}" background="transparent" speed="1" class="w-5/6 mx-auto lottie-sh" loop autoplay></lottie-player>
+            </div>
+        </div>
     </div>
 
 

@@ -4,11 +4,6 @@
 @section('content')
 <div class="box-body">
     <div class="row">
-        <div class="col-md-12" style="margin-bottom: 10px !important;">
-            <button type="button" class="btn btn-primary btn-sm btn-flat" data-toggle="modal" data-target="#modal-default">
-                <i class="fa fa-plus"></i>&nbsp; Tambah Data
-            </button>
-        </div>
         <div class="col-md-12 table-responsive">
             <table class="table table-bordered table-hover table-striped" style="width: 100%">
                 <thead>
@@ -18,6 +13,7 @@
                         <th>Jenis Surat</th>
                         <th>Keperluan</th>
                         <th>Kelengkapan Surat</th>
+
                         <th>Status Surat</th>
                         <th>Aksi</th>
                     </tr>
@@ -27,7 +23,18 @@
                         <tr>
                             <td>{{ $index+1 }}</td>
                             <td>{{ $permohonanSurat->user->name }}</td>
-                            <td>{{ $permohonanSurat->jenisSurat->jenis_surat }}</td>
+                            <td>
+                                {{ $permohonanSurat->jenisSurat->jenis_surat }}
+                                <br>
+                                @if ($permohonanSurat->jenisSurat->jenis_surat == "SURAT PEMINJAMAN RUANGAN")
+                                    <small class="label label-success">Asal Surat : {{ $permohonanSurat->asal_surat }}</small>
+                                    <small class="label label-primary">Waktu Peminjaman : {{ $permohonanSurat->waktu_peminjaman }}</small>
+                                    <small class="label label-danger">Jenis Ruangan : {{ $permohonanSurat->jenis_ruangan }}</small>
+                                @elseif ($permohonanSurat->jenisSurat->jenis_surat == "SURAT PEMINJAMAN ALAT")
+                                    <small class="label label-success">Jenis Alat : {{ $permohonanSurat->jenis_alat }}</small>
+                                    <small class="label label-primary">Tujuan Peminjaman Alat : {{ $permohonanSurat->tujuan_alat }}</small>
+                                @endif
+                            </td>
                             <td>{{ $permohonanSurat->keperluan }}</td>
                             <td>
                                 @foreach ($permohonanSurat->kelengkapanSurats as $kelengkapan)
@@ -36,6 +43,7 @@
                                     </a>
                                 @endforeach
                             </td>
+
                             <td>
                                 @if ($permohonanSurat->status == "terkirim")
                                     <small class="label label-warning">Belum diverifikasi</small>
@@ -61,8 +69,8 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="4" class="text-center text-danger">
-                                Data jenis surat masih kosong
+                            <td colspan="7" class="text-center text-danger">
+                                Data surat masuk masih kosong
                             </td>
                         </tr>
                     @endforelse

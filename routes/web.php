@@ -28,6 +28,7 @@ use App\Http\Controllers\RequirementController;
 use App\Http\Controllers\SewaPodcastController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\AlatPoadcastController;
+use App\Http\Controllers\AnggotaSuratTugasController;
 use App\Http\Controllers\ProgramStudiController;
 use App\Http\Controllers\RuanganKelasController;
 use App\Http\Controllers\SettingJadwalController;
@@ -45,7 +46,9 @@ use App\Http\Controllers\MahasiswaMataKuliahController;
 use App\Http\Controllers\PendaftaranKonselingController;
 use App\Http\Controllers\PengaduanController;
 use App\Http\Controllers\PermohonanSuratMasukController;
+use App\Http\Controllers\SuratTugasController;
 use App\Http\Controllers\UnitController;
+use App\Models\SuratTugas;
 
 /*
 |--------------------------------------------------------------------------
@@ -87,6 +90,8 @@ Route::controller(KonselingController::class)->middleware('auth','verified')->pr
 Route::controller(PermohonanSuratController::class)->middleware('auth','verified')->prefix('/permohonan_surat')->group(function () {
     Route::get('/', 'index')->name('permohonanSurat');
     Route::post('/', 'store')->name('permohonanSurat.store');
+    Route::get('/cetak', 'cetak')->name('permohonanSurat.cetak');
+
 });
 
 // Route::controller(PoadcastController::class)->middleware('auth','verified')->prefix('/sewa_poadcast')->group(function () {
@@ -259,6 +264,22 @@ Route::controller(PermohonanSuratMasukController::class)->middleware('auth','ver
     Route::get('/{permohonan}/verifikasi', 'verifikasi')->name('permohonan.verifikasi');
     Route::patch('/verifikasi_post', 'verifikasiPost')->name('permohonan.verifikasiPost');
     Route::get('/{kelengkapan}/download', 'download')->name('kelengkapan.download');
+});
+
+Route::controller(SuratTugasController::class)->middleware('auth','verified','operator')->prefix('/surat_tugas')->group(function(){
+    Route::get('/', 'index')->name('suratTugas');
+    Route::post('/', 'store')->name('suratTugas.store');
+    Route::get('/{suratTugas}/edit', 'edit')->name('suratTugas.edit');
+    Route::patch('/update', 'update')->name('suratTugas.update');
+    Route::delete('/{suratTugas}/}/delete', 'delete')->name('suratTugas.delete');
+});
+
+Route::controller(AnggotaSuratTugasController::class)->middleware('auth','verified','operator')->prefix('/surat_tugas/anggota/')->group(function(){
+    Route::get('/{suratTugas}/anggota', 'index')->name('suratTugas.anggota');
+    Route::post('/{suratTugas}/anggota', 'store')->name('suratTugas.anggota.store');
+    Route::get('/{anggota}/edit', 'edit')->name('suratTugas.anggota.edit');
+    Route::patch('/{suratTugas}/update', 'update')->name('suratTugas.anggota.update');
+    Route::delete('/{suratTugas}/{anggota}/delete', 'delete')->name('suratTugas.anggota.delete');
 });
 
 Route::controller(UnitController::class)->middleware('auth','verified','operator')->prefix('/data_unit')->group(function(){

@@ -16,4 +16,12 @@ class PermohonanSuratController extends Controller
             'requirementSurat'   => $requirementSurat,
         ]);
     }
+
+    public function cetak(){
+        // Dapatkan path PDF yang telah disimpan di direktori public
+        $pdfPath = public_path('pdf/surat_cuti.pdf');
+
+        // Tampilkan PDF
+        return response()->file($pdfPath);
+    }
 }
