@@ -8,7 +8,7 @@
     <path d="M 101 -11 C 1522 -11 101 122 1522 122 L 1522 122 L 1522 0 L 101 0 Z" stroke-width="0"></path>
 </svg>
 <audio autoplay loop>
-    <source src="{{ asset('assets/jingle.mp3') }}" type="audio/mp3">
+    <source src="https://e-beres.fisip.unib.ac.id/public/assets/jingle.mp3" type="audio/mp3">
 </audio>
 <!-- slider -->
 <section id="home">
