@@ -272,6 +272,7 @@ Route::controller(SuratTugasController::class)->middleware('auth','verified','op
     Route::get('/{suratTugas}/edit', 'edit')->name('suratTugas.edit');
     Route::patch('/update', 'update')->name('suratTugas.update');
     Route::delete('/{suratTugas}/}/delete', 'delete')->name('suratTugas.delete');
+    Route::get('/{suratTugas}/cetak', 'cetak')->name('suratTugas.cetak');
 });
 
 Route::controller(AnggotaSuratTugasController::class)->middleware('auth','verified','operator')->prefix('/surat_tugas/anggota/')->group(function(){
