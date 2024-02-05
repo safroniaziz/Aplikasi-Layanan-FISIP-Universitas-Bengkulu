@@ -1,18 +1,18 @@
 <!-- if menu active "active-menu" else "text-gray-600" -->
-<a href="{{ route('user') }}" class="px-2 py-2 mx-2 mt-2  @yield('home', 'text-gray-600')   lg:text-white  text-[14px] text-sh transition-colors  duration-300 transform rounded-md
+<a href="{{ route('user') }}" class="px-2 py-2 mx-2 lg:mx-0 2xl:mx-2 mt-2  @yield('home', 'text-gray-600')   lg:text-white  text-[14px] lg:text-xs 2xl:text-sm text-sh transition-colors  duration-300 transform rounded-md
                     lg:mt-0 hover:text-[#eed488] ">Home</a>
-<a href="{{ route('bukuTamu') }}" class="px-2 py-2  @yield('poadcast','text-gray-600') lg:text-white  text-[14px] text-sh mx-2 mt-2 transition-colors duration-300 transform rounded-md lg:mt-0
+<a href="{{ route('bukuTamu') }}" class="px-2 py-2  @yield('poadcast','text-gray-600') lg:text-white  text-[14px] lg:text-xs 2xl:text-sm text-sh mx-2 lg:mx-0 2xl:mx-2 mt-2 transition-colors duration-300 transform rounded-md lg:mt-0
                     hover:text-[#eed488] ">Buku Tamu</a>
-<a href="{{ route('tampilJadwalLivewire') }}" class="px-2 py-2  @yield('poadcast','text-gray-600') lg:text-white  text-[14px] text-sh mx-2 mt-2 transition-colors duration-300 transform rounded-md lg:mt-0
+<a href="{{ route('tampilJadwalLivewire') }}" class="px-2 py-2  @yield('poadcast','text-gray-600') lg:text-white  text-[14px] lg:text-xs 2xl:text-sm text-sh mx-2 lg:mx-0 2xl:mx-2 mt-2 transition-colors duration-300 transform rounded-md lg:mt-0
                     hover:text-[#eed488] ">Jadwal Kuliah</a>
 
-<a href="{{ route('permohonan_surat_livewire') }}" class="px-2 py-2 mx-2 mt-2 @yield('permohonan_surat', 'text-gray-600') lg:text-white  text-[14px] text-sh transition-colors
+<a href="{{ route('permohonan_surat_livewire') }}" class="px-2 py-2 mx-2 lg:mx-0 2xl:mx-2 mt-2 @yield('permohonan_surat', 'text-gray-600') lg:text-white  text-[14px] lg:text-xs 2xl:text-sm text-sh transition-colors
                     duration-300 transform rounded-md lg:mt-0 hover:text-[#eed488] ">Permohonan surat</a>
-<a href="{{ route('sewa_podcast') }}" class="px-2 py-2  @yield('poadcast','text-gray-600') lg:text-white  text-[14px] text-sh mx-2 mt-2 transition-colors duration-300 transform rounded-md lg:mt-0
+<a href="{{ route('sewa_podcast') }}" class="px-2 py-2  @yield('poadcast','text-gray-600') lg:text-white  text-[14px] lg:text-xs 2xl:text-sm text-sh mx-2 lg:mx-0 2xl:mx-2 mt-2 transition-colors duration-300 transform rounded-md lg:mt-0
                     hover:text-[#eed488] ">Podcast</a>
-<a href="{{route('e-konseling')}}" class="px-2 py-2 mx-2 mt-2 @yield('konseling', 'text-gray-600') lg:text-white  text-[14px] text-sh transition-colors
+<a href="{{route('e-konseling')}}" class="px-2 py-2 mx-2 lg:mx-0 2xl:mx-2 mt-2 @yield('konseling', 'text-gray-600') lg:text-white  text-[14px] lg:text-xs 2xl:text-sm text-sh transition-colors
                     duration-300 transform rounded-md lg:mt-0 hover:text-[#eed488] ">Layanan Konseling</a>
-                <a href="{{ route('layanan_pengaduan') }}" class="px-2 py-2 mx-2 mt-2 @yield('pengaduan', 'text-gray-600') lg:text-white  text-[14px] text-sh transition-colors
+                <a href="{{ route('layanan_pengaduan') }}" class="px-2 py-2 mx-2 lg:mx-0 2xl:mx-2 mt-2 @yield('pengaduan', 'text-gray-600') lg:text-white  text-[14px] lg:text-xs 2xl:text-sm text-sh transition-colors
                     duration-300 transform rounded-md lg:mt-0 hover:text-[#eed488] ">Layanan Pengaduan</a>
 @if( isset(Auth::user()->name) )
 <div class="flex items-center mt-4 mx-4 lg:mt-0">
@@ -74,7 +74,7 @@
 
 </div>
 @else
-<a href="{{ route('login') }}" class="px-5 py-2 mx-2 mt-2 text-gray-700 lg:text-white  text-[14px] text-sh transition-colors
+<a href="{{ route('login') }}" class="px-5 py-2 mx-2 mt-2 text-gray-700 lg:text-white  text-[14px] lg:text-xs 2xl:text-sm text-sh transition-colors
                     duration-300 transform rounded-md lg:mt-0 hover:text-[#eed488] bg-gray-900 hover:bg-slate-800  ">Login</a>
 @endif
 <div x-data="{ toggle: localStorage.getItem('theme') === 'dark' }" :class="toggle ? 'dark' : ''" class=" app mx-auto py-3 lg:py-0">

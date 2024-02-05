@@ -12,8 +12,8 @@
 </audio>
 <!-- slider -->
 <section id="home">
-    <div class=" text-center overflow-hidden bg-gradient-to-r h-screen justify-center from-[#010347] to-[#111e58] ">
-        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.dev/svgjs" class="absolute w-screen h-screen" preserveAspectRatio="none" viewBox="0 0 1440 560">
+    <div class=" text-center overflow-hidden bg-gradient-to-r min-h-screen justify-center from-[#010347] to-[#111e58] ">
+        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.dev/svgjs" class="absolute w-screen min-h-screen" preserveAspectRatio="none" viewBox="0 0 1440 560">
             <g mask="url(&quot;#SvgjsMask1483&quot;)" fill="none">
                 <path d="M0 0L455.68 0L0 103.22z" fill="rgba(255, 255, 255, .1)"></path>
                 <path d="M0 103.22L455.68 0L739.4300000000001 0L0 151.91z" fill="rgba(255, 255, 255, .075)">
@@ -35,21 +35,23 @@
                 </mask>
             </defs>
         </svg>
-        <div class="grid grid-cols-1 container mx-auto md:grid-cols-2   z-10 overflow-hidden h-screen justify-center relative">
+        <div class="grid grid-cols-1 container mx-auto md:grid-cols-2   z-10 overflow-hidden min-h-screen justify-center relative px-4">
 
-            <div class="col-span-1 lg:mt-0 2xl:mt-0 md:block hidden grid">
-                <img src="{{ asset('assets/maskot.png') }}" alt="" class="place-self-center px-32 pt-16 h-[860px] mx-auto" >
+            <div class="col-span-1 lg:mt-0 2xl:mt-0 grid  ">
+                <img data-aos="fade-right" src="{{ asset('assets/maskot.png') }}" alt="" class="place-self-center   pt-32 2xl:pt-16 2xl:h-[830px] h-96 md:h-[550px]  mx-auto">
                 {{-- <lottie-player data-aos="fade-right" src="{{ asset('assets/user/src/welcome2.json') }}" style="filter: drop-shadow(10px 10px 0px #EAB308);" background="transparent" speed="1" class="w-6/6 mx-auto " loop autoplay></lottie-player> --}}
             </div>
             <div class="col-span-1    text-white  mx-auto     place-self-center text-left">
-                <div data-aos="fade-left" class=" lg:mt-8 3xl:mt-0">
-                    <h2 class="font-extrabold font-[arial] text-3xl lg:text-5xl       inline-block text-transparent
-                              bg-clip-text bg-gradient-to-b from-orange-500 from-30% to-yellow-500 text-h2-sh  ">
+                <div data-aos="fade-left" class=" mb-40 md:mb-0   ">
+                    <img src="{{ asset('assets/user/src/welcome-01.png') }}" alt="img" class="2xl:h-40 h-32 lg:mx-0 mx-auto">
+                    <h2 class="font-extrabold font-[arial] text-3xl 2xl:text-5xl inline-block text-transparent
+                              bg-clip-text bg-gradient-to-b from-orange-500 from-30% to-yellow-500 text-h2-sh    text-center  ">
                         SAYA SIAP MEWUJUDKAN<br></h2>
-                    <p class="text-gray-300 text-xs leading-7 md:leading-7 lg:leading-9 md:text-sm  ">
+                    <p class="text-gray-300 text-xs leading-7 md:leading-7 2xl:leading-9 md:text-sm  lg:text-left text-center font-['Protest_Riot']">
                         ZONA INTEGRITAS DI WILAYAH FAKULTAS ILMU SOSIAL DAN ILMU POLITIK UNIVERSITAS BEBNGKULU
-                        MENUJU WBK(WILAYAH BEBAS DARI KORUPSI) & WBBM(WILAYAH BIROKRASI BERSIH MELAYANI)
-                        <hr style="padding: 10px 0px 10px 0px !important; margin-top:10px !important;">
+                        MENUJU WBK(WILAYAH BEBAS DARI KORUPSI) & WBBM(WILAYAH BIROKRASI BERSIH MELAYANI)</p>
+                    <hr style="padding: 10px 0px 10px 0px !important; margin-top:10px !important;border-color: #999;">
+                    <p class="lg:text-left text-center text-xs font-['Protest_Riot']   md:text-sm">
                         NO PUNGLI, NO KORUPSI, NO GRATIFIKASI, NO SUAP
                         <br>
                         BERANI-EKUALITAS-RESPONSIF-EMPATI-SOLUSI
@@ -61,7 +63,7 @@
 </section>
 
 
-<div class="  ">
+<div class="relative  ">
     <div class="slider-svg tran-svg ">
         <svg data-name="Layer 1" class="svg2 duration-300 transform fill-gray-300 dark:fill-[#927207] opacity-30" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
             <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
