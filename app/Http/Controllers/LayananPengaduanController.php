@@ -62,7 +62,7 @@ class LayananPengaduanController extends Controller
 
         if ($create) {
             $target = Auth::user()->no_hp;
-            $token = "vp2sn#edisDCEdeRLbxP";
+            $token = "GnqX5TyqEf8xGuLnroy-";
             $messageController = new WaController();
             $message = "Halo '".Auth::user()->name."', Pengaduan anda sudah terkirim, berikut adalah tiket pengaduan anda : ".$kodeUnik;
             $response = $messageController->sendWa($token, $target, $message);

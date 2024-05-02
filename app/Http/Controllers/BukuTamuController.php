@@ -50,7 +50,7 @@ class BukuTamuController extends Controller
             $keperluan = $request->input('keperluan');
             $tujuan = $request->input('tujuan');
             $noHp = $request->input('no_hp');
-            $token = "vp2sn#edisDCEdeRLbxP";
+            $token = "GnqX5TyqEf8xGuLnroy-";
 
             $target = null;
 

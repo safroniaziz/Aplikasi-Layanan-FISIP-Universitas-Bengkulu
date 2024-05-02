@@ -56,7 +56,7 @@ class PermohonanSuratMasukController extends Controller
 
         if ($create) {
             $target = $permohonanSurat->user->no_hp;
-            $token = "vp2sn#edisDCEdeRLbxP";
+            $token = "GnqX5TyqEf8xGuLnroy-";
             $messageController = new WaController();
             $message = $pesan;
             $response = $messageController->sendWa($token, $target, $message);

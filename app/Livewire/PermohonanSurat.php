@@ -183,7 +183,7 @@ class PermohonanSurat extends Component
         }
 
         $target = Auth::user()->no_hp;
-        $token = "vp2sn#edisDCEdeRLbxP";
+        $token = "GnqX5TyqEf8xGuLnroy-";
         $messageController = new WaController();
         $message = "Halo '".Auth::user()->name."', permohonan pembuatan surat anda berhasil, Nomor Tiket permohonan anda adalah : ".$kodeUnik;
         $response = $messageController->sendWa($token, $target, $message);

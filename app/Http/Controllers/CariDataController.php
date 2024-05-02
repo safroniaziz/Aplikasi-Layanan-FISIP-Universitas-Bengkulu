@@ -14,7 +14,7 @@ class CariDataController extends Controller
 
     public function wa(){
         $messageController = new WaController();
-        $token = "vp2sn#edisDCEdeRLbxP";
+        $token = "GnqX5TyqEf8xGuLnroy-";
         $target = "081367948313";
         $message = 'test pesan menggunakan php 2';
 
